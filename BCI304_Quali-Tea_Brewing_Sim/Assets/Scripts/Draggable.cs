@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
+    Vector2 defaultPosition;
     Vector2 mousePosition;
-    Rigidbody2D rb;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        // populate ourRigidbody
-        rb = GetComponent<Rigidbody2D>();
+    {        
+        defaultPosition = transform.position;
     }
     private Vector2 GetMousePos()
     {
@@ -19,10 +18,13 @@ public class Draggable : MonoBehaviour
     private void OnMouseDown()
     {
         mousePosition = (Vector2)Input.mousePosition - GetMousePos();
-
     }
     private void OnMouseDrag()
     {
         transform.position = (Vector2)Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition - mousePosition);
+    }
+    private void OnMouseUp()
+    {
+        transform.position = defaultPosition;
     }
 }
