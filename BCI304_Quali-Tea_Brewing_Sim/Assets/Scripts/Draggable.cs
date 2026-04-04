@@ -2,29 +2,45 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
-    Vector2 defaultPosition;
-    Vector2 mousePosition;
+    public Vector3 startPosition;
+    private Collider2D col;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {        
-        defaultPosition = transform.position;
-    }
-    private Vector2 GetMousePos()
     {
-        //capture mouse position & return WorldPoint
-        return (Vector2)Camera.main.WorldToScreenPoint(transform.position);
+        startPosition = transform.position;
+        col = GetComponent<Collider2D>();
+    }
+    private Vector3 GetMousePosition()
+    {
+        Vector3 p = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        p.z = 0f;
+        return p;
     }
     private void OnMouseDown()
-    {
-        mousePosition = (Vector2)Input.mousePosition - GetMousePos();
+    {        
+        transform.position = GetMousePosition();
     }
     private void OnMouseDrag()
     {
-        transform.position = (Vector2)Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition - mousePosition);
+        transform.position = GetMousePosition();
     }
     private void OnMouseUp()
     {
-        transform.position = defaultPosition;
+        col.enabled = false;
+        Collider2D hitCollider = Physics2D.OverlapPoint(transform.position);
+        col.enabled = true;
+
+        if (hitCollider != null && hitCollider.TryGetComponent(out IOnDropBaseCollision onDropBaseCollision))
+        {
+            //Debug.Log("Collision Found"); 
+            onDropBaseCollision.OnDrop(this);                       
+        }
+        else
+        {
+            //Debug.Log("No Collision Found");
+            transform.position = startPosition;
+        }
+        
     }
 }
