@@ -11,13 +11,14 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         }        
         else if(draggable.tag == "Addition")
         {
-            Debug.Log($"Added {draggable.gameObject.name}");
+            Debug.Log($"Added {draggable.gameObject.name} to teacup");
             Destroy(draggable.gameObject);
         }
         else
         {
-            Debug.Log($"Tried to Add {draggable.tag}");
+            Debug.Log($"Tried to Add {draggable.tag} to teacup");
             draggable.transform.position = draggable.startPosition;
         }
     }
+    
 }

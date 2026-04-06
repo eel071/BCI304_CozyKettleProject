@@ -20,6 +20,21 @@ public class Draggable : MonoBehaviour
     private void OnMouseDown()
     {        
         transform.position = GetMousePosition();
+
+        col.enabled = false;
+        Collider2D hitCollider = Physics2D.OverlapPoint(transform.position);
+        col.enabled = true;
+
+        if (hitCollider != null && hitCollider.TryGetComponent(out IOnPickUpBaseCollision onPickUpBaseCollision))
+        {
+            Debug.Log("Collision Found"); 
+            onPickUpBaseCollision.OnPickUp(this);                       
+        }
+        else
+        {
+            Debug.Log("No Collision Found");
+            transform.position = startPosition;
+        }
     }
     private void OnMouseDrag()
     {
