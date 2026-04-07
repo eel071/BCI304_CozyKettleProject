@@ -1,14 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class Teacup : MonoBehaviour, IOnDropBaseCollision
 {
     [SerializeField] private GameObject tea;
-    private float teaMax = 0.25f; 
-    private float fillLevel = 0f;
-    private Vector3 teaFill;
-    private Vector3 teaEmpty;
-    private bool filled = false;
 
+    private float teaMax = 0.4f; 
+    private float fillLevel = 0f;
+    private float fillSpeed = 0.001f;
+    private Vector3 teaEmpty;
+    private bool fillingCup = false;
+    
     void Start()
     {
         teaEmpty = tea.transform.position;
@@ -16,13 +18,9 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     public void OnDrop(Draggable draggable)
     {        
-        if (draggable.tag == "Teapot")
+        if (draggable.tag == "Teapot") //this probably isnt necessary anymore since OnTriggerEnter2D is used to fill the cup
         {
             Debug.Log($"Tea Filled");
-            if (!filled)
-            {
-                FillCup();
-            }
             draggable.transform.position = draggable.startPosition;
         }        
         else if(draggable.tag == "Addition")
@@ -36,18 +34,55 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             draggable.transform.position = draggable.startPosition;
         }
     }
+    
+    #region filling cup
 
-    private void FillCup()
-    { 
-        filled = true;
-        //will have to change this later so it can have varying heights
-        //Mathf.Lerp(0, teaMax, fillLevel) 
-        tea.transform.position += new Vector3(0f, teaMax, 0f); 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Teapot")) 
+        {
+            fillingCup = true; 
+            StartCoroutine(FillCup());
+            Debug.Log("filling cup");
+        }
     }
 
-    private void EmptyCup()
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Teapot")) 
+        {
+            fillingCup = false;
+            Debug.Log("stopped filling cup");
+        }
+    }
+
+    private IEnumerator FillCup()
+    {
+        while (fillingCup)
+        {
+            if (fillLevel < 1)
+            {
+                fillLevel += fillSpeed;
+                fillLevel = Mathf.Clamp01(fillLevel);
+
+                Vector3 pos = tea.transform.position;
+                float teaY = Mathf.Lerp(0, teaMax, fillLevel);
+                tea.transform.position = new Vector3(pos.x, teaEmpty.y + teaY, pos.z); 
+
+                yield return null;
+            }
+            else
+            {
+                fillingCup = false;
+            }
+        }
+    }
+
+    public void EmptyCup() //used when making a new tea or dump the current tea
     {
         tea.transform.position = teaEmpty;
-        filled = false;
+        fillLevel = 0;
     }
+
+    #endregion
 }
