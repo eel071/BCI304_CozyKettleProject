@@ -7,9 +7,11 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     private float teaMax = 0.4f; 
     private float fillLevel = 0f;
-    private float fillSpeed = 0.001f;
+    private float fillSpeed = 0.002f;
     private Vector3 teaEmpty;
     private bool fillingCup = false;
+    
+    private bool draggingCup = false;
     
     void Start()
     {
@@ -39,7 +41,9 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Teapot")) 
+        Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
+
+        if (other.gameObject.CompareTag("Teapot") && drag.dragging) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
@@ -83,6 +87,5 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         tea.transform.position = teaEmpty;
         fillLevel = 0;
     }
-
     #endregion
 }

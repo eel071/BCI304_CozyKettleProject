@@ -4,6 +4,7 @@ public class Draggable : MonoBehaviour
 {
     public Vector3 startPosition;
     private Collider2D col;
+    public bool dragging = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,8 +18,10 @@ public class Draggable : MonoBehaviour
         p.z = 0f;
         return p;
     }
+
     private void OnMouseDown()
     {        
+        dragging = true;
         transform.position = GetMousePosition();
 
         col.enabled = false;
@@ -28,7 +31,7 @@ public class Draggable : MonoBehaviour
         if (hitCollider != null && hitCollider.TryGetComponent(out IOnPickUpBaseCollision onPickUpBaseCollision))
         {
             Debug.Log("Collision Found"); 
-            onPickUpBaseCollision.OnPickUp(this);                       
+            onPickUpBaseCollision.OnPickUp(this);                      
         }
         else
         {
@@ -36,12 +39,15 @@ public class Draggable : MonoBehaviour
             transform.position = startPosition;
         }
     }
+
     private void OnMouseDrag()
     {
         transform.position = GetMousePosition();
     }
+
     private void OnMouseUp()
     {
+        dragging = false;
         col.enabled = false;
         Collider2D hitCollider = Physics2D.OverlapPoint(transform.position);
         col.enabled = true;
@@ -49,13 +55,12 @@ public class Draggable : MonoBehaviour
         if (hitCollider != null && hitCollider.TryGetComponent(out IOnDropBaseCollision onDropBaseCollision))
         {
             //Debug.Log("Collision Found"); 
-            onDropBaseCollision.OnDrop(this);                       
+            onDropBaseCollision.OnDrop(this);                      
         }
         else
         {
             //Debug.Log("No Collision Found");
             transform.position = startPosition;
         }
-        
     }
 }
