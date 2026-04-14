@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: c105ccfc550dd3848a313683e1daa10e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4682426181947228311
+    second: tealeaves textures_0
+  - first:
+      213: -7401849415399329568
+    second: tealeaves textures_1
+  - first:
+      213: -4420617623336090271
+    second: tealeaves textures_2
+  - first:
+      213: 8559487556093666595
+    second: tealeaves textures_3
+  - first:
+      213: 8098233030336911588
+    second: tealeaves textures_4
+  - first:
+      213: -6896298771383765604
+    second: tealeaves textures_5
+  - first:
+      213: -8163566709816974674
+    second: tealeaves textures_6
+  - first:
+      213: 1460349648988578103
+    second: tealeaves textures_7
+  - first:
+      213: -6700032477664135638
+    second: tealeaves textures_8
+  - first:
+      213: -2952654728426517578
+    second: tealeaves textures_9
+  - first:
+      213: -712902261676516141
+    second: tealeaves textures_10
+  - first:
+      213: 1894690338038284098
+    second: tealeaves textures_11
+  - first:
+      213: -4539172317049744987
+    second: tealeaves textures_12
+  - first:
+      213: 1654371859966543721
+    second: tealeaves textures_13
+  - first:
+      213: 2796069447260857254
+    second: tealeaves textures_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: blacktea_1
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1537
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ffb02323ea40fb0800000000000000
+      internalID: -4682426181947228311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacktea_empty
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 1537
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e0b0326c29574990800000000000000
+      internalID: -7401849415399329568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: greentea_1
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 1537
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 165883961bfc6a2c0800000000000000
+      internalID: -4420617623336090271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: greentea_2
+      rect:
+        serializedVersion: 2
+        x: 1604
+        y: 1537
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 325e658059869c670800000000000000
+      internalID: 8559487556093666595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacktea_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1025
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e81199e804b26070800000000000000
+      internalID: 8098233030336911588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: greentea_3
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 1025
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9535ba3ecc6b40a0800000000000000
+      internalID: -6896298771383765604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitetea_1
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 1025
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea2a721745f25be80800000000000000
+      internalID: -8163566709816974674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitetea_2
+      rect:
+        serializedVersion: 2
+        x: 1604
+        y: 1025
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 731a4dbb444344410800000000000000
+      internalID: 1460349648988578103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacktea_3
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 513
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26bf39b5f3b403a0800000000000000
+      internalID: -6700032477664135638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: greentea_4
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 513
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bb82c71b201607d0800000000000000
+      internalID: -2952654728426517578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitetea_3
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 513
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dcd23d8b234b16f0800000000000000
+      internalID: -712902261676516141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitetea_empty
+      rect:
+        serializedVersion: 2
+        x: 1604
+        y: 513
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24ff22ee2da4b4a10800000000000000
+      internalID: 1894690338038284098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blacktea_4
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a196f3c3de9101c0800000000000000
+      internalID: -4539172317049744987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: greentea_empty
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 1
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96745bff07285f610800000000000000
+      internalID: 1654371859966543721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: whitetea_4
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 1
+        width: 377
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a36e4b1952adc620800000000000000
+      internalID: 2796069447260857254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b27a91ad65dce9e4f81ba65567e2229b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      blacktea_1: -4682426181947228311
+      blacktea_2: 8098233030336911588
+      blacktea_3: -6700032477664135638
+      blacktea_4: -4539172317049744987
+      blacktea_empty: -7401849415399329568
+      greentea_1: -4420617623336090271
+      greentea_2: 8559487556093666595
+      greentea_3: -6896298771383765604
+      greentea_4: -2952654728426517578
+      greentea_empty: 1654371859966543721
+      whitetea_1: -8163566709816974674
+      whitetea_2: 1460349648988578103
+      whitetea_3: -712902261676516141
+      whitetea_4: 2796069447260857254
+      whitetea_empty: 1894690338038284098
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
