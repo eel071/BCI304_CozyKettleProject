@@ -30,14 +30,9 @@ public class Draggable : MonoBehaviour
 
         if (hitCollider != null && hitCollider.TryGetComponent(out IOnPickUpBaseCollision onPickUpBaseCollision))
         {
-            Debug.Log("Collision Found"); 
+            //Debug.Log("Collision Found"); 
             onPickUpBaseCollision.OnPickUp(this);                      
-        }
-        else
-        {
-            Debug.Log("No Collision Found");
-            transform.position = startPosition;
-        }
+        }        
     }
 
     private void OnMouseDrag()

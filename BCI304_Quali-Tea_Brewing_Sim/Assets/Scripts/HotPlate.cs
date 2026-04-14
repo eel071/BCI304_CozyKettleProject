@@ -36,7 +36,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             finalTime = waterTimer;
             teapot_script.waterHeating = false;
             waterTimer = 0f;
-            Debug.Log($"Heat Timer : {waterTimer}");
+            // Debug.Log($"Heat Timer : {waterTimer}");
             Debug.Log($"Heat Final Time : {finalTime}");
             teapot_script.waterHeated = true;
         }
@@ -47,7 +47,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
         if (teapot_script.waterHeating == true)
         {
             waterTimer += Time.deltaTime;
-            Debug.Log($"Heat Timer : {waterTimer}");
+            // Debug.Log($"Heat Timer : {waterTimer}");
         }
     }
 }

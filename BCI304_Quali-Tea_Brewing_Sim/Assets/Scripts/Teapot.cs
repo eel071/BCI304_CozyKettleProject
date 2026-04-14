@@ -2,20 +2,22 @@ using System;
 using UnityEngine;
 
 public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
-{
+{    
     float steepTimer = 0f;
     float finalSteep = 0f;
     public bool teaSteeping = false;
     public bool teaSteeped = false;
     public bool waterHeating = false;
-    public bool waterHeated = false;
+    public bool waterHeated = false;    
+    
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
         {
-            draggable.transform.position = transform.position + new Vector3(0, 1.5f, 0);
-            Debug.Log($"Steeping {draggable.gameObject.name}");
             teaSteeping = true;
+            Debug.Log($"Steeping {draggable.gameObject.name}");                      
+            draggable.transform.position = transform.position + new Vector3(0, 1.5f, 0);
+            
         }        
         else
         {
@@ -28,14 +30,15 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     {
         if (draggable.tag == "Tea")
         {
+            
             Destroy(draggable.gameObject);
             Debug.Log($"Steeping has stopped");
             finalSteep = steepTimer;
             teaSteeping = false;
             steepTimer = 0f;
-            Debug.Log($"Steep Timer : {steepTimer}");
+            // Debug.Log($"Steep Timer : {steepTimer}");
             Debug.Log($"Steep Final Time : {finalSteep}");
-            teaSteeped = true;
+            teaSteeped = true;            
         }
     }
 
@@ -44,8 +47,8 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         if (teaSteeping == true)
         {
             steepTimer += Time.deltaTime;
-            Debug.Log($"Steep Timer : {steepTimer}");
+            // Debug.Log($"Steep Timer : {steepTimer}");            
         }
     }
-
+    
 }

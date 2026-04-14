@@ -5,7 +5,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 {
     [SerializeField] private GameObject tea;
     [SerializeField] private GameObject teapot;
-    private Teapot teapot_script;
+    private Teapot teapotScript;
 
     private float teaMax = 0.4f; 
     private float fillLevel = 0f;
@@ -13,12 +13,12 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     private Vector3 teaEmpty;
     private bool fillingCup = false;    
     // private bool draggingCup = false; //not currently in use, just uncomment it when you need it
-    private bool teaFilled = false;
+    public bool teaFilled = false;
     
     void Start()
     {
         teaEmpty = tea.transform.position;
-        teapot_script = teapot.GetComponent<Teapot>();
+        teapotScript = teapot.GetComponent<Teapot>();
     }
 
     public void OnDrop(Draggable draggable)
@@ -41,7 +41,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
 
-        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapot_script.teaSteeped == true) //checks that the teapot is the object being dragged
+        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapotScript.teaSteeped == true) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
@@ -77,6 +77,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             else
             {
                 fillingCup = false;
+                teaFilled = true;
             }
         }
     }

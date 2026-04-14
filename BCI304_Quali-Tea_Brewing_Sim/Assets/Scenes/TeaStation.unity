@@ -453,7 +453,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.4264151, g: 0.4074961, b: 0.37894621, a: 0}
+  m_BackGroundColor: {r: 0.4339623, g: 0.3115113, b: 0.23171946, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -803,15 +803,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8834675197965266319, guid: ade8024c3f28a9c47bf17878b7f86ff0, type: 3}
       propertyPath: m_Color.b
-      value: 0.37254903
+      value: 0.36394647
       objectReference: {fileID: 0}
     - target: {fileID: 8834675197965266319, guid: ade8024c3f28a9c47bf17878b7f86ff0, type: 3}
       propertyPath: m_Color.g
-      value: 0.45882356
+      value: 0.5698112
       objectReference: {fileID: 0}
     - target: {fileID: 8834675197965266319, guid: ade8024c3f28a9c47bf17878b7f86ff0, type: 3}
       propertyPath: m_Color.r
-      value: 0.3529412
+      value: 0.31715906
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834675197965266319, guid: ade8024c3f28a9c47bf17878b7f86ff0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1273,7 +1277,7 @@ SpriteRenderer:
   m_SortingOrder: 5
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.63449657, g: 0.83396226, b: 0.57747954, a: 1}
+  m_Color: {r: 0.8074923, g: 0.8352941, b: 0.5764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
