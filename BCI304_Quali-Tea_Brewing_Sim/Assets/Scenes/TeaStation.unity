@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: tea
       value: 
       objectReference: {fileID: 1044408086}
+    - target: {fileID: 175276614536146872, guid: bf47e37875f765347a04d16372a85492, type: 3}
+      propertyPath: teapot
+      value: 
+      objectReference: {fileID: 2074440800}
     - target: {fileID: 2387856049359652349, guid: bf47e37875f765347a04d16372a85492, type: 3}
       propertyPath: m_Color.a
       value: 1
@@ -970,6 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f58e49f2540f246bc4e28fdfd6ad38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HotPlate
+  teapot: {fileID: 2074440800}
 --- !u!1 &1120237705 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5167368729973276477, guid: bf47e37875f765347a04d16372a85492, type: 3}
@@ -1350,6 +1355,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f9ff793008ac14bade94703e637b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeaPot
+  teaSteeping: 0
+  teaSteeped: 0
+  waterHeating: 0
+  waterHeated: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,14 +4,22 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
 {
     float waterTimer = 0f;
     float finalTime = 0f;
-    bool waterHeating = false;
-    public void OnDrop(Draggable draggable)
+
+    [SerializeField] private GameObject teapot;
+    private Teapot teapot_script;
+
+    private void Start()
     {
-        if (draggable.tag == "Teapot")
+        teapot_script = teapot.GetComponent<Teapot>();
+    }
+
+    public void OnDrop(Draggable draggable)
+    {        
+        if (draggable.tag == "Teapot" && teapot_script.waterHeated == false)
         {
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0, 1, 0);
-            waterHeating = true;
+            teapot_script.waterHeating = true;
         }        
         else
         {
@@ -26,16 +34,17 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
         {
             Debug.Log($"Heating has stopped");            
             finalTime = waterTimer;
-            waterHeating = false;
+            teapot_script.waterHeating = false;
             waterTimer = 0f;
             Debug.Log($"Heat Timer : {waterTimer}");
             Debug.Log($"Heat Final Time : {finalTime}");
+            teapot_script.waterHeated = true;
         }
     }
 
     private void Update()
     {
-        if (waterHeating == true)
+        if (teapot_script.waterHeating == true)
         {
             waterTimer += Time.deltaTime;
             Debug.Log($"Heat Timer : {waterTimer}");

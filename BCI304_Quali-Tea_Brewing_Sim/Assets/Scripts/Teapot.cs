@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 
-public class TeaPot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
+public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
 {
     float steepTimer = 0f;
     float finalSteep = 0f;
-    bool teaSteeping = false;
+    public bool teaSteeping = false;
+    public bool teaSteeped = false;
+    public bool waterHeating = false;
+    public bool waterHeated = false;
     public void OnDrop(Draggable draggable)
-    {
-        if (draggable.tag == "Tea")
+    {        
+        if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
         {
             draggable.transform.position = transform.position + new Vector3(0, 1.5f, 0);
             Debug.Log($"Steeping {draggable.gameObject.name}");
@@ -31,6 +35,7 @@ public class TeaPot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             steepTimer = 0f;
             Debug.Log($"Steep Timer : {steepTimer}");
             Debug.Log($"Steep Final Time : {finalSteep}");
+            teaSteeped = true;
         }
     }
 
