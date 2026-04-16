@@ -40,7 +40,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     private void OnTriggerEnter2D(Collider2D other)
     {
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
-
+    
         if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapotScript.teaSteeped == true) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
