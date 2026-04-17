@@ -23,7 +23,7 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         {
             teaSteeping = true;
             Debug.Log($"Steeping {draggable.gameObject.name}");                      
-            draggable.transform.position = transform.position + new Vector3(0, 1.5f, 0);
+            draggable.transform.position = transform.position + new Vector3(-0.19f, 1.25f, 0);
 
             //steeping progress bar
             steepBar.SetActive(true); 
