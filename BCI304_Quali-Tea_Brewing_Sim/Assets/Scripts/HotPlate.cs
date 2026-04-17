@@ -8,6 +8,12 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private GameObject teapot;
     private Teapot teapot_script;
 
+    [SerializeField] private float maxHeatTime = 5f;
+    public float tempGoal = 3f; //will be changed depending on tea type
+
+    [SerializeField] private ProgressBar progressBar;
+    [SerializeField] private GameObject heatBar;
+
     private void Start()
     {
         teapot_script = teapot.GetComponent<Teapot>();
@@ -20,6 +26,10 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0, 1, 0);
             teapot_script.waterHeating = true;
+
+            //heating progress bar
+            heatBar.SetActive(true);
+            progressBar.SetBar(maxHeatTime, tempGoal);
         }        
         else
         {
@@ -39,6 +49,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             // Debug.Log($"Heat Timer : {waterTimer}");
             Debug.Log($"Heat Final Time : {finalTime}");
             teapot_script.waterHeated = true;
+            heatBar.SetActive(false); //hide heating progress bar
         }
     }
 
@@ -47,6 +58,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
         if (teapot_script.waterHeating == true)
         {
             waterTimer += Time.deltaTime;
+            progressBar.SetProgress(waterTimer); //updates heating progress bar
             // Debug.Log($"Heat Timer : {waterTimer}");
         }
     }

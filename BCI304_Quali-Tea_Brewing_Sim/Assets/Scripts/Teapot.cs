@@ -10,6 +10,13 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     public bool waterHeating = false;
     public bool waterHeated = false;    
     
+    
+    [SerializeField] private float maxSteepTime = 5f; //max time for steeping
+    public float steepGoal = 3f; //this could be changed depending on the tea type
+
+    [SerializeField] private ProgressBar progressBar;
+    [SerializeField] private GameObject steepBar;
+    
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
@@ -17,7 +24,10 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             teaSteeping = true;
             Debug.Log($"Steeping {draggable.gameObject.name}");                      
             draggable.transform.position = transform.position + new Vector3(0, 1.5f, 0);
-            
+
+            //steeping progress bar
+            steepBar.SetActive(true); 
+            progressBar.SetBar(maxSteepTime, steepGoal);
         }        
         else
         {
@@ -26,11 +36,13 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         }
         
     }
+
     public void OnPickUp(Draggable draggable)
     {
-        if (draggable.tag == "Tea")
-        {
-            
+        Debug.Log("on pick up activated");
+
+        if (draggable.tag == "Tea") 
+        {            
             Destroy(draggable.gameObject);
             Debug.Log($"Steeping has stopped");
             finalSteep = steepTimer;
@@ -38,16 +50,18 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             steepTimer = 0f;
             // Debug.Log($"Steep Timer : {steepTimer}");
             Debug.Log($"Steep Final Time : {finalSteep}");
-            teaSteeped = true;            
+            teaSteeped = true;  
+            steepBar.SetActive(false);       
         }
     }
 
     private void Update()
     {
-        if (teaSteeping == true)
+        if (teaSteeping == true && steepTimer <= maxSteepTime)
         {
             steepTimer += Time.deltaTime;
-            // Debug.Log($"Steep Timer : {steepTimer}");            
+            // Debug.Log($"Steep Timer : {steepTimer}");
+            progressBar.SetProgress(steepTimer); //update progress bar
         }
     }
     
