@@ -9,7 +9,6 @@ public class ProgressBar : MonoBehaviour
     public void SetBar(float maxNum, float progressGoal) 
     {
         max = maxNum;
-        
         goal.anchoredPosition = new Vector2((progressGoal/max) * width, 0f); 
     }
 
@@ -18,9 +17,7 @@ public class ProgressBar : MonoBehaviour
     {
         progress = currentProgress;
         float newWidth = (progress/max) * width;
-
         progressBar.sizeDelta = new Vector2(newWidth, height);
     }
-
 
 }
