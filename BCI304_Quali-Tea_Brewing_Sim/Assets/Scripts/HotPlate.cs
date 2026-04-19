@@ -2,30 +2,24 @@ using UnityEngine;
 
 public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
 {
-    float waterTimer = 0f;
-    float finalTime = 0f;
+    private float waterTimer = 0f;
+    public float finalTime = 0f;
 
-    [SerializeField] private GameObject teapot;
-    private Teapot teapot_script;
+    [SerializeField] private Teapot teapot;
 
-    [SerializeField] private float maxHeatTime = 5f;
-    public float tempGoal = 3f; //will be changed depending on tea type
+    [SerializeField] private float maxHeatTime = 10f;
+    public float tempGoal = 8f; //will be changed depending on tea type
 
     [SerializeField] private ProgressBar progressBar;
-    [SerializeField] private GameObject heatBar;
-
-    private void Start()
-    {
-        teapot_script = teapot.GetComponent<Teapot>();
-    }
+    [SerializeField] private GameObject heatBar;       
 
     public void OnDrop(Draggable draggable)
     {        
-        if (draggable.tag == "Teapot" && teapot_script.waterHeated == false)
+        if (draggable.tag == "Teapot" && teapot.waterHeated == false)
         {
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0.2f, 1.25f, 0);
-            teapot_script.waterHeating = true;
+            teapot.waterHeating = true;
 
             //heating progress bar
             heatBar.SetActive(true);
@@ -44,18 +38,18 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
         {
             Debug.Log($"Heating has stopped");            
             finalTime = waterTimer;
-            teapot_script.waterHeating = false;
+            teapot.waterHeating = false;
             waterTimer = 0f;
             // Debug.Log($"Heat Timer : {waterTimer}");
             Debug.Log($"Heat Final Time : {finalTime}");
-            teapot_script.waterHeated = true;
+            teapot.waterHeated = true;
             heatBar.SetActive(false); //hide heating progress bar
         }
     }
 
     private void Update()
     {
-        if (teapot_script.waterHeating == true)
+        if (teapot.waterHeating == true)
         {
             waterTimer += Time.deltaTime;
             progressBar.SetProgress(waterTimer); //updates heating progress bar

@@ -4,11 +4,10 @@ using UnityEngine;
 public class Teacup : MonoBehaviour, IOnDropBaseCollision
 {
     [SerializeField] private GameObject tea;
-    [SerializeField] private GameObject teapot;
-    private Teapot teapotScript;
+    [SerializeField] private Teapot teapotScript;
 
     private float teaMax = 0.4f; 
-    private float fillLevel = 0f;
+    public float fillLevel = 0f;
     private float fillSpeed = 0.002f;
     private Vector3 teaEmpty;
     private bool fillingCup = false;    
@@ -17,8 +16,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     
     void Start()
     {
-        teaEmpty = tea.transform.position;
-        teapotScript = teapot.GetComponent<Teapot>();
+        teaEmpty = tea.transform.position;        
     }
 
     public void OnDrop(Draggable draggable)

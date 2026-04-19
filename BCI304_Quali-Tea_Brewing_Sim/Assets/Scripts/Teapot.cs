@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
 {    
-    float steepTimer = 0f;
-    float finalSteep = 0f;
+    private float steepTimer = 0f;
+    public float finalSteep = 0f;
     public bool teaSteeping = false;
     public bool teaSteeped = false;
     public bool waterHeating = false;
