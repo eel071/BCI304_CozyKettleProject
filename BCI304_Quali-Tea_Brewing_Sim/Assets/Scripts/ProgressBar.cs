@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class ProgressBar : MonoBehaviour
 {
     [SerializeField] private RectTransform progressBar;
@@ -9,15 +10,21 @@ public class ProgressBar : MonoBehaviour
     public void SetBar(float maxNum, float progressGoal) 
     {
         max = maxNum;
-        goal.anchoredPosition = new Vector2((progressGoal/max) * width, 0f); 
+        if (max > 0)
+        {
+            goal.anchoredPosition = new Vector2((progressGoal / max) * width, 0f);
+        }
     }
 
 
     public void SetProgress(float currentProgress)
     {
         progress = currentProgress;
-        float newWidth = (progress/max) * width;
-        progressBar.sizeDelta = new Vector2(newWidth, height);
+        if (max > 0)
+        {
+            float newWidth = (progress / max) * width;
+            progressBar.sizeDelta = new Vector2(newWidth, height);
+        }
     }
 
 }

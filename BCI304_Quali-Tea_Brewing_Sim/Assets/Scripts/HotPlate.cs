@@ -24,6 +24,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             //heating progress bar
             heatBar.SetActive(true);
             progressBar.SetBar(maxHeatTime, tempGoal);
+
         }        
         else
         {
