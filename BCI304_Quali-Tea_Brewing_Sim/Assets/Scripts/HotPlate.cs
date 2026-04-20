@@ -11,7 +11,10 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     public float tempGoal = 8f; //will be changed depending on tea type
 
     [SerializeField] private ProgressBar progressBar;
-    [SerializeField] private GameObject heatBar;       
+    [SerializeField] private GameObject heatBar;
+
+    [SerializeField] private AudioClip boilingSound;
+    [SerializeField] private AudioSource myAudioSource;
 
     public void OnDrop(Draggable draggable)
     {        
@@ -24,6 +27,15 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             //heating progress bar
             heatBar.SetActive(true);
             progressBar.SetBar(maxHeatTime, tempGoal);
+
+            if (boilingSound!= null && myAudioSource != null)
+            {
+                // This plays the specific clip you dragged in
+                myAudioSource.clip = boilingSound;
+                myAudioSource.loop = true; // Make sure it keeps boiling
+                myAudioSource.Play();
+                Debug.Log("boiling sound start");
+            }
 
         }        
         else
@@ -45,6 +57,12 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             Debug.Log($"Heat Final Time : {finalTime}");
             teapot.waterHeated = true;
             heatBar.SetActive(false); //hide heating progress bar
+
+            if (boilingSound != null)
+            {
+                myAudioSource.Stop();
+                Debug.Log("boiling sound stop");
+            }
         }
     }
 

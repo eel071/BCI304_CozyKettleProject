@@ -13,7 +13,11 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     private bool fillingCup = false;    
     // private bool draggingCup = false; //not currently in use, just uncomment it when you need it
     public bool teaFilled = false;
-    
+
+    [SerializeField] private AudioClip teaPouring;
+    [SerializeField] private AudioSource myAudioSource;
+
+
     void Start()
     {
         teaEmpty = tea.transform.position;        
@@ -39,11 +43,15 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
-        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapotScript.teaSteeped == true) //checks that the teapot is the object being dragged
+        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapotScript.teaSteeped == true && teaFilled == false) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
             Debug.Log("filling cup");
+
+            myAudioSource.clip = teaPouring;
+            myAudioSource.loop = true;
+            myAudioSource.Play();
         }
     }
 
@@ -54,6 +62,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             fillingCup = false;
             Debug.Log("stopped filling cup");
             teaFilled = true;
+
         }
     }
 
@@ -76,6 +85,12 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             {
                 fillingCup = false;
                 teaFilled = true;
+
+                if (myAudioSource != null)
+                {
+                    myAudioSource.Stop(); // Stop sound when 100% full
+                }
+                Debug.Log("stopped filling cup - FULL");
             }
         }
     }
@@ -84,6 +99,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {
         tea.transform.position = teaEmpty;
         fillLevel = 0;
+        teaFilled = false;
     }
     #endregion
 }

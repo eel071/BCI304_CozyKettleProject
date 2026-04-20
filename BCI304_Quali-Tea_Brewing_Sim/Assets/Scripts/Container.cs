@@ -7,8 +7,11 @@ public class Container : MonoBehaviour
     [SerializeField] private Sprite[] containerSprites;
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private AudioClip wooshSound;
+    [SerializeField] private AudioSource myAudioSource;
 
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +32,13 @@ public class Container : MonoBehaviour
             Instantiate(storedItem, mousePos + offset, Quaternion.identity);
             currentStorage -= 1;
             UpdateSprite();
+
+            if (wooshSound != null && myAudioSource != null)
+            {
+                // PlayOneShot is great for clicks because it doesn't interrupt 
+                // itself if the player clicks really fast!
+                myAudioSource.PlayOneShot(wooshSound);
+            }
         }
         else
         {
