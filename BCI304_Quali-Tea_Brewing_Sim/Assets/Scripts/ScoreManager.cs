@@ -15,7 +15,7 @@ public class ScoreManager : MonoBehaviour
     {
         heatScore = hotPlate.finalTime / hotPlate.tempGoal * 100;
         steepScore = teapot.finalSteep / teapot.steepGoal * 100;
-        fillScore = teacup.fillLevel / 0.9f * 100;
+        fillScore = teacup.fillLevel / 0.75f * 100;
 
         if (heatScore > 100)
         {
