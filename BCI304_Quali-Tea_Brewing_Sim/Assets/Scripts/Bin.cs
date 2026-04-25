@@ -4,17 +4,23 @@ using UnityEngine;
 public class Bin : MonoBehaviour, IOnDropBaseCollision
 {
     [SerializeField] private Teacup teacup;
+    
     public void OnDrop(Draggable draggable)
     {
-        if (draggable.tag == "Teacup")
+        switch (draggable.tag)
         {
-            draggable.transform.position = draggable.startPosition;
-            teacup.EmptyCup();            
-        }
-        else
-        {
-            Debug.Log($"Tried to bin {draggable.tag}");
-            draggable.transform.position = draggable.startPosition;
+            case "Teacup":
+                draggable.transform.position = draggable.startPosition;
+                teacup.EmptyCup();
+                break;
+            case "Addition":
+            case "Tea":
+                Destroy(draggable.gameObject);
+                break;
+            default:
+                Debug.Log($"Tried to bin {draggable.tag}");
+                draggable.transform.position = draggable.startPosition;
+                break;
         }
 
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5775983639215037601}
   m_Layer: 0
   m_Name: LeavesBlack
-  m_TagString: Tea
+  m_TagString: TeaLeaves
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

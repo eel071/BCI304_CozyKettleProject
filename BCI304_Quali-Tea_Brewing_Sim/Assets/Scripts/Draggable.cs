@@ -7,11 +7,26 @@ public class Draggable : MonoBehaviour
     public bool dragging = false;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         startPosition = transform.position;
         col = GetComponent<Collider2D>();
     }
+
+    void Update()
+    {
+        if (dragging)
+        {
+            if (!Input.GetMouseButton(0))
+            {
+                dragging = false;
+                DropObject();
+                return;
+            }
+            transform.position = GetMousePosition();
+        }
+    }
+
     private Vector3 GetMousePosition()
     {
         Vector3 p = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -21,6 +36,16 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {        
+        DragObject();
+    }
+
+    private void OnMouseUp()
+    {
+        DropObject();
+    }
+
+    public void DragObject()
+    {
         dragging = true;
         transform.position = GetMousePosition();
 
@@ -32,15 +57,15 @@ public class Draggable : MonoBehaviour
         {
             //Debug.Log("Collision Found"); 
             onPickUpBaseCollision.OnPickUp(this);                      
-        }        
+        }      
     }
 
     private void OnMouseDrag()
     {
         transform.position = GetMousePosition();
-    }
+    }    
 
-    private void OnMouseUp()
+    private void DropObject()
     {
         dragging = false;
         col.enabled = false;

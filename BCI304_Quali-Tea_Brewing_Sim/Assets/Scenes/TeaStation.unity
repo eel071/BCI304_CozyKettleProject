@@ -168,6 +168,10 @@ PrefabInstance:
       value: 0.5060568
       objectReference: {fileID: 0}
     - target: {fileID: 2387856049359652349, guid: bf47e37875f765347a04d16372a85492, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2387856049359652349, guid: bf47e37875f765347a04d16372a85492, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -186,6 +190,10 @@ PrefabInstance:
     - target: {fileID: 2452963231713617313, guid: bf47e37875f765347a04d16372a85492, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452963231713617313, guid: bf47e37875f765347a04d16372a85492, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2452963231713617313, guid: bf47e37875f765347a04d16372a85492, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -295,6 +303,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 8225659541531813287, guid: 88e8915f6f542af4aae9ce4668c68522, type: 3}
+    - target: {fileID: 8753795742953356737, guid: bf47e37875f765347a04d16372a85492, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8753795742953356737, guid: bf47e37875f765347a04d16372a85492, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -457,6 +469,7 @@ MonoBehaviour:
   storedItem: {fileID: 8788181066146043255, guid: d3a2f4121a33ad845be85310a3c3ea2c, type: 3}
   maxStorage: 4
   currentStorage: 4
+  containerType: 0
   containerSprites:
   - {fileID: -4682426181947228311, guid: c105ccfc550dd3848a313683e1daa10e, type: 3}
   - {fileID: 8098233030336911588, guid: c105ccfc550dd3848a313683e1daa10e, type: 3}
@@ -1278,6 +1291,7 @@ MonoBehaviour:
   storedItem: {fileID: 9018825296986393017, guid: 2230fc7dd87ce90429a01d841c784322, type: 3}
   maxStorage: 10
   currentStorage: 10
+  containerType: 1
   containerSprites: []
   wooshSound: {fileID: 0}
   myAudioSource: {fileID: 0}
@@ -1570,6 +1584,7 @@ MonoBehaviour:
   storedItem: {fileID: 8788181066146043255, guid: 2ba5287675dbfe940931922620b7483d, type: 3}
   maxStorage: 4
   currentStorage: 4
+  containerType: 0
   containerSprites:
   - {fileID: -8163566709816974674, guid: c105ccfc550dd3848a313683e1daa10e, type: 3}
   - {fileID: 1460349648988578103, guid: c105ccfc550dd3848a313683e1daa10e, type: 3}
@@ -2643,6 +2658,7 @@ MonoBehaviour:
   storedItem: {fileID: 8788181066146043255, guid: ade8024c3f28a9c47bf17878b7f86ff0, type: 3}
   maxStorage: 4
   currentStorage: 4
+  containerType: 0
   containerSprites:
   - {fileID: -4420617623336090271, guid: c105ccfc550dd3848a313683e1daa10e, type: 3}
   - {fileID: 8559487556093666595, guid: c105ccfc550dd3848a313683e1daa10e, type: 3}
