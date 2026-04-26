@@ -16,7 +16,8 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
 
     [SerializeField] private ProgressBar progressBar;
     [SerializeField] private GameObject steepBar;
-    
+    [SerializeField] private HotPlate hotPlate;
+
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
@@ -64,5 +65,11 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             progressBar.SetProgress(steepTimer); //update progress bar
         }
     }
-    
+    public void ResetTeapot()
+    {
+        waterHeated = false;
+        teaSteeped = false;
+        hotPlate.finalTime = 0f;
+        finalSteep = 0f;        
+    }
 }

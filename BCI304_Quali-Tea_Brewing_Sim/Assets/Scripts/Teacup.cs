@@ -8,7 +8,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     private float teaMax = 0.4f; 
     public float fillLevel = 0f;
-    private float fillSpeed = 0.01f;
+    private float fillSpeed = 0.002f;
     private Vector3 teaEmpty;
     private bool fillingCup = false;    
     // private bool draggingCup = false; //not currently in use, just uncomment it when you need it
