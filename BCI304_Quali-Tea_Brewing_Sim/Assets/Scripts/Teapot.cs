@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
 {    
+    [SerializeField] private TeaManager teaManager;
+
     private float steepTimer = 0f;
     public float finalSteep = 0f;
     public bool teaSteeping = false;
@@ -29,6 +31,8 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             //steeping progress bar
             steepBar.SetActive(true); 
             progressBar.SetBar(maxSteepTime, steepGoal);
+            
+            
         }        
         else
         {
@@ -52,7 +56,10 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             // Debug.Log($"Steep Timer : {steepTimer}");
             Debug.Log($"Steep Final Time : {finalSteep}");
             teaSteeped = true;  
-            steepBar.SetActive(false);       
+            steepBar.SetActive(false);
+            
+            string teaType = draggable.name;
+            teaManager.SetTea(teaType, finalSteep, steepGoal); 
         }
     }
 
@@ -70,6 +77,7 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         waterHeated = false;
         teaSteeped = false;
         hotPlate.finalTime = 0f;
-        finalSteep = 0f;        
+        finalSteep = 0f;
+        teaManager.ResetTea();        
     }
 }

@@ -19,6 +19,10 @@ public class Container : MonoBehaviour
     [SerializeField] private AudioSource myAudioSource;
 
 
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,25 +38,27 @@ public class Container : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
-    }
-
     private void OnMouseDown()
     {  
         GameObject[] currentTeaLeaves = GameObject.FindGameObjectsWithTag(itemTag);
 
-        if (currentStorage > 0 && currentTeaLeaves.Length < 1) //check the container isnt empty and havent already instantiated stored item
+        if (currentStorage > 0 && currentTeaLeaves.Length < 1) //check the container isnt empty and havent already instantiated item type
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 offset = new Vector3(0f, 0f, 10f);
+            //get spawn position
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
+            Vector3 offset = new Vector3(0f, 0f, 10f); 
+
+            //spawn stored item at spawn position
             GameObject newItem = Instantiate(storedItem, mousePos + offset, Quaternion.identity);
+            
+            //drag the item
             Draggable draggable = newItem.GetComponent<Draggable>();
             draggable.DragObject();
+            
+            //update storage and container sprite
             currentStorage -= 1;
             UpdateSprite();
-
+            
             if (wooshSound != null && myAudioSource != null)
             {
                 // PlayOneShot is great for clicks because it doesn't interrupt 

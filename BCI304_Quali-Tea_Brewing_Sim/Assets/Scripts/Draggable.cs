@@ -17,13 +17,13 @@ public class Draggable : MonoBehaviour
     {
         if (dragging)
         {
-            if (!Input.GetMouseButton(0))
+            if (!Input.GetMouseButton(0)) //not holding left click
             {
                 dragging = false;
                 DropObject();
                 return;
             }
-            transform.position = GetMousePosition();
+            transform.position = GetMousePosition(); 
         }
     }
 

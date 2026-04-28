@@ -8,7 +8,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     private float teaMax = 0.4f; 
     public float fillLevel = 0f;
-    private float fillSpeed = 0.002f;
+    [SerializeField] private float fillSpeed = 0.2f;
     private Vector3 teaEmpty;
     private bool fillingCup = false;    
     // private bool draggingCup = false; //not currently in use, just uncomment it when you need it
@@ -77,7 +77,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         {
             if (fillLevel < 1)
             {
-                fillLevel += fillSpeed;
+                fillLevel += fillSpeed * Time.deltaTime;
                 fillLevel = Mathf.Clamp01(fillLevel);
 
                 Vector3 pos = tea.transform.position;
