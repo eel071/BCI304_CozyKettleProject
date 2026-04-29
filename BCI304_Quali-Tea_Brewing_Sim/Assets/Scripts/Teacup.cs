@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Teacup : MonoBehaviour, IOnDropBaseCollision
 {
+    [SerializeField] private TeaManager teaManager;
+    
     [SerializeField] private GameObject tea;
     [SerializeField] private Teapot teapotScript;
 
@@ -41,6 +43,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        teaManager.UpdateTea();
+
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
         if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapotScript.teaSteeped == true && teaFilled == false) //checks that the teapot is the object being dragged
@@ -52,6 +56,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             myAudioSource.clip = teaPouring;
             myAudioSource.loop = true;
             myAudioSource.Play();
+            teapotScript.PourTea();
         }
     }
 
@@ -67,7 +72,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             {
                 myAudioSource.Stop(); // Stop sound when 100% full
             }
-            
+            teapotScript.StopPouring();
         }
     }
 

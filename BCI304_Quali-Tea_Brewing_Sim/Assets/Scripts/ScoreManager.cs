@@ -5,11 +5,13 @@ public class ScoreManager : MonoBehaviour
     private float heatScore;   
     private float steepScore;
     private float fillScore;
+    private float teaScore;
     public int finalScore;
 
     [SerializeField] Teacup teacup;
     [SerializeField] Teapot teapot;
     [SerializeField] HotPlate hotPlate;
+    [SerializeField] TeaManager teaManager;
 
     public void CalculateScore()
     {
@@ -32,8 +34,15 @@ public class ScoreManager : MonoBehaviour
             fillScore = fillScore - ((fillScore - 100) * 2);
         }
 
-
-        finalScore = (int)((heatScore + steepScore + fillScore) / 3);
+        if (teaManager.customerOrder == teaManager.tea)
+        {
+            finalScore = (int)((heatScore + steepScore + fillScore) / 3); 
+        }
+        else
+        {
+            Debug.Log("tea does not match customer order");
+            finalScore = 0;
+        }
     }
 
 
