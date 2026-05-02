@@ -24,6 +24,7 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     private void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
     }
 
     public void OnDrop(Draggable draggable)

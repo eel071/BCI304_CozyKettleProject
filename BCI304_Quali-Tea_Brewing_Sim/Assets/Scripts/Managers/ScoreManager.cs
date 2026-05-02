@@ -13,6 +13,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] HotPlate hotPlate;
     [SerializeField] TeaManager teaManager;
 
+    private void Start()
+    {
+        teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+    }
+
     public void CalculateScore()
     {
         heatScore = hotPlate.finalTime / hotPlate.tempGoal * 100;

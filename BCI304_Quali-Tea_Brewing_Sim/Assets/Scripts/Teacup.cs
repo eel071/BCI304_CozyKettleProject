@@ -22,7 +22,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     void Start()
     {
-        teaEmpty = tea.transform.position;        
+        teaEmpty = tea.transform.position;     
+        teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
     }
 
     public void OnDrop(Draggable draggable)
@@ -47,7 +48,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
-        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teapotScript.teaSteeped == true && teaFilled == false) //checks that the teapot is the object being dragged
+        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teaFilled == false) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
