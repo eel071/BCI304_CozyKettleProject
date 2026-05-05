@@ -41,7 +41,12 @@ public class ScoreManager : MonoBehaviour
 
         if (teaManager.customerOrder == teaManager.tea)
         {
-            finalScore = (int)((heatScore + steepScore + fillScore) / 3); 
+            if (teaManager.tea == TeaManager.TeaTypes.Water)
+            {
+                finalScore = (int)((heatScore + fillScore) / 2);
+            }
+            else
+                finalScore = (int)((heatScore + steepScore + fillScore) / 3); 
         }
         else
         {

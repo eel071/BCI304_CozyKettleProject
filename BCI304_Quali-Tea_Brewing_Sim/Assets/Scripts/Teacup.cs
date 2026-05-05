@@ -48,7 +48,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
-        if (other.gameObject.CompareTag("Teapot") && drag.dragging && teaFilled == false) //checks that the teapot is the object being dragged
+        if (other.gameObject.CompareTag("Teapot") && teapotScript.waterHeated == true && drag.dragging && teaFilled == false) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
