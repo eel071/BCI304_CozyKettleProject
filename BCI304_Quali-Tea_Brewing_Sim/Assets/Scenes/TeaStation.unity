@@ -1901,7 +1901,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -703393913749972269, guid: c03cac8639f2f7748bd7f4296d13fcb7, type: 3}
   m_Color: {r: 0.5174439, g: 0.5451236, b: 0.5773585, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1920,9 +1920,9 @@ Transform:
   m_GameObject: {fileID: 1089838594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.45, y: -2.5700002, z: 0}
-  m_LocalScale: {x: 3, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -5.16, y: -2.7, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1964,7 +1964,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 9.84, y: 3.57}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1992,6 +1992,8 @@ MonoBehaviour:
   heatBar: {fileID: 1895412404}
   boilingSound: {fileID: 8300000, guid: 00e7ab30c637f994b8583691e6574374, type: 3}
   myAudioSource: {fileID: 1089838599}
+  plateOffSprite: {fileID: -703393913749972269, guid: c03cac8639f2f7748bd7f4296d13fcb7, type: 3}
+  plateOnSprite: {fileID: -9094032652313083105, guid: c03cac8639f2f7748bd7f4296d13fcb7, type: 3}
 --- !u!82 &1089838599
 AudioSource:
   m_ObjectHideFlags: 0

@@ -16,6 +16,16 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private AudioClip boilingSound;
     [SerializeField] private AudioSource myAudioSource;
 
+    [SerializeField] private Sprite plateOffSprite;
+    [SerializeField] private Sprite plateOnSprite;
+    private SpriteRenderer spriteRenderer;
+
+
+    void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Teapot" && teapot.waterHeated == false)
@@ -23,6 +33,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0.2f, 1.25f, 0);
             teapot.waterHeating = true;
+
+            if (plateOnSprite != null) spriteRenderer.sprite = plateOnSprite;
 
             //heating progress bar
             heatBar.SetActive(true);
@@ -53,6 +65,9 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             finalTime = waterTimer;
             teapot.waterHeating = false;
             waterTimer = 0f;
+
+            if (plateOffSprite != null) spriteRenderer.sprite = plateOffSprite;
+
             // Debug.Log($"Heat Timer : {waterTimer}");
             Debug.Log($"Heat Final Time : {finalTime}");
             teapot.waterHeated = true;
