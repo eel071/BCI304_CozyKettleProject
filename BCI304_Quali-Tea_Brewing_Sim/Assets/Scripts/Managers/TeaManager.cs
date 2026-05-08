@@ -13,6 +13,7 @@ public class TeaManager : MonoBehaviour
     [SerializeField] private Color water, green, black, white;
     private float tOpacity;
     private Color tColor;
+    public Color teaOrderColor;
 
     private static TeaManager uniqueInstance;
     private void Awake()
@@ -44,17 +45,14 @@ public class TeaManager : MonoBehaviour
             case "LeavesGreen(Clone)":
                 tea = TeaTypes.Green;
                 tColor = green;
-                //teaRenderer.color = new Color(green.r, green.g, green.b, Mathf.Clamp((steepTime/maxSteep), 0, 1));
                 break;
             case "LeavesBlack(Clone)":
                 tea = TeaTypes.Black;
                 tColor = black;
-                //teaRenderer.color = new Color(black.r, black.g, black.b, Mathf.Clamp((steepTime/maxSteep), 0, 1));
                 break;
             case "LeavesWhite(Clone)":
                 tea = TeaTypes.White;
                 tColor = white;
-                //teaRenderer.color = new Color(white.r, white.g, white.b, Mathf.Clamp((steepTime/maxSteep), 0, 1));
                 break;
         }
         
@@ -85,5 +83,20 @@ public class TeaManager : MonoBehaviour
     public void SetCustomerOrder()
     {
         customerOrder = (TeaTypes)Random.Range(0, 3);
+        switch (customerOrder)
+        {
+            case TeaTypes.Water:
+                teaOrderColor = water;
+                break;
+            case TeaTypes.Green:
+                teaOrderColor = green;
+                break;
+            case TeaTypes.Black:
+                teaOrderColor = black;
+                break;
+            case TeaTypes.White:
+                teaOrderColor = white;
+                break;
+        }
     }
 }
