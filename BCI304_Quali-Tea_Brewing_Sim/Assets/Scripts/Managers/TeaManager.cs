@@ -7,6 +7,9 @@ public class TeaManager : MonoBehaviour
     public enum TeaTypes {Water, Green, Black, White};
     public TeaTypes customerOrder;
     public TeaTypes tea;
+    public int sugarCubesOrder, sugarCubes;
+    public bool lemonOrder, lemon;
+    
     
     [SerializeField] GameObject teacup; 
     [SerializeField] SpriteRenderer teaRenderer;       
@@ -66,6 +69,19 @@ public class TeaManager : MonoBehaviour
         teaRenderer.color = new Color(tColor.r, tColor.g, tColor.b, tOpacity);
     }
 
+    public void Additions(string addition)
+    {
+        switch (addition)
+        {
+            case "LemonSlice(Clone)":
+                lemon = true;
+                break;
+            case "Sugar(Clone)":
+                sugarCubes += 1;
+                break;
+    
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -78,11 +94,17 @@ public class TeaManager : MonoBehaviour
         tea = TeaTypes.Water;
         tColor = water;
         tOpacity = 1f;
+        sugarCubes = 0;
+        lemon = false;
+
     }
 
     public void SetCustomerOrder()
     {
         customerOrder = (TeaTypes)Random.Range(0, 3);
+        lemonOrder = Random.value < 0.5f;
+        sugarCubesOrder = Random.Range(0,3);
+    
         switch (customerOrder)
         {
             case TeaTypes.Water:

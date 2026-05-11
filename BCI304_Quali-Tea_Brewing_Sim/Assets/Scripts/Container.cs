@@ -6,7 +6,7 @@ public class Container : MonoBehaviour
     [SerializeField] private GameObject storedItem;
     [SerializeField] private int maxStorage, currentStorage;
     
-    private enum Containers {Tea, Sugar};
+    private enum Containers {Tea, Addition};
     [SerializeField] private Containers containerType;
     private string itemTag;
     
@@ -32,7 +32,7 @@ public class Container : MonoBehaviour
             case Containers.Tea:
                 itemTag = "Tea";
                 break;
-            case Containers.Sugar:
+            case Containers.Addition:
                 itemTag = "Addition";
                 break;
         }

@@ -16,7 +16,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
     void OnMouseUp()
     {
-        Debug.Log($"{teaManager.customerOrder}");
+        Debug.Log($"{teaManager.customerOrder} + {teaManager.sugarCubesOrder} sugar cubes + lemon = {teaManager.lemonOrder}");
         loadManager.LoadTeaStation();
     }
 

@@ -31,6 +31,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         if(draggable.tag == "Addition" && teaFilled == true)
         {
             Debug.Log($"Added {draggable.gameObject.name} to teacup");
+            teaManager.Additions(draggable.gameObject.name);
             Destroy(draggable.gameObject);
         }
         else
