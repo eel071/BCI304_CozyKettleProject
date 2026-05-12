@@ -101,7 +101,7 @@ public class TeaManager : MonoBehaviour
 
     public void SetCustomerOrder()
     {
-        customerOrder = (TeaTypes)Random.Range(0, 3);
+        customerOrder = (TeaTypes)Random.Range(0, 4);
         lemonOrder = Random.value < 0.5f;
         sugarCubesOrder = Random.Range(0,3);
     
