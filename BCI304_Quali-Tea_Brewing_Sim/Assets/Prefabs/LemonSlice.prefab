@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6629356858129238102}
   - component: {fileID: 4338627992339904596}
   - component: {fileID: 6486990990445333889}
+  - component: {fileID: -7075412172862639364}
   m_Layer: 0
   m_Name: LemonSlice
   m_TagString: Addition
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1394776091099128758, guid: fc6f41f3863dcee40a0c88edbeda2caf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -161,3 +162,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
   startPosition: {x: 0, y: 0, z: 0}
   dragging: 0
+--- !u!114 &-7075412172862639364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202838672840554192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101965377a281c24faaf2ad844f3c666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContainerItem
+  container: {fileID: 0}

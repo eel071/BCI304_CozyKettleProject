@@ -19,6 +19,8 @@ public class TeaManager : MonoBehaviour
     public Color teaOrderColor;
 
     private static TeaManager uniqueInstance;
+    
+    
     private void Awake()
     {
         if (uniqueInstance == null)

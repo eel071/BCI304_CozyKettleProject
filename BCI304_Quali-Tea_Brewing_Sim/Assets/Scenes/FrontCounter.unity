@@ -285,12 +285,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeaManager
   customerOrder: 1
   tea: 0
+  sugarCubesOrder: 0
+  sugarCubes: 0
+  lemonOrder: 0
+  lemon: 0
   teacup: {fileID: 0}
   teaRenderer: {fileID: 0}
   water: {r: 0.6039216, g: 0.81960785, b: 0.9019608, a: 0.8509804}
   green: {r: 0.3372549, g: 0.454902, b: 0.37254903, a: 1}
   black: {r: 0.27058825, g: 0.21960786, b: 0.21960786, a: 1}
   white: {r: 0.78823537, g: 0.68235296, b: 0.50980395, a: 1}
+  teaOrderColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &531584446
 Transform:
   m_ObjectHideFlags: 0

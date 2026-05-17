@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8834675197965266319}
   - component: {fileID: 8197459027763978799}
   - component: {fileID: 5775983639215037601}
+  - component: {fileID: 9175230841455074624}
   m_Layer: 0
   m_Name: LeavesWhite
   m_TagString: Tea
@@ -143,3 +144,16 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.55
+--- !u!114 &9175230841455074624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788181066146043255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101965377a281c24faaf2ad844f3c666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContainerItem
+  container: {fileID: 0}

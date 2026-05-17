@@ -6,9 +6,8 @@ public class Container : MonoBehaviour
     [SerializeField] private GameObject storedItem;
     [SerializeField] private int maxStorage, currentStorage;
     
-    private enum Containers {Tea, Addition};
+    private enum Containers {GreenTea, BlackTea, WhiteTea, Lemon, Sugar};
     [SerializeField] private Containers containerType;
-    private string itemTag;
     
     [Header("Sprites")]
     [SerializeField] private Sprite[] containerSprites;
@@ -18,32 +17,54 @@ public class Container : MonoBehaviour
     [SerializeField] private AudioClip wooshSound;
     [SerializeField] private AudioSource myAudioSource;
 
+    [SerializeField] ContainerManager containerManager;
+
+    public bool itemSpawned = false;
+
 
     void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        switch (containerType) //check the container type and assign the item tag
+      
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
+    
+        switch (containerType) //check the container type and assign the storage count
         {
-            case Containers.Tea:
-                itemTag = "Tea";
+            case Containers.GreenTea:
+                currentStorage = containerManager.greenTeaCount;
+                maxStorage = containerManager.teaMax;
                 break;
-            case Containers.Addition:
-                itemTag = "Addition";
+            case Containers.BlackTea:
+                currentStorage = containerManager.blackTeaCount;
+                maxStorage = containerManager.teaMax;
+                break;
+            case Containers.WhiteTea:
+                currentStorage = containerManager.whiteTeaCount;
+                maxStorage = containerManager.teaMax;
+                break;
+            case Containers.Lemon:
+                currentStorage = containerManager.lemonCount;
+                maxStorage = containerManager.lemonMax;
+                break;
+            case Containers.Sugar:
+                currentStorage = containerManager.sugarCount;
+                maxStorage = containerManager.sugarMax;
                 break;
         }
     }
 
     private void OnMouseDown()
     {  
-        GameObject[] currentTeaLeaves = GameObject.FindGameObjectsWithTag(itemTag);
 
-        if (currentStorage > 0 && currentTeaLeaves.Length < 1) //check the container isnt empty and havent already instantiated item type
+        if (currentStorage > 0 && !itemSpawned) //check the container isnt empty and havent already instantiated item type
         {
+            itemSpawned = true;
+
             //get spawn position
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
             Vector3 offset = new Vector3(0f, 0f, 10f); 
@@ -54,9 +75,13 @@ public class Container : MonoBehaviour
             //drag the item
             Draggable draggable = newItem.GetComponent<Draggable>();
             draggable.DragObject();
+
+            ContainerItem containerItem = newItem.GetComponent<ContainerItem>();
+            containerItem.container = this;
             
             //update storage and container sprite
             currentStorage -= 1;
+            UpdateContainerManager();
             UpdateSprite();
             
             if (wooshSound != null && myAudioSource != null)
@@ -68,8 +93,31 @@ public class Container : MonoBehaviour
         }
         else
         {
-            Debug.Log($"{gameObject.name} is empty!");
+            Debug.Log($"cannot take {storedItem.name}");
         }
+    }
+
+    private void UpdateContainerManager()
+    {
+        switch (containerType) //check the container type and assign the item tag
+        {
+            case Containers.GreenTea:
+                containerManager.greenTeaCount -= 1;
+                break;
+            case Containers.BlackTea:
+                containerManager.blackTeaCount -= 1;
+                break;
+            case Containers.WhiteTea:
+                containerManager.whiteTeaCount -=1;
+                break;
+            case Containers.Lemon:
+                containerManager.lemonCount -= 1;
+                break;
+            case Containers.Sugar:
+                containerManager.sugarCount -= 1;
+                break;
+        }
+        
     }
 
     private void UpdateSprite()
