@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] Teacup teacup;
     [SerializeField] Teapot teapot;
     [SerializeField] HotPlate hotPlate;
-    [SerializeField] TeaManager teaManager;
+    [SerializeField] TeaManager teaManager;    
 
     private void Start()
     {

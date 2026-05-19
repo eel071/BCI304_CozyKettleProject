@@ -5,7 +5,7 @@ public class LoadManager : MonoBehaviour
 {
     //GameObject teaManager;
     GameObject customer;    
-    GameObject teacup;
+    GameObject teacup;    
     
     private static LoadManager uniqueInstance;
     private void Awake()
@@ -20,15 +20,11 @@ public class LoadManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    /*private void Start()
-    {
-        teaManager = GameObject.Find("TeaManager");
-    }*/
+    
     public void LoadTeaStation()
     {        
         customer = GameObject.Find("Customer(Clone)");
-        DontDestroyOnLoad(gameObject);
-        //DontDestroyOnLoad(teaManager);
+        DontDestroyOnLoad(gameObject);        
         DontDestroyOnLoad(customer);        
         SceneManager.LoadScene("TeaStation");
         customer.SetActive(false);

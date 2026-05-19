@@ -2,9 +2,22 @@ using UnityEngine;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    public GameObject customer;    
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private static CustomerSpawner uniqueInstance;
+    private void Awake()
+    {
+        if (uniqueInstance == null)
+        {
+            uniqueInstance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    public GameObject customerPrefab;
+    public bool isCustomer = true;
+    
     void Start()
     {
         if (GameObject.Find("Customer(Clone)") == null)
@@ -13,10 +26,18 @@ public class CustomerSpawner : MonoBehaviour
         }
 
     }
-    
+    private void Update()
+    {
+        if (isCustomer == false)
+        {
+            SpawnCustomer();
+        }
+    }
+
 
     private void SpawnCustomer()
     {
-        Instantiate(customer, new Vector3(0, 0, 0), Quaternion.identity);        
+        Instantiate(customerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        isCustomer = true;
     }
 }

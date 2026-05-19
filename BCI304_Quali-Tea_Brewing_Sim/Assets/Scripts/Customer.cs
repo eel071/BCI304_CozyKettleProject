@@ -5,13 +5,15 @@ using UnityEngine.UIElements;
 public class Customer : MonoBehaviour, IOnDropBaseCollision
 {
     [SerializeField] private TeaManager teaManager;
-    [SerializeField] LoadManager loadManager;
+    [SerializeField] private LoadManager loadManager;  
+    [SerializeField] private CustomerSpawner customerSpawner;
 
     void Awake()
     {
         loadManager = FindAnyObjectByType(typeof(LoadManager)) as LoadManager;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
-        teaManager.SetCustomerOrder();
+        customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
+        teaManager.SetCustomerOrder();       
     }    
 
     void OnMouseUp()
@@ -25,7 +27,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         if (draggable.tag == "Teacup")
         {
             Destroy(draggable.transform.parent.gameObject);
-            teaManager.ResetTea();
+            teaManager.ResetTea();   
+            customerSpawner.isCustomer = false;
             Destroy(gameObject);
         }
     }
