@@ -483,6 +483,7 @@ MonoBehaviour:
   wooshSound: {fileID: 8300000, guid: 5d2f22934eb927f4380c4640fe43652d, type: 3}
   myAudioSource: {fileID: 282370258}
   containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!70 &282370257
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1185,6 +1186,7 @@ MonoBehaviour:
   wooshSound: {fileID: 0}
   myAudioSource: {fileID: 0}
   containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!70 &551799677
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1868,6 +1870,7 @@ MonoBehaviour:
   wooshSound: {fileID: 0}
   myAudioSource: {fileID: 0}
   containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!70 &722994409
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2391,6 +2394,7 @@ MonoBehaviour:
   wooshSound: {fileID: 8300000, guid: 5d2f22934eb927f4380c4640fe43652d, type: 3}
   myAudioSource: {fileID: 983159860}
   containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!70 &983159859
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3584,6 +3588,7 @@ MonoBehaviour:
   wooshSound: {fileID: 8300000, guid: 5d2f22934eb927f4380c4640fe43652d, type: 3}
   myAudioSource: {fileID: 1438593510}
   containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!70 &1438593509
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4542,58 +4547,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &2065171667
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065171669}
-  - component: {fileID: 2065171668}
-  m_Layer: 0
-  m_Name: StorageManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2065171668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065171667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4462d05df60890f459e274d9e03ea737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StorageManger
-  teaMax: 4
-  lemonMax: 10
-  sugarMax: 10
-  greenTeaCount: 4
-  blackTeaCount: 4
-  whiteTeaCount: 4
-  lemonCount: 10
-  sugarCount: 10
---- !u!4 &2065171669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065171667}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49451, y: 1.8146, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2065825410
 GameObject:
   m_ObjectHideFlags: 0
@@ -4992,4 +4945,3 @@ SceneRoots:
   - {fileID: 1437431752}
   - {fileID: 1936058601}
   - {fileID: 241692843}
-  - {fileID: 2065171669}

@@ -25,42 +25,48 @@ public class Container : MonoBehaviour
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      
-        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
-    
-        switch (containerType) //check the container type and assign the storage count
+        if (containerManager != null)
         {
-            case Containers.GreenTea:
-                currentStorage = containerManager.greenTeaCount;
-                maxStorage = containerManager.teaMax;
-                break;
-            case Containers.BlackTea:
-                currentStorage = containerManager.blackTeaCount;
-                maxStorage = containerManager.teaMax;
-                break;
-            case Containers.WhiteTea:
-                currentStorage = containerManager.whiteTeaCount;
-                maxStorage = containerManager.teaMax;
-                break;
-            case Containers.Lemon:
-                currentStorage = containerManager.lemonCount;
-                maxStorage = containerManager.lemonMax;
-                break;
-            case Containers.Sugar:
-                currentStorage = containerManager.sugarCount;
-                maxStorage = containerManager.sugarMax;
-                break;
+            switch (containerType) //check the container type and assign the storage count
+            {
+                case Containers.GreenTea:
+                    currentStorage = containerManager.greenTeaCount;
+                    maxStorage = containerManager.teaMax;
+                    break;
+                case Containers.BlackTea:
+                    currentStorage = containerManager.blackTeaCount;
+                    maxStorage = containerManager.teaMax;
+                    break;
+                case Containers.WhiteTea:
+                    currentStorage = containerManager.whiteTeaCount;
+                    maxStorage = containerManager.teaMax;
+                    break;
+                case Containers.Lemon:
+                    currentStorage = containerManager.lemonCount;
+                    maxStorage = containerManager.lemonMax;
+                    break;
+                case Containers.Sugar:
+                    currentStorage = containerManager.sugarCount;
+                    maxStorage = containerManager.sugarMax;
+                    break;
+            }
         }
+        else
+        {
+            Debug.Log("Cannot find container manager");
+        }
+
+        UpdateSprite();
     }
 
     private void OnMouseDown()
     {  
-
         if (currentStorage > 0 && !itemSpawned) //check the container isnt empty and havent already instantiated item type
         {
             itemSpawned = true;
