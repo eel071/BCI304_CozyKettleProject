@@ -3,6 +3,7 @@ using TMPro;
 
 public class ClockManager : MonoBehaviour
 {
+    [SerializeField] LoadManager loadManager;
     [SerializeField] private TMP_Text clockText;
     [SerializeField] private TMP_Text dayText;
     private float elapsedTime;
@@ -61,7 +62,8 @@ public class ClockManager : MonoBehaviour
 
     void DayEnd()
     {
-        dayCounter++;
+        //loadManager.LoadTeaGarden();
+        dayCounter++;        
         elapsedTime = startOfDay;
     }   
 }

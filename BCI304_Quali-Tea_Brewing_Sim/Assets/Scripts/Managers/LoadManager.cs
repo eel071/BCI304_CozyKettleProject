@@ -23,8 +23,7 @@ public class LoadManager : MonoBehaviour
     
     public void LoadTeaStation()
     {        
-        customer = GameObject.Find("Customer(Clone)");
-        DontDestroyOnLoad(gameObject);        
+        customer = GameObject.Find("Customer(Clone)");                
         DontDestroyOnLoad(customer);        
         SceneManager.LoadScene("TeaStation");
         customer.SetActive(false);
@@ -35,5 +34,9 @@ public class LoadManager : MonoBehaviour
         DontDestroyOnLoad(teacup.transform.parent.gameObject);        
         SceneManager.LoadScene("FrontCounter");
         customer.SetActive(true);
+    }
+    public void LoadTeaGarden()
+    {        
+        SceneManager.LoadScene("TeaGarden");        
     }
 }
