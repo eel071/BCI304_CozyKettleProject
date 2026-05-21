@@ -4,9 +4,13 @@ using TMPro;
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text clockText;
+    [SerializeField] private TMP_Text dayText;
     private float elapsedTime;
     [SerializeField] private float timeScale = 24f;
-    [SerializeField] private float timeInADay = 86400f;
+    [SerializeField] private float timeInADay = 86400f; //24 hours in seconds 
+    private float startOfDay = 32400f; //9am
+    private float endOfDay = 57600f; //4pm
+    [SerializeField] private int dayCounter = 1;
 
     private static ClockManager uniqueInstance;
     private void Awake()
@@ -24,7 +28,7 @@ public class ClockManager : MonoBehaviour
 
     void Start()
     {
-        elapsedTime = 6 * 3600f;
+        elapsedTime = startOfDay;
     }
 
     
@@ -33,6 +37,7 @@ public class ClockManager : MonoBehaviour
         elapsedTime += Time.deltaTime * timeScale;
         elapsedTime %= timeInADay;
         UpdateClockUI();
+        CheckTime();
     }
 
     void UpdateClockUI()
@@ -42,5 +47,21 @@ public class ClockManager : MonoBehaviour
 
         string clockString = string.Format("{0:00}:{1:00}", hours, minutes);
         clockText.text = clockString;
-    }        
+        string dayString = $"Day {dayCounter}";
+        dayText.text = dayString;
+    }
+    
+    void CheckTime()
+    {
+        if (elapsedTime >= endOfDay)
+        {
+            DayEnd();
+        }
+    }
+
+    void DayEnd()
+    {
+        dayCounter++;
+        elapsedTime = startOfDay;
+    }   
 }
