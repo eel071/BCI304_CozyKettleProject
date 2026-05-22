@@ -1526,6 +1526,7 @@ MonoBehaviour:
   loadManager: {fileID: 141290895}
   plant: {fileID: 0}
   nextDayButton: {fileID: 2061495115}
+  customerSpawner: {fileID: 717635210}
   clockText: {fileID: 1438838285}
   dayText: {fileID: 516569446}
   timeScale: 40
@@ -1887,7 +1888,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2061495113}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1566962500}
+        m_TargetAssemblyTypeName: ClockManager, Assembly-CSharp
+        m_MethodName: NextDay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
