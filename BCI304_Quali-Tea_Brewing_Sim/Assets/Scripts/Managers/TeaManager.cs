@@ -9,7 +9,9 @@ public class TeaManager : MonoBehaviour
     public TeaTypes tea;
     public int sugarCubesOrder, sugarCubes;
     public bool lemonOrder, lemon;
-    
+    public string teaOrder;
+
+    public float finalScore;
     
     [SerializeField] GameObject teacup; 
     [SerializeField] SpriteRenderer teaRenderer;       
@@ -111,15 +113,19 @@ public class TeaManager : MonoBehaviour
         {
             case TeaTypes.Water:
                 teaOrderColor = water;
+                teaOrder = "Hot water";
                 break;
             case TeaTypes.Green:
                 teaOrderColor = green;
+                teaOrder = "Green tea";
                 break;
             case TeaTypes.Black:
                 teaOrderColor = black;
+                teaOrder = "Black tea";
                 break;
             case TeaTypes.White:
                 teaOrderColor = white;
+                teaOrder = "White tea";
                 break;
         }
     }

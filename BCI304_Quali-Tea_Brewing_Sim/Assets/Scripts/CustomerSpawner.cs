@@ -1,10 +1,15 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class CustomerSpawner : MonoBehaviour
 {
+    private TeaManager teaManager;
     private static CustomerSpawner uniqueInstance;
+
     private void Awake()
     {
+        
         if (uniqueInstance == null)
         {
             uniqueInstance = this;
@@ -14,7 +19,10 @@ public class CustomerSpawner : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
     }
+
     public GameObject customerPrefab;
     public bool isCustomer = true;
     
@@ -30,10 +38,17 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (isCustomer == false)
         {
-            SpawnCustomer();
+            isCustomer = true;
+            StartCoroutine(WaitBeforeSpawn());
         }
     }
 
+    IEnumerator WaitBeforeSpawn()
+    {
+        float seconds = Random.Range(0.5f, 5f);
+        yield return new WaitForSeconds(seconds);
+        SpawnCustomer();
+    }
 
     private void SpawnCustomer()
     {

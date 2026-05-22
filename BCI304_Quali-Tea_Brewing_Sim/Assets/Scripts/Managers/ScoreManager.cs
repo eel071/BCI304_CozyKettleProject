@@ -65,6 +65,8 @@ public class ScoreManager : MonoBehaviour
             Debug.Log("tea does not match customer order");
             finalScore = 0;
         }
+
+        teaManager.finalScore = finalScore;
     }
 
 
