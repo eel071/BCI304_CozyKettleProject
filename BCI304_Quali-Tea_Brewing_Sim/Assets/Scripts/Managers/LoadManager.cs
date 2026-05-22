@@ -29,14 +29,18 @@ public class LoadManager : MonoBehaviour
         customer.SetActive(false);
     }
     public void LoadFrontCounter()
-    {        
-        teacup = GameObject.Find("Teacup");
-        DontDestroyOnLoad(teacup.transform.parent.gameObject);        
+    {
+        if (SceneManager.GetActiveScene().name == "TeaStation")
+        {
+            teacup = GameObject.Find("Teacup");
+            DontDestroyOnLoad(teacup.transform.parent.gameObject);
+            customer.SetActive(true);
+        }
+        
         SceneManager.LoadScene("FrontCounter");
-        customer.SetActive(true);
     }
     public void LoadTeaGarden()
     {        
-        SceneManager.LoadScene("TeaGarden");        
+        SceneManager.LoadScene("TeaGarden");
     }
 }

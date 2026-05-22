@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FrontCounter.unity
     guid: b93a1b614803f7a4581c9ce9e9cc7879
+  - enabled: 1
+    path: Assets/Scenes/TeaGarden.unity
+    guid: 24bc0554b751e534db95c809e504b8d6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

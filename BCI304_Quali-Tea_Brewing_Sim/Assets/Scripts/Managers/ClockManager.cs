@@ -1,17 +1,25 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] LoadManager loadManager;
+    [SerializeField] Plant plant;
+    [SerializeField] Button nextDayButton;
+    [SerializeField] CustomerSpawner customerSpawner;
+    
     [SerializeField] private TMP_Text clockText;
     [SerializeField] private TMP_Text dayText;
+    
     private float elapsedTime;
     [SerializeField] private float timeScale = 24f;
     [SerializeField] private float timeInADay = 86400f; //24 hours in seconds 
-    private float startOfDay = 32400f; //9am
-    private float endOfDay = 57600f; //4pm
     [SerializeField] private int dayCounter = 1;
+    
+    private float startOfDay = 32400f; //9am
+    private float endOfDay = 57600f; //4pm      
 
     private static ClockManager uniqueInstance;
     private void Awake()
@@ -31,14 +39,15 @@ public class ClockManager : MonoBehaviour
     {
         elapsedTime = startOfDay;
     }
-
-    
+        
     void Update()
     {
         elapsedTime += Time.deltaTime * timeScale;
         elapsedTime %= timeInADay;
         UpdateClockUI();
         CheckTime();
+        if (SceneManager.GetActiveScene().name == "TeaGarden")
+            plant = FindAnyObjectByType(typeof(Plant)) as Plant;
     }
 
     void UpdateClockUI()
@@ -54,7 +63,7 @@ public class ClockManager : MonoBehaviour
     
     void CheckTime()
     {
-        if (elapsedTime >= endOfDay)
+        if (elapsedTime >= endOfDay && SceneManager.GetActiveScene().name != "TeaGarden")
         {
             DayEnd();
         }
@@ -62,8 +71,18 @@ public class ClockManager : MonoBehaviour
 
     void DayEnd()
     {
-        //loadManager.LoadTeaGarden();
-        dayCounter++;        
-        elapsedTime = startOfDay;
+        loadManager.LoadTeaGarden();
+        nextDayButton.gameObject.SetActive(true);
+        
     }   
+
+    public void NextDay()
+    {
+        plant.UpdateGrowth();
+        dayCounter++;
+        loadManager.LoadFrontCounter();
+        elapsedTime = startOfDay;
+        nextDayButton.gameObject.SetActive(false);
+        customerSpawner.isCustomer = false;
+    }
 }
