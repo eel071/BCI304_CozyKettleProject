@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9859088e1af4d4cacfb2068b1f4c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantManager
-  teaGrowthStage: 1
+  teaGrowthStage: 0
   lemonGrowthStage: 1
   teaWatered: 0
   lemonWatered: 0
@@ -1524,12 +1524,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClockManager
   loadManager: {fileID: 141290895}
-  plant: {fileID: 0}
+  plants: []
   nextDayButton: {fileID: 2061495115}
   customerSpawner: {fileID: 717635210}
   clockText: {fileID: 1438838285}
   dayText: {fileID: 516569446}
-  timeScale: 40
+  timeScale: 600
   timeInADay: 86400
   dayCounter: 1
 --- !u!4 &1566962501

@@ -187,12 +187,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.32738337, g: 0.42584473, b: 0.4943396, a: 1}
+  m_Sprite: {fileID: 9167915674319203406, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.93, y: 4.03}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -207,8 +207,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.95, y: -2.67, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -264,13 +264,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 4.93, y: 4.03}
+    newSize: {x: 4.93, y: 4.03}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &790329429
 GameObject:
@@ -461,6 +461,8 @@ MonoBehaviour:
   growthStage: 1
   watered: 0
   finishedGrowing: 0
+  growthSprites: []
+  ready: {fileID: 0}
 --- !u!61 &1554020677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -544,7 +546,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3932004, g: 0.7516847, b: 0.8867924, a: 1}
+  m_BackGroundColor: {r: 0.54106796, g: 0.74941665, b: 0.82641506, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -713,12 +715,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.19411172, g: 0.5169811, b: 0.19876392, a: 1}
+  m_Sprite: {fileID: 8133862094642004479, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
+  m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.13, y: 5.82}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -732,8 +734,8 @@ Transform:
   m_GameObject: {fileID: 1632893879}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0947, y: -0.5, z: 0}
-  m_LocalScale: {x: 6.8106, y: 3, z: 1}
+  m_LocalPosition: {x: -6, y: -3.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -752,9 +754,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeaBushes
   plantManager: {fileID: 0}
   plantType: 0
-  growthStage: 1
+  growthStage: 0
   watered: 0
   finishedGrowing: 0
+  growthSprites:
+  - {fileID: 8133862094642004479, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
+  - {fileID: 1554598824000218123, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
+  - {fileID: -8034234250376673390, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
+  ready: {fileID: 3132178100529017296, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
 --- !u!61 &1632893883
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -789,17 +796,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 3.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    pivot: {x: 0.52, y: 0.06}
+    oldSize: {x: 3.07, y: 3.59}
+    newSize: {x: 5.13, y: 5.82}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 7, y: 7}
   m_EdgeRadius: 0
 --- !u!50 &1632893884
 Rigidbody2D:
@@ -895,7 +902,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5074466, g: 0.7433963, b: 0.2959558, a: 1}
+  m_Color: {r: 0.46070182, g: 0.6150943, b: 0.4537771, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

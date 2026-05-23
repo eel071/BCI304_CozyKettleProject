@@ -13,10 +13,15 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] bool watered = false;
     [SerializeField] bool finishedGrowing = false;
 
+    [SerializeField] private Sprite[] growthSprites;
+    [SerializeField] private Sprite ready;
+    private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;        
         ClockManager.uniqueInstance.plants.Add(this);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     /* bool wateringBushes = false;
@@ -48,10 +53,11 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
                     finishedGrowing = plantManager.lemonFinishedGrowing;
                     break;
             }
+            UpdateSprite();
         }
         else
         {
-            Debug.Log("Cannot find container manager");
+            Debug.Log("Cannot find plant manager");
         }
     }
 
@@ -62,11 +68,13 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
         {
             Debug.Log($"Watered {gameObject.name}");
             watered = true;
+            UpdateSprite();
             UpdatePlantManager();
             //animation would go here
             draggable.transform.position = draggable.startPosition;
         }
     }
+
     public void UpdateGrowth()
     {
         if (watered || finishedGrowing)
@@ -86,7 +94,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
         {
             if (growthStage > 0)
             {
-                growthStage--;
+                growthStage--; //rather than subtracting from growth stage should do some kind of decay stage instead?
             }
             else
             {
@@ -94,6 +102,42 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
             }
         }
         UpdatePlantManager();
+        UpdateSprite();
+    }
+
+
+    private void UpdateSprite()
+    {
+        Debug.Log("updating sprite");
+        if (watered)
+        {
+            spriteRenderer.color = new Color32(255, 255, 255, 255);
+        }
+        else //not watered
+        {
+            spriteRenderer.color = new Color32(207, 207, 207, 255);
+        }
+
+        if (growthSprites.Length != 0 && ready != null)
+        {
+            if (growthStage <= growthSprites.Length)
+            {
+                spriteRenderer.sprite = growthSprites[growthStage];
+            }
+            else if (growthStage == growthSprites.Length +1)
+            {
+                spriteRenderer.sprite = ready;
+            }
+            else
+            {
+                Debug.Log("error: growth stage out of range");
+            }
+        }
+        else
+        {
+            Debug.Log("error: Missing sprites");
+        }
+        
     }
 
     private void UpdatePlantManager()
