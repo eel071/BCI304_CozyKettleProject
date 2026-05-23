@@ -2,11 +2,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] LoadManager loadManager;
-    [SerializeField] Plant plant;
+    //[SerializeField] Plant plant;
+    public List<Plant> plants;
     [SerializeField] Button nextDayButton;
     [SerializeField] CustomerSpawner customerSpawner;
     
@@ -21,7 +24,7 @@ public class ClockManager : MonoBehaviour
     private float startOfDay = 32400f; //9am
     private float endOfDay = 57600f; //4pm      
 
-    private static ClockManager uniqueInstance;
+    public static ClockManager uniqueInstance;
     private void Awake()
     {
         if (uniqueInstance == null)
@@ -46,8 +49,8 @@ public class ClockManager : MonoBehaviour
         elapsedTime %= timeInADay;
         UpdateClockUI();
         CheckTime();
-        if (SceneManager.GetActiveScene().name == "TeaGarden")
-            plant = FindAnyObjectByType(typeof(Plant)) as Plant;
+        //if (SceneManager.GetActiveScene().name == "TeaGarden")
+          //  plant = FindAnyObjectByType(typeof(Plant)) as Plant;
     }
 
     void UpdateClockUI()
@@ -78,9 +81,13 @@ public class ClockManager : MonoBehaviour
 
     public void NextDay()
     {
-        plant.UpdateGrowth();
+        foreach (var Plant in plants)
+        {
+            Plant.UpdateGrowth();
+        }        
         dayCounter++;
         loadManager.LoadFrontCounter();
+        plants.Clear();
         elapsedTime = startOfDay;
         nextDayButton.gameObject.SetActive(false);
         customerSpawner.isCustomer = false;

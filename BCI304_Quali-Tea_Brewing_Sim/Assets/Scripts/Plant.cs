@@ -15,7 +15,8 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
 
     private void Awake()
     {
-        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
+        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;        
+        ClockManager.uniqueInstance.plants.Add(this);
     }
 
     /* bool wateringBushes = false;
