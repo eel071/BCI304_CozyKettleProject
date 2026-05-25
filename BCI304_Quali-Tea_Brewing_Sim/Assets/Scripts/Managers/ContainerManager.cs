@@ -20,16 +20,11 @@ public class ContainerManager : MonoBehaviour
         }
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void AddLeaves()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //temporarily resets the tea counts, will change this later when theres a way to make the different tea leaves.
+        greenTeaCount = teaMax;
+        blackTeaCount = teaMax;
+        whiteTeaCount = teaMax;
     }
 }

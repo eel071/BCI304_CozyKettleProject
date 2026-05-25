@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlantManager : MonoBehaviour
 {
-    public int teaGrowthStage, lemonGrowthStage;
+    public int teaGrowthStage, teaDecayStage, lemonGrowthStage, lemonDecayStage;
     public bool teaWatered, lemonWatered;
-    public bool teaFinishedGrowing, lemonFinishedGrowing;
+    //public bool teaFinishedGrowing, lemonFinishedGrowing;
 
     private static PlantManager uniqueInstance;
 

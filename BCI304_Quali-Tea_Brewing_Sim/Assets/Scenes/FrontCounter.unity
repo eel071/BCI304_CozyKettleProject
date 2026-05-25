@@ -284,11 +284,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantManager
   teaGrowthStage: 0
+  teaDecayStage: 0
   lemonGrowthStage: 1
+  lemonDecayStage: 0
   teaWatered: 0
   lemonWatered: 0
-  teaFinishedGrowing: 0
-  lemonFinishedGrowing: 0
 --- !u!4 &294617197
 Transform:
   m_ObjectHideFlags: 0
@@ -333,12 +333,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4462d05df60890f459e274d9e03ea737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageManger
-  teaMax: 4
+  teaMax: 8
   lemonMax: 10
   sugarMax: 10
-  greenTeaCount: 4
-  blackTeaCount: 4
-  whiteTeaCount: 4
+  greenTeaCount: 8
+  blackTeaCount: 8
+  whiteTeaCount: 8
   lemonCount: 10
   sugarCount: 10
 --- !u!4 &358735130
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   customerSpawner: {fileID: 717635210}
   clockText: {fileID: 1438838285}
   dayText: {fileID: 516569446}
-  timeScale: 600
+  timeScale: 60
   timeInADay: 86400
   dayCounter: 1
 --- !u!4 &1566962501

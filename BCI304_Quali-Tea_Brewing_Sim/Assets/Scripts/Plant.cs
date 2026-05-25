@@ -9,17 +9,22 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
     private enum Plants { TeaBush, LemonTree };
     [SerializeField] private Plants plantType;
 
-    [SerializeField] int growthStage = 1;
+    [SerializeField] int growthStage = 0;
+    [SerializeField] int decayStage = 0;
     [SerializeField] bool watered = false;
-    [SerializeField] bool finishedGrowing = false;
+    //[SerializeField] bool finishedGrowing = false;
+    [SerializeField] private bool ready = false;
 
     [SerializeField] private Sprite[] growthSprites;
-    [SerializeField] private Sprite ready;
+    [SerializeField] private Sprite readySprite;
     private SpriteRenderer spriteRenderer;
+
+    [SerializeField] ContainerManager containerManager;
 
     private void Awake()
     {
-        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;        
+        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager; 
         ClockManager.uniqueInstance.plants.Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -38,27 +43,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
      }*/
     private void Start()
     {
-        if (plantManager != null)
-        {
-            switch(plantType)
-            {
-                case Plants.TeaBush:
-                    growthStage = plantManager.teaGrowthStage;
-                    watered = plantManager.teaWatered;
-                    finishedGrowing = plantManager.teaFinishedGrowing;
-                    break;
-                case Plants.LemonTree:
-                    growthStage = plantManager.lemonGrowthStage;
-                    watered = plantManager.lemonWatered;
-                    finishedGrowing = plantManager.lemonFinishedGrowing;
-                    break;
-            }
-            UpdateSprite();
-        }
-        else
-        {
-            Debug.Log("Cannot find plant manager");
-        }
+        LoadPlant();
     }
 
 
@@ -75,23 +60,63 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
         }
     }
 
-    public void UpdateGrowth()
+    private void LoadPlant()
     {
-        if (watered || finishedGrowing)
+        if (plantManager != null)
         {
-            if (growthStage < 2)
+            switch(plantType)
             {
-                growthStage++;
-                if (growthStage == 2)
-                {
-                    finishedGrowing = true;
-                }
-                watered = false;
+                case Plants.TeaBush:
+                    growthStage = plantManager.teaGrowthStage;
+                    watered = plantManager.teaWatered;
+                    //finishedGrowing = plantManager.teaFinishedGrowing;
+                    decayStage = plantManager.teaDecayStage;
+                    break;
+                case Plants.LemonTree:
+                    growthStage = plantManager.lemonGrowthStage;
+                    watered = plantManager.lemonWatered;
+                    //finishedGrowing = plantManager.lemonFinishedGrowing;
+                    decayStage = plantManager.lemonDecayStage;
+                    break;
             }
-
+            if (growthStage >= growthSprites.Length)
+            {
+                ready = true;
+            }
+            UpdateSprite();
         }
         else
         {
+            Debug.Log("Cannot find plant manager");
+        }
+    }
+
+    public void UpdateGrowth()
+    {
+        if (watered)
+        {
+            decayStage = 0;
+            if (growthStage <= growthSprites.Length)
+            {
+                growthStage++;
+                if (growthStage >= growthSprites.Length)
+                {
+                    ready = true;
+                    //finishedGrowing = true;
+                }
+                watered = false;
+            }
+        }
+        else
+        {
+            decayStage +=1;
+
+            if (decayStage >= 3)
+            {
+                Destroy(gameObject);
+            }
+
+            /*
             if (growthStage > 0)
             {
                 growthStage--; //rather than subtracting from growth stage should do some kind of decay stage instead?
@@ -100,11 +125,11 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
             {
                 Destroy(gameObject);
             }
+            */
         }
         UpdatePlantManager();
         UpdateSprite();
     }
-
 
     private void UpdateSprite()
     {
@@ -118,15 +143,15 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
             spriteRenderer.color = new Color32(207, 207, 207, 255);
         }
 
-        if (growthSprites.Length != 0 && ready != null)
+        if (ready && readySprite != null)
         {
-            if (growthStage <= growthSprites.Length)
+            spriteRenderer.sprite = readySprite;   
+        }
+        else if (growthSprites.Length != 0)
+        {
+            if (growthStage <= growthSprites.Length -1)
             {
                 spriteRenderer.sprite = growthSprites[growthStage];
-            }
-            else if (growthStage == growthSprites.Length +1)
-            {
-                spriteRenderer.sprite = ready;
             }
             else
             {
@@ -137,7 +162,6 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
         {
             Debug.Log("error: Missing sprites");
         }
-        
     }
 
     private void UpdatePlantManager()
@@ -147,14 +171,35 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
             case Plants.TeaBush:
                 plantManager.teaWatered = watered;
                 plantManager.teaGrowthStage = growthStage;
-                plantManager.teaFinishedGrowing = finishedGrowing;
+                //plantManager.teaFinishedGrowing = finishedGrowing;
+                plantManager.teaDecayStage = decayStage;
                 break;
             case Plants.LemonTree:
                 plantManager.lemonWatered = watered;
                 plantManager.lemonGrowthStage = growthStage;
-                plantManager.lemonFinishedGrowing = finishedGrowing;
+                //plantManager.lemonFinishedGrowing = finishedGrowing;
+                plantManager.lemonDecayStage = decayStage;
                 break;
         }
     }
 
+    private void OnMouseDown() 
+    {  
+        if (ready) //harvest the plant
+        {
+            switch(plantType)
+            { 
+                case Plants.TeaBush:
+                    containerManager.AddLeaves();
+                    break;
+                case Plants.LemonTree:
+                    //add lemons to the container manager.
+                    break;
+            }
+            Debug.Log("plant harvested");
+            growthStage = growthSprites.Length -1;
+            ready = false;
+            UpdateSprite();
+        }
+    }
 }
