@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 8425568333796368640}
   - component: {fileID: 175276614536146872}
   - component: {fileID: 4351377537195127159}
-  - component: {fileID: 708853052212481617}
   - component: {fileID: 7686067422541649147}
   m_Layer: 0
   m_Name: Teacup
@@ -286,20 +285,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6, y: 6}
   m_EdgeRadius: 0
---- !u!114 &708853052212481617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5167368729973276477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1c803d4d3e40f4fb1a8401f9358d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Draggable
-  startPosition: {x: 0, y: 0, z: 0}
-  dragging: 0
 --- !u!82 &7686067422541649147
 AudioSource:
   m_ObjectHideFlags: 0

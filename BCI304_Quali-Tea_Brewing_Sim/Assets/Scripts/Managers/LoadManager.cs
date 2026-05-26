@@ -33,7 +33,7 @@ public class LoadManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "TeaStation")
         {
             teacup = GameObject.Find("Teacup");
-            DontDestroyOnLoad(teacup.transform.parent.gameObject);
+            DontDestroyOnLoad(teacup.transform.gameObject);
             customer.SetActive(true);
         }
         
