@@ -24,6 +24,8 @@ public class ClockManager : MonoBehaviour
     private float startOfDay = 32400f; //9am
     private float endOfDay = 57600f; //4pm
 
+    private int dayPhase = 0;
+
     public static ClockManager uniqueInstance;
     private void Awake()
     {
@@ -45,10 +47,19 @@ public class ClockManager : MonoBehaviour
         
     void Update()
     {
-        elapsedTime += Time.deltaTime * timeScale;
-        elapsedTime %= timeInADay;
-        UpdateClockUI();
-        CheckTime();        
+        if (dayPhase == 0)
+        {
+            elapsedTime += Time.deltaTime * timeScale;
+            elapsedTime %= timeInADay;
+            UpdateClockUI();
+            CheckTime();
+        }
+        if (dayPhase == 1 && !customerSpawner.customerSpawned)
+        {
+            DayEnd();
+        }
+        //if (SceneManager.GetActiveScene().name == "TeaGarden")
+          //  plant = FindAnyObjectByType(typeof(Plant)) as Plant;
     }
 
     void UpdateClockUI()
@@ -66,15 +77,16 @@ public class ClockManager : MonoBehaviour
     {
         if (elapsedTime >= endOfDay && SceneManager.GetActiveScene().name != "TeaGarden")
         {
-            DayEnd();
+            dayPhase = 1;
+            customerSpawner.canSpawn = false;
         }
     }
 
     void DayEnd()
     {
+        dayPhase = 2;
         loadManager.LoadTeaGarden();
         nextDayButton.gameObject.SetActive(true);
-        
     }   
 
     public void NextDay()
@@ -90,5 +102,7 @@ public class ClockManager : MonoBehaviour
         elapsedTime = startOfDay;
         nextDayButton.gameObject.SetActive(false);
         customerSpawner.isCustomer = false;
+        dayPhase = 0;
+        customerSpawner.canSpawn = true;
     }
 }

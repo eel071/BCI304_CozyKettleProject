@@ -25,6 +25,8 @@ public class CustomerSpawner : MonoBehaviour
 
     public GameObject customerPrefab;
     public bool isCustomer = true;
+    public bool canSpawn = true;
+    public bool customerSpawned = false;
     
     void Start()
     {
@@ -38,8 +40,12 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (isCustomer == false)
         {
-            isCustomer = true;
-            StartCoroutine(WaitBeforeSpawn());
+            customerSpawned = false;
+            if (canSpawn)
+            {
+                isCustomer = true;
+                StartCoroutine(WaitBeforeSpawn());
+            }
         }
     }
 
@@ -53,6 +59,6 @@ public class CustomerSpawner : MonoBehaviour
     private void SpawnCustomer()
     {
         Instantiate(customerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        isCustomer = true;
+        customerSpawned = true;
     }
 }
