@@ -29,7 +29,7 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
                 myAudioSource.PlayOneShot(chimeSound);
             }
             draggable.transform.position = draggable.startPosition;
-            draggable.transform.parent.position = transform.position + new Vector3(-0.25f, 0, 0);
+            draggable.transform.position = transform.position + new Vector3(0, 1, 0);
             loadManager.LoadFrontCounter();
         }
         else

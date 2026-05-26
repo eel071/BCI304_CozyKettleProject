@@ -22,7 +22,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private int dayCounter = 1;
     
     private float startOfDay = 32400f; //9am
-    private float endOfDay = 57600f; //4pm      
+    private float endOfDay = 57600f; //4pm
 
     public static ClockManager uniqueInstance;
     private void Awake()

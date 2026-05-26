@@ -31,7 +31,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     {
         if (draggable.tag == "Teacup")
         {
-            Destroy(draggable.transform.parent.gameObject);
+            Destroy(draggable.transform.gameObject);
             dialogue.ScoreDialogue(); //create score dialogue (customer's response to the tea)
             teaManager.ResetTea();   
             col.enabled = false; //stop the player from clicking the customer again
