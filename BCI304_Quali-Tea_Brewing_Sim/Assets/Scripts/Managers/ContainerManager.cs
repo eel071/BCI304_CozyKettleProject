@@ -27,4 +27,8 @@ public class ContainerManager : MonoBehaviour
         blackTeaCount = teaMax;
         whiteTeaCount = teaMax;
     }
+    public void AddLemons()
+    {
+        lemonCount = lemonMax;
+    }
 }

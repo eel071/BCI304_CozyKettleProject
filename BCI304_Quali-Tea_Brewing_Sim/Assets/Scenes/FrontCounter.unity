@@ -285,10 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlantManager
   teaGrowthStage: 0
   teaDecayStage: 0
-  lemonGrowthStage: 1
-  lemonDecayStage: 0
   teaWatered: 0
-  lemonWatered: 0
+  daysSinceLastHarvest: 0
 --- !u!4 &294617197
 Transform:
   m_ObjectHideFlags: 0
@@ -1524,6 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClockManager
   loadManager: {fileID: 141290895}
+  plantManager: {fileID: 294617196}
   plants: []
   nextDayButton: {fileID: 2061495115}
   customerSpawner: {fileID: 717635210}

@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour, IOnDropBaseCollision
 {
-    // option 1: similar to teacup pour.
-    // option 2: just a drop, sets plant to watered and plays a little watering animation
-
+    
     [SerializeField] PlantManager plantManager;
-    private enum Plants { TeaBush, LemonTree };
+    private enum Plants { TeaBush };
     [SerializeField] private Plants plantType;
 
     [SerializeField] int growthStage = 0;
@@ -28,19 +26,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
         ClockManager.uniqueInstance.plants.Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    /* bool wateringBushes = false;
-     private void OnTriggerEnter2D(Collider2D other)
-     {
-
-         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
-
-         if (other.gameObject.CompareTag("WateringCan") && drag.dragging) //checks that the watering can is the object being dragged
-         {
-             wateringBushes = true;
-             Debug.Log("watering bush");           
-         }
-     }*/
+        
     private void Start()
     {
         LoadPlant();
@@ -71,13 +57,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
                     watered = plantManager.teaWatered;
                     //finishedGrowing = plantManager.teaFinishedGrowing;
                     decayStage = plantManager.teaDecayStage;
-                    break;
-                case Plants.LemonTree:
-                    growthStage = plantManager.lemonGrowthStage;
-                    watered = plantManager.lemonWatered;
-                    //finishedGrowing = plantManager.lemonFinishedGrowing;
-                    decayStage = plantManager.lemonDecayStage;
-                    break;
+                    break;                
             }
             if (growthStage >= growthSprites.Length)
             {
@@ -115,17 +95,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
             {
                 Destroy(gameObject);
             }
-
-            /*
-            if (growthStage > 0)
-            {
-                growthStage--; //rather than subtracting from growth stage should do some kind of decay stage instead?
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            */
+            
         }
         UpdatePlantManager();
         UpdateSprite();
@@ -173,13 +143,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
                 plantManager.teaGrowthStage = growthStage;
                 //plantManager.teaFinishedGrowing = finishedGrowing;
                 plantManager.teaDecayStage = decayStage;
-                break;
-            case Plants.LemonTree:
-                plantManager.lemonWatered = watered;
-                plantManager.lemonGrowthStage = growthStage;
-                //plantManager.lemonFinishedGrowing = finishedGrowing;
-                plantManager.lemonDecayStage = decayStage;
-                break;
+                break;            
         }
     }
 
@@ -191,10 +155,7 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
             { 
                 case Plants.TeaBush:
                     containerManager.AddLeaves();
-                    break;
-                case Plants.LemonTree:
-                    //add lemons to the container manager.
-                    break;
+                    break;                
             }
             Debug.Log("plant harvested");
             growthStage = growthSprites.Length -1;

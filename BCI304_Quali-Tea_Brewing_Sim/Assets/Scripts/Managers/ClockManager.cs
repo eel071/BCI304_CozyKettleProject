@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] LoadManager loadManager;
-    //[SerializeField] Plant plant;
+    [SerializeField] PlantManager plantManager;
     public List<Plant> plants;
     [SerializeField] Button nextDayButton;
     [SerializeField] CustomerSpawner customerSpawner;
@@ -48,9 +48,7 @@ public class ClockManager : MonoBehaviour
         elapsedTime += Time.deltaTime * timeScale;
         elapsedTime %= timeInADay;
         UpdateClockUI();
-        CheckTime();
-        //if (SceneManager.GetActiveScene().name == "TeaGarden")
-          //  plant = FindAnyObjectByType(typeof(Plant)) as Plant;
+        CheckTime();        
     }
 
     void UpdateClockUI()
@@ -86,6 +84,7 @@ public class ClockManager : MonoBehaviour
             Plant.UpdateGrowth();
         }        
         dayCounter++;
+        plantManager.daysSinceLastHarvest++;
         loadManager.LoadFrontCounter();
         plants.Clear();
         elapsedTime = startOfDay;
