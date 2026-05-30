@@ -1893,7 +1893,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2680433870128687097, guid: 82863dee5dc6f5447a8b109b1ab78d73, type: 3}
+  m_Sprite: {fileID: 5358044362046332152, guid: 8b9237f8a0fc00b4d9284f7b1a018caa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2806,7 +2806,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -703393913749972269, guid: c03cac8639f2f7748bd7f4296d13fcb7, type: 3}
+  m_Sprite: {fileID: -1539413093311270865, guid: 89cf076d92152934796ad44650d3a59a, type: 3}
   m_Color: {r: 0.5174439, g: 0.5451236, b: 0.5773585, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2897,8 +2897,8 @@ MonoBehaviour:
   heatBar: {fileID: 1895412404}
   boilingSound: {fileID: 8300000, guid: 00e7ab30c637f994b8583691e6574374, type: 3}
   myAudioSource: {fileID: 1089838599}
-  plateOffSprite: {fileID: -703393913749972269, guid: c03cac8639f2f7748bd7f4296d13fcb7, type: 3}
-  plateOnSprite: {fileID: -9094032652313083105, guid: c03cac8639f2f7748bd7f4296d13fcb7, type: 3}
+  plateOffSprite: {fileID: -1539413093311270865, guid: 89cf076d92152934796ad44650d3a59a, type: 3}
+  plateOnSprite: {fileID: -6583674604407568018, guid: 89cf076d92152934796ad44650d3a59a, type: 3}
 --- !u!82 &1089838599
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4788,9 +4788,9 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3327079165510632531, guid: 82863dee5dc6f5447a8b109b1ab78d73, type: 3}
+  m_Sprite: {fileID: -3796900641130891193, guid: 8b9237f8a0fc00b4d9284f7b1a018caa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -4851,7 +4851,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.7, y: 5.22}
+    oldSize: {x: 9.49, y: 5.11}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

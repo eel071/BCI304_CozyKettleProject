@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 82863dee5dc6f5447a8b109b1ab78d73
+guid: 8b9237f8a0fc00b4d9284f7b1a018caa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2680433870128687097
-    second: teapot + sugar_0
+      213: 5358044362046332152
+    second: Teapot & Sugar_0
   - first:
-      213: 3327079165510632531
-    second: teapot + sugar_1
+      213: -3796900641130891193
+    second: Teapot & Sugar_1
   - first:
-      213: -5083188094425112363
-    second: teapot + sugar_2
+      213: -45126534385804209
+    second: Teapot & Sugar_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -81,7 +81,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sugar bowl
+      name: Sugar
       rect:
         serializedVersion: 2
         x: 98
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f722f04760d23520800000000000000
-      internalID: 2680433870128687097
+      spriteID: 8fc5e8a85f89b5a40800000000000000
+      internalID: 5358044362046332152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teapot with lid
+      name: TeapotLID
       rect:
         serializedVersion: 2
-        x: 1029
-        y: 1233
-        width: 970
-        height: 522
+        x: 1095
+        y: 1251
+        width: 949
+        height: 511
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3544dd79fd82c2e20800000000000000
-      internalID: 3327079165510632531
+      spriteID: 748b0f5dbf2be4bc0800000000000000
+      internalID: -3796900641130891193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teapot
+      name: Teapot
       rect:
         serializedVersion: 2
-        x: 5
-        y: 209
-        width: 970
-        height: 522
+        x: 49
+        y: 205
+        width: 972
+        height: 428
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5d0eb492c53e479b0800000000000000
-      internalID: -5083188094425112363
+      spriteID: f4c5df3f7adaf5ff0800000000000000
+      internalID: -45126534385804209
       vertices: []
       indices: 
       edges: []
@@ -175,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 88960d54699a0a4409ff4b6d9e64c648
+    spriteID: 2d39e573fe89bb64fa8a9eece14ce0f4
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sugar bowl: 2680433870128687097
-      teapot: -5083188094425112363
-      teapot with lid: 3327079165510632531
+      Sugar: 5358044362046332152
+      Teapot: -45126534385804209
+      TeapotLID: -3796900641130891193
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
