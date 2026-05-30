@@ -101,7 +101,8 @@ public class Plant : Plot, IOnDropBaseCollision
 
             if (decayStage >= 3)
             {
-                Destroy(gameObject);                
+                KillPlant();
+                Destroy(gameObject);               
             }
             
         }
@@ -181,4 +182,21 @@ public class Plant : Plot, IOnDropBaseCollision
             UpdateSprite();
         }
     }
+
+    private void KillPlant()
+    {
+        switch (plotNumber)
+        {
+            case PlotNumber.Plot1:
+                plantManager.plot1Planted = false;
+                break;
+            case PlotNumber.Plot2:
+                plantManager.plot2Planted = false;
+                break;
+            case PlotNumber.Plot3:
+                plantManager.plot3Planted = false;
+                break;
+        }
+    }
+
 }
