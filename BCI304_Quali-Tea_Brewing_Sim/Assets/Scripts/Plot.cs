@@ -2,18 +2,37 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour
 {
-    //[SerializeField] PlantManager plantManager;
+    private PlantManager plantManager;
     public enum PlotNumber { Plot1, Plot2, Plot3 };
-    [SerializeField] public PlotNumber plotNumber;
+    public PlotNumber plotNumber;
+
+    private bool planted = false;
 
     public GameObject teaBushPrefab;
     private GameObject spawnedPlant;
     private Plant plant;
 
-    private void Start()
-    {        
+    private void Awake()
+    {
+        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
+    }
 
+    private void Start()
+    {
+        LoadPlot();
+        if (planted)
+        {
             SpawnPlant();
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (!planted)
+        {
+            SpawnPlant();
+            UpdatePlanted();
+        }
     }
 
     private void SpawnPlant()
@@ -21,6 +40,39 @@ public class Plot : MonoBehaviour
         spawnedPlant = Instantiate(teaBushPrefab, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);           
         plant = spawnedPlant.GetComponent<Plant>();
         plant.plotNumber = plotNumber;
+        planted = true;
+    }
+
+    private void LoadPlot()
+    {
+        switch (plotNumber)
+        {
+            case PlotNumber.Plot1:
+                planted = plantManager.plot1Planted;
+                break;
+            case PlotNumber.Plot2:
+                planted = plantManager.plot2Planted;
+                break;
+            case PlotNumber.Plot3:
+                planted = plantManager.plot3Planted;
+                break;
+        }
+    }
+
+    private void UpdatePlanted()
+    {
+        switch(plotNumber)
+        { 
+            case PlotNumber.Plot1:
+                plantManager.plot1Planted = planted;
+                break;
+            case PlotNumber.Plot2:
+                plantManager.plot2Planted = planted;
+                break;
+            case PlotNumber.Plot3:
+                plantManager.plot3Planted = planted;
+                break;
+        }
     }
 
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Plant : Plot, IOnDropBaseCollision
 {
     
-    [SerializeField] PlantManager plantManager;
+    private PlantManager plantManager;
     private enum Plants { TeaBush };
     [SerializeField] private Plants plantType;    
     public int growthStage = 0;
@@ -40,7 +40,7 @@ public class Plant : Plot, IOnDropBaseCollision
             watered = true;
             UpdateSprite();
             UpdatePlantManager();
-            //animation would go here
+            //insert wateringcan animation
             draggable.transform.position = draggable.startPosition;
         }
     }
@@ -101,7 +101,7 @@ public class Plant : Plot, IOnDropBaseCollision
 
             if (decayStage >= 3)
             {
-                Destroy(gameObject);
+                Destroy(gameObject);                
             }
             
         }
@@ -144,6 +144,7 @@ public class Plant : Plot, IOnDropBaseCollision
 
     private void UpdatePlantManager()
     {
+
         switch(plotNumber)
         {
             case PlotNumber.Plot1:
