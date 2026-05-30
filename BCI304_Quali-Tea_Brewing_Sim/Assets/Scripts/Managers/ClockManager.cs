@@ -57,9 +57,7 @@ public class ClockManager : MonoBehaviour
         if (dayPhase == 1 && !customerSpawner.customerSpawned)
         {
             DayEnd();
-        }
-        //if (SceneManager.GetActiveScene().name == "TeaGarden")
-          //  plant = FindAnyObjectByType(typeof(Plant)) as Plant;
+        }        
     }
 
     void UpdateClockUI()

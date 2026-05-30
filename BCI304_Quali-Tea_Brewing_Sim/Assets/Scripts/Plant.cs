@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class Plant : MonoBehaviour, IOnDropBaseCollision
+public class Plant : Plot, IOnDropBaseCollision
 {
     
     [SerializeField] PlantManager plantManager;
     private enum Plants { TeaBush };
-    [SerializeField] private Plants plantType;
-
-    [SerializeField] int growthStage = 0;
-    [SerializeField] int decayStage = 0;
-    [SerializeField] bool watered = false;
+    [SerializeField] private Plants plantType;    
+    public int growthStage = 0;
+    public int decayStage = 0;
+    public bool watered = false;
     //[SerializeField] bool finishedGrowing = false;
     [SerializeField] private bool ready = false;
 
@@ -50,14 +49,23 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
     {
         if (plantManager != null)
         {
-            switch(plantType)
+            switch (plotNumber)
             {
-                case Plants.TeaBush:
-                    growthStage = plantManager.teaGrowthStage;
-                    watered = plantManager.teaWatered;
-                    //finishedGrowing = plantManager.teaFinishedGrowing;
-                    decayStage = plantManager.teaDecayStage;
-                    break;                
+                case PlotNumber.Plot1:
+                    growthStage = plantManager.plot1GrowthStage;
+                    watered = plantManager.plot1Watered;
+                    decayStage = plantManager.plot1DecayStage;
+                    break;
+                case PlotNumber.Plot2:
+                    watered = plantManager.plot2Watered;
+                    growthStage = plantManager.plot2GrowthStage;
+                    decayStage = plantManager.plot2DecayStage;
+                    break;
+                case PlotNumber.Plot3:
+                    watered = plantManager.plot3Watered;
+                    growthStage = plantManager.plot3GrowthStage;
+                    decayStage = plantManager.plot3DecayStage;
+                    break;
             }
             if (growthStage >= growthSprites.Length)
             {
@@ -136,14 +144,23 @@ public class Plant : MonoBehaviour, IOnDropBaseCollision
 
     private void UpdatePlantManager()
     {
-        switch(plantType)
+        switch(plotNumber)
         {
-            case Plants.TeaBush:
-                plantManager.teaWatered = watered;
-                plantManager.teaGrowthStage = growthStage;
-                //plantManager.teaFinishedGrowing = finishedGrowing;
-                plantManager.teaDecayStage = decayStage;
-                break;            
+            case PlotNumber.Plot1:
+                plantManager.plot1Watered = watered;
+                plantManager.plot1GrowthStage = growthStage;
+                plantManager.plot1DecayStage = decayStage;
+                break;
+            case PlotNumber.Plot2:
+                plantManager.plot2Watered = watered;
+                plantManager.plot2GrowthStage = growthStage;
+                plantManager.plot2DecayStage = decayStage;
+                break;
+            case PlotNumber.Plot3:
+                plantManager.plot3Watered = watered;
+                plantManager.plot3GrowthStage = growthStage;
+                plantManager.plot3DecayStage = decayStage;
+                break;
         }
     }
 
