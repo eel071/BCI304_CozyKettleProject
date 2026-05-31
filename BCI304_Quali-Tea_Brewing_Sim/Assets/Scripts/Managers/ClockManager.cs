@@ -12,7 +12,8 @@ public class ClockManager : MonoBehaviour
     public List<Plant> plants;
     [SerializeField] Button nextDayButton;
     [SerializeField] CustomerSpawner customerSpawner;
-    
+    [SerializeField] ContainerManager containerManager;
+
     [SerializeField] private TMP_Text clockText;
     [SerializeField] private TMP_Text dayText;
     
@@ -102,5 +103,6 @@ public class ClockManager : MonoBehaviour
         customerSpawner.isCustomer = false;
         dayPhase = 0;
         customerSpawner.canSpawn = true;
+        containerManager.sugarCount = containerManager.sugarMax; //temporarily reset sugar count since we have no way to replenish it atm
     }
 }

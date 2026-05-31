@@ -283,9 +283,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9859088e1af4d4cacfb2068b1f4c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantManager
-  teaGrowthStage: 0
-  teaDecayStage: 0
-  teaWatered: 0
+  plot1GrowthStage: 0
+  plot2GrowthStage: 0
+  plot3GrowthStage: 0
+  plot1DecayStage: 0
+  plot2DecayStage: 0
+  plot3DecayStage: 0
+  plot1Watered: 0
+  plot2Watered: 0
+  plot3Watered: 0
+  plot1Planted: 0
+  plot2Planted: 0
+  plot3Planted: 0
   daysSinceLastHarvest: 0
 --- !u!4 &294617197
 Transform:
@@ -331,14 +340,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4462d05df60890f459e274d9e03ea737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageManger
-  teaMax: 8
-  lemonMax: 10
-  sugarMax: 10
-  greenTeaCount: 8
-  blackTeaCount: 8
-  whiteTeaCount: 8
-  lemonCount: 10
-  sugarCount: 10
+  teaMax: 15
+  lemonMax: 20
+  sugarMax: 30
+  greenTeaCount: 15
+  blackTeaCount: 15
+  whiteTeaCount: 15
+  lemonCount: 20
+  sugarCount: 30
 --- !u!4 &358735130
 Transform:
   m_ObjectHideFlags: 0
@@ -902,6 +911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
   customerPrefab: {fileID: 6790688190739159813, guid: 94c764b35d2377c4f9c737eeeb2703bf, type: 3}
   isCustomer: 1
+  canSpawn: 1
+  customerSpawned: 0
 --- !u!4 &717635211
 Transform:
   m_ObjectHideFlags: 0
@@ -1526,6 +1537,7 @@ MonoBehaviour:
   plants: []
   nextDayButton: {fileID: 2061495115}
   customerSpawner: {fileID: 717635210}
+  containerManager: {fileID: 358735129}
   clockText: {fileID: 1438838285}
   dayText: {fileID: 516569446}
   timeScale: 60
