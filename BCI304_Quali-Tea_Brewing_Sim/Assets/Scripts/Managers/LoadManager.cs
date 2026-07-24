@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LoadManager : MonoBehaviour
 {
+    [SerializeField] private float sceneFadeDuration;
+    private SceneFade sceneFade;
     //GameObject teaManager;
     GameObject customer;    
     GameObject teacup;    
@@ -19,13 +22,23 @@ public class LoadManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        sceneFade = GetComponentInChildren<SceneFade>();
+    }
+
+    private IEnumerator LoadSceneCoroutine(string sceneName) //fade in and out when loading a scene
+    {
+        yield return sceneFade.FadeOutCoroutine(sceneFadeDuration);
+        SceneManager.LoadScene(sceneName);
+        yield return sceneFade.FadeInCoroutine(sceneFadeDuration);
     }
     
+
     public void LoadTeaStation()
     {        
         customer = GameObject.Find("Customer(Clone)");                
-        DontDestroyOnLoad(customer);        
-        SceneManager.LoadScene("TeaStation");
+        DontDestroyOnLoad(customer);   
+        StartCoroutine(LoadSceneCoroutine("TeaStation"));
         customer.SetActive(false);
     }
     public void LoadFrontCounter()
@@ -36,11 +49,10 @@ public class LoadManager : MonoBehaviour
             DontDestroyOnLoad(teacup.transform.gameObject);
             customer.SetActive(true);
         }
-        
-        SceneManager.LoadScene("FrontCounter");
+        StartCoroutine(LoadSceneCoroutine("FrontCounter"));
     }
     public void LoadTeaGarden()
     {        
-        SceneManager.LoadScene("TeaGarden");
+        StartCoroutine(LoadSceneCoroutine("TeaGarden"));
     }
 }

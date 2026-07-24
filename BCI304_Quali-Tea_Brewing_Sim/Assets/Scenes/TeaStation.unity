@@ -261,6 +261,10 @@ PrefabInstance:
       propertyPath: teapotScript
       value: 
       objectReference: {fileID: 2074440806}
+    - target: {fileID: 2598525366782981942, guid: bf47e37875f765347a04d16372a85492, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5167368729973276477, guid: bf47e37875f765347a04d16372a85492, type: 3}
       propertyPath: m_Name
       value: Teacup
@@ -2807,7 +2811,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1539413093311270865, guid: 89cf076d92152934796ad44650d3a59a, type: 3}
-  m_Color: {r: 0.5174439, g: 0.5451236, b: 0.5773585, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
