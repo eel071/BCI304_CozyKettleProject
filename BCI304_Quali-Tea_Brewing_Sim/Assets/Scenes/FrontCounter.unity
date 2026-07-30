@@ -1015,7 +1015,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8ee8bbfcac58645b8f7fc89bee0831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
-  customerPrefab: {fileID: 6790688190739159813, guid: 94c764b35d2377c4f9c737eeeb2703bf, type: 3}
+  customerPrefabs:
+  - {fileID: 6790688190739159813, guid: 94c764b35d2377c4f9c737eeeb2703bf, type: 3}
+  - {fileID: 6790688190739159813, guid: 8b16753056856b844bbb45a8de29ead1, type: 3}
+  - {fileID: 6790688190739159813, guid: 32512d44047c6164baa24343d341a6ab, type: 3}
   isCustomer: 1
   canSpawn: 1
   customerSpawned: 0

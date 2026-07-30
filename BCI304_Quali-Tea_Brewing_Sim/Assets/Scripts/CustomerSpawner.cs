@@ -23,7 +23,7 @@ public class CustomerSpawner : MonoBehaviour
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
     }
 
-    public GameObject customerPrefab;
+    public GameObject[] customerPrefabs;
     public bool isCustomer = true;
     public bool canSpawn = true;
     public bool customerSpawned = false;
@@ -58,7 +58,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
-        Instantiate(customerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)], new Vector3(0, 0, 0), Quaternion.identity);
         customerSpawned = true;
     }
 }

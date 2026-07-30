@@ -30,27 +30,39 @@ public class LoadManager : MonoBehaviour
     {
         yield return sceneFade.FadeOutCoroutine(sceneFadeDuration);
         SceneManager.LoadScene(sceneName);
-        yield return sceneFade.FadeInCoroutine(sceneFadeDuration);
+        
+        //show the customer if entering the front counter
+        if (sceneName == "FrontCounter")
+        {
+            customer.SetActive(true);
+        }
+        //hide the customer if entering the tea station
+        else if (sceneName == "TeaStation")
+        {
+            customer.SetActive(false);
+        }
+
+        yield return sceneFade.FadeInCoroutine(sceneFadeDuration);        
     }
     
 
     public void LoadTeaStation()
     {        
-        customer = GameObject.Find("Customer(Clone)");                
+        customer = GameObject.FindWithTag("Customer");       
         DontDestroyOnLoad(customer);   
         StartCoroutine(LoadSceneCoroutine("TeaStation"));
-        customer.SetActive(false);
     }
+
     public void LoadFrontCounter()
     {
         if (SceneManager.GetActiveScene().name == "TeaStation")
         {
             teacup = GameObject.Find("Teacup");
             DontDestroyOnLoad(teacup.transform.gameObject);
-            customer.SetActive(true);
         }
         StartCoroutine(LoadSceneCoroutine("FrontCounter"));
     }
+    
     public void LoadTeaGarden()
     {        
         StartCoroutine(LoadSceneCoroutine("TeaGarden"));

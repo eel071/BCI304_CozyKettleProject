@@ -5,11 +5,17 @@ using System.Collections;
 
 public class Customer : MonoBehaviour, IOnDropBaseCollision
 {
-    [SerializeField] private TeaManager teaManager;
-    [SerializeField] private LoadManager loadManager;  
-    [SerializeField] private CustomerSpawner customerSpawner;
+    private TeaManager teaManager;
+    private LoadManager loadManager;  
+    private CustomerSpawner customerSpawner;
     private Dialogue dialogue;
     private BoxCollider2D col;
+
+    //Customer Order
+    [SerializeField] private bool randomiseOrder;
+    [SerializeField] private TeaTypes teaOrder;
+    [SerializeField] private bool lemonOrder;
+    [SerializeField] private int sugarOrder;
 
     void Awake()
     {
@@ -17,8 +23,18 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         dialogue = FindAnyObjectByType(typeof(Dialogue)) as Dialogue;
-        teaManager.SetCustomerOrder();       
         col = GetComponent<BoxCollider2D>();
+
+        if (randomiseOrder)
+        {
+            teaManager.RandomiseCustomerOrder();
+        }
+
+        else
+        {
+            teaManager.SetCustomerOrder(teaOrder, lemonOrder, sugarOrder);
+        }
+        
     }    
 
     void OnMouseUp()

@@ -2,9 +2,11 @@ using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum TeaTypes {Water, Green, Black, White};
+
 public class TeaManager : MonoBehaviour
 {
-    public enum TeaTypes {Water, Green, Black, White};
+    
     public TeaTypes customerOrder;
     public TeaTypes tea;
     public int sugarCubesOrder, sugarCubes;
@@ -18,7 +20,7 @@ public class TeaManager : MonoBehaviour
     [SerializeField] private Color water, green, black, white;
     private float tOpacity;
     private Color tColor;
-    public Color teaOrderColor;
+    public Color teaOrderColor; //the colour for the ticket UI
 
     private static TeaManager uniqueInstance;
     
@@ -103,16 +105,30 @@ public class TeaManager : MonoBehaviour
 
     }
 
-    public void SetCustomerOrder()
+    public void RandomiseCustomerOrder()
     {
         customerOrder = (TeaTypes)Random.Range(0, 4);
         lemonOrder = Random.value < 0.5f;
         sugarCubesOrder = Random.Range(0,3);
-    
+        updateOrderVariables();
+    }
+
+    public void SetCustomerOrder(TeaTypes teaOrder, bool lemon, int sugar)
+    {
+        customerOrder = teaOrder;
+        lemonOrder = lemon;
+        sugarCubesOrder = sugar;
+        updateOrderVariables();
+    }
+
+
+    private void updateOrderVariables()
+    {
+        //updates the colour for the order ticket UI and the string for the dialogue 
         switch (customerOrder)
         {
             case TeaTypes.Water:
-                teaOrderColor = water;
+                teaOrderColor = water; 
                 teaOrder = "Hot water";
                 break;
             case TeaTypes.Green:
@@ -129,4 +145,6 @@ public class TeaManager : MonoBehaviour
                 break;
         }
     }
+
+    
 }
