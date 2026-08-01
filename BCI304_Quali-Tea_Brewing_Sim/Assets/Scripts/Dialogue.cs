@@ -1,9 +1,16 @@
 using UnityEngine;
 using TMPro; 
+using UnityEngine.UI;
+using System.Collections;
 
 public class Dialogue : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI customerText;
+    [SerializeField] private Image dialogueBox;
+
+    [SerializeField] private float textSpeed;
+    private string dialogue;
+
 
     [SerializeField] private TeaManager teaManager;
     [SerializeField] private AudioSource audioSource;
@@ -18,12 +25,35 @@ public class Dialogue : MonoBehaviour
     void Awake()
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        HideDialogue();
+    }
+
+   
+    private IEnumerator TypeLine(string text)
+    {
+        customerText.text = "";
+        string displayedText = "";
+        int charLength = 0;
+
+        //display 1 character at a time
+        foreach (char c in text.ToCharArray())
+        {
+            charLength ++;
+            customerText.text = text;
+
+            displayedText = customerText.text.Insert(charLength, "<color=#00000000>");
+            customerText.text = displayedText;
+
+            yield return new WaitForSeconds(textSpeed);
+        }
     }
 
     private void SetCustomerText(string text, AudioClip soundToPlay)
     {
         customerText.enabled = true;
-        customerText.text = text;
+        dialogueBox.enabled = true;
+
+        StartCoroutine(TypeLine(text));        
 
         if (audioSource != null && soundToPlay != null)
         {
@@ -34,6 +64,7 @@ public class Dialogue : MonoBehaviour
     public void HideDialogue()
     {
         customerText.enabled = false;
+        dialogueBox.enabled = false;
     }
 
     public void OrderDialogue()
@@ -107,6 +138,7 @@ public class Dialogue : MonoBehaviour
             }
             
         }
+
         SetCustomerText(scoreDialogue, chosenReactionSound);
     }
 
