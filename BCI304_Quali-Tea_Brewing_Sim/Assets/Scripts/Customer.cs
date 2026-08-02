@@ -25,6 +25,10 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private Sprite customerUpsetSprite;
     private SpriteRenderer spriteRenderer;
 
+
+    private bool hasOrdered = false;
+    private bool destroyAfterTalk = false;
+
     void Awake()
     {
         loadManager = FindAnyObjectByType(typeof(LoadManager)) as LoadManager;
@@ -46,11 +50,24 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         
     }    
 
+
     void OnMouseUp()
     {
-        if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
-        dialogue.OrderDialogue(); //create order dialogue        
-        StartCoroutine(WaitBeforeLoad());        
+        if (!hasOrdered)
+        {
+            if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
+            dialogue.OrderDialogue(); //create order dialogue
+            hasOrdered = true;      
+            //StartCoroutine(WaitBeforeLoad());
+        }
+    }
+
+    public void StopTalking()
+    {
+        if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
+
+        if (destroyAfterTalk) StartCoroutine(WaitBeforeDestroy());
+        else StartCoroutine(WaitBeforeLoad());
     }
 
     public void OnDrop(Draggable draggable)
@@ -83,21 +100,23 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             dialogue.ScoreDialogue(); //create score dialogue (customer's response to the tea)
             teaManager.ResetTea();   
             col.enabled = false; //stop the player from clicking the customer again
-            StartCoroutine(WaitBeforeDestroy());
+
+            destroyAfterTalk = true;
         }
     }
 
+    
     IEnumerator WaitBeforeLoad()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         dialogue.HideDialogue();
-        if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
+        //if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
         loadManager.LoadTeaStation();
     }
 
     IEnumerator WaitBeforeDestroy()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         dialogue.HideDialogue();
         customerSpawner.isCustomer = false;
         Destroy(gameObject);

@@ -21,6 +21,11 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private AudioClip R_Sigh;    // 50-74
     [SerializeField] private AudioClip R_Angry;   // 0-49
 
+
+    [SerializeField] private AudioClip typingSFX;
+
+    private Customer customer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -28,7 +33,6 @@ public class Dialogue : MonoBehaviour
         HideDialogue();
     }
 
-   
     private IEnumerator TypeLine(string text)
     {
         customerText.text = "";
@@ -44,8 +48,12 @@ public class Dialogue : MonoBehaviour
             displayedText = customerText.text.Insert(charLength, "<color=#00000000>");
             customerText.text = displayedText;
 
+            if (audioSource != null && typingSFX != null) audioSource.PlayOneShot(typingSFX);
             yield return new WaitForSeconds(textSpeed);
         }
+
+        if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
+        customer.StopTalking();
     }
 
     private void SetCustomerText(string text, AudioClip soundToPlay)
@@ -71,7 +79,6 @@ public class Dialogue : MonoBehaviour
     {
         string customerOrder;
 
-        
         if (teaManager.sugarCubesOrder > 0)
         {
 
@@ -108,7 +115,6 @@ public class Dialogue : MonoBehaviour
         {
             scoreDialogue = "This isn't what I ordered!";
             chosenReactionSound = R_Angry;
-            Debug.Log("sound");
         }
         else
         {
@@ -117,7 +123,6 @@ public class Dialogue : MonoBehaviour
                 case >= 90:
                     scoreDialogue = "This is Perfect!";
                     chosenReactionSound = R_AMAZING;
-                    Debug.Log("sound");
                     break;
                 case >= 75:
                     scoreDialogue = "Yum";

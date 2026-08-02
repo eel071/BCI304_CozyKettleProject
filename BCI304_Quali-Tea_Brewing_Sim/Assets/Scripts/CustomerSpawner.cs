@@ -9,7 +9,6 @@ public class CustomerSpawner : MonoBehaviour
 
     private void Awake()
     {
-        
         if (uniqueInstance == null)
         {
             uniqueInstance = this;
@@ -30,12 +29,12 @@ public class CustomerSpawner : MonoBehaviour
     
     void Start()
     {
-        if (GameObject.Find("Customer(Clone)") == null)
+        if (GameObject.FindWithTag("Customer") == null)
         {
             SpawnCustomer();
         }
-
     }
+
     private void Update()
     {
         if (isCustomer == false)
