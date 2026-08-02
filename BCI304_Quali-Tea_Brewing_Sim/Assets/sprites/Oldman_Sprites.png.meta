@@ -112,10 +112,10 @@ TextureImporter:
       name: Oldman_Neutral
       rect:
         serializedVersion: 2
-        x: 12
+        x: 55
         y: 0
-        width: 420
-        height: 861
+        width: 845
+        height: 1712
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: Oldman_Talking
       rect:
         serializedVersion: 2
-        x: 489
+        x: 982
         y: 0
-        width: 420
-        height: 861
+        width: 845
+        height: 1712
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +156,10 @@ TextureImporter:
       name: Oldman_Happy
       rect:
         serializedVersion: 2
-        x: 969
+        x: 1947
         y: 0
-        width: 420
-        height: 861
+        width: 845
+        height: 1712
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,10 +178,10 @@ TextureImporter:
       name: Oldman_Upset
       rect:
         serializedVersion: 2
-        x: 1435
+        x: 2893
         y: 0
-        width: 420
-        height: 861
+        width: 845
+        height: 1712
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4e8c18d5f75a285499b7705a2469ec17
+    spriteID: d3a0a21dd5268444d87eac236abda02d
     internalID: 0
     vertices: []
     indices: 
