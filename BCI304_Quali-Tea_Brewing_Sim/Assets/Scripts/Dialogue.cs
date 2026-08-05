@@ -75,7 +75,12 @@ public class Dialogue : MonoBehaviour
         dialogueBox.enabled = false;
     }
 
-    public void OrderDialogue()
+    public void OrderDialogue(string customerOrder)
+    {
+        SetCustomerText(customerOrder, R_Order);
+    }
+
+    public void GenerateOrderDialogue()
     {
         string customerOrder;
 
@@ -106,14 +111,15 @@ public class Dialogue : MonoBehaviour
         SetCustomerText(customerOrder, R_Order);
     }
 
-    public void ScoreDialogue()
+    public void ScoreDialogue(string customDialogue)
     {
         string scoreDialogue = "";
         AudioClip chosenReactionSound = null;
 
         if (teaManager.customerOrder != teaManager.tea)
         {
-            scoreDialogue = "This isn't what I ordered!";
+            if (customDialogue != "") scoreDialogue = customDialogue;
+            else scoreDialogue = "This isn't what I ordered!";
             chosenReactionSound = R_Angry;
         }
         else
@@ -121,23 +127,28 @@ public class Dialogue : MonoBehaviour
             switch (teaManager.finalScore)
             {
                 case >= 90:
-                    scoreDialogue = "This is Perfect!";
+                    if (customDialogue != "") scoreDialogue = customDialogue;
+                    else scoreDialogue = "This is Perfect!";
                     chosenReactionSound = R_AMAZING;
                     break;
                 case >= 75:
-                    scoreDialogue = "Yum";
+                    if (customDialogue != "") scoreDialogue = customDialogue;
+                    else scoreDialogue = "Yum";
                     chosenReactionSound = R_WOW;
                     break;
                 case >= 50:
-                    scoreDialogue = "Okay...";
+                    if (customDialogue != "") scoreDialogue = customDialogue;
+                    else scoreDialogue = "Okay...";
                     chosenReactionSound = R_Sigh;
                     break;
                 case >= 25:
-                    scoreDialogue = "I've had better tea.";
+                    if (customDialogue != "") scoreDialogue = customDialogue;
+                    else scoreDialogue = "I've had better tea.";
                     chosenReactionSound = R_Sigh;
                     break;
                 case < 25:
-                    scoreDialogue = "Can you even call this tea?";
+                    if (customDialogue != "") scoreDialogue = customDialogue;
+                    else scoreDialogue = "Can you even call this tea?";
                     chosenReactionSound = R_Angry;
                     break;
             }

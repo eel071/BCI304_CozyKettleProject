@@ -155,6 +155,14 @@ MonoBehaviour:
   teaOrder: 2
   lemonOrder: 0
   sugarOrder: 1
+  orderD: I'd like a black tea with 1 sugar.
+  wrongTeaD: What is this?!
+  perfectTeaD: testing Perfect
+  goodTeaD: testing Good
+  fineTeaD: testing Fine
+  badTeaD: testing Bad
+  terribleTeaD: testing Terrible
+  outOfTeaD: What do you mean you're out of black tea?!
   customerNeutralSprite: {fileID: -8711646730351054396, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
   customerTalkingSprite: {fileID: 9140556638531541180, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
   customerHappySprite: {fileID: 8164790177777966982, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}

@@ -12,13 +12,24 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     private Dialogue dialogue;
     private BoxCollider2D col;
 
-    //Customer Order
+    [Header("Customer Order")]
     [SerializeField] private bool randomiseOrder;
     [SerializeField] private TeaTypes teaOrder;
     [SerializeField] private bool lemonOrder;
     [SerializeField] private int sugarOrder;
 
-    //Customer Sprites
+    [Header("Dialogue")]
+    [SerializeField] private string orderD;
+    [SerializeField] private string wrongTeaD;
+    [SerializeField] private string perfectTeaD;
+    [SerializeField] private string goodTeaD;
+    [SerializeField] private string fineTeaD;
+    [SerializeField] private string badTeaD;
+    [SerializeField] private string terribleTeaD;
+    [SerializeField] private string outOfTeaD;
+
+
+    [Header("Sprites")]
     [SerializeField] private Sprite customerNeutralSprite;
     [SerializeField] private Sprite customerTalkingSprite;
     [SerializeField] private Sprite customerHappySprite;
@@ -56,9 +67,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         if (!hasOrdered)
         {
             if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
-            dialogue.OrderDialogue(); //create order dialogue
+            if (orderD != "") dialogue.OrderDialogue(orderD); //set custom order dialogue
+            else dialogue.GenerateOrderDialogue(); //generate default order dialogue
             hasOrdered = true;      
-            //StartCoroutine(WaitBeforeLoad());
         }
     }
 
@@ -78,26 +89,37 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
             if (teaManager.customerOrder != teaManager.tea)
             {
-                if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
+                if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite; //set sprite
+                dialogue.ScoreDialogue(wrongTeaD);
             }
             else
             {
                 switch (teaManager.finalScore)
                 {
+                    case >= 90:
+                        if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
+                        dialogue.ScoreDialogue(perfectTeaD);
+                        break;
                     case >= 75:
                         if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
+                        dialogue.ScoreDialogue(goodTeaD);
+                        break;
+                    case >= 50:
+                        if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
+                        dialogue.ScoreDialogue(fineTeaD);
                         break;
                     case >= 25:
                         if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
+                        dialogue.ScoreDialogue(badTeaD);
                         break;
                     case < 25:
                         if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
+                        dialogue.ScoreDialogue(terribleTeaD);
                         break;
                 }
 
             }            
-
-            dialogue.ScoreDialogue(); //create score dialogue (customer's response to the tea)
+            
             teaManager.ResetTea();   
             col.enabled = false; //stop the player from clicking the customer again
 
@@ -108,7 +130,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     
     IEnumerator WaitBeforeLoad()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         dialogue.HideDialogue();
         //if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
         loadManager.LoadTeaStation();
