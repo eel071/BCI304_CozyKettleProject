@@ -26,8 +26,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private string fineTeaD;
     [SerializeField] private string badTeaD;
     [SerializeField] private string terribleTeaD;
-    [SerializeField] private string outOfTeaD;
-
+    public string outOfTeaD;
 
     [Header("Sprites")]
     [SerializeField] private Sprite customerNeutralSprite;
@@ -39,6 +38,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
     private bool hasOrdered = false;
     private bool destroyAfterTalk = false;
+    public bool outOfTea = false;
 
     void Awake()
     {
@@ -64,6 +64,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
     void OnMouseUp()
     {
+        Debug.Log(outOfTea);
         if (!hasOrdered)
         {
             if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
@@ -78,8 +79,15 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
 
         if (destroyAfterTalk) StartCoroutine(WaitBeforeDestroy());
+        else if (outOfTea)
+        {
+            dialogue.ShowRejectButton();
+            destroyAfterTalk = true;
+        } 
         else StartCoroutine(WaitBeforeLoad());
     }
+
+
 
     public void OnDrop(Draggable draggable)
     {
@@ -119,7 +127,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
                 }
 
             }            
-            
+
             teaManager.ResetTea();   
             col.enabled = false; //stop the player from clicking the customer again
 
@@ -127,12 +135,10 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         }
     }
 
-    
     IEnumerator WaitBeforeLoad()
     {
         yield return new WaitForSeconds(1f);
         dialogue.HideDialogue();
-        //if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
         loadManager.LoadTeaStation();
     }
 

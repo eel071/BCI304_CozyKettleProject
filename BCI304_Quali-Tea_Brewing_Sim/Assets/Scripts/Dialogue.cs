@@ -7,10 +7,10 @@ public class Dialogue : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI customerText;
     [SerializeField] private Image dialogueBox;
+    [SerializeField] private GameObject rejectButton;
 
     [SerializeField] private float textSpeed;
     private string dialogue;
-
 
     [SerializeField] private TeaManager teaManager;
     [SerializeField] private AudioSource audioSource;
@@ -69,10 +69,26 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    public void ShowRejectButton()
+    {
+        rejectButton.SetActive(true);
+    }
+
+    public void RejectCustomer()
+    {
+        Debug.Log("testing");
+        string dialogue = $"You're out of {teaManager.teaOrder}? What kind of tea shop is this.";
+        if (customer.outOfTeaD != "") dialogue = customer.outOfTeaD;
+
+        SetCustomerText(dialogue, R_Angry);
+        rejectButton.SetActive(false);
+    }
+
     public void HideDialogue()
     {
         customerText.enabled = false;
         dialogueBox.enabled = false;
+        rejectButton.SetActive(false);
     }
 
     public void OrderDialogue(string customerOrder)

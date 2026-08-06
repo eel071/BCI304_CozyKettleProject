@@ -24,11 +24,14 @@ public class TeaManager : MonoBehaviour
 
     private static TeaManager uniqueInstance;
     
+    [SerializeField] private ContainerManager containerManager;
+    private Customer customer;
     
     private void Awake()
     {
         if (uniqueInstance == null)
         {
+            containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -110,7 +113,7 @@ public class TeaManager : MonoBehaviour
         customerOrder = (TeaTypes)Random.Range(0, 4);
         lemonOrder = Random.value < 0.5f;
         sugarCubesOrder = Random.Range(0,3);
-        updateOrderVariables();
+        UpdateOrderVariables();
     }
 
     public void SetCustomerOrder(TeaTypes teaOrder, bool lemon, int sugar)
@@ -118,12 +121,36 @@ public class TeaManager : MonoBehaviour
         customerOrder = teaOrder;
         lemonOrder = lemon;
         sugarCubesOrder = sugar;
-        updateOrderVariables();
+        UpdateOrderVariables();
     }
 
-
-    private void updateOrderVariables()
+    private void CheckTea()
     {
+        bool outOfTea = false;
+
+        switch (customerOrder)
+        {
+            case TeaTypes.Water:
+                break;
+            case TeaTypes.Green:
+                if (containerManager.greenTeaCount == 0) outOfTea = true;
+                break;
+            case TeaTypes.Black:
+                if (containerManager.blackTeaCount == 0) outOfTea = true;
+                break;
+            case TeaTypes.White:
+                if (containerManager.whiteTeaCount == 0) outOfTea = true;
+                break;
+        }
+
+        if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer;
+        customer.outOfTea = outOfTea;
+
+    }
+
+    private void UpdateOrderVariables()
+    {
+        CheckTea();
         //updates the colour for the order ticket UI and the string for the dialogue 
         switch (customerOrder)
         {
