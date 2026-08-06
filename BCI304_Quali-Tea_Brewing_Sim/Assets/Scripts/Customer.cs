@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 public class Customer : MonoBehaviour, IOnDropBaseCollision
 {
     private TeaManager teaManager;
-    private LoadManager loadManager;  
+    
     private CustomerSpawner customerSpawner;
     private Dialogue dialogue;
     private BoxCollider2D col;
@@ -26,7 +26,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private string fineTeaD;
     [SerializeField] private string badTeaD;
     [SerializeField] private string terribleTeaD;
-    public string outOfTeaD;
+    public string rejectD;
 
     [Header("Sprites")]
     [SerializeField] private Sprite customerNeutralSprite;
@@ -35,111 +35,128 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private Sprite customerUpsetSprite;
     private SpriteRenderer spriteRenderer;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip orderSound;
+    [SerializeField] private AudioClip amazingSound; // 90-100
+    [SerializeField] private AudioClip goodSound;     // 75-89
+    [SerializeField] private AudioClip disappointedSound; // 25-74
+    public AudioClip angrySound;   // 0-24
 
     private bool hasOrdered = false;
-    private bool destroyAfterTalk = false;
-    public bool outOfTea = false;
-
+    public bool destroyAfterTalk = false;
+    
     void Awake()
     {
-        loadManager = FindAnyObjectByType(typeof(LoadManager)) as LoadManager;
+        //get references
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         dialogue = FindAnyObjectByType(typeof(Dialogue)) as Dialogue;
         col = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (randomiseOrder)
-        {
-            teaManager.RandomiseCustomerOrder();
-        }
+        //set customer order in tea manager
+        if (randomiseOrder) teaManager.RandomiseCustomerOrder();
+        else teaManager.SetCustomerOrder(teaOrder, lemonOrder, sugarOrder);
 
-        else
-        {
-            teaManager.SetCustomerOrder(teaOrder, lemonOrder, sugarOrder);
-        }
-        
-    }    
-
-
+    }
+    
+    //taking customer order
     void OnMouseUp()
     {
-        Debug.Log(outOfTea);
-        if (!hasOrdered)
+        if (!hasOrdered) //if the player hasn't already clicked on the customer
         {
             if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
-            if (orderD != "") dialogue.OrderDialogue(orderD); //set custom order dialogue
-            else dialogue.GenerateOrderDialogue(); //generate default order dialogue
-            hasOrdered = true;      
+            OrderDialogue(); //set or generate order dialogue
+            hasOrdered = true;
         }
     }
+
+    //giving tea to customer
+    public void OnDrop(Draggable draggable)  
+    {
+        if (draggable.tag == "Teacup") 
+        {
+            Destroy(draggable.transform.gameObject); //destroy the teacup object
+            ReactionDialogue();            
+        }
+    }
+
+    #region dialogue generation
+    private void OrderDialogue()
+    {
+        string customerOrder;
+        
+        if (orderD != "") customerOrder = orderD; //if the customer has custom dialogue then use this dialogue
+        else //generate default customer order dialogue
+        {       
+            //sugar and lemon 
+            if (teaManager.sugarCubesOrder > 0 && teaManager.lemonOrder) customerOrder = $"{teaManager.teaOrder} with {teaManager.sugarCubesOrder} sugar and lemon.";
+            //just sugar
+            else if (teaManager.sugarCubesOrder > 0) customerOrder = $"{teaManager.teaOrder} with {teaManager.sugarCubesOrder} sugar.";
+            //just lemom
+            else if (teaManager.lemonOrder) customerOrder = $"{teaManager.teaOrder} with lemon.";
+            //no sugar or lemon
+            else customerOrder = $"{teaManager.teaOrder}";
+        }
+        dialogue.SetCustomerText(customerOrder, orderSound, false);
+    }
+
+    private void ReactionDialogue()
+    {
+        string reactDialogue = "";
+        AudioClip reactionSound = null;
+
+        if (teaManager.customerOrder != teaManager.tea) //if the tea doesnt match the order
+        {
+            if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
+            if (wrongTeaD != "") reactDialogue = wrongTeaD; else reactDialogue = "This isn't what I ordered!";
+            reactionSound = angrySound;
+        }
+
+        else //set dialogue, sprite, and audio clip depending on final score
+        {
+            switch (teaManager.finalScore)
+            {
+                case >= 90:
+                    if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
+                    if (perfectTeaD != "") reactDialogue = perfectTeaD; else reactDialogue = "This is Perfect!";
+                    reactionSound = amazingSound;
+                    break;
+                case >= 75:
+                    if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
+                    if (goodTeaD != "") reactDialogue = goodTeaD; else reactDialogue = "Yum!";
+                    reactionSound = goodSound;
+                    break;
+                case >= 50:
+                    if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
+                    if (fineTeaD != "") reactDialogue = fineTeaD; else reactDialogue = "This is okay";
+                    reactionSound = disappointedSound;
+                    break;
+                case >= 25:
+                    if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
+                    if (badTeaD != "") reactDialogue = badTeaD; else reactDialogue = "I've had better tea.";
+                    reactionSound = disappointedSound;
+                    break;
+                case < 25:
+                    if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
+                    if (terribleTeaD != "") reactDialogue = terribleTeaD; else reactDialogue = "Can you even call this tea?";
+                    reactionSound = angrySound;
+                    break;
+            }
+        }    
+    
+        dialogue.SetCustomerText(reactDialogue, reactionSound, false);
+
+        teaManager.ResetTea();
+        col.enabled = false; //stop the player from clicking the customer again
+        destroyAfterTalk = true;
+    }
+    #endregion
 
     public void StopTalking()
     {
-        if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite;
-
-        if (destroyAfterTalk) StartCoroutine(WaitBeforeDestroy());
-        else if (outOfTea)
-        {
-            dialogue.ShowRejectButton();
-            destroyAfterTalk = true;
-        } 
-        else StartCoroutine(WaitBeforeLoad());
-    }
-
-
-
-    public void OnDrop(Draggable draggable)
-    {
-        if (draggable.tag == "Teacup")
-        {
-            Destroy(draggable.transform.gameObject);
-
-            if (teaManager.customerOrder != teaManager.tea)
-            {
-                if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite; //set sprite
-                dialogue.ScoreDialogue(wrongTeaD);
-            }
-            else
-            {
-                switch (teaManager.finalScore)
-                {
-                    case >= 90:
-                        if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
-                        dialogue.ScoreDialogue(perfectTeaD);
-                        break;
-                    case >= 75:
-                        if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
-                        dialogue.ScoreDialogue(goodTeaD);
-                        break;
-                    case >= 50:
-                        if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
-                        dialogue.ScoreDialogue(fineTeaD);
-                        break;
-                    case >= 25:
-                        if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
-                        dialogue.ScoreDialogue(badTeaD);
-                        break;
-                    case < 25:
-                        if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
-                        dialogue.ScoreDialogue(terribleTeaD);
-                        break;
-                }
-
-            }            
-
-            teaManager.ResetTea();   
-            col.enabled = false; //stop the player from clicking the customer again
-
-            destroyAfterTalk = true;
-        }
-    }
-
-    IEnumerator WaitBeforeLoad()
-    {
-        yield return new WaitForSeconds(1f);
-        dialogue.HideDialogue();
-        loadManager.LoadTeaStation();
+        if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite; //set sprite
+        if (destroyAfterTalk) StartCoroutine(WaitBeforeDestroy()); //destroy customer if destroyAfterTalk = true
     }
 
     IEnumerator WaitBeforeDestroy()

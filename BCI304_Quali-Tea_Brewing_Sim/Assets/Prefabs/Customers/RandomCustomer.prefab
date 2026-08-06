@@ -155,3 +155,21 @@ MonoBehaviour:
   teaOrder: 0
   lemonOrder: 0
   sugarOrder: 0
+  orderD: 
+  wrongTeaD: 
+  perfectTeaD: 
+  goodTeaD: 
+  fineTeaD: 
+  badTeaD: 
+  terribleTeaD: 
+  outOfTeaD: 
+  customerNeutralSprite: {fileID: 0}
+  customerTalkingSprite: {fileID: 0}
+  customerHappySprite: {fileID: 0}
+  customerUpsetSprite: {fileID: 0}
+  orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
+  amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
+  goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
+  disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
+  angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
+  outOfTea: 0

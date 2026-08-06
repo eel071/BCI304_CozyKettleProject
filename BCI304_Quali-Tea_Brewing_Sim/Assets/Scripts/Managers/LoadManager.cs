@@ -24,10 +24,12 @@ public class LoadManager : MonoBehaviour
         }
 
         sceneFade = GetComponentInChildren<SceneFade>();
+        sceneFade.gameObject.SetActive(false);
     }
 
     private IEnumerator LoadSceneCoroutine(string sceneName) //fade in and out when loading a scene
     {
+        sceneFade.gameObject.SetActive(true);
         yield return sceneFade.FadeOutCoroutine(sceneFadeDuration);
         SceneManager.LoadScene(sceneName);
         

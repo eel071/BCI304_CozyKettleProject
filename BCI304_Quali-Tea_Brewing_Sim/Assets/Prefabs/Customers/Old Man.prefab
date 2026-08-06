@@ -167,3 +167,9 @@ MonoBehaviour:
   customerTalkingSprite: {fileID: 9140556638531541180, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
   customerHappySprite: {fileID: 8164790177777966982, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
   customerUpsetSprite: {fileID: 4752305718578798291, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
+  orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
+  amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
+  goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
+  disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
+  angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
+  outOfTea: 0

@@ -8,20 +8,16 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private TextMeshProUGUI customerText;
     [SerializeField] private Image dialogueBox;
     [SerializeField] private GameObject rejectButton;
+    [SerializeField] private GameObject acceptButton;
 
     [SerializeField] private float textSpeed;
     private string dialogue;
 
     [SerializeField] private TeaManager teaManager;
+    [SerializeField] private LoadManager loadManager;
     [SerializeField] private AudioSource audioSource;
 
-    [SerializeField] private AudioClip R_Order;
-    [SerializeField] private AudioClip R_AMAZING; // 90-100
-    [SerializeField] private AudioClip R_WOW;     // 75-89
-    [SerializeField] private AudioClip R_Sigh;    // 50-74
-    [SerializeField] private AudioClip R_Angry;   // 0-49
-
-
+    [SerializeField] private AudioClip R_Angry;
     [SerializeField] private AudioClip typingSFX;
 
     private Customer customer;
@@ -30,11 +26,27 @@ public class Dialogue : MonoBehaviour
     void Awake()
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        loadManager = FindAnyObjectByType(typeof(LoadManager)) as LoadManager;
         HideDialogue();
+        HideButtons();
     }
 
-    private IEnumerator TypeLine(string text)
+    public void SetCustomerText(string text, AudioClip soundToPlay, bool rejected)
     {
+        customerText.enabled = true;
+        dialogueBox.enabled = true;
+
+        StartCoroutine(TypeLine(text, rejected));        
+
+        if (audioSource != null && soundToPlay != null)
+        {
+            audioSource.PlayOneShot(soundToPlay);
+        }
+    }
+
+    private IEnumerator TypeLine(string text, bool rejected)
+    {
+        //reset text
         customerText.text = "";
         string displayedText = "";
         int charLength = 0;
@@ -42,7 +54,7 @@ public class Dialogue : MonoBehaviour
         //display 1 character at a time
         foreach (char c in text.ToCharArray())
         {
-            charLength ++;
+            charLength ++; //increase the character length
             customerText.text = text;
 
             displayedText = customerText.text.Insert(charLength, "<color=#00000000>");
@@ -54,124 +66,60 @@ public class Dialogue : MonoBehaviour
 
         if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
         customer.StopTalking();
+
+        if (!rejected) ShowButtons();
     }
 
-    private void SetCustomerText(string text, AudioClip soundToPlay)
-    {
-        customerText.enabled = true;
-        dialogueBox.enabled = true;
-
-        StartCoroutine(TypeLine(text));        
-
-        if (audioSource != null && soundToPlay != null)
-        {
-            audioSource.PlayOneShot(soundToPlay);
-        }
-    }
-
-    public void ShowRejectButton()
-    {
-        rejectButton.SetActive(true);
-    }
-
-    public void RejectCustomer()
-    {
-        Debug.Log("testing");
-        string dialogue = $"You're out of {teaManager.teaOrder}? What kind of tea shop is this.";
-        if (customer.outOfTeaD != "") dialogue = customer.outOfTeaD;
-
-        SetCustomerText(dialogue, R_Angry);
-        rejectButton.SetActive(false);
-    }
-
+    #region show/hide
     public void HideDialogue()
     {
         customerText.enabled = false;
         dialogueBox.enabled = false;
+    }
+
+    private void ShowButtons()
+    {
+        rejectButton.SetActive(true);
+        acceptButton.SetActive(true);
+    }
+
+    private void HideButtons()
+    {
         rejectButton.SetActive(false);
+        acceptButton.SetActive(false);
     }
+    #endregion
 
-    public void OrderDialogue(string customerOrder)
+    #region interactions
+
+    public void RejectCustomer()
     {
-        SetCustomerText(customerOrder, R_Order);
+        HideButtons();
+        string dialogue = "Whatever."; //default rejection dialogue
+        AudioClip angrySound = null;
+
+        if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
+        if (customer != null)
+        {
+            if (customer.rejectD != "") dialogue = customer.rejectD; //set unique rejection dialogue
+            angrySound = customer.angrySound; //set customer angry sound
+            customer.destroyAfterTalk = true; //destroy customer after dialogue ends
+        }
+        
+        SetCustomerText(dialogue, angrySound, true); 
     }
 
-    public void GenerateOrderDialogue()
+    public void AcceptCustomer()
     {
-        string customerOrder;
-
-        if (teaManager.sugarCubesOrder > 0)
-        {
-
-            if (teaManager.lemonOrder)
-            {
-                customerOrder = $"{teaManager.teaOrder} with {teaManager.sugarCubesOrder} sugar and lemon.";
-            }
-            else
-            {
-                customerOrder = $"{teaManager.teaOrder} with {teaManager.sugarCubesOrder} sugar.";
-            }
-        }
-        else
-        {
-            if (teaManager.lemonOrder)
-            {
-                customerOrder = $"{teaManager.teaOrder} with lemon.";
-            }
-            else
-            {
-                customerOrder = $"{teaManager.teaOrder}";
-            }
-        }
-
-        SetCustomerText(customerOrder, R_Order);
+        HideButtons();
+        StartCoroutine(WaitBeforeLoad()); //load the tea station
     }
+    #endregion
 
-    public void ScoreDialogue(string customDialogue)
+    IEnumerator WaitBeforeLoad()
     {
-        string scoreDialogue = "";
-        AudioClip chosenReactionSound = null;
-
-        if (teaManager.customerOrder != teaManager.tea)
-        {
-            if (customDialogue != "") scoreDialogue = customDialogue;
-            else scoreDialogue = "This isn't what I ordered!";
-            chosenReactionSound = R_Angry;
-        }
-        else
-        {
-            switch (teaManager.finalScore)
-            {
-                case >= 90:
-                    if (customDialogue != "") scoreDialogue = customDialogue;
-                    else scoreDialogue = "This is Perfect!";
-                    chosenReactionSound = R_AMAZING;
-                    break;
-                case >= 75:
-                    if (customDialogue != "") scoreDialogue = customDialogue;
-                    else scoreDialogue = "Yum";
-                    chosenReactionSound = R_WOW;
-                    break;
-                case >= 50:
-                    if (customDialogue != "") scoreDialogue = customDialogue;
-                    else scoreDialogue = "Okay...";
-                    chosenReactionSound = R_Sigh;
-                    break;
-                case >= 25:
-                    if (customDialogue != "") scoreDialogue = customDialogue;
-                    else scoreDialogue = "I've had better tea.";
-                    chosenReactionSound = R_Sigh;
-                    break;
-                case < 25:
-                    if (customDialogue != "") scoreDialogue = customDialogue;
-                    else scoreDialogue = "Can you even call this tea?";
-                    chosenReactionSound = R_Angry;
-                    break;
-            }
-            
-        }
-
-        SetCustomerText(scoreDialogue, chosenReactionSound);
+        yield return new WaitForSeconds(1f);
+        loadManager.LoadTeaStation();
+        HideDialogue();
     }
-
 }

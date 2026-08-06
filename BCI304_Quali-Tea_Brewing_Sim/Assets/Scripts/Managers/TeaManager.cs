@@ -124,33 +124,8 @@ public class TeaManager : MonoBehaviour
         UpdateOrderVariables();
     }
 
-    private void CheckTea()
-    {
-        bool outOfTea = false;
-
-        switch (customerOrder)
-        {
-            case TeaTypes.Water:
-                break;
-            case TeaTypes.Green:
-                if (containerManager.greenTeaCount == 0) outOfTea = true;
-                break;
-            case TeaTypes.Black:
-                if (containerManager.blackTeaCount == 0) outOfTea = true;
-                break;
-            case TeaTypes.White:
-                if (containerManager.whiteTeaCount == 0) outOfTea = true;
-                break;
-        }
-
-        if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer;
-        customer.outOfTea = outOfTea;
-
-    }
-
     private void UpdateOrderVariables()
     {
-        CheckTea();
         //updates the colour for the order ticket UI and the string for the dialogue 
         switch (customerOrder)
         {
