@@ -98,7 +98,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             //no sugar or lemon
             else customerOrder = $"{teaManager.teaOrder}";
         }
-        dialogue.SetCustomerText(customerOrder, orderSound, false);
+        dialogue.SetCustomerText(customerOrder, orderSound, true);
     }
 
     private void ReactionDialogue()

@@ -31,12 +31,12 @@ public class Dialogue : MonoBehaviour
         HideButtons();
     }
 
-    public void SetCustomerText(string text, AudioClip soundToPlay, bool rejected)
+    public void SetCustomerText(string text, AudioClip soundToPlay, bool showButtons)
     {
         customerText.enabled = true;
         dialogueBox.enabled = true;
 
-        StartCoroutine(TypeLine(text, rejected));        
+        StartCoroutine(TypeLine(text, showButtons));        
 
         if (audioSource != null && soundToPlay != null)
         {
@@ -44,7 +44,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private IEnumerator TypeLine(string text, bool rejected)
+    private IEnumerator TypeLine(string text, bool showButtons)
     {
         //reset text
         customerText.text = "";
@@ -67,7 +67,7 @@ public class Dialogue : MonoBehaviour
         if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
         customer.StopTalking();
 
-        if (!rejected) ShowButtons();
+        if (showButtons) ShowButtons();
     }
 
     #region show/hide
@@ -106,7 +106,7 @@ public class Dialogue : MonoBehaviour
             customer.destroyAfterTalk = true; //destroy customer after dialogue ends
         }
         
-        SetCustomerText(dialogue, angrySound, true); 
+        SetCustomerText(dialogue, angrySound, false); 
     }
 
     public void AcceptCustomer()

@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 
 public class CustomerSpawner : MonoBehaviour
@@ -23,6 +25,7 @@ public class CustomerSpawner : MonoBehaviour
     }
 
     public GameObject[] customerPrefabs;
+    [SerializeField] private List<GameObject> customers = new List<GameObject>();
     public bool isCustomer = true;
     public bool canSpawn = true;
     public bool customerSpawned = false;
@@ -31,6 +34,7 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (GameObject.FindWithTag("Customer") == null)
         {
+            createCustomerList();
             SpawnCustomer();
         }
     }
@@ -55,9 +59,19 @@ public class CustomerSpawner : MonoBehaviour
         SpawnCustomer();
     }
 
+    private void createCustomerList()
+    {
+        customers = customerPrefabs.ToList();
+    }
+
+
     private void SpawnCustomer()
     {
-        Instantiate(customerPrefabs[Random.Range(0, customerPrefabs.Length)], new Vector3(0, 0, 0), Quaternion.identity);
+        if (customers.Count <= 0) createCustomerList(); // **TEMPORARY** will eventually end the day instead of regenerating the customer list.
+        
+        int randomCustomer = Random.Range(0, customers.Count); //choose a random customer
+        Instantiate(customers[randomCustomer], new Vector3(0, 0, 0), Quaternion.identity); //instantiate the random customer
+        customers.RemoveAt(randomCustomer); //remove the random customer from the list.
         customerSpawned = true;
     }
 }
