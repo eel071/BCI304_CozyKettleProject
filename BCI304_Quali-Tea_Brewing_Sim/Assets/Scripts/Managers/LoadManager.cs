@@ -36,8 +36,9 @@ public class LoadManager : MonoBehaviour
         //show the customer if entering the front counter
         if (sceneName == "FrontCounter")
         {
-            customer.SetActive(true);
+            if (customer != null) customer.SetActive(true);
         }
+
         //hide the customer if entering the tea station
         else if (sceneName == "TeaStation")
         {

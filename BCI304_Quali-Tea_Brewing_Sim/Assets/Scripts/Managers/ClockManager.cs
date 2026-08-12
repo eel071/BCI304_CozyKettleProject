@@ -72,6 +72,11 @@ public class ClockManager : MonoBehaviour
         dayText.text = dayString;
     }
     
+    public void EndDayEarly()
+    {
+        dayPhase = 1;
+    }
+
     void CheckTime()
     {
         if (elapsedTime >= endOfDay && SceneManager.GetActiveScene().name != "TeaGarden")
@@ -98,10 +103,11 @@ public class ClockManager : MonoBehaviour
         plantManager.daysSinceLastHarvest++;
         loadManager.LoadFrontCounter();
         plants.Clear();
+        dayPhase = 0;
         elapsedTime = startOfDay;
         nextDayButton.gameObject.SetActive(false);
+        customerSpawner.createCustomerList();
         customerSpawner.isCustomer = false;
-        dayPhase = 0;
         customerSpawner.canSpawn = true;
         containerManager.sugarCount = containerManager.sugarMax; //temporarily reset sugar count since we have no way to replenish it atm
     }

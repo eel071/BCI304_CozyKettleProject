@@ -1491,10 +1491,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CustomerSpawner
   audioSource: {fileID: 717635212}
   bellAudio: {fileID: 8300000, guid: 49ff0715bc89387439f284a653020a68, type: 3}
+  maxCustomers: 5
+  customerCount: 0
   customerPrefabs:
   - {fileID: 6790688190739159813, guid: 94c764b35d2377c4f9c737eeeb2703bf, type: 3}
   - {fileID: 6790688190739159813, guid: 8b16753056856b844bbb45a8de29ead1, type: 3}
   - {fileID: 6790688190739159813, guid: 32512d44047c6164baa24343d341a6ab, type: 3}
+  - {fileID: 7831399061540218386, guid: 907d2be4d3e9ec5459db1ea07acbc29b, type: 3}
   customers: []
   isCustomer: 1
   canSpawn: 1

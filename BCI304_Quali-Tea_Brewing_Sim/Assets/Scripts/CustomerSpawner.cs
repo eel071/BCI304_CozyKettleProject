@@ -9,9 +9,13 @@ public class CustomerSpawner : MonoBehaviour
 {
     private TeaManager teaManager;
     private static CustomerSpawner uniqueInstance;
+    private ClockManager clockManager;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip bellAudio;
+
+    public int maxCustomers = 5;
+    public int customerCount = 0;
 
     private void Awake()
     {
@@ -26,6 +30,7 @@ public class CustomerSpawner : MonoBehaviour
         }
         
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
     }
 
     public GameObject[] customerPrefabs;
@@ -48,7 +53,12 @@ public class CustomerSpawner : MonoBehaviour
         if (isCustomer == false)
         {
             customerSpawned = false;
-            if (canSpawn)
+            if (customerCount >= maxCustomers && canSpawn)
+            {
+                clockManager.EndDayEarly();
+                canSpawn = false;
+            }
+            else if (canSpawn)
             {
                 isCustomer = true;
                 StartCoroutine(WaitBeforeSpawn());
@@ -63,20 +73,21 @@ public class CustomerSpawner : MonoBehaviour
         SpawnCustomer();
     }
 
-    private void createCustomerList()
+    public void createCustomerList()
     {
         customers = customerPrefabs.ToList();
+        if (customers.Count < maxCustomers) maxCustomers = customers.Count;
+        customerCount = 0;
     }
 
 
     private void SpawnCustomer()
     {
-        if (customers.Count <= 0) createCustomerList(); // **TEMPORARY** will eventually end the day instead of regenerating the customer list.
-
         if (audioSource != null) audioSource.PlayOneShot(bellAudio);
         int randomCustomer = Random.Range(0, customers.Count); //choose a random customer
         Instantiate(customers[randomCustomer], new Vector3(0, 0, 0), Quaternion.identity); //instantiate the random customer
         customers.RemoveAt(randomCustomer); //remove the random customer from the list.
         customerSpawned = true;
+        customerCount += 1;
     }
 }
