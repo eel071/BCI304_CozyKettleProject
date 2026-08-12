@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4499582128908821173}
   - component: {fileID: 1075209818814386432}
   m_Layer: 0
-  m_Name: Customer 2
+  m_Name: Gemma
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 6, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,8 +83,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.42352942, g: 0.5707148, b: 0.79607844, a: 1}
+  m_Sprite: {fileID: 8879759979452351429, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -127,17 +127,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 8.4800005, y: 17.558374}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 8.4, y: 13.2}
   m_EdgeRadius: 0
 --- !u!114 &1075209818814386432
 MonoBehaviour:
@@ -162,14 +162,14 @@ MonoBehaviour:
   fineTeaD: 
   badTeaD: 
   terribleTeaD: 
-  outOfTeaD: 
-  customerNeutralSprite: {fileID: 0}
-  customerTalkingSprite: {fileID: 0}
-  customerHappySprite: {fileID: 0}
-  customerUpsetSprite: {fileID: 0}
+  rejectD: 
+  customerNeutralSprite: {fileID: 8879759979452351429, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
+  customerTalkingSprite: {fileID: 4677626673177207552, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
+  customerHappySprite: {fileID: -4755278202043384425, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
+  customerUpsetSprite: {fileID: 5345486036904849163, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
   orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
   amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
   goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
   disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
   angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
-  outOfTea: 0
+  destroyAfterTalk: 0
