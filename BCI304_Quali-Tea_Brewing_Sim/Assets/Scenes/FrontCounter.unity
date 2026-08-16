@@ -1573,6 +1573,7 @@ MonoBehaviour:
   - {fileID: 6790688190739159813, guid: 8b16753056856b844bbb45a8de29ead1, type: 3}
   - {fileID: 6790688190739159813, guid: 32512d44047c6164baa24343d341a6ab, type: 3}
   - {fileID: 7831399061540218386, guid: 907d2be4d3e9ec5459db1ea07acbc29b, type: 3}
+  - {fileID: 6790688190739159813, guid: d6178df8f5603ab4daee0987b3484ce7, type: 3}
   customers: []
   isCustomer: 1
   canSpawn: 1

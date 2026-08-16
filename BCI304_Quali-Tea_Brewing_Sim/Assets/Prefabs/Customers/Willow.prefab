@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4499582128908821173}
   - component: {fileID: 1075209818814386432}
   m_Layer: 0
-  m_Name: RandomCustomer
+  m_Name: Willow
   m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1260462852387450358, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
+  m_Sprite: {fileID: 6735213828958702724, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.89, y: 17.214699}
+    oldSize: {x: 9.599999, y: 16.934622}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe3b778450d0af4c8d60ed0a2f49240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Customer
-  randomiseOrder: 1
-  teaOrder: 0
+  randomiseOrder: 0
+  teaOrder: 3
   lemonOrder: 0
   sugarOrder: 0
   orderD: 
@@ -163,10 +163,10 @@ MonoBehaviour:
   badTeaD: 
   terribleTeaD: 
   rejectD: 
-  customerNeutralSprite: {fileID: -1260462852387450358, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
-  customerTalkingSprite: {fileID: 8874686409358501665, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
-  customerHappySprite: {fileID: -4336205393940634298, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
-  customerUpsetSprite: {fileID: -14087048093664548, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
+  customerNeutralSprite: {fileID: 6735213828958702724, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
+  customerTalkingSprite: {fileID: -2238478563141960240, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
+  customerHappySprite: {fileID: -1125378137266361738, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
+  customerUpsetSprite: {fileID: -8853437275406393382, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
   orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
   amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
   goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
