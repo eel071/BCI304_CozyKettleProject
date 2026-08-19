@@ -28,8 +28,9 @@ public class Plot : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!planted)
+        if (!planted && plantManager.seeds > 0)
         {
+            plantManager.seeds -= 1;
             SpawnPlant();
             UpdatePlanted();
         }

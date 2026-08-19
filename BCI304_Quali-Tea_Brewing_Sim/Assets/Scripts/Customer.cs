@@ -65,10 +65,15 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     {
         if (!hasOrdered) //if the player hasn't already clicked on the customer
         {
-            if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
+            CustomerTalk();
             OrderDialogue(); //set or generate order dialogue
             hasOrdered = true;
         }
+    }
+
+    public void CustomerTalk()
+    {
+        if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
     }
 
     //giving tea to customer

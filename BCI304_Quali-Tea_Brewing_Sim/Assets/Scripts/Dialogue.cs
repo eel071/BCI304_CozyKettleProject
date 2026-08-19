@@ -102,6 +102,7 @@ public class Dialogue : MonoBehaviour
         if (customer != null)
         {
             if (customer.rejectD != "") dialogue = customer.rejectD; //set unique rejection dialogue
+            customer.CustomerTalk();
             angrySound = customer.angrySound; //set customer angry sound
             customer.destroyAfterTalk = true; //destroy customer after dialogue ends
         }

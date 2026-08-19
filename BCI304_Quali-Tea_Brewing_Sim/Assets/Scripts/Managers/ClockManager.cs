@@ -16,6 +16,11 @@ public class ClockManager : MonoBehaviour
 
     //[SerializeField] private TMP_Text clockText;
     [SerializeField] private TMP_Text dayText;
+    
+    [SerializeField] private int dayCounter = 1;
+    private int dayPhase = 0;
+
+    /*
     [SerializeField] private Image radialClock;
     
     [SerializeField] private float elapsedTime;
@@ -25,14 +30,16 @@ public class ClockManager : MonoBehaviour
 
     [SerializeField] private float timeScale = 24f;
     //[SerializeField] private float timeInADay = 86400f; //24 hours in seconds 
-    [SerializeField] private int dayCounter = 1;
+    */
+    
     
     //private float startOfDay = 32400f; //9am
     //private float endOfDay = 57600f; //4pm
 
-    private int dayPhase = 0;
+    
 
     public static ClockManager uniqueInstance;
+
     private void Awake()
     {
         if (uniqueInstance == null)
@@ -46,20 +53,26 @@ public class ClockManager : MonoBehaviour
         }
     }
 
+    
     private void StartDay()
     {
-       timeInADay = averageTime * customerSpawner.maxCustomers; 
-       elapsedTime = 0;
+        dayPhase = 0;
+        UpdateClockUI();
+       //timeInADay = averageTime * customerSpawner.maxCustomers; 
+       //elapsedTime = 0;
     }
+    
 
     void Start()
     {
         StartDay();
         //elapsedTime = startOfDay;
     }
-        
+    
+
     void Update()
-    {
+    {   
+        /*
         if (dayPhase == 0)
         {
             elapsedTime += Time.deltaTime * timeScale;
@@ -67,6 +80,7 @@ public class ClockManager : MonoBehaviour
             UpdateClockUI();
             CheckTime();
         }
+        */
         if (dayPhase == 1 && !customerSpawner.customerSpawned)
         {
             DayEnd();
@@ -75,11 +89,11 @@ public class ClockManager : MonoBehaviour
 
     void UpdateClockUI()
     {
-        radialClock.fillAmount = ((timeInADay - elapsedTime) / timeInADay);
+        /*radialClock.fillAmount = ((timeInADay - elapsedTime) / timeInADay);
 
         int hours = Mathf.FloorToInt(elapsedTime / 3600f);
         int minutes = Mathf.FloorToInt((elapsedTime - hours * 3600f) / 60f);        
-
+        */
         //string clockString = string.Format("{0:00}:{1:00}", hours, minutes);
         //clockText.text = clockString;
         string dayString = $"Day {dayCounter}";
@@ -91,6 +105,7 @@ public class ClockManager : MonoBehaviour
         dayPhase = 1;
     }
 
+    /*
     void CheckTime()
     {
         if (elapsedTime >= timeInADay && SceneManager.GetActiveScene().name != "TeaGarden")
@@ -99,15 +114,17 @@ public class ClockManager : MonoBehaviour
             customerSpawner.canSpawn = false;
         }
 
-        /*
-        if (elapsedTime >= endOfDay && SceneManager.GetActiveScene().name != "TeaGarden")
-        {
-            dayPhase = 1;
-            customerSpawner.canSpawn = false;
-        }
-        */
+        
+        //if (elapsedTime >= endOfDay && SceneManager.GetActiveScene().name != "TeaGarden")
+        //{
+        //    dayPhase = 1;
+        //    customerSpawner.canSpawn = false;
+        //}
+        
     }
+    */
 
+    
     void DayEnd()
     {
         dayPhase = 2;
@@ -125,7 +142,6 @@ public class ClockManager : MonoBehaviour
         plantManager.daysSinceLastHarvest++;
         loadManager.LoadFrontCounter();
         plants.Clear();
-        dayPhase = 0;
         StartDay();
         //elapsedTime = startOfDay;
         nextDayButton.gameObject.SetActive(false);

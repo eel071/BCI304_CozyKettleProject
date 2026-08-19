@@ -9,6 +9,9 @@ public class PlantManager : MonoBehaviour
     public bool plot1Planted, plot2Planted, plot3Planted;
 
     public int daysSinceLastHarvest = 1;
+    
+    public int seeds = 1;
+    
     //public bool teaFinishedGrowing, lemonFinishedGrowing;
 
     private static PlantManager uniqueInstance;
