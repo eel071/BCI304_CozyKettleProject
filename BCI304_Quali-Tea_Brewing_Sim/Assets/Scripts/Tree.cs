@@ -12,17 +12,18 @@ public class Tree : MonoBehaviour
     {
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
-
-        if (plantManager.daysSinceLastHarvest >= 2)
-        {
-            SpawnLemons();
-        }
+        SpawnLemons();
     }
+
 
     private void SpawnLemons()
     {
-        Instantiate(lemonPrefab, new Vector3(5.5f, 3f, 0f), Quaternion.identity);
-        isLemon = true;
+        if (plantManager.daysSinceLastHarvest >= 2)
+        {
+            Instantiate(lemonPrefab, new Vector3(-27.5f, 3f, 0f), Quaternion.identity);
+            isLemon = true;
+        }
+        
     }
 
     private void OnMouseDown()

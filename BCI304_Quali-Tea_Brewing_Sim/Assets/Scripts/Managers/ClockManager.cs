@@ -36,8 +36,6 @@ public class ClockManager : MonoBehaviour
     //private float startOfDay = 32400f; //9am
     //private float endOfDay = 57600f; //4pm
 
-    
-
     public static ClockManager uniqueInstance;
 
     private void Awake()
@@ -83,6 +81,7 @@ public class ClockManager : MonoBehaviour
         */
         if (dayPhase == 1 && !customerSpawner.customerSpawned)
         {
+            dayPhase = 2;
             DayEnd();
         }        
     }
@@ -127,8 +126,8 @@ public class ClockManager : MonoBehaviour
     
     void DayEnd()
     {
-        dayPhase = 2;
         loadManager.LoadTeaGarden();
+        plantManager.LoadPlants();
         nextDayButton.gameObject.SetActive(true);
     }   
 
@@ -140,8 +139,8 @@ public class ClockManager : MonoBehaviour
         }        
         dayCounter++;
         plantManager.daysSinceLastHarvest++;
-        loadManager.LoadFrontCounter();
         plants.Clear();
+        loadManager.LoadFrontCounter();
         StartDay();
         //elapsedTime = startOfDay;
         nextDayButton.gameObject.SetActive(false);

@@ -2,28 +2,27 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour
 {
-    private PlantManager plantManager;
+    [SerializeField] private PlantManager plantManager;
     public enum PlotNumber { Plot1, Plot2, Plot3 };
     public PlotNumber plotNumber;
 
-    private bool planted = false;
+    [SerializeField] private bool planted = false;
 
     public GameObject teaBushPrefab;
     private GameObject spawnedPlant;
     private Plant plant;
 
+    [SerializeField] private bool plotLoaded = false;
+
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
+        //plantManager = PlantManager.uniqueInstance;
     }
 
     private void Start()
     {
-        LoadPlot();
-        if (planted)
-        {
-            SpawnPlant();
-        }
+        //LoadPlot();
     }
 
     private void OnMouseDown()
@@ -44,19 +43,35 @@ public class Plot : MonoBehaviour
         planted = true;
     }
 
-    private void LoadPlot()
+    public void LoadPlot()
     {
-        switch (plotNumber)
+        if (!plotLoaded)
         {
-            case PlotNumber.Plot1:
-                planted = plantManager.plot1Planted;
-                break;
-            case PlotNumber.Plot2:
-                planted = plantManager.plot2Planted;
-                break;
-            case PlotNumber.Plot3:
-                planted = plantManager.plot3Planted;
-                break;
+            if (plantManager == null)
+            {
+                Debug.LogError("plantManager null");
+                return;
+            }
+            switch (plotNumber)
+            {
+                case PlotNumber.Plot1:
+                    planted = plantManager.plot1Planted;
+                    break;
+                case PlotNumber.Plot2:
+                    planted = plantManager.plot2Planted;
+                    break;
+                case PlotNumber.Plot3:
+                    planted = plantManager.plot3Planted;
+                    break;
+            }
+            
+            if (planted)
+            {
+                Debug.Log("Spawning Plant");
+                SpawnPlant();
+            }
+
+            plotLoaded = true;
         }
     }
 

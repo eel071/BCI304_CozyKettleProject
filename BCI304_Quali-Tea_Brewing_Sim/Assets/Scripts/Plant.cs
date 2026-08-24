@@ -1,14 +1,13 @@
 using UnityEngine;
 
 public class Plant : Plot, IOnDropBaseCollision
-{
-    
+{    
     private PlantManager plantManager;
     private enum Plants { TeaBush };
     [SerializeField] private Plants plantType;    
-    public int growthStage = 0;
-    public int decayStage = 0;
-    public bool watered = false;
+    private int growthStage = 0;
+    private int decayStage = 0;
+    private bool watered = false;
     //[SerializeField] bool finishedGrowing = false;
     [SerializeField] private bool ready = false;
 
@@ -45,8 +44,9 @@ public class Plant : Plot, IOnDropBaseCollision
         }
     }
 
-    private void LoadPlant()
+    public void LoadPlant()
     {
+        ClockManager.uniqueInstance.plants.Add(this);
         if (plantManager != null)
         {
             switch (plotNumber)
@@ -71,6 +71,13 @@ public class Plant : Plot, IOnDropBaseCollision
             {
                 ready = true;
             }
+
+            if (decayStage >= 3)
+            {
+                KillPlant();
+                Destroy(gameObject);              
+            }
+
             UpdateSprite();
         }
         else
@@ -98,16 +105,9 @@ public class Plant : Plot, IOnDropBaseCollision
         else
         {
             decayStage +=1;
-
-            if (decayStage >= 3)
-            {
-                KillPlant();
-                Destroy(gameObject);               
-            }
             
         }
         UpdatePlantManager();
-        UpdateSprite();
     }
 
     private void UpdateSprite()
@@ -115,17 +115,18 @@ public class Plant : Plot, IOnDropBaseCollision
         Debug.Log("updating sprite");
         if (watered)
         {
-            spriteRenderer.color = new Color32(255, 255, 255, 255);
+            spriteRenderer.color = new Color32(207, 207, 207, 255);
         }
         else //not watered
         {
-            spriteRenderer.color = new Color32(207, 207, 207, 255);
+            spriteRenderer.color = new Color32(255, 255, 255, 255);
         }
 
         if (ready && readySprite != null)
         {
             spriteRenderer.sprite = readySprite;   
         }
+
         else if (growthSprites.Length != 0)
         {
             if (growthStage <= growthSprites.Length -1)
@@ -185,16 +186,23 @@ public class Plant : Plot, IOnDropBaseCollision
 
     private void KillPlant()
     {
+        Debug.Log("Killing plant");
         switch (plotNumber)
         {
             case PlotNumber.Plot1:
                 plantManager.plot1Planted = false;
+                plantManager.plot1GrowthStage = 0;
+                plantManager.plot1DecayStage = 0;
                 break;
             case PlotNumber.Plot2:
                 plantManager.plot2Planted = false;
+                plantManager.plot2GrowthStage = 0;
+                plantManager.plot2DecayStage = 0;
                 break;
             case PlotNumber.Plot3:
                 plantManager.plot3Planted = false;
+                plantManager.plot3GrowthStage = 0;
+                plantManager.plot3DecayStage = 0;
                 break;
         }
     }

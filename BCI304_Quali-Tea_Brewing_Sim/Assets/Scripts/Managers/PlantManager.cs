@@ -14,7 +14,7 @@ public class PlantManager : MonoBehaviour
     
     //public bool teaFinishedGrowing, lemonFinishedGrowing;
 
-    private static PlantManager uniqueInstance;
+    public static PlantManager uniqueInstance;
 
     private void Awake()
     {
@@ -28,6 +28,16 @@ public class PlantManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void LoadPlants()
+    {
+        Plot[] plots = Object.FindObjectsByType<Plot>();
+        foreach (Plot p in plots)
+        {
+            p.LoadPlot();  
+        }
+    }
+
 
     
 }
