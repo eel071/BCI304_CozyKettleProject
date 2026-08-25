@@ -128,6 +128,10 @@ public class ClockManager : MonoBehaviour
     {
         loadManager.LoadTeaGarden();
         plantManager.LoadPlants();
+        foreach (var Plant in plants)
+        {
+            Plant.LoadPlant();
+        }
         nextDayButton.gameObject.SetActive(true);
     }   
 
@@ -135,11 +139,11 @@ public class ClockManager : MonoBehaviour
     {
         foreach (var Plant in plants)
         {
-            Plant.UpdateGrowth();
+            Plant.UpdateGrowth();            
         }        
         dayCounter++;
         plantManager.daysSinceLastHarvest++;
-        plants.Clear();
+        //plants.Clear();
         loadManager.LoadFrontCounter();
         StartDay();
         //elapsedTime = startOfDay;

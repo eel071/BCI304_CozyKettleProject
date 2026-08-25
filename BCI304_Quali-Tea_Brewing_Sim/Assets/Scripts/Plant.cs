@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class Plant : Plot, IOnDropBaseCollision
-{    
-    private PlantManager plantManager;
+{
+    //private PlantManager plantManager;
     private enum Plants { TeaBush };
     [SerializeField] private Plants plantType;    
     private int growthStage = 0;
@@ -46,7 +46,7 @@ public class Plant : Plot, IOnDropBaseCollision
 
     public void LoadPlant()
     {
-        ClockManager.uniqueInstance.plants.Add(this);
+        //ClockManager.uniqueInstance.plants.Add(this);
         if (plantManager != null)
         {
             switch (plotNumber)

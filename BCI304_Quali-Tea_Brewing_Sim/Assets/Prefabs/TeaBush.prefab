@@ -181,12 +181,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeaBushes
   plantManager: {fileID: 0}
   plotNumber: 0
-  planted: 0
+  planted: 1
   teaBushPrefab: {fileID: 0}
+  plotLoaded: 1
   plantType: 0
-  growthStage: 2
-  decayStage: 0
-  watered: 0
   ready: 0
   growthSprites:
   - {fileID: 8133862094642004479, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}

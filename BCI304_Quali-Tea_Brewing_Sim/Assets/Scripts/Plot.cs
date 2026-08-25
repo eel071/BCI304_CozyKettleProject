@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Plot : MonoBehaviour
 {
-    [SerializeField] private PlantManager plantManager;
+    public PlantManager plantManager;
     public enum PlotNumber { Plot1, Plot2, Plot3 };
     public PlotNumber plotNumber;
 
@@ -73,6 +73,7 @@ public class Plot : MonoBehaviour
 
             plotLoaded = true;
         }
+        
     }
 
     private void UpdatePlanted()
