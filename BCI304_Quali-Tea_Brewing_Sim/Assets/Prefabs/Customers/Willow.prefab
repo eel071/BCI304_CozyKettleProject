@@ -151,11 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe3b778450d0af4c8d60ed0a2f49240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Customer
+  teacup: {fileID: 0}
+  teapot: {fileID: 0}
   randomiseOrder: 0
   teaOrder: 3
   lemonOrder: 0
   sugarOrder: 0
-  orderD: 
+  orderD: Can I get white tea?
   wrongTeaD: 
   perfectTeaD: 
   goodTeaD: 

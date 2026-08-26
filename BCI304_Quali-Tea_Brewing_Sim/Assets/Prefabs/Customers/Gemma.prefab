@@ -151,18 +151,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe3b778450d0af4c8d60ed0a2f49240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Customer
+  teacup: {fileID: 0}
+  teapot: {fileID: 0}
   randomiseOrder: 0
   teaOrder: 1
   lemonOrder: 1
   sugarOrder: 0
-  orderD: 
-  wrongTeaD: 
-  perfectTeaD: 
-  goodTeaD: 
-  fineTeaD: 
-  badTeaD: 
-  terribleTeaD: 
-  rejectD: 
+  orderD: Green tea with some lemon please!
+  wrongTeaD: Oh this isn't what I ordered..
+  perfectTeaD: This is absolutely fantastic!
+  goodTeaD: Wonderful!
+  fineTeaD: Okay!
+  badTeaD: Um...
+  terribleTeaD: Sorry, this is terrible.
+  rejectD: Oh ok..
   customerNeutralSprite: {fileID: 8879759979452351429, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
   customerTalkingSprite: {fileID: 4677626673177207552, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
   customerHappySprite: {fileID: -4755278202043384425, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}

@@ -151,18 +151,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe3b778450d0af4c8d60ed0a2f49240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Customer
+  teacup: {fileID: 0}
+  teapot: {fileID: 0}
   randomiseOrder: 0
   teaOrder: 2
   lemonOrder: 0
   sugarOrder: 1
-  orderD: I'd like a black tea with 1 sugar.
+  orderD: Black tea with one sugar.
   wrongTeaD: What is this?!
-  perfectTeaD: testing Perfect
-  goodTeaD: testing Good
-  fineTeaD: testing Fine
-  badTeaD: testing Bad
-  terribleTeaD: testing Terrible
-  outOfTeaD: What do you mean you're out of black tea?!
+  perfectTeaD: Well done.
+  goodTeaD: Good enough.
+  fineTeaD: Hn.
+  badTeaD: Disgusting.
+  terribleTeaD: Is this even tea?!
+  rejectD: Terrible service
   customerNeutralSprite: {fileID: -8711646730351054396, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
   customerTalkingSprite: {fileID: 9140556638531541180, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
   customerHappySprite: {fileID: 8164790177777966982, guid: 381ea0ca2fad0894ea6daf34e5b812f2, type: 3}
@@ -172,4 +174,4 @@ MonoBehaviour:
   goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
   disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
   angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
-  outOfTea: 0
+  destroyAfterTalk: 0

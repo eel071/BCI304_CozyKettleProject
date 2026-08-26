@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe3b778450d0af4c8d60ed0a2f49240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Customer
+  teacup: {fileID: 0}
+  teapot: {fileID: 0}
   randomiseOrder: 1
   teaOrder: 0
   lemonOrder: 0
