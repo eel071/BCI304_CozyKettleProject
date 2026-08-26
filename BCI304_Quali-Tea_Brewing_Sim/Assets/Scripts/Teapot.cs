@@ -35,6 +35,20 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             Debug.Log($"Steeping {draggable.gameObject.name}");                      
             draggable.transform.position = transform.position + new Vector3(-0.19f, 1.25f, 0);
 
+            //set steep goal
+            switch(teaManager.customerOrder)
+            {
+                case TeaTypes.Black:
+                    steepGoal = 4f;
+                    break;
+                case TeaTypes.White:
+                    steepGoal = 3f;
+                    break;
+                case TeaTypes.Green:
+                    steepGoal = 2f;
+                    break;
+            }
+
             //steeping progress bar
             steepBar.SetActive(true); 
             progressBar.SetBar(maxSteepTime, steepGoal);

@@ -86,9 +86,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         if (draggable.tag == "Teacup") 
         {
             //Destroy(draggable.transform.gameObject); //destroy the teacup object
+            ReactionDialogue();
             teacup.EmptyCup();
-            teapot.ResetTeapot();
-            ReactionDialogue();            
+            teapot.ResetTeapot();                        
         }
     }
 

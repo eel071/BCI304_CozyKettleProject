@@ -5,6 +5,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     private float waterTimer = 0f;
     public float finalTime = 0f;
 
+    [SerializeField] private TeaManager teaManager;
     [SerializeField] private Teapot teapot;
 
     [SerializeField] private float maxHeatTime = 10f;
@@ -35,6 +36,20 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             teapot.waterHeating = true;
 
             if (plateOnSprite != null) spriteRenderer.sprite = plateOnSprite;
+
+            //set temperature goal
+            switch (teaManager.customerOrder)
+            {
+                case TeaTypes.Black:
+                    tempGoal = 8f;
+                    break;
+                case TeaTypes.White:
+                    tempGoal = 7f;
+                    break;
+                case TeaTypes.Green:
+                    tempGoal = 5f;
+                    break;
+            }
 
             //heating progress bar
             heatBar.SetActive(true);

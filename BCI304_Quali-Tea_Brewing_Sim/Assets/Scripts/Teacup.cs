@@ -109,8 +109,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     public void EmptyCup() //used when making a new tea or dump the current tea
     {
-        tea.transform.position = teaEmpty;
         transform.position = new Vector3(38f, -2f, 0);
+        tea.transform.position = teaEmpty;        
         fillLevel = 0;
         teaFilled = false;
     }

@@ -7590,6 +7590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HotPlate
   finalTime: 0
+  teaManager: {fileID: 531584445}
   teapot: {fileID: 363591814}
   maxHeatTime: 10
   tempGoal: 8
