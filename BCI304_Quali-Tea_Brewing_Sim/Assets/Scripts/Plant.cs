@@ -17,6 +17,8 @@ public class Plant : Plot, IOnDropBaseCollision
 
     [SerializeField] ContainerManager containerManager;
 
+    public Plot plot;
+
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
@@ -46,7 +48,6 @@ public class Plant : Plot, IOnDropBaseCollision
 
     public void LoadPlant()
     {
-        //ClockManager.uniqueInstance.plants.Add(this);
         if (plantManager != null)
         {
             switch (plotNumber)
@@ -75,7 +76,7 @@ public class Plant : Plot, IOnDropBaseCollision
             if (decayStage >= 3)
             {
                 KillPlant();
-                Destroy(gameObject);              
+                Destroy(gameObject);           
             }
 
             UpdateSprite();
@@ -187,6 +188,7 @@ public class Plant : Plot, IOnDropBaseCollision
     private void KillPlant()
     {
         Debug.Log("Killing plant");
+        plot.planted = false;
         switch (plotNumber)
         {
             case PlotNumber.Plot1:

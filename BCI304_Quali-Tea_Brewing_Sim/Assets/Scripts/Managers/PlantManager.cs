@@ -28,16 +28,4 @@ public class PlantManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public void LoadPlants()
-    {
-        Plot[] plots = Object.FindObjectsByType<Plot>();
-        foreach (Plot p in plots)
-        {
-            p.LoadPlot();  
-        }
-    }
-
-
-    
 }

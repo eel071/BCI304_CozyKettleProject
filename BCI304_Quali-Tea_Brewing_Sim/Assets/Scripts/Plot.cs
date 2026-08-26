@@ -6,18 +6,15 @@ public class Plot : MonoBehaviour
     public enum PlotNumber { Plot1, Plot2, Plot3 };
     public PlotNumber plotNumber;
 
-    [SerializeField] private bool planted = false;
+    public bool planted = false;
 
     public GameObject teaBushPrefab;
-    private GameObject spawnedPlant;
+    [SerializeField] private GameObject spawnedPlant;
     private Plant plant;
-
-    [SerializeField] private bool plotLoaded = false;
 
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
-        //plantManager = PlantManager.uniqueInstance;
     }
 
     private void Start()
@@ -40,40 +37,8 @@ public class Plot : MonoBehaviour
         spawnedPlant = Instantiate(teaBushPrefab, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);           
         plant = spawnedPlant.GetComponent<Plant>();
         plant.plotNumber = plotNumber;
+        plant.plot = this;
         planted = true;
-    }
-
-    public void LoadPlot()
-    {
-        if (!plotLoaded)
-        {
-            if (plantManager == null)
-            {
-                Debug.LogError("plantManager null");
-                return;
-            }
-            switch (plotNumber)
-            {
-                case PlotNumber.Plot1:
-                    planted = plantManager.plot1Planted;
-                    break;
-                case PlotNumber.Plot2:
-                    planted = plantManager.plot2Planted;
-                    break;
-                case PlotNumber.Plot3:
-                    planted = plantManager.plot3Planted;
-                    break;
-            }
-            
-            if (planted)
-            {
-                Debug.Log("Spawning Plant");
-                SpawnPlant();
-            }
-
-            plotLoaded = true;
-        }
-        
     }
 
     private void UpdatePlanted()
