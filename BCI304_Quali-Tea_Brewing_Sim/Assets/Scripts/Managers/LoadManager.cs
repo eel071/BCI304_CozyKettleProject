@@ -18,7 +18,7 @@ public class LoadManager : MonoBehaviour
     [SerializeField] private GameObject dialogue;
 
     //GameObject teaManager;
-    GameObject customer;    
+    //GameObject customer;    
     [SerializeField] GameObject teacup;  
       
     
@@ -50,13 +50,13 @@ public class LoadManager : MonoBehaviour
         //show the customer if entering the front counter
         if (sceneName == "FrontCounter")
         {
-            if (customer != null) customer.SetActive(true);
+            //if (customer != null) customer.SetActive(true);
             SceneManager.LoadScene(sceneName);
         }
         //hide the customer if entering the tea station
         else if (sceneName == "TeaStation")
         {
-            customer.SetActive(false);
+            //customer.SetActive(false);
             SceneManager.LoadScene(sceneName);
         }
 

@@ -35,7 +35,7 @@ public class CustomerSpawner : MonoBehaviour
 
     public GameObject[] customerPrefabs;
     [SerializeField] private List<GameObject> customers = new List<GameObject>();
-    public bool isCustomer = true;
+    public bool isCustomer = false;
     public bool canSpawn = true;
     public bool customerSpawned = false;
     
@@ -55,8 +55,8 @@ public class CustomerSpawner : MonoBehaviour
             customerSpawned = false;
             if (customerCount >= maxCustomers && canSpawn)
             {
-                clockManager.EndDayEarly();
                 canSpawn = false;
+                clockManager.EndDay();
             }
             else if (canSpawn)
             {

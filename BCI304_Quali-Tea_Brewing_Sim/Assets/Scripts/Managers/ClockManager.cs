@@ -10,31 +10,13 @@ public class ClockManager : MonoBehaviour
     [SerializeField] LoadManager loadManager;
     [SerializeField] PlantManager plantManager;
     public List<Plant> plants;
-    [SerializeField] Button nextDayButton;
+    [SerializeField] Button openShopButton;
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] ContainerManager containerManager;
 
-    //[SerializeField] private TMP_Text clockText;
     [SerializeField] private TMP_Text dayText;
     
     [SerializeField] private int dayCounter = 1;
-    private int dayPhase = 0;
-
-    /*
-    [SerializeField] private Image radialClock;
-    
-    [SerializeField] private float elapsedTime;
-    
-    [SerializeField] private float averageTime = 60f;
-    [SerializeField] private float timeInADay;
-
-    [SerializeField] private float timeScale = 24f;
-    //[SerializeField] private float timeInADay = 86400f; //24 hours in seconds 
-    */
-    
-    
-    //private float startOfDay = 32400f; //9am
-    //private float endOfDay = 57600f; //4pm
 
     public static ClockManager uniqueInstance;
 
@@ -51,91 +33,43 @@ public class ClockManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        UpdateDayUI();
+    }
     
     private void StartDay()
     {
-        dayPhase = 0;
-        UpdateClockUI();
-       //timeInADay = averageTime * customerSpawner.maxCustomers; 
-       //elapsedTime = 0;
-    }
-    
-
-    void Start()
-    {
-        StartDay();
-        //elapsedTime = startOfDay;
-    }
-    
-
-    void Update()
-    {   
-        /*
-        if (dayPhase == 0)
+        UpdateDayUI();
+        if (dayCounter >= 3) //if garden is unlocked
         {
-            elapsedTime += Time.deltaTime * timeScale;
-            elapsedTime %= timeInADay;
-            UpdateClockUI();
-            CheckTime();
+            loadManager.LoadTeaGarden();
+            foreach (var p in plants)
+            {
+                p.LoadPlant();
+            }
+            openShopButton.gameObject.SetActive(true); 
         }
-        */
-        if (dayPhase == 1 && !customerSpawner.customerSpawned)
-        {
-            dayPhase = 2;
-            DayEnd();
-        }        
+        else OpenShop();
+        
     }
 
-    void UpdateClockUI()
+    public void OpenShop()
     {
-        /*radialClock.fillAmount = ((timeInADay - elapsedTime) / timeInADay);
+        loadManager.LoadFrontCounter();
+        openShopButton.gameObject.SetActive(false);
+        customerSpawner.createCustomerList();
+        customerSpawner.isCustomer = false;
+        customerSpawner.canSpawn = true;
+    }
 
-        int hours = Mathf.FloorToInt(elapsedTime / 3600f);
-        int minutes = Mathf.FloorToInt((elapsedTime - hours * 3600f) / 60f);        
-        */
-        //string clockString = string.Format("{0:00}:{1:00}", hours, minutes);
-        //clockText.text = clockString;
+    void UpdateDayUI()
+    {
         string dayString = $"Day {dayCounter}";
         dayText.text = dayString;
     }
-    
-    public void EndDayEarly()
-    {
-        dayPhase = 1;
-    }
 
-    /*
-    void CheckTime()
-    {
-        if (elapsedTime >= timeInADay && SceneManager.GetActiveScene().name != "TeaGarden")
-        {
-            dayPhase = 1;
-            customerSpawner.canSpawn = false;
-        }
-
-        
-        //if (elapsedTime >= endOfDay && SceneManager.GetActiveScene().name != "TeaGarden")
-        //{
-        //    dayPhase = 1;
-        //    customerSpawner.canSpawn = false;
-        //}
-        
-    }
-    */
-
-    
-    void DayEnd()
-    {
-        loadManager.LoadTeaGarden();
-        foreach (var p in plants)
-        {
-            p.LoadPlant();
-        }
-        //plantManager.UpdatePlots();
-        nextDayButton.gameObject.SetActive(true);
-    }   
-
-    public void NextDay()
+    public void EndDay()
     {
         foreach (var p in plants)
         {
@@ -143,13 +77,7 @@ public class ClockManager : MonoBehaviour
         }        
         dayCounter++;
         plantManager.daysSinceLastHarvest++;
-        loadManager.LoadFrontCounter();
-        StartDay();
-        //elapsedTime = startOfDay;
-        nextDayButton.gameObject.SetActive(false);
-        customerSpawner.createCustomerList();
-        customerSpawner.isCustomer = false;
-        customerSpawner.canSpawn = true;
         containerManager.sugarCount = containerManager.sugarMax; //temporarily reset sugar count since we have no way to replenish it atm
+        StartDay();
     }
 }
