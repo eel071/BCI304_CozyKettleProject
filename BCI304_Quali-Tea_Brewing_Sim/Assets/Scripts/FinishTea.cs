@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class FinishTea : MonoBehaviour, IOnDropBaseCollision
 {
-    [SerializeField] Teacup teacup;
+    [SerializeField] Teacup teacup;    
     [SerializeField] ScoreManager score;
     [SerializeField] LoadManager loadManager;
 
@@ -28,8 +28,9 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
             {
                 myAudioSource.PlayOneShot(chimeSound);
             }
-            draggable.transform.position = draggable.startPosition;
-            draggable.transform.position = transform.position + new Vector3(0, 1, 0);
+            //draggable.transform.position = draggable.startPosition;
+            //draggable.transform.position = transform.position + new Vector3(0, 1, 0);
+            teacup.transform.position = new Vector3(0f, -3.5f, 0);            
             loadManager.LoadFrontCounter();
         }
         else

@@ -7,6 +7,8 @@ using static UnityEngine.Rendering.DebugUI.Table;
 public class Customer : MonoBehaviour, IOnDropBaseCollision
 {
     private TeaManager teaManager;
+    [SerializeField] Teacup teacup;
+    [SerializeField] Teapot teapot;
     
     private CustomerSpawner customerSpawner;
     private Dialogue dialogue;
@@ -51,6 +53,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         dialogue = FindAnyObjectByType(typeof(Dialogue)) as Dialogue;
+        teacup = FindAnyObjectByType(typeof(Teacup)) as Teacup;
+        teapot = FindAnyObjectByType(typeof(Teapot)) as Teapot;
         col = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -81,7 +85,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     {
         if (draggable.tag == "Teacup") 
         {
-            Destroy(draggable.transform.gameObject); //destroy the teacup object
+            //Destroy(draggable.transform.gameObject); //destroy the teacup object
+            teacup.EmptyCup();
+            teapot.ResetTeapot();
             ReactionDialogue();            
         }
     }

@@ -21,7 +21,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
 
     void Start()
-    {
+    {        
         teaEmpty = tea.transform.position;     
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
     }
@@ -110,6 +110,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     public void EmptyCup() //used when making a new tea or dump the current tea
     {
         tea.transform.position = teaEmpty;
+        transform.position = new Vector3(38f, -2f, 0);
         fillLevel = 0;
         teaFilled = false;
     }
