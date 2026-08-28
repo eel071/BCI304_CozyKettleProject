@@ -183,12 +183,18 @@ MonoBehaviour:
   plotNumber: 0
   planted: 1
   teaBushPrefab: {fileID: 0}
-  plotLoaded: 1
+  spawnedPlant: {fileID: 0}
   plantType: 0
   ready: 0
   growthSprites:
+  - {fileID: -7830572380468892724, guid: c445aac5db1fb2f4399b832175c7702c, type: 3}
   - {fileID: 8133862094642004479, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
   - {fileID: 1554598824000218123, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
   - {fileID: -8034234250376673390, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
+  decaySprites:
+  - {fileID: 1449397397337797470, guid: c445aac5db1fb2f4399b832175c7702c, type: 3}
+  - {fileID: 3845441275577911057, guid: c445aac5db1fb2f4399b832175c7702c, type: 3}
+  - {fileID: 8196592671495864651, guid: c445aac5db1fb2f4399b832175c7702c, type: 3}
   readySprite: {fileID: 3132178100529017296, guid: f9c2d149da2f8c0468c4f11e146db0c8, type: 3}
   containerManager: {fileID: 0}
+  plot: {fileID: 0}

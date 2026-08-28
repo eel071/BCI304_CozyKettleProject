@@ -12,6 +12,7 @@ public class Plant : Plot, IOnDropBaseCollision
     [SerializeField] private bool ready = false;
 
     [SerializeField] private Sprite[] growthSprites;
+    [SerializeField] private Sprite[] decaySprites;
     [SerializeField] private Sprite readySprite;
     private SpriteRenderer spriteRenderer;
 
@@ -73,12 +74,6 @@ public class Plant : Plot, IOnDropBaseCollision
                 ready = true;
             }
 
-            if (decayStage >= 3)
-            {
-                KillPlant();
-                Destroy(gameObject);           
-            }
-
             UpdateSprite();
         }
         else
@@ -98,7 +93,6 @@ public class Plant : Plot, IOnDropBaseCollision
                 if (growthStage >= growthSprites.Length)
                 {
                     ready = true;
-                    //finishedGrowing = true;
                 }
                 watered = false;
             }
@@ -127,6 +121,14 @@ public class Plant : Plot, IOnDropBaseCollision
         {
             spriteRenderer.sprite = readySprite;   
         }
+        else if (decayStage >= 3)
+        {
+            if (growthStage <= decaySprites.Length)
+            {
+                spriteRenderer.sprite = decaySprites[growthStage -1];
+            }
+            else Debug.Log("error: growth stage out of decay sprite range");
+        }
 
         else if (growthSprites.Length != 0)
         {
@@ -134,10 +136,8 @@ public class Plant : Plot, IOnDropBaseCollision
             {
                 spriteRenderer.sprite = growthSprites[growthStage];
             }
-            else
-            {
-                Debug.Log("error: growth stage out of range");
-            }
+            else Debug.Log("error: growth stage out of growth sprite range");
+            
         }
         else
         {
@@ -183,11 +183,19 @@ public class Plant : Plot, IOnDropBaseCollision
             ready = false;
             UpdateSprite();
         }
+        
+        if (decayStage >= 3)
+        {
+            KillPlant();
+            ClockManager.uniqueInstance.plants.Remove(this);
+            Destroy(gameObject);  
+        }
     }
 
     private void KillPlant()
     {
         Debug.Log("Killing plant");
+        
         plot.planted = false;
         switch (plotNumber)
         {
