@@ -6,7 +6,7 @@ public class Container : MonoBehaviour
     [SerializeField] private GameObject storedItem;
     [SerializeField] private int maxStorage, currentStorage;
     
-    private enum Containers {GreenTea, BlackTea, WhiteTea, Lemon, Sugar};
+    private enum Containers {GreenTea, BlackTea, WhiteTea, Lemon, Sugar, Honey, Milk};
     [SerializeField] private Containers containerType;
     
     [Header("Sprites")]
@@ -54,6 +54,14 @@ public class Container : MonoBehaviour
                 case Containers.Sugar:
                     currentStorage = containerManager.sugarCount;
                     maxStorage = containerManager.sugarMax;
+                    break;
+                case Containers.Honey:
+                    currentStorage = containerManager.honeyCount;
+                    maxStorage = containerManager.honeyMax;
+                    break;
+                case Containers.Milk:
+                    currentStorage = containerManager.milkCount;
+                    maxStorage = containerManager.milkMax;
                     break;
             }
         }
@@ -121,6 +129,12 @@ public class Container : MonoBehaviour
                 break;
             case Containers.Sugar:
                 containerManager.sugarCount -= 1;
+                break;
+            case Containers.Honey:
+                containerManager.honeyCount -= 1;
+                break;
+            case Containers.Milk:
+                containerManager.milkCount -= 1;
                 break;
         }
         

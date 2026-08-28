@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {    
-    private float heatScore, steepScore, fillScore, teaScore, sugarScore, lemonScore;   
+    private float heatScore, steepScore, fillScore, teaScore, sugarScore, lemonScore, honeyScore, milkScore;   
     public float finalScore;
 
     [SerializeField] Teacup teacup;
@@ -45,6 +45,24 @@ public class ScoreManager : MonoBehaviour
         {
             lemonScore = 0f;
         }
+        //honey score
+        if (teaManager.honeyOrder == teaManager.honey)
+        {
+            honeyScore = 100f;
+        }
+        else
+        {
+            honeyScore = 0f;
+        }
+        //milk score
+        if (teaManager.milkOrder == teaManager.milk)
+        {
+            milkScore = 100f;
+        }
+        else
+        {
+            milkScore = 0f;
+        }
 
         //calculate the sugar score 
         //100 - (the difference between customers orders and number of cubes in the tea * 37.5)
@@ -55,10 +73,10 @@ public class ScoreManager : MonoBehaviour
         {
             if (teaManager.tea == TeaTypes.Water)
             {
-                finalScore = (int)((heatScore + fillScore + lemonScore + sugarScore) / 4);
+                finalScore = (int)((heatScore + fillScore + lemonScore + sugarScore + honeyScore + milkScore) / 6);
             }
             else
-                finalScore = (int)((heatScore + steepScore + fillScore + lemonScore + sugarScore) / 5); 
+                finalScore = (int)((heatScore + steepScore + fillScore + lemonScore + sugarScore + honeyScore + milkScore) / 7); 
         }
         else
         {

@@ -1550,11 +1550,15 @@ MonoBehaviour:
   teaMax: 15
   lemonMax: 20
   sugarMax: 30
+  honeyMax: 20
+  milkMax: 20
   greenTeaCount: 15
   blackTeaCount: 15
   whiteTeaCount: 15
   lemonCount: 20
   sugarCount: 30
+  honeyCount: 20
+  milkCount: 20
 --- !u!4 &358735130
 Transform:
   m_ObjectHideFlags: 0
@@ -2563,6 +2567,10 @@ MonoBehaviour:
   sugarCubes: 0
   lemonOrder: 0
   lemon: 0
+  honeyOrder: 0
+  honey: 0
+  milkOrder: 0
+  milk: 0
   teaOrder: 
   finalScore: 0
   teacup: {fileID: 1802913091}
@@ -2571,6 +2579,7 @@ MonoBehaviour:
   green: {r: 0.3372549, g: 0.454902, b: 0.37254903, a: 1}
   black: {r: 0.27058825, g: 0.21960786, b: 0.21960786, a: 1}
   white: {r: 0.78823537, g: 0.68235296, b: 0.50980395, a: 1}
+  tColor: {r: 0, g: 0, b: 0, a: 0}
   teaOrderColor: {r: 0, g: 0, b: 0, a: 0}
   containerManager: {fileID: 0}
 --- !u!4 &531584446
@@ -4858,6 +4867,7 @@ GameObject:
   - component: {fileID: 1062229488}
   - component: {fileID: 1062229490}
   - component: {fileID: 1062229489}
+  - component: {fileID: 1062229491}
   m_Layer: 0
   m_Name: Honey
   m_TagString: Untagged
@@ -4985,6 +4995,27 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1062229491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062229487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ca82169cf851c458c0307e469e47aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Container
+  storedItem: {fileID: 9018825296986393017, guid: 76e0b880bfc49e34eb12508fe7784d91, type: 3}
+  maxStorage: 10
+  currentStorage: 10
+  containerType: 5
+  containerSprites: []
+  wooshSound: {fileID: 0}
+  myAudioSource: {fileID: 0}
+  containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!1 &1081448913
 GameObject:
   m_ObjectHideFlags: 0
@@ -7828,6 +7859,7 @@ GameObject:
   - component: {fileID: 1782533755}
   - component: {fileID: 1782533757}
   - component: {fileID: 1782533756}
+  - component: {fileID: 1782533758}
   m_Layer: 0
   m_Name: MilkFridge
   m_TagString: Untagged
@@ -7955,6 +7987,27 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1782533758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782533754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90ca82169cf851c458c0307e469e47aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Container
+  storedItem: {fileID: 9018825296986393017, guid: 324b3113088c94e42a25bbb86e3bf883, type: 3}
+  maxStorage: 10
+  currentStorage: 10
+  containerType: 6
+  containerSprites: []
+  wooshSound: {fileID: 0}
+  myAudioSource: {fileID: 0}
+  containerManager: {fileID: 0}
+  itemSpawned: 0
 --- !u!1 &1795150293
 GameObject:
   m_ObjectHideFlags: 0

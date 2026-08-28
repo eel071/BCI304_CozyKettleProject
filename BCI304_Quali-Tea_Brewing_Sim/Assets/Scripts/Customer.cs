@@ -19,6 +19,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private TeaTypes teaOrder;
     [SerializeField] private bool lemonOrder;
     [SerializeField] private int sugarOrder;
+    [SerializeField] private bool honeyOrder;
+    [SerializeField] private bool milkOrder;
 
     [Header("Dialogue")]
     [SerializeField] private string orderD;
@@ -60,7 +62,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
         //set customer order in tea manager
         if (randomiseOrder) teaManager.RandomiseCustomerOrder();
-        else teaManager.SetCustomerOrder(teaOrder, lemonOrder, sugarOrder);
+        else teaManager.SetCustomerOrder(teaOrder, lemonOrder, sugarOrder, honeyOrder, milkOrder);
 
     }
     

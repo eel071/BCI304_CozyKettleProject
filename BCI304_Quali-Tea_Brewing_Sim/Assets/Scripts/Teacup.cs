@@ -33,6 +33,12 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             Debug.Log($"Added {draggable.gameObject.name} to teacup");
             teaManager.Additions(draggable.gameObject.name);
             Destroy(draggable.gameObject);
+            //making it milky
+            if (draggable.gameObject.name == "Milk(Clone)")
+            {
+                teaManager.tColor = teaManager.tColor * 2;
+                teaManager.UpdateTea();
+            }
         }
         else
         {

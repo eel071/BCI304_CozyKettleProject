@@ -10,7 +10,7 @@ public class TeaManager : MonoBehaviour
     public TeaTypes customerOrder;
     public TeaTypes tea;
     public int sugarCubesOrder, sugarCubes;
-    public bool lemonOrder, lemon;
+    public bool lemonOrder, lemon, honeyOrder, honey, milkOrder, milk;    
     public string teaOrder;
 
     public float finalScore;
@@ -19,7 +19,7 @@ public class TeaManager : MonoBehaviour
     [SerializeField] SpriteRenderer teaRenderer;       
     [SerializeField] private Color water, green, black, white;
     private float tOpacity;
-    private Color tColor;
+    public Color tColor;
     public Color teaOrderColor; //the colour for the ticket UI
 
     private static TeaManager uniqueInstance;
@@ -88,7 +88,13 @@ public class TeaManager : MonoBehaviour
             case "Sugar(Clone)":
                 sugarCubes += 1;
                 break;
-    
+            case "Honey(Clone)":
+                honey = true;
+                break;
+            case "Milk(Clone)":
+                milk = true;
+                break;
+
         }
     }
 
@@ -105,6 +111,8 @@ public class TeaManager : MonoBehaviour
         tOpacity = 1f;
         sugarCubes = 0;
         lemon = false;
+        honey = false;
+        milk = false;
 
     }
 
@@ -112,15 +120,19 @@ public class TeaManager : MonoBehaviour
     {
         customerOrder = (TeaTypes)Random.Range(0, 4);
         lemonOrder = Random.value < 0.5f;
+        honeyOrder = Random.value < 0.5f;
+        milkOrder = Random.value < 0.5f;
         sugarCubesOrder = Random.Range(0,3);
         UpdateOrderVariables();
     }
 
-    public void SetCustomerOrder(TeaTypes teaOrder, bool lemon, int sugar)
+    public void SetCustomerOrder(TeaTypes teaOrder, bool lemon, int sugar, bool honey, bool milk)
     {
         customerOrder = teaOrder;
         lemonOrder = lemon;
         sugarCubesOrder = sugar;
+        honeyOrder = honey;
+        milkOrder = milk;
         UpdateOrderVariables();
     }
 

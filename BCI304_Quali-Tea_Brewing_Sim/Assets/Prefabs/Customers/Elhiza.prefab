@@ -157,7 +157,9 @@ MonoBehaviour:
   teaOrder: 2
   lemonOrder: 0
   sugarOrder: 2
-  orderD: Sup, just a black tea with two sugars thanks
+  honeyOrder: 0
+  milkOrder: 1
+  orderD: Sup, just a black tea with two sugars and milk thanks
   wrongTeaD: This isn't...
   perfectTeaD: Wow! This is perfect!
   goodTeaD: Nice!

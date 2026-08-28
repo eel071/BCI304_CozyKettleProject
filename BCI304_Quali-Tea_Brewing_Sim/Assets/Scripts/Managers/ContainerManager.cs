@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ContainerManager : MonoBehaviour
 {
-    public int teaMax, lemonMax, sugarMax;
-    public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount;
+    public int teaMax, lemonMax, sugarMax, honeyMax, milkMax;
+    public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount, honeyCount, milkCount;
 
     private static ContainerManager uniqueInstance;
     
