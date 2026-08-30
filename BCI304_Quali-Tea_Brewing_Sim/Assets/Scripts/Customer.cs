@@ -23,7 +23,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private bool milkOrder;
 
     [Header("Dialogue")]
-    [SerializeField] private string orderD;
+    public string orderD;
     [SerializeField] private string wrongTeaD;
     [SerializeField] private string perfectTeaD;
     [SerializeField] private string goodTeaD;
