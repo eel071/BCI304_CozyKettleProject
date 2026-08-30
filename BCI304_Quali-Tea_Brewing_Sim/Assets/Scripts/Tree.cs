@@ -11,8 +11,15 @@ public class Tree : MonoBehaviour
     private void Awake()
     {
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
-        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
-        SpawnLemons();
+        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;        
+    }
+
+    private void Update()
+    {
+        if (!isLemon)
+        { 
+            SpawnLemons(); 
+        }
     }
 
 
@@ -20,7 +27,7 @@ public class Tree : MonoBehaviour
     {
         if (plantManager.daysSinceLastHarvest >= 2)
         {
-            Instantiate(lemonPrefab, new Vector3(-27.5f, 3f, 0f), Quaternion.identity);
+            Instantiate(lemonPrefab, new Vector3(-26.2f, 2.3f, 0f), Quaternion.identity);
             isLemon = true;
         }
         
