@@ -157,14 +157,16 @@ MonoBehaviour:
   teaOrder: 3
   lemonOrder: 0
   sugarOrder: 0
+  honeyOrder: 0
+  milkOrder: 0
   orderD: Can I get white tea?
-  wrongTeaD: 
-  perfectTeaD: 
-  goodTeaD: 
-  fineTeaD: 
-  badTeaD: 
-  terribleTeaD: 
-  rejectD: 
+  wrongTeaD: Not what I ordered.
+  perfectTeaD: Perfectly brewed. Thank you.
+  goodTeaD: Good ol' cup of tea.
+  fineTeaD: Hm. Not quite right.
+  badTeaD: Impatience? Or Forgetfulness?
+  terribleTeaD: Is this your first day?
+  rejectD: Don't have any?
   customerNeutralSprite: {fileID: 6735213828958702724, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
   customerTalkingSprite: {fileID: -2238478563141960240, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
   customerHappySprite: {fileID: -1125378137266361738, guid: 4296ab46ec3d3b141b404844269d2bbd, type: 3}
