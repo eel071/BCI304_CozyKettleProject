@@ -16,6 +16,7 @@ public class LoadManager : MonoBehaviour
     [SerializeField] private GameObject toTeaBrewButton;
     [SerializeField] private GameObject ticketButton;
     [SerializeField] private GameObject dialogue;
+    [SerializeField] private Tree tree;
 
     //GameObject teaManager;
     //GameObject customer;    
@@ -140,5 +141,6 @@ public class LoadManager : MonoBehaviour
     public void LoadTeaGarden()
     {        
         StartCoroutine(MoveCameraCoroutine("Garden"));
+        tree.SpawnLemons();
     }
 }

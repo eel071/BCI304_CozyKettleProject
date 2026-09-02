@@ -5,6 +5,8 @@ public class ContainerManager : MonoBehaviour
     public int teaMax, lemonMax, sugarMax, honeyMax, milkMax;
     public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount, honeyCount, milkCount;
 
+    [SerializeField] Tree tree;
+
     private static ContainerManager uniqueInstance;
     
     private void Awake()
@@ -29,6 +31,6 @@ public class ContainerManager : MonoBehaviour
     }
     public void AddLemons()
     {
-        lemonCount = lemonMax;
+        lemonCount += (tree.lemonNumber * 6);
     }
 }
