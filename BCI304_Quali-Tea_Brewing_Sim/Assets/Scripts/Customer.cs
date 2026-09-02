@@ -7,6 +7,8 @@ using static UnityEngine.Rendering.DebugUI.Table;
 public class Customer : MonoBehaviour, IOnDropBaseCollision
 {
     private TeaManager teaManager;
+    private BankManager bankManager;
+    private TipJar tipJar;
     [SerializeField] Teacup teacup;
     [SerializeField] Teapot teapot;
     
@@ -54,6 +56,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         //get references
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
+        tipJar = FindAnyObjectByType(typeof(TipJar)) as TipJar;
         dialogue = FindAnyObjectByType(typeof(Dialogue)) as Dialogue;
         teacup = FindAnyObjectByType(typeof(Teacup)) as Teacup;
         teapot = FindAnyObjectByType(typeof(Teapot)) as Teapot;
@@ -116,6 +120,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
     private void ReactionDialogue()
     {
+        float tips = 0f;
         string reactDialogue = "";
         AudioClip reactionSound = null;
 
@@ -124,6 +129,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
             if (wrongTeaD != "") reactDialogue = wrongTeaD; else reactDialogue = "This isn't what I ordered!";
             reactionSound = angrySound;
+            tips = 0f;
         }
 
         else //set dialogue, sprite, and audio clip depending on final score
@@ -134,32 +140,39 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
                     if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
                     if (perfectTeaD != "") reactDialogue = perfectTeaD; else reactDialogue = "This is Perfect!";
                     reactionSound = amazingSound;
+                    tips = 10f;
                     break;
                 case >= 75:
                     if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
                     if (goodTeaD != "") reactDialogue = goodTeaD; else reactDialogue = "Yum!";
                     reactionSound = goodSound;
+                    tips = 5f;
                     break;
                 case >= 50:
                     if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
                     if (fineTeaD != "") reactDialogue = fineTeaD; else reactDialogue = "This is okay";
                     reactionSound = disappointedSound;
+                    tips = 2.5f;
                     break;
                 case >= 25:
                     if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
                     if (badTeaD != "") reactDialogue = badTeaD; else reactDialogue = "I've had better tea.";
                     reactionSound = disappointedSound;
+                    tips = 1f;
                     break;
                 case < 25:
                     if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
                     if (terribleTeaD != "") reactDialogue = terribleTeaD; else reactDialogue = "Can you even call this tea?";
                     reactionSound = angrySound;
+                    tips = 0f;
                     break;
             }
         }    
     
         dialogue.SetCustomerText(reactDialogue, reactionSound, false);
 
+        bankManager.AddMoney(tips);
+        tipJar.AddTips(tips);
         teaManager.ResetTea();
         col.enabled = false; //stop the player from clicking the customer again
         destroyAfterTalk = true;

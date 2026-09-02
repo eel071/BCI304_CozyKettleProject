@@ -13,6 +13,8 @@ public class ClockManager : MonoBehaviour
     [SerializeField] Button openShopButton;
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] ContainerManager containerManager;
+    
+    [SerializeField] TipJar tipJar;
 
     [SerializeField] private TMP_Text dayText;
     
@@ -61,6 +63,7 @@ public class ClockManager : MonoBehaviour
         customerSpawner.createCustomerList();
         customerSpawner.isCustomer = false;
         customerSpawner.canSpawn = true;
+        tipJar.ResetTipJar();
     }
 
     void UpdateDayUI()

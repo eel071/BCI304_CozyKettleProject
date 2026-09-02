@@ -67,16 +67,17 @@ public class ScoreManager : MonoBehaviour
         //calculate the sugar score 
         //100 - (the difference between customers orders and number of cubes in the tea * 37.5)
         sugarScore = Mathf.Clamp((100f - Mathf.Abs(teaManager.sugarCubesOrder-teaManager.sugarCubes) * 37.5f), 0f, 100f);
-    
+
+        float additionScore = (lemonScore + sugarScore + honeyScore + milkScore) / 4;
         
         if (teaManager.customerOrder == teaManager.tea)
         {
             if (teaManager.tea == TeaTypes.Water)
             {
-                finalScore = (int)((heatScore + fillScore + lemonScore + sugarScore + honeyScore + milkScore) / 6);
+                finalScore = (int)((heatScore + 100 + fillScore + additionScore) / 4);
             }
             else
-                finalScore = (int)((heatScore + steepScore + fillScore + lemonScore + sugarScore + honeyScore + milkScore) / 7); 
+                finalScore = (int)((heatScore + steepScore + fillScore + additionScore) / 4); 
         }
         else
         {

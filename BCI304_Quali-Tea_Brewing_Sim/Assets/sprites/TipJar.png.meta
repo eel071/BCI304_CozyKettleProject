@@ -118,10 +118,10 @@ TextureImporter:
       name: TipJar_1
       rect:
         serializedVersion: 2
-        x: 176
-        y: 1037
-        width: 587
-        height: 945
+        x: 1231
+        y: 1044
+        width: 589
+        height: 944
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,10 +140,10 @@ TextureImporter:
       name: TipJar_2
       rect:
         serializedVersion: 2
-        x: 1238
-        y: 1030
-        width: 588
-        height: 945
+        x: 2254
+        y: 1044
+        width: 589
+        height: 944
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,57 +159,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TipJar_36
-      rect:
-        serializedVersion: 2
-        x: 2281
-        y: 1043
-        width: 588
-        height: 945
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1c240773ae60b3270800000000000000
-      internalID: 8231180346971931329
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TipJar_
-      rect:
-        serializedVersion: 2
-        x: 189
-        y: 19
-        width: 587
-        height: 945
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dc6c62e72cd522240800000000000000
-      internalID: 4765474445632915149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: TipJar_4
       rect:
         serializedVersion: 2
         x: 1231
         y: 19
-        width: 588
-        height: 945
+        width: 589
+        height: 944
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,23 +181,67 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TipJar_6
+      name: TipJar_0
       rect:
         serializedVersion: 2
-        x: 2255
-        y: 19
+        x: 208
+        y: 1044
         width: 588
-        height: 990
+        height: 944
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1c85145b92678cd0800000000000000
-      internalID: -2555965844239315940
+      spriteID: 799f4334e236e9841bce4c19f1fba990
+      internalID: 1355706287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TipJar_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 19
+        width: 588
+        height: 945
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff6a41425b2b3042a6e23a733771c2f
+      internalID: -1304964954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TipJar_5
+      rect:
+        serializedVersion: 2
+        x: 2254
+        y: 19
+        width: 589
+        height: 990
+      alignment: 9
+      pivot: {x: 0.50432074, y: 0.4794313}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdfd915609c30e743a32eba9a4dfca55
+      internalID: 1197506985
       vertices: []
       indices: 
       edges: []
@@ -258,14 +258,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      TipJar_: 4765474445632915149
+      TipJar_0: 1355706287
       TipJar_1: 5325464937392231031
       TipJar_2: 8258334670714406508
-      TipJar_36: 8231180346971931329
+      TipJar_3: -1304964954
       TipJar_4: -2744286105780270977
-      TipJar_6: -2555965844239315940
+      TipJar_5: 1197506985
+      TipJar_6: -555145346
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
