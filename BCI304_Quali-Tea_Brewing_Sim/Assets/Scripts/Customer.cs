@@ -8,6 +8,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 {
     private TeaManager teaManager;
     private BankManager bankManager;
+    private PopUpManager popUpManager;
     private TipJar tipJar;
     [SerializeField] Teacup teacup;
     [SerializeField] Teapot teapot;
@@ -56,6 +57,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         //get references
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        popUpManager = FindAnyObjectByType(typeof(PopUpManager)) as PopUpManager;
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
         tipJar = FindAnyObjectByType(typeof(TipJar)) as TipJar;
         dialogue = FindAnyObjectByType(typeof(Dialogue)) as Dialogue;
@@ -171,6 +173,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     
         dialogue.SetCustomerText(reactDialogue, reactionSound, false);
 
+        popUpManager.TipPopUp(tips);
         bankManager.AddMoney(tips);
         tipJar.AddTips(tips);
         teaManager.ResetTea();
