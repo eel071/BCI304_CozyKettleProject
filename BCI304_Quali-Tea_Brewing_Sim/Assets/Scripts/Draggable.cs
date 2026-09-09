@@ -5,12 +5,16 @@ public class Draggable : MonoBehaviour
     public Vector3 startPosition;
     private Collider2D col;
     public bool dragging = false;
-    
+
+    private HoneyAnimation honeyAnim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         startPosition = transform.position;
         col = GetComponent<Collider2D>();
+
+        honeyAnim = GetComponent<HoneyAnimation>();
     }
 
     void Update()
@@ -74,8 +78,16 @@ public class Draggable : MonoBehaviour
 
         if (hitCollider != null && hitCollider.TryGetComponent(out IOnDropBaseCollision onDropBaseCollision))
         {
+            
+
+            if (honeyAnim != null)
+            {
+                honeyAnim.PlayHoneyAnimation();
+                return;
+            }
+
             //Debug.Log("Collision Found"); 
-            onDropBaseCollision.OnDrop(this);                      
+            onDropBaseCollision.OnDrop(this);
         }
         else
         {

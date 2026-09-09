@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -6753570930019970144}
   - component: {fileID: -2813631674445197025}
   - component: {fileID: 5206737629430875981}
+  - component: {fileID: -2752599690793251703}
+  - component: {fileID: 1331139011926604374}
   m_Layer: 0
   m_Name: HoneyWand
   m_TagString: Addition
@@ -167,3 +169,37 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.56, y: 17.31}
   m_EdgeRadius: 0
+--- !u!95 &-2752599690793251703
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919050617952336175}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e3812fdf51ea33f4d9210c12cccd7006, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1331139011926604374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919050617952336175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd00aa892465b254589de5df7596ed56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoneyAnimation
