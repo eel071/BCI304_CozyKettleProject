@@ -14,7 +14,7 @@ public class PopUpManager : MonoBehaviour
 
     public void TipPopUp(float money)
     {
-        CreatePopUp(new Vector3(-270, -25, 0), money.ToString("+$##.00"));
+        CreatePopUp(new Vector3(-270, -25, 0), money.ToString("+$#0.00"));
     }
 }
 

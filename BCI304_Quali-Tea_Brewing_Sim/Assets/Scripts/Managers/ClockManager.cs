@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] LoadManager loadManager;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] PlantManager plantManager;
     public List<Plant> plants;
     [SerializeField] Button openShopButton;
@@ -72,8 +73,15 @@ public class ClockManager : MonoBehaviour
         dayText.text = dayString;
     }
 
+    
     public void EndDay()
     {
+        uiManager.DayOverScreen();
+    }
+
+    public void NextDay()
+    {
+        uiManager.CloseDayOverscreen();
         foreach (var p in plants)
         {
             p.UpdateGrowth();            
@@ -83,4 +91,5 @@ public class ClockManager : MonoBehaviour
         containerManager.sugarCount = containerManager.sugarMax; //temporarily reset sugar count since we have no way to replenish it atm
         StartDay();
     }
+
 }

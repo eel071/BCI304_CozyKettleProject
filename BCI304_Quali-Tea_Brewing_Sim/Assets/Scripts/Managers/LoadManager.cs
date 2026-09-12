@@ -93,7 +93,6 @@ public class LoadManager : MonoBehaviour
 
         yield return sceneFade.FadeInCoroutine(sceneFadeDuration);        
     }
-
     
 
     public void LoadTeaStation()

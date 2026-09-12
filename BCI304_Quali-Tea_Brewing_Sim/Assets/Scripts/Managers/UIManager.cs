@@ -6,12 +6,21 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject ticket;
     [SerializeField] private Image teaOrder;
-    [SerializeField] private GameObject[] sugarCubes;
+    /*[SerializeField] private GameObject[] sugarCubes;
     [SerializeField] private GameObject sugarPanel;
     [SerializeField] private GameObject lemon;
+    */
     [SerializeField] private TeaManager teaManager;
     [SerializeField] private TextMeshProUGUI customerOrderText;
     [SerializeField] private Customer customer;
+
+    [SerializeField] private GameObject shop;
+    [SerializeField] private GameObject dayOverScreen;
+    [SerializeField] private TextMeshProUGUI dailyReport;
+
+
+    [SerializeField] TipJar tipJar;
+    [SerializeField] CustomerSpawner customerSpawner;
 
     void Start()
     {
@@ -70,5 +79,26 @@ public class UIManager : MonoBehaviour
     public void HideTicket()
     {
         ticket.SetActive(false);
+    }
+
+    public void OpenShop()
+    {
+        shop.SetActive(true);
+    }
+
+    public void CloseShop()
+    {
+        shop.SetActive(false);
+    }
+
+    public void DayOverScreen()
+    {
+        dayOverScreen.SetActive(true);
+        dailyReport.text = $"customers served: {customerSpawner.customersServed} \n tips earned:{tipJar.currentTips.ToString("$#0.00")}";
+    }
+
+    public void CloseDayOverscreen()
+    {
+        dayOverScreen.SetActive(false);
     }
 }

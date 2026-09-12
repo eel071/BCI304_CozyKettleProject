@@ -16,6 +16,7 @@ public class CustomerSpawner : MonoBehaviour
 
     public int maxCustomers = 5;
     public int customerCount = 0;
+    public int customersServed = 0;
 
     private void Awake()
     {

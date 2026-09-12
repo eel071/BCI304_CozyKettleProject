@@ -10,6 +10,7 @@ TagManager:
   - Tea
   - Customer
   - WateringCan
+  - ShopItem
   layers:
   - Default
   - TransparentFX

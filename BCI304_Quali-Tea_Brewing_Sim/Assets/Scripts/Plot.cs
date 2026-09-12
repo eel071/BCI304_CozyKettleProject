@@ -3,6 +3,7 @@ using UnityEngine;
 public class Plot : MonoBehaviour
 {
     public PlantManager plantManager;
+    private ContainerManager containerManager;
     public enum PlotNumber { Plot1, Plot2, Plot3 };
     public PlotNumber plotNumber;
 
@@ -15,18 +16,14 @@ public class Plot : MonoBehaviour
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
-    }
-
-    private void Start()
-    {
-        //LoadPlot();
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
     }
 
     private void OnMouseDown()
     {
-        if (!planted && plantManager.seeds > 0)
+        if (!planted && containerManager.seedCount > 0)
         {
-            plantManager.seeds -= 1;
+            containerManager.seedCount -= 1;
             SpawnPlant();
             UpdatePlanted();
         }

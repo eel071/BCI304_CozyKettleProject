@@ -3,7 +3,7 @@ using UnityEngine;
 public class ContainerManager : MonoBehaviour
 {
     public int teaMax, lemonMax, sugarMax, honeyMax, milkMax;
-    public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount, honeyCount, milkCount;
+    public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount, honeyCount, milkCount, seedCount;
 
     [SerializeField] Tree tree;
 

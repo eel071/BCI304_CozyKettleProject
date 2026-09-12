@@ -5,7 +5,7 @@ public class TipJar : MonoBehaviour
     [SerializeField] private Sprite[] jarSprites;
     private SpriteRenderer spriteRenderer;
 
-    private float currentTips;
+    public float currentTips;
     private float maxTips = 50;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -174,9 +174,10 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         dialogue.SetCustomerText(reactDialogue, reactionSound, false);
 
         popUpManager.TipPopUp(tips);
-        bankManager.AddMoney(tips);
+        bankManager.UpdateMoney(tips);
         tipJar.AddTips(tips);
         teaManager.ResetTea();
+        customerSpawner.customersServed += 1;
         col.enabled = false; //stop the player from clicking the customer again
         destroyAfterTalk = true;
     }
