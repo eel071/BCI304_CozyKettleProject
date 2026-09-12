@@ -5,8 +5,6 @@ public class HoneyAnimation : MonoBehaviour
     private Animator animator;
     private Transform drizzlePosition;
 
-
-
     void Awake()
     {
         Debug.Log("HoneyAnimation AWAKE");

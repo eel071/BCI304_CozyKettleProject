@@ -15,7 +15,7 @@ public class ShopItem : MonoBehaviour
     private ShopManager shopManager;
     private ContainerManager containerManager;
 
-    private enum Purchasable {seeds, sugar}
+    private enum Purchasable {seeds, sugar, milk}
     [SerializeField] private Purchasable purchasable;
 
 
@@ -31,6 +31,9 @@ public class ShopItem : MonoBehaviour
                 break;
             case Purchasable.sugar:
                 containerManager.sugarCount += 1;
+                break;
+            case Purchasable.milk:
+                containerManager.milkCount +=1;
                 break;
         }
 
@@ -50,10 +53,14 @@ public class ShopItem : MonoBehaviour
             case Purchasable.sugar:
                 owned = containerManager.sugarCount;
                 break;
+            case Purchasable.milk:
+                owned = containerManager.milkCount;
+                break;
         }   
         
         priceText.text = price.ToString("$##.00");
         ownedText.text = $"owned: {owned}";
         if (currentMoney < price) button.interactable = false;
+        else button.interactable = true;
     }
 }

@@ -19,7 +19,7 @@ public class ClockManager : MonoBehaviour
 
     [SerializeField] private TMP_Text dayText;
     
-    [SerializeField] private int dayCounter = 1;
+    [SerializeField] public int dayCounter = 1;
 
     public static ClockManager uniqueInstance;
 

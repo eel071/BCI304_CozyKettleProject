@@ -10,13 +10,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject sugarPanel;
     [SerializeField] private GameObject lemon;
     */
-    [SerializeField] private TeaManager teaManager;
+    private TeaManager teaManager;
+    private ClockManager clockManager;
     [SerializeField] private TextMeshProUGUI customerOrderText;
     [SerializeField] private Customer customer;
 
     [SerializeField] private GameObject shop;
     [SerializeField] private GameObject dayOverScreen;
     [SerializeField] private TextMeshProUGUI dailyReport;
+    [SerializeField] private TextMeshProUGUI dayText;
 
 
     [SerializeField] TipJar tipJar;
@@ -25,6 +27,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager; //get a reference to the tea manager
+        clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
     }
 
     public void ShowTicket()
@@ -94,6 +97,7 @@ public class UIManager : MonoBehaviour
     public void DayOverScreen()
     {
         dayOverScreen.SetActive(true);
+        dayText.text = $"Day {clockManager.dayCounter}";
         dailyReport.text = $"customers served: {customerSpawner.customersServed} \n tips earned:{tipJar.currentTips.ToString("$#0.00")}";
     }
 

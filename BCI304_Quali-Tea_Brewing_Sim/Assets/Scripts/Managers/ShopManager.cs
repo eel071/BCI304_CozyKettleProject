@@ -12,12 +12,21 @@ public class ShopManager : MonoBehaviour
     void Awake()
     {
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
+    }
+
+    void OnEnable()
+    {
         UpdateShop();
     }
 
     public void UpdateShop()
     {        
-        if (bankManager != null) moneyText.text = bankManager.money.ToString("$#0.00");
-        foreach (ShopItem i in shopItems) i.UpdateShopItem(bankManager.money);
+        Debug.Log("Updating");
+        if (bankManager != null) 
+        {
+            moneyText.text = bankManager.money.ToString("$#0.00");
+            foreach (ShopItem i in shopItems) i.UpdateShopItem(bankManager.money);
+        }
+        else Debug.Log("bank manager null");
     }
 }
