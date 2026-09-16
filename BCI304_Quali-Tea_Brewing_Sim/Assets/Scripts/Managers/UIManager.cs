@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dailyReport;
     [SerializeField] private TextMeshProUGUI dayText;
 
+    [SerializeField] private GameObject seedCounter;
+    [SerializeField] private TextMeshProUGUI seedCounterText;
+    [SerializeField] private ContainerManager containerManager;
+
 
     [SerializeField] TipJar tipJar;
     [SerializeField] CustomerSpawner customerSpawner;
@@ -105,4 +109,16 @@ public class UIManager : MonoBehaviour
     {
         dayOverScreen.SetActive(false);
     }
+
+    public void GardenUI(bool active)
+    {
+        seedCounter.SetActive(active);
+        UpdateSeedCounter(containerManager.seedCount);
+    }
+
+    public void UpdateSeedCounter(int amount)
+    {
+        seedCounterText.text = $"{amount}";
+    }
+
 }

@@ -4,6 +4,9 @@ using System.Collections;
 
 public class LoadManager : MonoBehaviour
 {
+    [SerializeField] private UIManager uiManager;
+
+
     [SerializeField] private float sceneFadeDuration;
     private SceneFade sceneFade;
     [SerializeField] private GameObject mainCamera;
@@ -134,12 +137,14 @@ public class LoadManager : MonoBehaviour
         StartCoroutine(MoveCameraCoroutine("FrontCounter"));
         ticketButton.SetActive(false);
         toTeaBrewButton.SetActive(false);
-        dialogue.SetActive(true);                
+        dialogue.SetActive(true);        
+        uiManager.GardenUI(false);        
     }
     
     public void LoadTeaGarden()
     {        
         StartCoroutine(MoveCameraCoroutine("Garden"));
         tree.SpawnLemons();
+        uiManager.GardenUI(true);
     }
 }

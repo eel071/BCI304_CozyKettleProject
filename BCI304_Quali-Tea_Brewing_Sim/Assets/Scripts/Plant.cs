@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Plant : Plot, IOnDropBaseCollision
+public class Plant : Plot
 {
     //private PlantManager plantManager;
     private enum Plants { TeaBush };

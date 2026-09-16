@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ContainerManager : MonoBehaviour
 {
     public int teaMax, lemonMax, sugarMax, honeyMax, milkMax;
     public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount, honeyCount, milkCount, seedCount;
+
+   [SerializeField] private Container[] containers;
 
     [SerializeField] Tree tree;
 
@@ -28,9 +31,16 @@ public class ContainerManager : MonoBehaviour
         greenTeaCount = teaMax;
         blackTeaCount = teaMax;
         whiteTeaCount = teaMax;
+        UpdateContainers();
     }
     public void AddLemons()
     {
         lemonCount += (tree.lemonNumber * 6);
+        UpdateContainers();
+    }
+
+    public void UpdateContainers()
+    {
+        foreach (Container c in containers) c.UpdateStorage();
     }
 }

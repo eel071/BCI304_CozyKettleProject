@@ -6,7 +6,7 @@ public class Container : MonoBehaviour
     [SerializeField] private GameObject storedItem;
     [SerializeField] private int maxStorage, currentStorage;
     
-    private enum Containers {GreenTea, BlackTea, WhiteTea, Lemon, Sugar, Honey, Milk};
+    private enum Containers {GreenTea, BlackTea, WhiteTea, Lemon, Sugar, Honey, Milk, Seeds};
     [SerializeField] private Containers containerType;
     
     [Header("Sprites")]
@@ -18,18 +18,24 @@ public class Container : MonoBehaviour
     [SerializeField] private AudioSource myAudioSource;
 
     [SerializeField] ContainerManager containerManager;
+    [SerializeField] private UIManager uiManager;
 
     public bool itemSpawned = false;
-
 
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
+        uiManager = FindAnyObjectByType(typeof(UIManager)) as UIManager;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        UpdateStorage();
+    }
+
+    public void UpdateStorage()
     {
         if (containerManager != null)
         {
@@ -62,6 +68,9 @@ public class Container : MonoBehaviour
                 case Containers.Milk:
                     currentStorage = containerManager.milkCount;
                     maxStorage = containerManager.milkMax;
+                    break;
+                case Containers.Seeds:
+                    currentStorage = containerManager.seedCount;
                     break;
             }
         }
@@ -135,6 +144,10 @@ public class Container : MonoBehaviour
                 break;
             case Containers.Milk:
                 containerManager.milkCount -= 1;
+                break;
+            case Containers.Seeds:
+                containerManager.seedCount -=1;
+                uiManager.UpdateSeedCounter(containerManager.seedCount);
                 break;
         }
         

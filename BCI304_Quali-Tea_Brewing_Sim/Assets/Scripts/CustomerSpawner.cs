@@ -79,6 +79,7 @@ public class CustomerSpawner : MonoBehaviour
         customers = customerPrefabs.ToList();
         if (customers.Count < maxCustomers) maxCustomers = customers.Count;
         customerCount = 0;
+        customersServed = 0;
     }
 
 

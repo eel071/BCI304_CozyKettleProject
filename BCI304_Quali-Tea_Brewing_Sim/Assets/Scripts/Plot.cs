@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Plot : MonoBehaviour
+public class Plot : MonoBehaviour, IOnDropBaseCollision
 {
     public PlantManager plantManager;
     private ContainerManager containerManager;
@@ -19,6 +19,7 @@ public class Plot : MonoBehaviour
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
     }
 
+    /*
     private void OnMouseDown()
     {
         if (!planted && containerManager.seedCount > 0)
@@ -26,6 +27,17 @@ public class Plot : MonoBehaviour
             containerManager.seedCount -= 1;
             SpawnPlant();
             UpdatePlanted();
+        }
+    }
+    */
+
+    public void OnDrop(Draggable draggable)
+    {
+        if(draggable.tag == "Seed" && !planted)
+        {
+            SpawnPlant();
+            UpdatePlanted();
+            Destroy(draggable.gameObject);
         }
     }
 

@@ -39,6 +39,7 @@ public class ShopItem : MonoBehaviour
 
         if (shopManager == null) shopManager = FindAnyObjectByType(typeof(ShopManager)) as ShopManager;
         shopManager.UpdateShop();
+        containerManager.UpdateContainers();
     }
 
 
