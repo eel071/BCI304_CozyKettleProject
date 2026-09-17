@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class Plant : Plot
+//Plot
 {
     //private PlantManager plantManager;
     private enum Plants { TeaBush };
@@ -16,39 +17,49 @@ public class Plant : Plot
     [SerializeField] private Sprite readySprite;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] ContainerManager containerManager;
+    //[SerializeField] ContainerManager containerManager;
 
-    public Plot plot;
+    [SerializeField] private Plot plot;
 
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager; 
-        ClockManager.uniqueInstance.plants.Add(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        LoadPlant();
     }
         
-    private void Start()
+    private void OnEnable()
     {
+        ClockManager.uniqueInstance.plants.Add(this);
         LoadPlant();
     }
 
-
+    /*
     public void OnDrop(Draggable draggable)
     {
         if (draggable.tag == "WateringCan")
         {
-            Debug.Log($"Watered {gameObject.name}");
-            watered = true;
-            UpdateSprite();
-            UpdatePlantManager();
-            //insert wateringcan animation
-            draggable.transform.position = draggable.startPosition;
+            WaterPlant(draggable);
         }
+        else draggable.ReturnItem();
+
+    }
+    */
+
+    public void WaterPlant(Draggable draggable)
+    {
+        Debug.Log($"Watered {gameObject.name}");
+        watered = true;
+        UpdateSprite();
+        UpdatePlantManager();
+        //insert wateringcan animation
+        draggable.ReturnItem();
     }
 
     public void LoadPlant()
     {
+        ClockManager.uniqueInstance.plants.Add(this);
         if (plantManager != null)
         {
             switch (plotNumber)
@@ -188,7 +199,8 @@ public class Plant : Plot
         {
             KillPlant();
             ClockManager.uniqueInstance.plants.Remove(this);
-            Destroy(gameObject);  
+
+            gameObject.SetActive(false); 
         }
     }
 

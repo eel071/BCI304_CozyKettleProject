@@ -125,28 +125,28 @@ public class Container : MonoBehaviour
         switch (containerType) //check the container type and assign the item tag
         {
             case Containers.GreenTea:
-                containerManager.greenTeaCount -= 1;
+                containerManager.greenTeaCount = currentStorage;
                 break;
             case Containers.BlackTea:
-                containerManager.blackTeaCount -= 1;
+                containerManager.blackTeaCount = currentStorage;
                 break;
             case Containers.WhiteTea:
-                containerManager.whiteTeaCount -=1;
+                containerManager.whiteTeaCount = currentStorage;
                 break;
             case Containers.Lemon:
-                containerManager.lemonCount -= 1;
+                containerManager.lemonCount = currentStorage;
                 break;
             case Containers.Sugar:
-                containerManager.sugarCount -= 1;
+                containerManager.sugarCount = currentStorage;
                 break;
             case Containers.Honey:
-                containerManager.honeyCount -= 1;
+                containerManager.honeyCount = currentStorage;
                 break;
             case Containers.Milk:
-                containerManager.milkCount -= 1;
+                containerManager.milkCount = currentStorage;
                 break;
             case Containers.Seeds:
-                containerManager.seedCount -=1;
+                containerManager.seedCount = currentStorage;
                 uiManager.UpdateSeedCounter(containerManager.seedCount);
                 break;
         }
@@ -161,5 +161,12 @@ public class Container : MonoBehaviour
             int sprite = Mathf.FloorToInt((1-currentPhase) * (containerSprites.Length-1));
             spriteRenderer.sprite = containerSprites[sprite];
         }
+    }
+
+    public void ReturnItem()
+    {
+        currentStorage += 1;
+        UpdateContainerManager();
+        UpdateSprite();
     }
 }

@@ -35,7 +35,8 @@ public class ContainerManager : MonoBehaviour
     }
     public void AddLemons()
     {
-        lemonCount += (tree.lemonNumber * 6);
+        lemonCount += 4;
+        //lemonCount += (tree.lemonNumber * 6);
         UpdateContainers();
     }
 

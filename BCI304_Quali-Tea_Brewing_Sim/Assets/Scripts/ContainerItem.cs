@@ -16,4 +16,10 @@ public class ContainerItem : MonoBehaviour
             Debug.Log("could not find container");
         }
     }
+
+    public void ReturnItem()
+    {
+        container.ReturnItem();
+        Destroy(gameObject); 
+    }
 }

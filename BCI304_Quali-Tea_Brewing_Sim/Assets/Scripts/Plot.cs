@@ -3,15 +3,15 @@ using UnityEngine;
 public class Plot : MonoBehaviour, IOnDropBaseCollision
 {
     public PlantManager plantManager;
-    private ContainerManager containerManager;
+    public ContainerManager containerManager;
     public enum PlotNumber { Plot1, Plot2, Plot3 };
     public PlotNumber plotNumber;
 
     public bool planted = false;
 
-    public GameObject teaBushPrefab;
-    [SerializeField] private GameObject spawnedPlant;
-    private Plant plant;
+    //public GameObject teaBushPrefab;
+    [SerializeField] private GameObject teaBush;
+    [SerializeField] private Plant plantScript;
 
     private void Awake()
     {
@@ -19,34 +19,31 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
     }
 
-    /*
-    private void OnMouseDown()
-    {
-        if (!planted && containerManager.seedCount > 0)
-        {
-            containerManager.seedCount -= 1;
-            SpawnPlant();
-            UpdatePlanted();
-        }
-    }
-    */
-
     public void OnDrop(Draggable draggable)
     {
-        if(draggable.tag == "Seed" && !planted)
+        Debug.Log("onDrop plot");
+        if (draggable.tag == "Seed" && !planted)
         {
             SpawnPlant();
             UpdatePlanted();
             Destroy(draggable.gameObject);
         }
+        else if (draggable.tag == "WateringCan" && planted)
+        {
+            if (plantScript == null) plantScript = GetComponentInChildren<Plant>();
+            plantScript.WaterPlant(draggable);
+        }        
+        else draggable.ReturnItem();
     }
 
     private void SpawnPlant()
     {
-        spawnedPlant = Instantiate(teaBushPrefab, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);           
-        plant = spawnedPlant.GetComponent<Plant>();
-        plant.plotNumber = plotNumber;
-        plant.plot = this;
+        teaBush.SetActive(true);
+        plantScript.LoadPlant();
+        //teaBush = Instantiate(teaBushPrefab, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);           
+        //plant = teaBush.GetComponent<Plant>();
+        plantScript.plotNumber = plotNumber;
+        //plant.plot = this;
         planted = true;
     }
 

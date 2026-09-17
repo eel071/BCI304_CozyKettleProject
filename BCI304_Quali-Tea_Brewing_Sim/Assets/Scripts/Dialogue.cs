@@ -120,7 +120,7 @@ public class Dialogue : MonoBehaviour
     IEnumerator WaitBeforeLoad()
     {
         yield return new WaitForSeconds(1f);
-        loadManager.LoadTeaStation();
+        loadManager.Load("TeaBrew");
         HideDialogue();
     }
 }

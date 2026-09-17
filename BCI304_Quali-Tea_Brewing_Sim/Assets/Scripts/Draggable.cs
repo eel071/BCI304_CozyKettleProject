@@ -8,6 +8,8 @@ public class Draggable : MonoBehaviour
 
     private HoneyAnimation honeyAnim;
 
+    private ContainerItem containerItem;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -15,6 +17,8 @@ public class Draggable : MonoBehaviour
         col = GetComponent<Collider2D>();
 
         honeyAnim = GetComponent<HoneyAnimation>();
+
+        containerItem = GetComponent<ContainerItem>();
     }
 
     void Update()
@@ -59,7 +63,6 @@ public class Draggable : MonoBehaviour
 
         if (hitCollider != null && hitCollider.TryGetComponent(out IOnPickUpBaseCollision onPickUpBaseCollision))
         {
-            //Debug.Log("Collision Found"); 
             onPickUpBaseCollision.OnPickUp(this);                      
         }      
     }
@@ -73,26 +76,30 @@ public class Draggable : MonoBehaviour
     {
         dragging = false;
         col.enabled = false;
-        Collider2D hitCollider = Physics2D.OverlapPoint(transform.position);
+        Collider2D[] hitColliders = Physics2D.OverlapPointAll(transform.position);
         col.enabled = true;
 
-        if (hitCollider != null && hitCollider.TryGetComponent(out IOnDropBaseCollision onDropBaseCollision))
-        {
-            
-
-            if (honeyAnim != null)
+        foreach (Collider2D hitCollider in hitColliders)
+        {   
+            if (hitCollider != null && hitCollider.TryGetComponent(out IOnDropBaseCollision onDropBaseCollision))
             {
-                honeyAnim.PlayHoneyAnimation();
+                if (honeyAnim != null)
+                {
+                    honeyAnim.PlayHoneyAnimation();
+                    return;
+                }
+
+                onDropBaseCollision.OnDrop(this);
                 return;
             }
+        }
 
-            //Debug.Log("Collision Found"); 
-            onDropBaseCollision.OnDrop(this);
-        }
-        else
-        {
-            //Debug.Log("No Collision Found");
-            transform.position = startPosition;
-        }
+        ReturnItem();
+    }
+
+    public void ReturnItem()
+    {
+        if (containerItem != null) containerItem.ReturnItem();
+        else transform.position = startPosition;
     }
 }

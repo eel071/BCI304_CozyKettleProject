@@ -7,6 +7,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     
     [SerializeField] private GameObject tea;
     [SerializeField] private Teapot teapotScript;
+    private Draggable draggable;
 
     private float teaMax = 0.4f; 
     public float fillLevel = 0f;
@@ -24,6 +25,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {        
         teaEmpty = tea.transform.position;     
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        draggable = GetComponent<Draggable>();
     }
 
     public void OnDrop(Draggable draggable)
@@ -43,7 +45,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         else
         {
             Debug.Log($"Tried to Add {draggable.tag} to teacup");
-            draggable.transform.position = draggable.startPosition;
+            //draggable.transform.position = draggable.startPosition;
+            draggable.ReturnItem();
         }
     }
     
@@ -116,9 +119,15 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     public void EmptyCup() //used when making a new tea or dump the current tea
     {
         transform.position = new Vector3(38f, -2f, 0);
+        NewStartPosition();
         tea.transform.position = teaEmpty;        
         fillLevel = 0;
         teaFilled = false;
     }
     #endregion
+
+    public void NewStartPosition()
+    {
+        draggable.startPosition = transform.position;
+    }
 }

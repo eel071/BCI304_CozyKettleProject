@@ -56,7 +56,8 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         else
         {
             Debug.Log($"Tried to Add {draggable.tag} to teapot");
-            draggable.transform.position = draggable.startPosition;
+            draggable.ReturnItem();
+            //draggable.transform.position = draggable.startPosition;
         }
         
     }

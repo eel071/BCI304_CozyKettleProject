@@ -21,9 +21,8 @@ public class LoadManager : MonoBehaviour
     [SerializeField] private GameObject dialogue;
     [SerializeField] private Tree tree;
 
-    //GameObject teaManager;
-    //GameObject customer;    
     [SerializeField] GameObject teacup;  
+    private Teacup teacupScript;
       
     
     private static LoadManager uniqueInstance;
@@ -43,108 +42,66 @@ public class LoadManager : MonoBehaviour
 
         sceneFade = GetComponentInChildren<SceneFade>();
         sceneFade.gameObject.SetActive(false);
+        teacupScript = FindAnyObjectByType(typeof(Teacup)) as Teacup;
     }
 
-    private IEnumerator LoadSceneCoroutine(string sceneName) //fade in and out when loading a scene
+    private IEnumerator MoveCameraCoroutine(string screenName) //fade in and out when loading a scene
     {
         sceneFade.gameObject.SetActive(true);
         yield return sceneFade.FadeOutCoroutine(sceneFadeDuration);
         mainCamera = GameObject.FindWithTag("MainCamera");
         
         //show the customer if entering the front counter
-        if (sceneName == "FrontCounter")
-        {
-            //if (customer != null) customer.SetActive(true);
-            SceneManager.LoadScene(sceneName);
-        }
-        //hide the customer if entering the tea station
-        else if (sceneName == "TeaStation")
-        {
-            //customer.SetActive(false);
-            SceneManager.LoadScene(sceneName);
-        }
-
-        yield return sceneFade.FadeInCoroutine(sceneFadeDuration);        
-    }
-
-    private IEnumerator MoveCameraCoroutine(string sceneName) //fade in and out when loading a scene
-    {
-        sceneFade.gameObject.SetActive(true);
-        yield return sceneFade.FadeOutCoroutine(sceneFadeDuration);
-        mainCamera = GameObject.FindWithTag("MainCamera");
-        
-        //show the customer if entering the front counter
-        if (sceneName == "FrontCounter")
+        if (screenName == "FrontCounter")
         {
             mainCamera.transform.position = frontCamPos;
+            uiManager.GardenUI(false);
+            ticketButton.SetActive(false);
+            toTeaBrewButton.SetActive(false);
+            dialogue.SetActive(true);
+            uiManager.CloseDayOverscreen();  
         }
 
-        if (sceneName == "Garden")
+        if (screenName == "Garden")
         {
             mainCamera.transform.position = gardenCamPos;
+            uiManager.GardenUI(true);
+            uiManager.CloseDayOverscreen();
+            tree.SpawnLemons();
         }
         
-        if (sceneName == "TeaBrew")
+        if (screenName == "TeaBrew")
         {
             mainCamera.transform.position = teaBrewCamPos;
+            toTeaAddButton.SetActive(true);
+            toTeaBrewButton.SetActive(false);
+            ticketButton.SetActive(true);
+            dialogue.SetActive(false);
+            if (teacup == null) { teacup = GameObject.Find("Teacup"); }
+            teacup.transform.position = new Vector3(38f, -2f, 0);
+            teacupScript.NewStartPosition();
         }
         
-        if (sceneName == "TeaAdd")
+        if (screenName == "TeaAdd")
         {
             mainCamera.transform.position = teaAddCamPos;
+            toTeaAddButton.SetActive(false);
+            toTeaBrewButton.SetActive(true);
+            if (teacup == null) { teacup = GameObject.Find("Teacup"); }
+            teacup.transform.position = new Vector3(49.85f, -2f, 0);
+            teacupScript.NewStartPosition();
+        }
+
+        if (screenName == "DayEnd")
+        {
+            uiManager.DayOverScreen();
         }
 
         yield return sceneFade.FadeInCoroutine(sceneFadeDuration);        
     }
     
-
-    public void LoadTeaStation()
+    public void Load(string screenName)
     {
-        /*customer = GameObject.FindWithTag("Customer");       
-        DontDestroyOnLoad(customer);   
-        StartCoroutine(LoadSceneCoroutine("TeaStation")); */
-
-        StartCoroutine(MoveCameraCoroutine("TeaBrew"));        
-        toTeaAddButton.SetActive(true);
-        toTeaBrewButton.SetActive(false);
-        ticketButton.SetActive(true);
-        dialogue.SetActive(false);
-        if (teacup == null) { teacup = GameObject.Find("Teacup"); }
-        teacup.transform.position = new Vector3(38f, -2f, 0);
-    }
-    public void LoadTeaAdditions()
-    {
-        StartCoroutine(MoveCameraCoroutine("TeaAdd"));
-        toTeaAddButton.SetActive(false);
-        toTeaBrewButton.SetActive(true);
-        if (teacup == null) { teacup = GameObject.Find("Teacup"); }
-        teacup.transform.position = new Vector3(49.85f, -2f, 0);
-    }
-
-    public void LoadFrontCounter()
-    {
-        /* (SceneManager.GetActiveScene().name == "TeaStation")
-        {
-            teacup = GameObject.Find("Teacup");
-            DontDestroyOnLoad(teacup.transform.gameObject);
-            StartCoroutine(LoadSceneCoroutine("FrontCounter"));
-        }
-        else
-        {
-            StartCoroutine(MoveCameraCoroutine("FrontCounter"));
-        }*/
-
-        StartCoroutine(MoveCameraCoroutine("FrontCounter"));
-        ticketButton.SetActive(false);
-        toTeaBrewButton.SetActive(false);
-        dialogue.SetActive(true);        
-        uiManager.GardenUI(false);        
-    }
-    
-    public void LoadTeaGarden()
-    {        
-        StartCoroutine(MoveCameraCoroutine("Garden"));
-        tree.SpawnLemons();
-        uiManager.GardenUI(true);
+        StartCoroutine(MoveCameraCoroutine(screenName));
     }
 }

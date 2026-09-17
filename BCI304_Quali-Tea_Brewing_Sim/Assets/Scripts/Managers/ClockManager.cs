@@ -11,7 +11,7 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] PlantManager plantManager;
     public List<Plant> plants;
-    [SerializeField] Button openShopButton;
+    
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] ContainerManager containerManager;
     
@@ -20,6 +20,8 @@ public class ClockManager : MonoBehaviour
     [SerializeField] private TMP_Text dayText;
     
     [SerializeField] public int dayCounter = 1;
+    
+    [SerializeField] private bool testingGarden;
 
     public static ClockManager uniqueInstance;
 
@@ -44,14 +46,13 @@ public class ClockManager : MonoBehaviour
     private void StartDay()
     {
         UpdateDayUI();
-        if (dayCounter >= 3) //if garden is unlocked
+        if (dayCounter >= 3 || testingGarden) //if garden is unlocked
         {
-            loadManager.LoadTeaGarden();
+            loadManager.Load("Garden");
             foreach (var p in plants)
             {
                 p.LoadPlant();
             }
-            openShopButton.gameObject.SetActive(true); 
         }
         else OpenShop();
         
@@ -59,8 +60,7 @@ public class ClockManager : MonoBehaviour
 
     public void OpenShop()
     {
-        loadManager.LoadFrontCounter();
-        openShopButton.gameObject.SetActive(false);
+        loadManager.Load("FrontCounter");
         customerSpawner.createCustomerList();
         customerSpawner.isCustomer = false;
         customerSpawner.canSpawn = true;
@@ -76,12 +76,12 @@ public class ClockManager : MonoBehaviour
     
     public void EndDay()
     {
-        uiManager.DayOverScreen();
+        loadManager.Load("DayEnd");
+        
     }
 
     public void NextDay()
     {
-        uiManager.CloseDayOverscreen();
         foreach (var p in plants)
         {
             p.UpdateGrowth();            

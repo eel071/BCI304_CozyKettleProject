@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] TipJar tipJar;
     [SerializeField] CustomerSpawner customerSpawner;
 
+
+    [SerializeField] Button openShopButton;
+
     void Start()
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager; //get a reference to the tea manager
@@ -114,6 +117,7 @@ public class UIManager : MonoBehaviour
     {
         seedCounter.SetActive(active);
         UpdateSeedCounter(containerManager.seedCount);
+        openShopButton.gameObject.SetActive(active); 
     }
 
     public void UpdateSeedCounter(int amount)

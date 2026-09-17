@@ -4,7 +4,7 @@ public class Tree : MonoBehaviour
 {
     
     public GameObject lemonPrefab;
-    bool isLemon;
+    //bool isLemon;
     public int lemonNumber;
     [SerializeField] ContainerManager containerManager;
     [SerializeField] PlantManager plantManager;
@@ -39,7 +39,7 @@ public class Tree : MonoBehaviour
                 treeLemonT.SetActive(true);
             }           
             
-            isLemon = true;
+            //isLemon = true;
             lemonNumber++;
         }
         
@@ -47,7 +47,7 @@ public class Tree : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (isLemon == true) //harvest the plant
+        /*if (isLemon == true) //harvest the plant
         {
             containerManager.AddLemons();
             Debug.Log("lemon harvested");
@@ -60,5 +60,13 @@ public class Tree : MonoBehaviour
             treeLemonR.SetActive(false);
             lemonNumber = 0;
         }
+        */
+    }
+
+    public void HarvestLemon()
+    {
+        containerManager.AddLemons();
+        Debug.Log("lemon harvested");
+        lemonNumber -= 1;
     }
 }

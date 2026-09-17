@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5290903062285346903}
   - component: {fileID: 3572781631397335438}
   - component: {fileID: 9093925796953066261}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TeaBush
   m_TagString: Tea
   m_Icon: {fileID: 0}
