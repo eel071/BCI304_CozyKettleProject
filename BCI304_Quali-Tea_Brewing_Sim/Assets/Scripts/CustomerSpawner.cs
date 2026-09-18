@@ -8,13 +8,14 @@ using UnityEngine.Audio;
 public class CustomerSpawner : MonoBehaviour
 {
     private TeaManager teaManager;
+    private UpgradeManager upgradeManager;
     private static CustomerSpawner uniqueInstance;
     private ClockManager clockManager;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip bellAudio;
 
-    public int maxCustomers = 5;
+    public int maxCustomers = 3;
     public int customerCount = 0;
     public int customersServed = 0;
 
@@ -32,6 +33,7 @@ public class CustomerSpawner : MonoBehaviour
         
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
+        upgradeManager = FindAnyObjectByType(typeof(UpgradeManager)) as UpgradeManager;
     }
 
     public GameObject[] customerPrefabs;
@@ -77,6 +79,7 @@ public class CustomerSpawner : MonoBehaviour
     public void createCustomerList()
     {
         customers = customerPrefabs.ToList();
+        maxCustomers = 3 + upgradeManager.upgrade["Customer"];
         if (customers.Count < maxCustomers) maxCustomers = customers.Count;
         customerCount = 0;
         customersServed = 0;

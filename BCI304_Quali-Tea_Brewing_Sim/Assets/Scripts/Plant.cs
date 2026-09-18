@@ -183,9 +183,11 @@ public class Plant : Plot
     {  
         if (ready) //harvest the plant
         {
+            
             switch(plantType)
             { 
                 case Plants.TeaBush:
+                    
                     containerManager.AddLeaves();
                     break;                
             }

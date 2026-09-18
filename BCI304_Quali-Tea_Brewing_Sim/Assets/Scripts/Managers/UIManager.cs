@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
     public void GardenUI(bool active)
     {
         seedCounter.SetActive(active);
-        UpdateSeedCounter(containerManager.seedCount);
+        UpdateSeedCounter(containerManager.containerCount["Seeds"]);
         openShopButton.gameObject.SetActive(active); 
     }
 

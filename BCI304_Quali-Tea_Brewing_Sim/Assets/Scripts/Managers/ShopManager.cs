@@ -12,6 +12,7 @@ public class ShopManager : MonoBehaviour
     void Awake()
     {
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
+        shopItems = FindObjectsByType<ShopItem>();
     }
 
     void OnEnable()

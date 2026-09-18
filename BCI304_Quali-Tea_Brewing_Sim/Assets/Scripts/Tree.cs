@@ -45,27 +45,9 @@ public class Tree : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
-    {
-        /*if (isLemon == true) //harvest the plant
-        {
-            containerManager.AddLemons();
-            Debug.Log("lemon harvested");
-            isLemon = false;
-            plantManager.daysSinceLastHarvest = 0;
-            //GameObject lemon = GameObject.Find("Lemon(Clone)");
-            //Destroy(lemon);
-            treeLemonL.SetActive(false);
-            treeLemonT.SetActive(false);
-            treeLemonR.SetActive(false);
-            lemonNumber = 0;
-        }
-        */
-    }
-
     public void HarvestLemon()
     {
-        containerManager.AddLemons();
+        containerManager.AddContainerCount("Lemon", 4);
         Debug.Log("lemon harvested");
         lemonNumber -= 1;
     }

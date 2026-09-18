@@ -3,17 +3,39 @@ using System.Collections.Generic;
 
 public class ContainerManager : MonoBehaviour
 {
-    public int teaMax, lemonMax, sugarMax, honeyMax, milkMax;
-    public int greenTeaCount, blackTeaCount, whiteTeaCount, lemonCount, sugarCount, honeyCount, milkCount, seedCount;
+        
+    public Dictionary<string, int> containerCount = new Dictionary<string, int>()
+    {
+        {"GreenTea", 15},
+        {"BlackTea", 15},
+        {"WhiteTea", 15},
+        {"Lemon", 6},
+        {"Sugar", 15},
+        {"Milk", 5},
+        {"Honey", 5},
+        {"Seeds", 0}
+    };
 
-   [SerializeField] private Container[] containers;
-
-    [SerializeField] Tree tree;
+    public Dictionary<string, int> containerMax = new Dictionary<string, int>()
+    {
+        {"GreenTea", 15},
+        {"BlackTea", 15},
+        {"WhiteTea", 15},
+        {"Lemon", 20},
+        {"Sugar", 30},
+        {"Milk", 20},
+        {"Honey", 20},
+        {"Seeds", 99}
+    };
+    
+    
+    [SerializeField] private Container[] containers;
 
     private static ContainerManager uniqueInstance;
     
     private void Awake()
     {
+        containers = FindObjectsByType<Container>();
         if (uniqueInstance == null)
         {
             uniqueInstance = this;
@@ -27,21 +49,20 @@ public class ContainerManager : MonoBehaviour
 
     public void AddLeaves()
     {
-        //temporarily resets the tea counts, will change this later when theres a way to make the different tea leaves.
-        greenTeaCount = teaMax;
-        blackTeaCount = teaMax;
-        whiteTeaCount = teaMax;
-        UpdateContainers();
-    }
-    public void AddLemons()
-    {
-        lemonCount += 4;
-        //lemonCount += (tree.lemonNumber * 6);
-        UpdateContainers();
+        AddContainerCount("GreenTea", 15);
+        AddContainerCount("BlackTea", 15);
+        AddContainerCount("WhiteTea", 15);      
     }
 
     public void UpdateContainers()
     {
         foreach (Container c in containers) c.UpdateStorage();
+    }
+
+
+    public void AddContainerCount(string container, int amount)
+    {
+        containerCount[container] = Mathf.Clamp(containerCount[container] + amount, 0, containerMax[container]);
+        UpdateContainers();
     }
 }

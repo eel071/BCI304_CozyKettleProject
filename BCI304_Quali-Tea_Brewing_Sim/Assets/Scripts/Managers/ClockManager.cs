@@ -88,7 +88,6 @@ public class ClockManager : MonoBehaviour
         }        
         dayCounter++;
         plantManager.daysSinceLastHarvest++;
-        containerManager.sugarCount = containerManager.sugarMax; //temporarily reset sugar count since we have no way to replenish it atm
         StartDay();
     }
 

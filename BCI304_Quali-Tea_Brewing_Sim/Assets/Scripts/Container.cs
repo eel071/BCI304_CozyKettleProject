@@ -39,46 +39,23 @@ public class Container : MonoBehaviour
     {
         if (containerManager != null)
         {
-            switch (containerType) //check the container type and assign the storage count
+            if (containerManager.containerCount.TryGetValue(containerType.ToString(), out int count))
             {
-                case Containers.GreenTea:
-                    currentStorage = containerManager.greenTeaCount;
-                    maxStorage = containerManager.teaMax;
-                    break;
-                case Containers.BlackTea:
-                    currentStorage = containerManager.blackTeaCount;
-                    maxStorage = containerManager.teaMax;
-                    break;
-                case Containers.WhiteTea:
-                    currentStorage = containerManager.whiteTeaCount;
-                    maxStorage = containerManager.teaMax;
-                    break;
-                case Containers.Lemon:
-                    currentStorage = containerManager.lemonCount;
-                    maxStorage = containerManager.lemonMax;
-                    break;
-                case Containers.Sugar:
-                    currentStorage = containerManager.sugarCount;
-                    maxStorage = containerManager.sugarMax;
-                    break;
-                case Containers.Honey:
-                    currentStorage = containerManager.honeyCount;
-                    maxStorage = containerManager.honeyMax;
-                    break;
-                case Containers.Milk:
-                    currentStorage = containerManager.milkCount;
-                    maxStorage = containerManager.milkMax;
-                    break;
-                case Containers.Seeds:
-                    currentStorage = containerManager.seedCount;
-                    break;
+                currentStorage = count;
             }
+            else Debug.Log($"{containerType} container not found in containerCount dictionary");
+
+            if (containerManager.containerMax.TryGetValue(containerType.ToString(), out int storage))
+            {
+                maxStorage = storage;
+            }
+            else Debug.Log($"{containerType} container not found in containerMax dictionary");
         }
         else
         {
             Debug.Log("Cannot find container manager");
         }
-
+        
         UpdateSprite();
     }
 
@@ -122,35 +99,8 @@ public class Container : MonoBehaviour
 
     private void UpdateContainerManager()
     {
-        switch (containerType) //check the container type and assign the item tag
-        {
-            case Containers.GreenTea:
-                containerManager.greenTeaCount = currentStorage;
-                break;
-            case Containers.BlackTea:
-                containerManager.blackTeaCount = currentStorage;
-                break;
-            case Containers.WhiteTea:
-                containerManager.whiteTeaCount = currentStorage;
-                break;
-            case Containers.Lemon:
-                containerManager.lemonCount = currentStorage;
-                break;
-            case Containers.Sugar:
-                containerManager.sugarCount = currentStorage;
-                break;
-            case Containers.Honey:
-                containerManager.honeyCount = currentStorage;
-                break;
-            case Containers.Milk:
-                containerManager.milkCount = currentStorage;
-                break;
-            case Containers.Seeds:
-                containerManager.seedCount = currentStorage;
-                uiManager.UpdateSeedCounter(containerManager.seedCount);
-                break;
-        }
-        
+        containerManager.containerCount[containerType.ToString()] = currentStorage;
+        if (containerType == Containers.Seeds) uiManager.UpdateSeedCounter(containerManager.containerCount["Seeds"]);
     }
 
     private void UpdateSprite()
