@@ -6,10 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject ticket;
     [SerializeField] private Image teaOrder;
-    /*[SerializeField] private GameObject[] sugarCubes;
-    [SerializeField] private GameObject sugarPanel;
-    [SerializeField] private GameObject lemon;
-    */
+   
     private TeaManager teaManager;
     private ClockManager clockManager;
     [SerializeField] private TextMeshProUGUI customerOrderText;
@@ -23,6 +20,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject seedCounter;
     [SerializeField] private TextMeshProUGUI seedCounterText;
     [SerializeField] private ContainerManager containerManager;
+
+
+    [SerializeField] private GameObject ingredientsPanel;
+    [SerializeField] private GameObject gardenPanel;
+    [SerializeField] private GameObject upgradesPanel;
+    [SerializeField] private TextMeshProUGUI ingredientsText;
+    [SerializeField] private TextMeshProUGUI gardenText;
+    [SerializeField] private TextMeshProUGUI upgradeText;
 
 
     [SerializeField] TipJar tipJar;
@@ -123,6 +128,39 @@ public class UIManager : MonoBehaviour
     public void UpdateSeedCounter(int amount)
     {
         seedCounterText.text = $"{amount}";
+    }
+
+    public void ShopGardenPanel()
+    {
+        gardenPanel.SetActive(true);
+        ingredientsPanel.SetActive(false);
+        upgradesPanel.SetActive(false);
+
+        gardenText.fontStyle = FontStyles.Bold;
+        ingredientsText.fontStyle = FontStyles.Normal; 
+        upgradeText.fontStyle = FontStyles.Normal; 
+    }
+
+    public void ShopIngredientsPanel()
+    {
+        ingredientsPanel.SetActive(true);
+        gardenPanel.SetActive(false);
+        upgradesPanel.SetActive(false);
+
+        gardenText.fontStyle = FontStyles.Normal;
+        ingredientsText.fontStyle = FontStyles.Bold; 
+        upgradeText.fontStyle = FontStyles.Normal; 
+    }
+
+    public void ShopUpgradesPanel()
+    {
+        upgradesPanel.SetActive(true);
+        ingredientsPanel.SetActive(false);
+        gardenPanel.SetActive(false);
+
+        gardenText.fontStyle = FontStyles.Normal;
+        ingredientsText.fontStyle = FontStyles.Normal; 
+        upgradeText.fontStyle = FontStyles.Bold; 
     }
 
 }

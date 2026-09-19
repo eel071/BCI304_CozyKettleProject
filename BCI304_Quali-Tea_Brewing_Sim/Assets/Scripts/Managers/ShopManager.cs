@@ -7,13 +7,14 @@ public class ShopManager : MonoBehaviour
     private BankManager bankManager;
     [SerializeField] private TMP_Text moneyText;    
 
-    [SerializeField] private ShopItem[] shopItems;
+    [SerializeField] public ShopItem[] shopItems;
 
     void Awake()
     {
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
-        shopItems = FindObjectsByType<ShopItem>();
+        shopItems = FindObjectsByType<ShopItem>(FindObjectsInactive.Include);       
     }
+    
 
     void OnEnable()
     {

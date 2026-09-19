@@ -17,7 +17,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField]private ContainerManager containerManager;
     [SerializeField]private UpgradeManager upgradeManager;
 
-    private enum Purchasable {Seeds, Sugar, Milk, Customer}
+    private enum Purchasable {Seeds, Sugar, Milk, Honey, Customer}
     [SerializeField] private Purchasable purchasable;
 
     [SerializeField] private bool isUpgrade;
@@ -54,7 +54,7 @@ public class ShopItem : MonoBehaviour
         priceText.text = price.ToString("$##.00");
         if (currentMoney < price) button.interactable = false;
         else button.interactable = true;
-        
+
         if (isUpgrade) //shop item is an upgrade
         {
             if (upgradeManager.upgrade.ContainsKey(purchasable.ToString()))
