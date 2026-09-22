@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tree : MonoBehaviour
+public class Tree : MonoBehaviour, IDataPersistence
 {
     
     public GameObject lemonPrefab;
@@ -15,10 +15,18 @@ public class Tree : MonoBehaviour
     private void Awake()
     {
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
-        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;        
-        
-    }   
+        plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
+    }
 
+    public void LoadData(GameData data)
+    {
+        this.lemonNumber = data.lemonNumber;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.lemonNumber = this.lemonNumber;
+    }
 
     public void SpawnLemons()
     {

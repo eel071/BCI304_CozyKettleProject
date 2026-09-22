@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ContainerManager : MonoBehaviour
+public class ContainerManager : MonoBehaviour, IDataPersistence
 {
         
     public Dictionary<string, int> containerCount = new Dictionary<string, int>()
@@ -44,6 +44,30 @@ public class ContainerManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        foreach (string key in new List<string>(containerCount.Keys))
+        {
+            if (data.containerItems.TryGetValue(key, out int count))
+            {
+                containerCount[key] = count;
+            }
+            else
+            {
+                Debug.Log($"{key} was not found in the saved data. ");
+            }
+        }
+        
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        foreach (string key in containerCount.Keys)
+        {
+            data.containerItems[key] = containerCount[key];
         }
     }
 

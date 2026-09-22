@@ -49,8 +49,13 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
 
     private void UpdatePlanted()
     {
-        switch(plotNumber)
+        string plot = plotNumber.ToString();
+
+        plantManager.plotPlanted[plot] = planted;
+        
+        /*switch(plotNumber)
         { 
+            
             case PlotNumber.Plot1:
                 plantManager.plot1Planted = planted;
                 break;
@@ -61,6 +66,7 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
                 plantManager.plot3Planted = planted;
                 break;
         }
+        */
     }
 
 }

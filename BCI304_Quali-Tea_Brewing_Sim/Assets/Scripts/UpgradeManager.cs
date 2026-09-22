@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class UpgradeManager : MonoBehaviour
+public class UpgradeManager : MonoBehaviour, IDataPersistence
 {
 
     public Dictionary<string, int> upgrade = new Dictionary<string, int>()
@@ -13,15 +13,28 @@ public class UpgradeManager : MonoBehaviour
     {
         {"Customer", 3}
     };
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public void LoadData(GameData data)
     {
+        foreach (string key in new List<string>(upgrade.Keys))
+        {
+            if (data.upgrades.TryGetValue(key, out int count))
+            {
+                upgrade[key] = count;
+            }
+            else
+            {
+                Debug.Log($"{key} was not found in the saved data. ");
+            }
+        }
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveData(ref GameData data)
     {
-        
+        foreach (string key in upgrade.Keys)
+        {
+            data.upgrades[key] = upgrade[key];
+        }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-public class ClockManager : MonoBehaviour
+public class ClockManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] LoadManager loadManager;
     [SerializeField] private UIManager uiManager;
@@ -37,6 +37,18 @@ public class ClockManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void LoadData(GameData data)
+    {
+        this.dayCounter = data.dayCount;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.dayCount = this.dayCounter;
+
+    }
+
 
     void Start()
     {

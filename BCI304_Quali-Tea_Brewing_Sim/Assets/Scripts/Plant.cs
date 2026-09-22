@@ -19,7 +19,7 @@ public class Plant : Plot
 
     //[SerializeField] ContainerManager containerManager;
 
-    [SerializeField] private Plot plot;
+    [SerializeField] private Plot assignedPlot;
 
     private void Awake()
     {
@@ -60,9 +60,33 @@ public class Plant : Plot
     public void LoadPlant()
     {
         ClockManager.uniqueInstance.plants.Add(this);
+        
         if (plantManager != null)
         {
-            switch (plotNumber)
+            string plot = plotNumber.ToString();
+
+            
+            if (plantManager.plotWatered.TryGetValue(plot, out bool plotWatered))
+            {
+                watered = plotWatered;
+            }
+            else Debug.Log($"{plot} not found in plotWatered dictionary");
+            
+            if (plantManager.plantDecayStage.TryGetValue(plot, out int decay))
+            {
+                decayStage = decay;
+            }
+            else Debug.Log($"{plot} not found in decay stage dictionary");
+
+            if (plantManager.plantGrowthStage.TryGetValue(plot, out int growth))
+            {
+                growthStage = growth;
+            }
+            else Debug.Log($"{plot} not found in growth stage dictionary");
+            
+            
+
+            /*switch (plotNumber)
             {
                 case PlotNumber.Plot1:
                     growthStage = plantManager.plot1GrowthStage;
@@ -80,6 +104,7 @@ public class Plant : Plot
                     decayStage = plantManager.plot3DecayStage;
                     break;
             }
+            */
             if (growthStage >= growthSprites.Length)
             {
                 ready = true;
@@ -111,7 +136,6 @@ public class Plant : Plot
         else
         {
             decayStage +=1;
-            
         }
         UpdatePlantManager();
     }
@@ -140,15 +164,13 @@ public class Plant : Plot
             }
             else Debug.Log("error: growth stage out of decay sprite range");
         }
-
         else if (growthSprites.Length != 0)
         {
             if (growthStage <= growthSprites.Length -1)
             {
                 spriteRenderer.sprite = growthSprites[growthStage];
             }
-            else Debug.Log("error: growth stage out of growth sprite range");
-            
+            else Debug.Log("error: growth stage out of growth sprite range"); 
         }
         else
         {
@@ -158,9 +180,15 @@ public class Plant : Plot
 
     private void UpdatePlantManager()
     {
+        string plot = plotNumber.ToString();
 
+        plantManager.plotWatered[plot] = watered;
+        plantManager.plantGrowthStage[plot] = growthStage;
+        plantManager.plantDecayStage[plot] = decayStage;
+        /*
         switch(plotNumber)
         {
+            
             case PlotNumber.Plot1:
                 plantManager.plot1Watered = watered;
                 plantManager.plot1GrowthStage = growthStage;
@@ -175,15 +203,15 @@ public class Plant : Plot
                 plantManager.plot3Watered = watered;
                 plantManager.plot3GrowthStage = growthStage;
                 plantManager.plot3DecayStage = decayStage;
-                break;
+                break; 
         }
+        */
     }
 
     private void OnMouseDown() 
     {  
         if (ready) //harvest the plant
         {
-            
             switch(plantType)
             { 
                 case Plants.TeaBush:
@@ -209,9 +237,13 @@ public class Plant : Plot
     private void KillPlant()
     {
         Debug.Log("Killing plant");
-        
-        plot.planted = false;
-        switch (plotNumber)
+        assignedPlot.planted = false;
+
+        string plot = plotNumber.ToString();
+            plantManager.plotPlanted[plot] = false;
+            plantManager.plantGrowthStage[plot] = 0;
+            plantManager.plantDecayStage[plot] = 0;
+       /* switch (plotNumber)
         {
             case PlotNumber.Plot1:
                 plantManager.plot1Planted = false;
@@ -229,6 +261,7 @@ public class Plant : Plot
                 plantManager.plot3DecayStage = 0;
                 break;
         }
+        */
     }
 
 }

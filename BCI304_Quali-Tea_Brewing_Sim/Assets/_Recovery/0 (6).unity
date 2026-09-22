@@ -1864,7 +1864,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9859088e1af4d4cacfb2068b1f4c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantManager
+  plot1GrowthStage: 0
+  plot2GrowthStage: 0
+  plot3GrowthStage: 0
+  plot1DecayStage: 0
+  plot2DecayStage: 0
+  plot3DecayStage: 0
+  plot1Watered: 0
+  plot2Watered: 0
+  plot3Watered: 0
+  plot1Planted: 0
+  plot2Planted: 0
+  plot3Planted: 0
   daysSinceLastHarvest: 0
+  seeds: 6
 --- !u!4 &294617197
 Transform:
   m_ObjectHideFlags: 0
@@ -3340,11 +3353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5743771106306485325, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698832927832832482, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
-      propertyPath: id
-      value: LemonL
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7494267881003223756, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
       propertyPath: m_LocalScale.x
@@ -5248,11 +5257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5743771106306485325, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698832927832832482, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
-      propertyPath: id
-      value: LemonT
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7494267881003223756, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
       propertyPath: m_LocalScale.x
@@ -7795,11 +7800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5743771106306485325, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6698832927832832482, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
-      propertyPath: id
-      value: LemonR
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7494267881003223756, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
       propertyPath: m_LocalScale.x
@@ -7867,52 +7868,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7494267881003223756, guid: c1134bce9eb7da240aa0687040f4fdf7, type: 3}
   m_PrefabInstance: {fileID: 1131312638}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1131598716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1131598718}
-  - component: {fileID: 1131598717}
-  m_Layer: 0
-  m_Name: DataPersistenceManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1131598717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131598716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1312337ac6a4ca43a0242b16044f4eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DataPersistenceManager
-  fileName: data.game
-  useEncryption: 0
---- !u!4 &1131598718
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131598716}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.45165, y: 4.9023, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243959804
 GameObject:
   m_ObjectHideFlags: 0
@@ -13782,7 +13737,6 @@ SceneRoots:
   - {fileID: 1519355942}
   - {fileID: 1734382728}
   - {fileID: 1547500821}
-  - {fileID: 1131598718}
   - {fileID: 73416334}
   - {fileID: 1051272060}
   - {fileID: 1054191273}
