@@ -51,7 +51,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
     private bool hasOrdered = false;
     public bool destroyAfterTalk = false;
-    
+
+    private Tutorial tutorial;
+
     void Awake()
     {
         //get references
@@ -65,6 +67,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         teapot = FindAnyObjectByType(typeof(Teapot)) as Teapot;
         col = GetComponent<BoxCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
 
         //set customer order in tea manager
         if (randomiseOrder) teaManager.RandomiseCustomerOrder();
@@ -80,6 +84,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             CustomerTalk();
             OrderDialogue(); //set or generate order dialogue
             hasOrdered = true;
+
+            if (tutorial.tutorialActive) tutorial.ClickCustomer();
         }
     }
 
@@ -123,6 +129,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     private void ReactionDialogue()
     {
         float tips = 0f;
+        int rep = 0;
         string reactDialogue = "";
         AudioClip reactionSound = null;
 
@@ -132,6 +139,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             if (wrongTeaD != "") reactDialogue = wrongTeaD; else reactDialogue = "This isn't what I ordered!";
             reactionSound = angrySound;
             tips = 0f;
+            rep = -20;
         }
 
         else //set dialogue, sprite, and audio clip depending on final score
@@ -143,30 +151,35 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
                     if (perfectTeaD != "") reactDialogue = perfectTeaD; else reactDialogue = "This is Perfect!";
                     reactionSound = amazingSound;
                     tips = 10f;
+                    rep = 20;
                     break;
                 case >= 75:
                     if (customerHappySprite != null) spriteRenderer.sprite = customerHappySprite;
                     if (goodTeaD != "") reactDialogue = goodTeaD; else reactDialogue = "Yum!";
                     reactionSound = goodSound;
                     tips = 5f;
+                    rep = 10;
                     break;
                 case >= 50:
                     if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
                     if (fineTeaD != "") reactDialogue = fineTeaD; else reactDialogue = "This is okay";
                     reactionSound = disappointedSound;
                     tips = 2.5f;
+                    rep = 5;
                     break;
                 case >= 25:
                     if (customerTalkingSprite != null) spriteRenderer.sprite = customerTalkingSprite;
                     if (badTeaD != "") reactDialogue = badTeaD; else reactDialogue = "I've had better tea.";
                     reactionSound = disappointedSound;
                     tips = 1f;
+                    rep = -5;
                     break;
                 case < 25:
                     if (customerUpsetSprite != null) spriteRenderer.sprite = customerUpsetSprite;
                     if (terribleTeaD != "") reactDialogue = terribleTeaD; else reactDialogue = "Can you even call this tea?";
                     reactionSound = angrySound;
                     tips = 0f;
+                    rep = -10;
                     break;
             }
         }    
@@ -174,7 +187,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         dialogue.SetCustomerText(reactDialogue, reactionSound, false);
 
         popUpManager.TipPopUp(tips);
-        bankManager.UpdateMoney(tips);
+        popUpManager.RepPopUp(rep);
+        bankManager.money += tips;
+        bankManager.reputation += rep;
         tipJar.AddTips(tips);
         teaManager.ResetTea();
         customerSpawner.customersServed += 1;

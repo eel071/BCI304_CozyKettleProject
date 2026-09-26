@@ -4,6 +4,7 @@ using UnityEngine;
 public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
 {    
     [SerializeField] private TeaManager teaManager;
+    private Tutorial tutorial;
     private Animator anim;
 
     private float steepTimer = 0f;
@@ -21,10 +22,13 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     [SerializeField] private GameObject steepBar;
     [SerializeField] private HotPlate hotPlate;
 
+    //private BoxCollider2D boxCollider2D;
+
     private void Start()
     {
         anim = gameObject.GetComponent<Animator>();
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void OnDrop(Draggable draggable)
@@ -109,5 +113,11 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     public void StopPouring()
     {
         anim.SetBool("Pouring", false);
+    }
+
+    public void SwitchInteractable(bool interactable)
+    {
+        gameObject.GetComponent<BoxCollider2D>().enabled = interactable;
+        
     }
 }

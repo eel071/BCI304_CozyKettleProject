@@ -36,10 +36,11 @@ public class CustomerSpawner : MonoBehaviour
         upgradeManager = FindAnyObjectByType(typeof(UpgradeManager)) as UpgradeManager;
     }
 
+    [SerializeField] private GameObject tutorialCustomer;
     public GameObject[] customerPrefabs;
     [SerializeField] private List<GameObject> customers = new List<GameObject>();
     public bool isCustomer = false;
-    public bool canSpawn = true;
+    public bool canSpawn = false;
     public bool customerSpawned = false;
     
     void Start()
@@ -47,7 +48,6 @@ public class CustomerSpawner : MonoBehaviour
         if (GameObject.FindWithTag("Customer") == null)
         {
             createCustomerList();
-            SpawnCustomer();
         }
     }
 
@@ -71,7 +71,7 @@ public class CustomerSpawner : MonoBehaviour
 
     IEnumerator WaitBeforeSpawn()
     {
-        float seconds = Random.Range(0.5f, 5f);
+        float seconds = Random.Range(0.5f, 3f);
         yield return new WaitForSeconds(seconds);
         SpawnCustomer();
     }
@@ -90,8 +90,16 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (audioSource != null) audioSource.PlayOneShot(bellAudio);
         int randomCustomer = Random.Range(0, customers.Count); //choose a random customer
-        Instantiate(customers[randomCustomer], new Vector3(0, 0, 0), Quaternion.identity); //instantiate the random customer
+        Instantiate(customers[randomCustomer], new Vector3(0, -0.3f, 0), Quaternion.identity); //instantiate the random customer
         customers.RemoveAt(randomCustomer); //remove the random customer from the list.
+        customerSpawned = true;
+        customerCount += 1;
+    }
+
+
+    public void SpawnFirstCustomer()
+    {
+        Instantiate(tutorialCustomer, new Vector3(0, 0, 0), Quaternion.identity);
         customerSpawned = true;
         customerCount += 1;
     }

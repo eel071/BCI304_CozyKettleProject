@@ -14,6 +14,10 @@ public class Dialogue : MonoBehaviour
     private string dialogue;
 
     [SerializeField] private TeaManager teaManager;
+    private BankManager bankManager;
+    private Tutorial tutorial;
+    private PopUpManager popUpManager;
+    
     [SerializeField] private LoadManager loadManager;
     [SerializeField] private AudioSource audioSource;
 
@@ -27,6 +31,10 @@ public class Dialogue : MonoBehaviour
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         loadManager = FindAnyObjectByType(typeof(LoadManager)) as LoadManager;
+        bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
+        popUpManager = FindAnyObjectByType(typeof(PopUpManager)) as PopUpManager;
+        
         HideDialogue();
         HideButtons();
     }
@@ -68,6 +76,7 @@ public class Dialogue : MonoBehaviour
         customer.StopTalking();
 
         if (showButtons) ShowButtons();
+        if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
     }
 
     #region show/hide
@@ -79,7 +88,8 @@ public class Dialogue : MonoBehaviour
 
     private void ShowButtons()
     {
-        rejectButton.SetActive(true);
+        if (tutorial.tutorialActive) rejectButton.SetActive(false);
+        else rejectButton.SetActive(true);
         acceptButton.SetActive(true);
     }
 
@@ -108,10 +118,13 @@ public class Dialogue : MonoBehaviour
         }
         
         SetCustomerText(dialogue, angrySound, false); 
+        bankManager.reputation -= 5;
+        popUpManager.RepPopUp(-5);
     }
 
     public void AcceptCustomer()
     {
+        if (tutorial.tutorialActive) tutorial.AcceptOrder();
         HideButtons();
         StartCoroutine(WaitBeforeLoad()); //load the tea station
     }

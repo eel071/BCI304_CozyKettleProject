@@ -7,6 +7,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
 
     [SerializeField] private TeaManager teaManager;
     [SerializeField] private Teapot teapot;
+    
+    private Tutorial tutorial;
 
     [SerializeField] private float maxHeatTime = 10f;
     public float tempGoal = 8f; //will be changed depending on tea type
@@ -25,12 +27,19 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Teapot" && teapot.waterHeated == false)
         {
+            if (tutorial.tutorialActive)
+            {
+                tutorial.HotPlate();
+                teapot.SwitchInteractable(false);
+            }
+
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0.2f, 1.25f, 0);
             teapot.waterHeating = true;
@@ -93,6 +102,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
                 myAudioSource.Stop();
                 Debug.Log("boiling sound stop");
             }
+
+            if (tutorial.tutorialActive) tutorial.RemoveTeaPot();
         }
     }
 
@@ -103,6 +114,13 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             waterTimer += Time.deltaTime;
             progressBar.SetProgress(waterTimer); //updates heating progress bar
             // Debug.Log($"Heat Timer : {waterTimer}");
+
+            if (tutorial.tutorialActive && waterTimer >= tempGoal)
+            {
+                teapot.waterHeating = false;
+                teapot.SwitchInteractable(true);
+                tutorial.ShowTutorialStep();
+            }
         }
     }
 }

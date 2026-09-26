@@ -445,6 +445,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_singleStar
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1842
+        width: 220
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a05f44d7057a7a4886294950c08aa19
+      internalID: -338123596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -475,6 +497,7 @@ TextureImporter:
       UI_button2: 7301787903208175943
       UI_circle: 7843416716369364892
       UI_panel: 6620621745411573659
+      UI_singleStar: -338123596
       UI_square: -6595680761151332689
       UI_triangle: 1652299931923453484
       stars1: -1557013538026691241

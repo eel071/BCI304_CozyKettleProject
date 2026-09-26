@@ -8,10 +8,11 @@ using System.Collections.Generic;
 public class ClockManager : MonoBehaviour, IDataPersistence
 {
     [SerializeField] LoadManager loadManager;
+    private Tutorial tutorial;
     [SerializeField] private UIManager uiManager;
     [SerializeField] PlantManager plantManager;
     public List<Plant> plants;
-    
+
     [SerializeField] CustomerSpawner customerSpawner;
     [SerializeField] ContainerManager containerManager;
     
@@ -19,7 +20,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     [SerializeField] private TMP_Text dayText;
     
-    [SerializeField] public int dayCounter = 1;
+    [SerializeField] public int dayCounter;
     
     [SerializeField] private bool testingGarden;
 
@@ -36,6 +37,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void LoadData(GameData data)
@@ -46,18 +48,23 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.dayCount = this.dayCounter;
-
     }
 
 
     void Start()
     {
+        if (dayCounter == 0 && tutorial.tutorialActive == false)
+        {
+            dayCounter = 1;
+            customerSpawner.canSpawn = true;
+        }
         UpdateDayUI();
     }
     
     private void StartDay()
     {
         UpdateDayUI();
+        
         if (dayCounter >= 3 || testingGarden) //if garden is unlocked
         {
             loadManager.Load("Garden");
@@ -67,7 +74,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             }
         }
         else OpenShop();
-        
+
+   
     }
 
     public void OpenShop()
@@ -75,7 +83,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         loadManager.Load("FrontCounter");
         customerSpawner.createCustomerList();
         customerSpawner.isCustomer = false;
-        customerSpawner.canSpawn = true;
+        if (dayCounter != 0) customerSpawner.canSpawn = true;
         tipJar.ResetTipJar();
     }
 

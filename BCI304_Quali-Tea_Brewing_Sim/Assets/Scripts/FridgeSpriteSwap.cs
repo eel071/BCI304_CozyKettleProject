@@ -14,7 +14,7 @@ public class FridgeSpriteSwap : MonoBehaviour
         fridgeRenderer = GetComponent<SpriteRenderer>();
         fridgeCollider = GetComponent<Collider2D>();
 
-        Debug.Log("FridgeSpriteSwap loaded");
+        //Debug.Log("FridgeSpriteSwap loaded");
     }
 
     void Update()
