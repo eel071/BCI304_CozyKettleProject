@@ -6,7 +6,6 @@ public class LoadManager : MonoBehaviour
 {
     [SerializeField] private UIManager uiManager;
 
-
     [SerializeField] private float sceneFadeDuration;
     private SceneFade sceneFade;
     [SerializeField] private GameObject mainCamera;
@@ -24,6 +23,7 @@ public class LoadManager : MonoBehaviour
     [SerializeField] GameObject teacup;  
     private Teacup teacupScript;
       
+    private Tutorial tutorial;
     
     private static LoadManager uniqueInstance;
     private void Awake()
@@ -43,6 +43,7 @@ public class LoadManager : MonoBehaviour
         sceneFade = GetComponentInChildren<SceneFade>();
         sceneFade.gameObject.SetActive(false);
         teacupScript = FindAnyObjectByType(typeof(Teacup)) as Teacup;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     private IEnumerator MoveCameraCoroutine(string screenName) //fade in and out when loading a scene
@@ -72,6 +73,8 @@ public class LoadManager : MonoBehaviour
         
         if (screenName == "TeaBrew")
         {
+            if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
+
             mainCamera.transform.position = teaBrewCamPos;
             toTeaAddButton.SetActive(true);
             toTeaBrewButton.SetActive(false);

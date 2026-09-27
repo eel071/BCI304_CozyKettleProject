@@ -8,6 +8,7 @@ public class GameData
 {
     public int dayCount;
     public float money;
+    public int reputation;
     public int daysSinceLastHarvest;
 
     public SerializableDictionary<string, int> containerItems;
@@ -28,6 +29,7 @@ public class GameData
     {
         this.dayCount = 0;
         this.money = 0f;
+        this.reputation = 200;
         daysSinceLastHarvest = 0;
         lemonNumber = 0;
 
