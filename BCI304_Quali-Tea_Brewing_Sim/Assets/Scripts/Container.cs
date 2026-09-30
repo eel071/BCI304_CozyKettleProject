@@ -20,6 +20,8 @@ public class Container : MonoBehaviour
     [SerializeField] ContainerManager containerManager;
     [SerializeField] private UIManager uiManager;
 
+    private Collider2D col;
+
     public bool itemSpawned = false;
 
     void Awake()
@@ -27,6 +29,7 @@ public class Container : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
         uiManager = FindAnyObjectByType(typeof(UIManager)) as UIManager;
+        col = GetComponent<Collider2D>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,7 +64,7 @@ public class Container : MonoBehaviour
 
     private void OnMouseDown()
     {  
-        if (currentStorage > 0 && !itemSpawned) //check the container isnt empty and havent already instantiated item type
+        if (currentStorage > 0 && !itemSpawned) //check the container isnt empty and hasn't already instantiated item
         {
             itemSpawned = true;
 
@@ -118,5 +121,11 @@ public class Container : MonoBehaviour
         currentStorage += 1;
         UpdateContainerManager();
         UpdateSprite();
+    }
+
+    public void SwitchInteractable(bool interactable)
+    {
+        if (col != null) col.enabled = interactable;  
+        else Debug.Log($"no collider assigned on {gameObject}");
     }
 }

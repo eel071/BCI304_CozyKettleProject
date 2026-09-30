@@ -89,4 +89,9 @@ public class ContainerManager : MonoBehaviour, IDataPersistence
         containerCount[container] = Mathf.Clamp(containerCount[container] + amount, 0, containerMax[container]);
         UpdateContainers();
     }
+
+    public void ToggleContainersInteractable(bool interactable)
+    {
+        foreach (Container c in containers) c.SwitchInteractable(interactable);
+    }
 }

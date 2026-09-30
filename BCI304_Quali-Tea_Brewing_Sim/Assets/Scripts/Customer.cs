@@ -102,7 +102,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             //Destroy(draggable.transform.gameObject); //destroy the teacup object
             ReactionDialogue();
             teacup.EmptyCup();
-            teapot.ResetTeapot();                        
+            teapot.ResetTeapot();   
+
+            if (tutorial.tutorialActive) tutorial.ServeTea();                     
         }
     }
 

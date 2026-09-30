@@ -6,6 +6,10 @@ public class Draggable : MonoBehaviour
     private Collider2D col;
     public bool dragging = false;
 
+    private Tutorial tutorial;
+
+    [SerializeField] private bool draggable = true;
+
     private HoneyAnimation honeyAnim;
 
     private ContainerItem containerItem;
@@ -19,11 +23,12 @@ public class Draggable : MonoBehaviour
         honeyAnim = GetComponent<HoneyAnimation>();
 
         containerItem = GetComponent<ContainerItem>();
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     void Update()
     {
-        if (dragging)
+        if (dragging && draggable)
         {
             if (!Input.GetMouseButton(0)) //not holding left click
             {
@@ -44,7 +49,8 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {   
-        DragObject();
+        if (draggable) DragObject();
+        else Debug.Log($"cannot drag {gameObject}: draggable set to {draggable}");  
     }
 
     private void OnMouseUp()
@@ -69,7 +75,7 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        transform.position = GetMousePosition();
+        if (draggable) transform.position = GetMousePosition();
     }    
 
     private void DropObject()
@@ -101,5 +107,12 @@ public class Draggable : MonoBehaviour
     {
         if (containerItem != null) containerItem.ReturnItem();
         else transform.position = startPosition;
+
+        if (gameObject.tag == "Teapot") tutorial.DropTeaPot();
+    }
+
+    public void SwitchDraggable(bool canDrag)
+    {
+        draggable = canDrag;
     }
 }

@@ -22,6 +22,8 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     [SerializeField] private GameObject steepBar;
     [SerializeField] private HotPlate hotPlate;
 
+    private Draggable teaDraggable;
+
     //private BoxCollider2D boxCollider2D;
 
     private void Start()
@@ -35,6 +37,12 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     {        
         if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
         {
+            if (tutorial.tutorialActive)
+            {
+                teaDraggable = draggable;
+                tutorial.TeaLeaves();
+                teaDraggable.SwitchDraggable(false);
+            }
             teaSteeping = true;
             Debug.Log($"Steeping {draggable.gameObject.name}");                      
             draggable.transform.position = transform.position + new Vector3(-0.19f, 1.25f, 0);
@@ -71,7 +79,12 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         Debug.Log("on pick up activated");
 
         if (draggable.tag == "Tea") 
-        {            
+        {   
+            if (tutorial.tutorialActive)
+            {
+                tutorial.FinishSteeping();
+            }
+
             Destroy(draggable.gameObject);
             Debug.Log($"Steeping has stopped");
             finalSteep = steepTimer;
@@ -94,7 +107,16 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             steepTimer += Time.deltaTime;
             // Debug.Log($"Steep Timer : {steepTimer}");
             progressBar.SetProgress(steepTimer); //update progress bar
+
+            if (tutorial.tutorialActive && steepTimer >= steepGoal)
+            {
+                teaSteeping = false;
+                if (teaDraggable != null) teaDraggable.SwitchDraggable(true);
+                tutorial.ShowTutorialStep();
+            }
         }
+
+        
     }
     public void ResetTeapot()
     {
@@ -112,12 +134,10 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     
     public void StopPouring()
     {
+        if (tutorial.tutorialActive)
+        {
+            tutorial.PourTea();
+        }
         anim.SetBool("Pouring", false);
-    }
-
-    public void SwitchInteractable(bool interactable)
-    {
-        gameObject.GetComponent<BoxCollider2D>().enabled = interactable;
-        
     }
 }

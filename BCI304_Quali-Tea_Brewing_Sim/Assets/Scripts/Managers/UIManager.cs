@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
    
     private TeaManager teaManager;
     private ClockManager clockManager;
+    private Tutorial tutorial;
     [SerializeField] private TextMeshProUGUI customerOrderText;
     [SerializeField] private Customer customer;
 
@@ -33,17 +34,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] TipJar tipJar;
     [SerializeField] CustomerSpawner customerSpawner;
 
-
     [SerializeField] Button openShopButton;
 
     void Start()
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager; //get a reference to the tea manager
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void ShowTicket()
     {
+        if (tutorial.tutorialActive) tutorial.OpenTicket();
         ticket.SetActive(true);
 
         /*teaOrder.color = teaManager.teaOrderColor;
@@ -94,6 +96,7 @@ public class UIManager : MonoBehaviour
     public void HideTicket()
     {
         ticket.SetActive(false);
+        if (tutorial.tutorialActive) tutorial.CloseTicket();
     }
 
     public void OpenShop()

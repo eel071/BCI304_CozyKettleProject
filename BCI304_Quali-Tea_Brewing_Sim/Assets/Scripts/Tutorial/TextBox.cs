@@ -13,6 +13,7 @@ public class TextBox : MonoBehaviour
     public void SetText(string text)
     {
         currentText = text;
+        StopAllCoroutines();
         StartCoroutine(TypeLine());        
     }
 

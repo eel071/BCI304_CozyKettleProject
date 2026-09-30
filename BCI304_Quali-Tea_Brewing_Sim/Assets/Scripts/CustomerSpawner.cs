@@ -11,6 +11,7 @@ public class CustomerSpawner : MonoBehaviour
     private UpgradeManager upgradeManager;
     private static CustomerSpawner uniqueInstance;
     private ClockManager clockManager;
+    private Tutorial tutorial;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip bellAudio;
@@ -34,9 +35,10 @@ public class CustomerSpawner : MonoBehaviour
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
         upgradeManager = FindAnyObjectByType(typeof(UpgradeManager)) as UpgradeManager;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
-    [SerializeField] private GameObject tutorialCustomer;
+    //[SerializeField] private GameObject tutorialCustomer;
     public GameObject[] customerPrefabs;
     [SerializeField] private List<GameObject> customers = new List<GameObject>();
     public bool isCustomer = false;
@@ -45,10 +47,7 @@ public class CustomerSpawner : MonoBehaviour
     
     void Start()
     {
-        if (GameObject.FindWithTag("Customer") == null)
-        {
-            createCustomerList();
-        }
+        createCustomerList();   
     }
 
     private void Update()
@@ -99,7 +98,8 @@ public class CustomerSpawner : MonoBehaviour
 
     public void SpawnFirstCustomer()
     {
-        Instantiate(tutorialCustomer, new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(customers[0], new Vector3(0, 0, 0), Quaternion.identity);
+        customers.RemoveAt(0); 
         customerSpawned = true;
         customerCount += 1;
     }

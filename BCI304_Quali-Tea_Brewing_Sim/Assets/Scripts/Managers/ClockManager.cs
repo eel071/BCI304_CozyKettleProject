@@ -53,11 +53,18 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        if (dayCounter == 0 && tutorial.tutorialActive == false)
+        if (dayCounter == 0 && tutorial.tutorialActive == true)
+        {
+            customerSpawner.canSpawn = false;
+            containerManager.ToggleContainersInteractable(false);
+        }
+        else if (dayCounter == 0 && tutorial.tutorialActive == false)
         {
             dayCounter = 1;
             customerSpawner.canSpawn = true;
+            containerManager.ToggleContainersInteractable(true);
         }
+
         UpdateDayUI();
     }
     

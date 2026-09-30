@@ -61,6 +61,8 @@ public class LoadManager : MonoBehaviour
             toTeaBrewButton.SetActive(false);
             dialogue.SetActive(true);
             uiManager.CloseDayOverscreen();  
+
+            if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
         }
 
         if (screenName == "Garden")
@@ -93,6 +95,7 @@ public class LoadManager : MonoBehaviour
             if (teacup == null) { teacup = GameObject.Find("Teacup"); }
             teacup.transform.position = new Vector3(49.85f, -2f, 0);
             teacupScript.NewStartPosition();
+            if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
         }
 
         if (screenName == "DayEnd")
@@ -106,5 +109,9 @@ public class LoadManager : MonoBehaviour
     public void Load(string screenName)
     {
         StartCoroutine(MoveCameraCoroutine(screenName));
+        if (screenName == "TeaAdd")
+        {
+            if (tutorial.tutorialActive) tutorial.ToAdd();
+        }
     }
 }

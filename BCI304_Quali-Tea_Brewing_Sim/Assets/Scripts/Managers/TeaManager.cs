@@ -26,6 +26,8 @@ public class TeaManager : MonoBehaviour
     
     [SerializeField] private ContainerManager containerManager;
     private Customer customer;
+
+    private Tutorial tutorial;
     
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class TeaManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void Update()
@@ -96,6 +99,13 @@ public class TeaManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void CheckTea()
+    {
+        if (sugarCubesOrder == sugarCubes && milkOrder == milk) tutorial.Ingredients();
+        else if (sugarCubesOrder == sugarCubes) tutorial.SugarCubes();
+        else if (milkOrder == milk) tutorial.Milk();   
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -4,10 +4,10 @@ using UnityEngine;
 public class Teacup : MonoBehaviour, IOnDropBaseCollision
 {
     [SerializeField] private TeaManager teaManager;
-    
+    private Tutorial tutorial;
     [SerializeField] private GameObject tea;
     [SerializeField] private Teapot teapotScript;
-    private Draggable draggable;
+    private Draggable thisDraggable;
 
     private float teaMax = 0.4f; 
     public float fillLevel = 0f;
@@ -25,7 +25,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {        
         teaEmpty = tea.transform.position;     
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
-        draggable = GetComponent<Draggable>();
+        thisDraggable = GetComponent<Draggable>();
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void OnDrop(Draggable draggable)
@@ -41,6 +42,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
                 teaManager.tColor = teaManager.tColor * 2;
                 teaManager.UpdateTea();
             }
+
+            if (tutorial.tutorialActive) teaManager.CheckTea();
         }
         else
         {
@@ -128,6 +131,6 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     public void NewStartPosition()
     {
-        draggable.startPosition = transform.position;
+        thisDraggable.startPosition = transform.position;
     }
 }

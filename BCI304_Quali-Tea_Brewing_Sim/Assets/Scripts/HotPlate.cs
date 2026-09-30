@@ -23,6 +23,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private Sprite plateOnSprite;
     private SpriteRenderer spriteRenderer;
 
+    private  Draggable teapotDraggable;
+
 
     void Awake()
     {
@@ -34,11 +36,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     {        
         if (draggable.tag == "Teapot" && teapot.waterHeated == false)
         {
-            if (tutorial.tutorialActive)
-            {
-                tutorial.HotPlate();
-                teapot.SwitchInteractable(false);
-            }
+            if (tutorial.tutorialActive) tutorial.HotPlate();
+ 
 
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0.2f, 1.25f, 0);
@@ -118,7 +117,6 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             if (tutorial.tutorialActive && waterTimer >= tempGoal)
             {
                 teapot.waterHeating = false;
-                teapot.SwitchInteractable(true);
                 tutorial.ShowTutorialStep();
             }
         }

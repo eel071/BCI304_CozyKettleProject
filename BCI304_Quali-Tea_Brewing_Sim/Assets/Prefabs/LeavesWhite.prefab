@@ -108,6 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
   startPosition: {x: 0, y: 0, z: 0}
   dragging: 0
+  draggable: 1
 --- !u!58 &5775983639215037601
 CircleCollider2D:
   m_ObjectHideFlags: 0
