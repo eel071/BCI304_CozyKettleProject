@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GameData 
 {
+    public string shopName;
     public int dayCount;
     public float money;
     public int reputation;

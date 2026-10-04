@@ -40,7 +40,8 @@ public class Tutorial : MonoBehaviour
         Ingredients,
         FinishTea,
         ServeTea,
-        CompleteTutorial1
+        CompleteTutorial1,
+        Finished
     }
 
     private TutorialStep currentStep;
@@ -176,6 +177,7 @@ public class Tutorial : MonoBehaviour
                     ShowTutorialStep();
                     break;
                 case TutorialStep.CompleteTutorial1:
+                    currentStep = TutorialStep.Finished;
                     tutText1.gameObject.SetActive(false);
                     tutorialActive = false;
                     customerSpawner.canSpawn = true;

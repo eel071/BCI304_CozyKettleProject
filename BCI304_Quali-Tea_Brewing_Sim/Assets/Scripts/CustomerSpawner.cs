@@ -103,4 +103,13 @@ public class CustomerSpawner : MonoBehaviour
         customerSpawned = true;
         customerCount += 1;
     }
+
+    public void FinishedTutorial()
+    {
+        if (customerSpawned == false)
+        {
+            Debug.Log("tutorial finished, setting canSpawn to true");
+            canSpawn = true;
+        }
+    }
 }

@@ -70,6 +70,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     
     private void StartDay()
     {
+        DataPersistenceManager.instance.SaveGame();
         UpdateDayUI();
         
         if (dayCounter >= 3 || testingGarden) //if garden is unlocked
@@ -81,8 +82,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             }
         }
         else OpenShop();
-
-   
     }
 
     public void OpenShop()
@@ -104,7 +103,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     public void EndDay()
     {
         loadManager.Load("DayEnd");
-        
     }
 
     public void NextDay()

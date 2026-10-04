@@ -18,10 +18,10 @@ public class FileDataHandler
         this.useEncryption = useEncryption;
     }
 
-    public GameData Load()
+    public GameData Load(string profileID)
     {
         //use Path.Combine to account for different OS's having different path separators
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileID, dataFileName);
         GameData loadedData = null;
         if (File.Exists(fullPath))
         {
@@ -56,10 +56,10 @@ public class FileDataHandler
         return loadedData;
     }
 
-    public void Save(GameData data)
+    public void Save(GameData data, string profileID)
     {
         //use Path.Combine to account for different OS's having different path separators
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileID, dataFileName);
         try
         {
             //create directory path if it doesn't already exist
@@ -89,6 +89,36 @@ public class FileDataHandler
         }
     }
 
+    public Dictionary <string, GameData> LoadAllProfiles()
+    {
+        Dictionary<string, GameData> profileDictionary = new Dictionary<string, GameData>();
+
+        //Loop over all dictionary names in the data directory path
+        IEnumerable<DirectoryInfo> dirInfos = new DirectoryInfo(dataDirPath).EnumerateDirectories();
+        foreach (DirectoryInfo dirInfo in dirInfos)
+        {
+            string profileID = dirInfo.Name;
+
+            //check if the data file exists
+            //if it doesn't, then this folder isn't a profile and should be skipped.
+            string fullPath = Path.Combine(dataDirPath, profileID, dataFileName);
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogWarning("Skipping directory when loading all profiles because it does not contain data: "
+                    + profileID);
+                continue;
+            }
+
+            //Load the game data for this profule and put it in the dictionary
+            GameData profileData = Load(profileID);
+
+            //ensure profule data isn't null
+            if (profileData != null) profileDictionary.Add(profileID, profileData);
+            else Debug.LogError("Tried to load profile but something went wrong. ProfileID: " + profileID);
+        }
+
+        return profileDictionary;
+    }
 
     //simple implementation of XOR encryption
     private string EncryptDecrypt(string data)
