@@ -159,14 +159,14 @@ MonoBehaviour:
   sugarOrder: 0
   honeyOrder: 0
   milkOrder: 0
-  orderD: Give me a black tea as bitter as my soul
-  wrongTeaD: 
-  perfectTeaD: My dead wife would've loved this tea
-  goodTeaD: 
-  fineTeaD: 
-  badTeaD: 
-  terribleTeaD: 
-  rejectD: 
+  orderD: Give me a black tea as bitter as my soul.
+  wrongTeaD: Who's soul does this tea reflect? It isn't mine.
+  perfectTeaD: My dead wife would've loved this tea.
+  goodTeaD: My dead wife would've liked this tea.
+  fineTeaD: My dead wife would've mildly enjoyed this tea.
+  badTeaD: My dead wife would've disliked this tea.
+  terribleTeaD: My dead wife would've hated this tea.
+  rejectD: You will regret this.
   customerNeutralSprite: {fileID: -6686860013161331248, guid: 8745bf874a2e4d147b1d7c302d30a0d0, type: 3}
   customerTalkingSprite: {fileID: -6686860013161331248, guid: 8745bf874a2e4d147b1d7c302d30a0d0, type: 3}
   customerHappySprite: {fileID: -6686860013161331248, guid: 8745bf874a2e4d147b1d7c302d30a0d0, type: 3}
