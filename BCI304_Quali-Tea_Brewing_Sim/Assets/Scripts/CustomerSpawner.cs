@@ -11,6 +11,7 @@ public class CustomerSpawner : MonoBehaviour
     private UpgradeManager upgradeManager;
     private static CustomerSpawner uniqueInstance;
     private ClockManager clockManager;
+    private BankManager bankManager;
     private Tutorial tutorial;
 
     [SerializeField] private AudioSource audioSource;
@@ -32,6 +33,7 @@ public class CustomerSpawner : MonoBehaviour
             Destroy(gameObject);
         }
         
+        bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
         upgradeManager = FindAnyObjectByType(typeof(UpgradeManager)) as UpgradeManager;
@@ -47,7 +49,7 @@ public class CustomerSpawner : MonoBehaviour
     
     void Start()
     {
-        createCustomerList();   
+        CreateCustomerList();   
     }
 
     private void Update()
@@ -75,15 +77,18 @@ public class CustomerSpawner : MonoBehaviour
         SpawnCustomer();
     }
 
-    public void createCustomerList()
+    public void CreateCustomerList()
     {
         customers = customerPrefabs.ToList();
-        maxCustomers = 3 + upgradeManager.upgrade["Customer"];
         if (customers.Count < maxCustomers) maxCustomers = customers.Count;
         customerCount = 0;
         customersServed = 0;
+        
+        //temp fix to customer upgrade being removed from shop
+        //eventually will have different perks from gaining stars, including longer days (increasing max customers)
+        maxCustomers = Mathf.Clamp((3 + bankManager.stars), 3, 7);
+        if (tutorial.tutorialActive) maxCustomers = 2;
     }
-
 
     private void SpawnCustomer()
     {

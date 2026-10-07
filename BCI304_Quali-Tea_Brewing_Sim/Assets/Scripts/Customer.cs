@@ -191,7 +191,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
         popUpManager.TipPopUp(tips);
         popUpManager.RepPopUp(rep);
         bankManager.money += tips;
-        bankManager.reputation += rep;
+        //bankManager.reputation += rep;
+        bankManager.dailyReputation += rep;
         tipJar.AddTips(tips);
         teaManager.ResetTea();
         customerSpawner.customersServed += 1;

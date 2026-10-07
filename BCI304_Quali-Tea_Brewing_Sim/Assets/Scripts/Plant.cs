@@ -18,6 +18,7 @@ public class Plant : Plot
     private SpriteRenderer spriteRenderer;
 
     //[SerializeField] ContainerManager containerManager;
+    
 
     [SerializeField] private Plot assignedPlot;
 
@@ -25,6 +26,7 @@ public class Plant : Plot
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager; 
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
         spriteRenderer = GetComponent<SpriteRenderer>();
         LoadPlant();
     }
@@ -55,6 +57,8 @@ public class Plant : Plot
         UpdatePlantManager();
         //insert wateringcan animation
         draggable.ReturnItem();
+
+        if (tutorial.tutorialActive) tutorial.Water();
     }
 
     public void LoadPlant()

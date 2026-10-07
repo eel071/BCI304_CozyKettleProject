@@ -4,6 +4,7 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
 {
     public PlantManager plantManager;
     public ContainerManager containerManager;
+    public Tutorial tutorial;
     public enum PlotNumber { Plot1, Plot2, Plot3 };
     public PlotNumber plotNumber;
 
@@ -17,6 +18,7 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void OnDrop(Draggable draggable)
@@ -27,6 +29,8 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
             SpawnPlant();
             UpdatePlanted();
             Destroy(draggable.gameObject);
+            
+            if (tutorial.tutorialActive) tutorial.Seed();
         }
         else if (draggable.tag == "WateringCan" && planted)
         {

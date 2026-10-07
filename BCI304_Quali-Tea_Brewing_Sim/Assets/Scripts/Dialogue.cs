@@ -118,7 +118,8 @@ public class Dialogue : MonoBehaviour
         }
         
         SetCustomerText(dialogue, angrySound, false); 
-        bankManager.reputation -= 5;
+        //bankManager.reputation -= 5;
+        bankManager.dailyReputation -= 5;
         popUpManager.RepPopUp(-5);
     }
 

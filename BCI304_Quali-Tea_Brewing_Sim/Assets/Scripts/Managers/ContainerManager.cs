@@ -13,7 +13,7 @@ public class ContainerManager : MonoBehaviour, IDataPersistence
         {"Sugar", 15},
         {"Milk", 5},
         {"Honey", 5},
-        {"Seeds", 0}
+        {"Seeds", 1}
     };
 
     public Dictionary<string, int> containerMax = new Dictionary<string, int>()

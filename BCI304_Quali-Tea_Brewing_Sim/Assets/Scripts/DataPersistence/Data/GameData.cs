@@ -10,6 +10,7 @@ public class GameData
     public int dayCount;
     public float money;
     public int reputation;
+    public int stars;
     public int daysSinceLastHarvest;
 
     public SerializableDictionary<string, int> containerItems;
@@ -33,6 +34,7 @@ public class GameData
         this.reputation = 200;
         daysSinceLastHarvest = 0;
         lemonNumber = 0;
+        stars = 0;
 
         activeLemons = new SerializableDictionary<string, bool>();
 
@@ -46,12 +48,12 @@ public class GameData
             {"Sugar", 15},
             {"Milk", 5},
             {"Honey", 5},
-            {"Seeds", 0}
+            {"Seeds", 1}
         };
 
         upgrades = new SerializableDictionary<string, int>()
         {
-            {"Customer", 0}
+            {"Hotplate", 0}
         };
 
         plantGrowth = new SerializableDictionary<string, int>()

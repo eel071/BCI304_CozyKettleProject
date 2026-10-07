@@ -7,6 +7,8 @@ public class Lemon : MonoBehaviour, IDataPersistence
     public bool isActive = false;
     [SerializeField] private string id;
 
+    
+
     void Start()
     {
         tree = FindAnyObjectByType(typeof(Tree)) as Tree;

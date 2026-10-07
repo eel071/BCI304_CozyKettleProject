@@ -4,9 +4,11 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
 {
     private float waterTimer = 0f;
     public float finalTime = 0f;
+    private float heatSpeed = 1f;
 
     [SerializeField] private TeaManager teaManager;
     [SerializeField] private Teapot teapot;
+    private UpgradeManager upgradeManager;
     
     private Tutorial tutorial;
 
@@ -30,12 +32,15 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
+        upgradeManager = FindAnyObjectByType(typeof(UpgradeManager)) as UpgradeManager;
     }
 
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Teapot" && teapot.waterHeated == false)
         {
+            heatSpeed = 1f + (upgradeManager.upgrade["Hotplate"] * 0.25f);
+            Debug.Log($"heat speed = {heatSpeed}");
             if (tutorial.tutorialActive) tutorial.HotPlate();
  
 
@@ -110,7 +115,9 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     {
         if (teapot.waterHeating == true)
         {
-            waterTimer += Time.deltaTime;
+            
+            
+            waterTimer += (Time.deltaTime * heatSpeed);
             progressBar.SetProgress(waterTimer); //updates heating progress bar
             // Debug.Log($"Heat Timer : {waterTimer}");
 

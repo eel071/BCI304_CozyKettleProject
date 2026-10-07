@@ -12,10 +12,13 @@ public class Tree : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject treeLemonT;
     [SerializeField] GameObject treeLemonL;
 
+    private Tutorial tutorial;
+
     private void Awake()
     {
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
     public void LoadData(GameData data)
@@ -33,7 +36,6 @@ public class Tree : MonoBehaviour, IDataPersistence
         if (plantManager.daysSinceLastHarvest >= 2 && lemonNumber < 3)
         {
             //Instantiate(lemonPrefab, new Vector3(-26.2f, 2.3f, 0f), Quaternion.identity);
-            
             if (treeLemonL.activeSelf == false)
             {
                 treeLemonL.SetActive(true);
@@ -51,6 +53,26 @@ public class Tree : MonoBehaviour, IDataPersistence
             lemonNumber++;
         }
         
+        if (tutorial.tutorialActive && lemonNumber == 0)
+        {
+            //Instantiate(lemonPrefab, new Vector3(-26.2f, 2.3f, 0f), Quaternion.identity);
+            if (treeLemonL.activeSelf == false)
+            {
+                treeLemonL.SetActive(true);
+            }
+            else if (treeLemonR.activeSelf == false)
+            {
+                treeLemonR.SetActive(true);
+            }
+            else 
+            {
+                treeLemonT.SetActive(true);
+            }           
+            
+            //isLemon = true;
+            lemonNumber++;
+            plantManager.daysSinceLastHarvest = 0;
+        }
     }
 
     public void HarvestLemon()
@@ -58,5 +80,11 @@ public class Tree : MonoBehaviour, IDataPersistence
         containerManager.AddContainerCount("Lemon", 4);
         Debug.Log("lemon harvested");
         lemonNumber -= 1;
+
+
+        if (tutorial.tutorialActive)
+        {
+            tutorial.Lemon();
+        }
     }
 }

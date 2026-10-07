@@ -15,8 +15,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject shop;
     [SerializeField] private GameObject dayOverScreen;
-    [SerializeField] private TextMeshProUGUI dailyReport;
-    [SerializeField] private TextMeshProUGUI dayText;
+    
 
     [SerializeField] private GameObject seedCounter;
     [SerializeField] private TextMeshProUGUI seedCounterText;
@@ -31,8 +30,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeText;
 
 
-    [SerializeField] TipJar tipJar;
-    [SerializeField] CustomerSpawner customerSpawner;
+    [SerializeField] private TipJar tipJar;
+    [SerializeField] private CustomerSpawner customerSpawner;
+    [SerializeField] private DailyReport dailyReport;
 
     [SerializeField] Button openShopButton;
 
@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     {
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager; //get a reference to the tea manager
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
-        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
+        tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;     
     }
 
     public void ShowTicket()
@@ -112,8 +112,7 @@ public class UIManager : MonoBehaviour
     public void DayOverScreen()
     {
         dayOverScreen.SetActive(true);
-        dayText.text = $"Day {clockManager.dayCounter}";
-        dailyReport.text = $"customers served: {customerSpawner.customersServed} \n tips earned:{tipJar.currentTips.ToString("$#0.00")}";
+        dailyReport.DailyReportUpdate();
     }
 
     public void CloseDayOverscreen()

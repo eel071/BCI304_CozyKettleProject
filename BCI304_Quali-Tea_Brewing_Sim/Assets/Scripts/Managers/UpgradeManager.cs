@@ -6,12 +6,12 @@ public class UpgradeManager : MonoBehaviour, IDataPersistence
 
     public Dictionary<string, int> upgrade = new Dictionary<string, int>()
     {
-        {"Customer", 0}
+        {"Hotplate", 0}
     };
 
     public Dictionary<string, int> maxUpgrade = new Dictionary<string, int>()
     {
-        {"Customer", 3}
+        {"Hotplate", 3}
     };
 
     public void LoadData(GameData data)

@@ -76,8 +76,6 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
 
     public void OnPickUp(Draggable draggable)
     {
-        Debug.Log("on pick up activated");
-
         if (draggable.tag == "Tea") 
         {   
             if (tutorial.tutorialActive)

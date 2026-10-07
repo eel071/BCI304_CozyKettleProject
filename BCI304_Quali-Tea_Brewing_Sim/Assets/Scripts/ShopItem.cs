@@ -17,10 +17,12 @@ public class ShopItem : MonoBehaviour
     [SerializeField]private ContainerManager containerManager;
     [SerializeField]private UpgradeManager upgradeManager;
 
-    private enum Purchasable {Seeds, Sugar, Milk, Honey, Customer}
+    private enum Purchasable {Seeds, Sugar, Milk, Honey, Hotplate}
     [SerializeField] private Purchasable purchasable;
 
     [SerializeField] private bool isUpgrade;
+
+    
 
     public void PurchaseItem()
     {
