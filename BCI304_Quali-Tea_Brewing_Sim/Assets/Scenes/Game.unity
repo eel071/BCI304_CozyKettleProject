@@ -4738,6 +4738,7 @@ MonoBehaviour:
   teacupDraggable: {fileID: 1802913095}
   tutorialActive: 1
   playingTutorial: 1
+  tutorial: 1
 --- !u!1 &458184834
 GameObject:
   m_ObjectHideFlags: 0
@@ -16897,9 +16898,9 @@ RectTransform:
   - {fileID: 480073980}
   m_Father: {fileID: 776060509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 141, y: -61}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: 200, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061495113

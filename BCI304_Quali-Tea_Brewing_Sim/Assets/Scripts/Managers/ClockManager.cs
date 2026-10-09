@@ -57,6 +57,14 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        StartDay();       
+    }
+    
+    private void StartDay()
+    {
+        DataPersistenceManager.instance.SaveGame();
+        UpdateDayUI();
+
         if (dayCounter == 0 && tutorial.tutorialActive == true)
         {
             customerSpawner.canSpawn = false;
@@ -69,20 +77,12 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             containerManager.ToggleContainersInteractable(true);
         }
         else customerSpawner.canSpawn = true;
-        
 
-        UpdateDayUI();
-    }
-    
-    private void StartDay()
-    {
-        DataPersistenceManager.instance.SaveGame();
-        UpdateDayUI();
-        
         if (dayCounter >= 1|| testingGarden) //if garden is unlocked
         {
             if (tutorial.playingTutorial)
             {
+                tutorial.tutorial = 2;
                 tutorial.tutorialActive = true;
                 tutorial.ShowTutorialStep();
             }

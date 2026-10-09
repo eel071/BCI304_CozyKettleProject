@@ -55,6 +55,18 @@ public class FileDataHandler
         }
         return loadedData;
     }
+    
+    public void Delete(GameData data, string profileID)
+    {
+        string fullPath = Path.Combine(dataDirPath, profileID, dataFileName);
+        if (File.Exists(fullPath))
+        {
+            File.Delete(fullPath);
+            Debug.Log($"save slot {profileID} deleted ");
+        }
+        else Debug.LogWarning($"Save slot {profileID} does not exist.");
+
+    }
 
     public void Save(GameData data, string profileID)
     {

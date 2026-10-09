@@ -17,11 +17,14 @@ public class SaveSlot : MonoBehaviour
 
     private Button saveSlotButton;
 
+    private SaveSlotsMenu saveSlotsMenu;
+
     public bool hasData;
 
     private void Awake()
     {
         saveSlotButton = this.GetComponent<Button>();
+        saveSlotsMenu = FindAnyObjectByType(typeof(SaveSlotsMenu)) as SaveSlotsMenu;
     }
 
     public void SetData(GameData data)
@@ -54,6 +57,12 @@ public class SaveSlot : MonoBehaviour
     public void SetInteractable(bool interactable)
     {
         saveSlotButton.interactable = interactable;
+    }
+
+    public void DeleteSaveSlot()
+    {
+        DataPersistenceManager.instance.DeleteSaveSlot(profileID);
+        saveSlotsMenu.ActivateMenu();
     }
 
     

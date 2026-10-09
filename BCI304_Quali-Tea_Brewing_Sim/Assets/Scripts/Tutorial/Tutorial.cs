@@ -24,7 +24,7 @@ public class Tutorial : MonoBehaviour
     public bool tutorialActive = true;
     public bool playingTutorial = true;
 
-    private int tutorial = 1;
+    public int tutorial = 1;
     //Tutorial 1: Tea shop on day 0
     public enum Tutorial1Step
     {

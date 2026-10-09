@@ -69,6 +69,11 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
+    public void DeleteSaveSlot(string profileID)
+    {
+        dataHandler.Delete(gameData, profileID);
+    }
+
     public void NewGame(string shopName)
     {
         this.gameData = new GameData();
