@@ -140,6 +140,7 @@ public class Tutorial : MonoBehaviour
                     waitingForAction = true;
                     break;
                 case Tutorial1Step.PourTea:
+                    tutText1.gameObject.SetActive(true);
                     tutText1.SetText("Now pour the tea!");
                     teapotDraggable.SwitchDraggable(true);
                     waitingForAction = true;

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollision
+public class Teapot : MonoBehaviour, IOnDropBaseCollision //IOnPickUpBaseCollision
 {    
     [SerializeField] private TeaManager teaManager;
     private Tutorial tutorial;
@@ -24,11 +24,15 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
 
     private Draggable teaDraggable;
 
-    //private BoxCollider2D boxCollider2D;
+    private Collider2D col;
+
+    private string teaType;
+    [SerializeField] private GameObject steepButton;
 
     private void Start()
     {
         anim = gameObject.GetComponent<Animator>();
+        col = gameObject.GetComponent<Collider2D>();
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
@@ -37,11 +41,11 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
     {        
         if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
         {
+            col.enabled = false;
             if (tutorial.tutorialActive)
             {
                 teaDraggable = draggable;
                 tutorial.TeaLeaves();
-                teaDraggable.SwitchDraggable(false);
             }
             teaSteeping = true;
             Debug.Log($"Steeping {draggable.gameObject.name}");                      
@@ -64,6 +68,9 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             //steeping progress bar
             steepBar.SetActive(true); 
             progressBar.SetBar(maxSteepTime, steepGoal);
+            teaType = draggable.name;
+            Destroy(draggable.gameObject);
+            steepButton.SetActive(true);
         }        
         else
         {
@@ -74,10 +81,29 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
         
     }
 
+    public void StopSteeping()
+    {
+        col.enabled = true;
+        if (tutorial.tutorialActive)
+        {
+            tutorial.FinishSteeping();
+        }
+        steepButton.SetActive(false);
+        finalSteep = steepTimer;
+        teaSteeping = false;
+        steepTimer = 0f;
+        Debug.Log($"Steep Final Time : {finalSteep}");
+        teaSteeped = true;  
+        steepBar.SetActive(false);
+        teaManager.SetTea(teaType, finalSteep, steepGoal); 
+    }
+
+/*
     public void OnPickUp(Draggable draggable)
     {
         if (draggable.tag == "Tea") 
         {   
+            
             if (tutorial.tutorialActive)
             {
                 tutorial.FinishSteeping();
@@ -97,6 +123,7 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollisio
             teaManager.SetTea(teaType, finalSteep, steepGoal); 
         }
     }
+*/
 
     private void Update()
     {

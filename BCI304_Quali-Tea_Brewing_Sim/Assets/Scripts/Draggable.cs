@@ -70,7 +70,7 @@ public class Draggable : MonoBehaviour
         if (hitCollider != null && hitCollider.TryGetComponent(out IOnPickUpBaseCollision onPickUpBaseCollision))
         {
             onPickUpBaseCollision.OnPickUp(this);                      
-        }      
+        }  
     }
 
     private void OnMouseDrag()
