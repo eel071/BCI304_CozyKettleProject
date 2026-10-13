@@ -20,7 +20,9 @@ public class LoadManager : MonoBehaviour
     [SerializeField] private GameObject dialogue;
     [SerializeField] private Tree tree;
 
-    [SerializeField] GameObject teacup;  
+    [SerializeField] GameObject teacup;
+
+    private FinishTea finishTea;
     private Teacup teacupScript;
       
     private Tutorial tutorial;
@@ -45,6 +47,7 @@ public class LoadManager : MonoBehaviour
         sceneFade.gameObject.SetActive(false);
         teacupScript = FindAnyObjectByType(typeof(Teacup)) as Teacup;
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
+        finishTea = FindAnyObjectByType(typeof(FinishTea)) as FinishTea;
     }
 
     private IEnumerator MoveCameraCoroutine(string screenName) //fade in and out when loading a scene
@@ -64,6 +67,15 @@ public class LoadManager : MonoBehaviour
             uiManager.CloseDayOverscreen();  
 
             if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
+
+            if (finishTea.servingTea)
+            {
+                finishTea.servingTea = false;
+                teacup.transform.position = new Vector3(0f, -3.5f, 0); 
+                teacupScript.NewStartPosition();   
+                teacupScript.toggleSaucer(true);
+            }
+              
         }
 
         if (screenName == "Garden")

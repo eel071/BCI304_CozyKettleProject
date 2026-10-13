@@ -71,7 +71,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             customerSpawner.canSpawn = true;
             containerManager.ToggleContainersInteractable(true);
         }
-        else if (dayCounter >= 1) customerSpawner.canSpawn = true;
+        //else if (dayCounter >= 1) customerSpawner.canSpawn = true;
 
         if (dayCounter >= 1|| testingGarden) //if garden is unlocked
         {

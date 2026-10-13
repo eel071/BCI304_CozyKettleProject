@@ -33,7 +33,7 @@ public class Plant : Plot
         LoadPlant();
     }
         
-    private void OnEnable()
+    public void SpawnPlant()
     {
         clockManager.plants.Add(this);
         LoadPlant();
@@ -65,13 +65,12 @@ public class Plant : Plot
 
     public void LoadPlant()
     {
-        clockManager.plants.Add(this);
+        //clockManager.plants.Add(this);
         
         if (plantManager != null)
         {
             string plot = plotNumber.ToString();
 
-            
             if (plantManager.plotWatered.TryGetValue(plot, out bool plotWatered))
             {
                 watered = plotWatered;
@@ -90,27 +89,6 @@ public class Plant : Plot
             }
             else Debug.Log($"{plot} not found in growth stage dictionary");
             
-            
-
-            /*switch (plotNumber)
-            {
-                case PlotNumber.Plot1:
-                    growthStage = plantManager.plot1GrowthStage;
-                    watered = plantManager.plot1Watered;
-                    decayStage = plantManager.plot1DecayStage;
-                    break;
-                case PlotNumber.Plot2:
-                    watered = plantManager.plot2Watered;
-                    growthStage = plantManager.plot2GrowthStage;
-                    decayStage = plantManager.plot2DecayStage;
-                    break;
-                case PlotNumber.Plot3:
-                    watered = plantManager.plot3Watered;
-                    growthStage = plantManager.plot3GrowthStage;
-                    decayStage = plantManager.plot3DecayStage;
-                    break;
-            }
-            */
             if (growthStage >= growthSprites.Length)
             {
                 ready = true;

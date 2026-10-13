@@ -86,8 +86,9 @@ public class CustomerSpawner : MonoBehaviour
         
         //temp fix to customer upgrade being removed from shop
         //eventually will have different perks from gaining stars, including longer days (increasing max customers)
-        maxCustomers = Mathf.Clamp((3 + bankManager.stars), 3, 7);
-        if (tutorial.tutorialActive) maxCustomers = 2;
+        if (tutorial.tutorial == 1) maxCustomers = 2;
+        maxCustomers = Mathf.Clamp((2 + bankManager.stars), 3, 7);
+        
     }
 
     private void SpawnCustomer()

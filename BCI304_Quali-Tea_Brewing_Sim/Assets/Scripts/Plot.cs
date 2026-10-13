@@ -44,7 +44,7 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
     {
         Debug.Log("Spawning Plant");
         teaBush.SetActive(true);
-        plantScript.LoadPlant();
+        plantScript.SpawnPlant();
         //teaBush = Instantiate(teaBushPrefab, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);           
         //plant = teaBush.GetComponent<Plant>();
         plantScript.plotNumber = plotNumber;

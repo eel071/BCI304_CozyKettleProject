@@ -15,10 +15,13 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private Container blackTeaContainer; 
     [SerializeField] private Container sugarContainer; 
     [SerializeField] private Container milkContainer; 
+    [SerializeField] private Container seedContainer;
 
     [SerializeField] private Draggable teapotDraggable; 
     [SerializeField] private Draggable teacupDraggable; 
     
+    [SerializeField] private Button steepButton;
+    [SerializeField] private Button startDayButton;
     //[SerializeField] private GameObject toAddArrow;
 
     public bool tutorialActive = true;
@@ -156,6 +159,7 @@ public class Tutorial : MonoBehaviour
                     tutText1.gameObject.SetActive(true);
                     tutText1.SetText("The tea has finished steeping! \n Remove the tea leaves by clicking them.");
                     waitingForAction = true;
+                    steepButton.enabled = true;
                     break;
                 case Tutorial1Step.PourTea:
                     tutText1.gameObject.SetActive(true);
@@ -181,13 +185,13 @@ public class Tutorial : MonoBehaviour
                 case Tutorial1Step.FinishTea:
                     tutText1.gameObject.SetActive(false);
                     tutText2.gameObject.SetActive(true);
-                    tutText2.SetText("The tea is ready! Drag the cup onto the serving area.");
+                    tutText2.SetText("The tea is ready! Drag the cup onto the saucer.");
                     teacupDraggable.SwitchDraggable(true);
                     waitingForAction = true;
                     break;
                 case Tutorial1Step.ServeTea:
                     tutText2.gameObject.SetActive(true);
-                    tutText2.SetText("Drag the cup onto the customer to serve it.");
+                    tutText2.SetText("Drag the cup onto the customer to serve it to them.");
                     waitingForAction = true;
                     break;
                 case Tutorial1Step.CompleteTutorial1:
@@ -205,6 +209,8 @@ public class Tutorial : MonoBehaviour
                 case Tutorial2Step.Garden:
                     tutText1.gameObject.SetActive(true);
                     tutText1.SetText("Welcome to the garden! Here you can grow ingredients for your shop.");
+                    seedContainer.SwitchInteractable(false);
+                    startDayButton.enabled = false;
                     waitingForAction = false;
                     break;
                 case Tutorial2Step.Lemon:
@@ -213,6 +219,7 @@ public class Tutorial : MonoBehaviour
                     break;              
                 case Tutorial2Step.Seed:
                     tutText1.SetText("You can also grow your very own tea leaves. \n Plant a tea bush by dragging a seed onto one of the plots.");
+                    seedContainer.SwitchInteractable(true);
                     waitingForAction = true;
                     break;
                 case Tutorial2Step.Water:
@@ -226,6 +233,7 @@ public class Tutorial : MonoBehaviour
                 case Tutorial2Step.StartDay:
                     tutText1.SetText("Now you can start the day.");
                     waitingForAction = true;
+                    startDayButton.enabled = true;
                     break;
                     
             }
@@ -255,7 +263,7 @@ public class Tutorial : MonoBehaviour
                     case Tutorial1Step.CompleteTutorial1:
                         currentStep1 = Tutorial1Step.Finished;
                         tutText1.gameObject.SetActive(false);
-                        customerSpawner.canSpawn = true;
+                        customerSpawner.FinishedTutorial();
                         tutorialActive = false;
                         tutorial = 2;
                         containerManager.ToggleContainersInteractable(true);
@@ -353,6 +361,7 @@ public class Tutorial : MonoBehaviour
             blackTeaContainer.SwitchInteractable(false);
             currentStep1 = Tutorial1Step.FinishSteeping;
             tutText1.gameObject.SetActive(false);
+            steepButton.enabled = false;
         }
     }
 
@@ -419,8 +428,6 @@ public class Tutorial : MonoBehaviour
         if (currentStep1 == Tutorial1Step.ServeTea)
         {
             currentStep1 = Tutorial1Step.CompleteTutorial1;
-            ShowTutorialStep();
-            Debug.Log("Serve Tea");
         }
     }
 

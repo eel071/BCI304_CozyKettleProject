@@ -14,6 +14,8 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
 
     [SerializeField] private AudioClip chimeSound;
 
+    public bool servingTea = false;
+
 
     private void Start()
     {
@@ -32,9 +34,9 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
             AudioManager.instance.PlaySFXClip(chimeSound, transform, 1f);
             //draggable.transform.position = draggable.startPosition;
             //draggable.transform.position = transform.position + new Vector3(0, 1, 0);
-            teacup.transform.position = new Vector3(0f, -3.5f, 0); 
-            teacup.NewStartPosition();           
-            loadManager.Load("FrontCounter");
+            teacup.transform.position = new Vector3(56, -2, 0f);
+            servingTea = true;
+            loadManager.Load("FrontCounter");     
         }
         else
         {

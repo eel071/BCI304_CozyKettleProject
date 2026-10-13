@@ -6,6 +6,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private TeaManager teaManager;
     private Tutorial tutorial;
     [SerializeField] private GameObject tea;
+    [SerializeField] private GameObject saucer;
     [SerializeField] private Teapot teapotScript;
     private Draggable thisDraggable;
 
@@ -16,9 +17,12 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     private bool fillingCup = false;    
     // private bool draggingCup = false; //not currently in use, just uncomment it when you need it
     public bool teaFilled = false;
+    private bool teaFull = false;
 
     [SerializeField] private AudioClip teaPouring;
     private AudioSource pouringSFX;
+
+    
 
 
     void Start()
@@ -61,9 +65,8 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
-        
 
-        if (other.gameObject.CompareTag("Teapot") && teapotScript.waterHeated == true && drag.dragging && teaFilled == false) //checks that the teapot is the object being dragged
+        if (other.gameObject.CompareTag("Teapot") && teapotScript.waterHeated == true && drag.dragging && teaFull == false) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
@@ -106,6 +109,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             {
                 fillingCup = false;
                 teaFilled = true;
+                teaFull = false;
 
                 if (pouringSFX != null) AudioManager.instance.StopLoopingSFX(pouringSFX);
                 Debug.Log("stopped filling cup - FULL");
@@ -118,6 +122,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {
         transform.position = new Vector3(38f, -2f, 0);
         NewStartPosition();
+        toggleSaucer(false);
         tea.transform.position = teaEmpty;        
         fillLevel = 0;
         teaFilled = false;
@@ -128,4 +133,12 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     {
         thisDraggable.startPosition = transform.position;
     }
+
+    public void toggleSaucer(bool active)
+    {
+        saucer.SetActive(active);
+    }
+
+
+
 }
