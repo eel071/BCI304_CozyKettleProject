@@ -13,7 +13,7 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
     private Tutorial tutorial;
 
     [SerializeField] private AudioClip chimeSound;
-    [SerializeField] private AudioSource myAudioSource;
+
 
     private void Start()
     {
@@ -29,10 +29,7 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
             score.CalculateScore();
             Debug.Log($"{score.finalScore}%");
 
-            if (chimeSound != null && myAudioSource != null)
-            {
-                myAudioSource.PlayOneShot(chimeSound);
-            }
+            AudioManager.instance.PlaySFXClip(chimeSound, transform, 1f);
             //draggable.transform.position = draggable.startPosition;
             //draggable.transform.position = transform.position + new Vector3(0, 1, 0);
             teacup.transform.position = new Vector3(0f, -3.5f, 0); 

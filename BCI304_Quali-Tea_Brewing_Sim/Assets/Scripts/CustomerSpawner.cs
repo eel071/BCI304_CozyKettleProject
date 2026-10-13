@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Audio;
+
 
 
 public class CustomerSpawner : MonoBehaviour
 {
     private TeaManager teaManager;
     private UpgradeManager upgradeManager;
-    private static CustomerSpawner uniqueInstance;
+    //private static CustomerSpawner uniqueInstance;
     private ClockManager clockManager;
     private BankManager bankManager;
     private Tutorial tutorial;
-
-    [SerializeField] private AudioSource audioSource;
+  
     [SerializeField] private AudioClip bellAudio;
 
     public int maxCustomers = 3;
@@ -23,7 +22,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void Awake()
     {
-        if (uniqueInstance == null)
+        /*if (uniqueInstance == null)
         {
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
@@ -32,6 +31,7 @@ public class CustomerSpawner : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        */
         
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
         teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager;
@@ -92,7 +92,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
-        if (audioSource != null) audioSource.PlayOneShot(bellAudio);
+        AudioManager.instance.PlaySFXClip(bellAudio, transform, 0.5f);
         int randomCustomer = Random.Range(0, customers.Count); //choose a random customer
         Instantiate(customers[randomCustomer], new Vector3(0, -0.3f, 0), Quaternion.identity); //instantiate the random customer
         customers.RemoveAt(randomCustomer); //remove the random customer from the list.

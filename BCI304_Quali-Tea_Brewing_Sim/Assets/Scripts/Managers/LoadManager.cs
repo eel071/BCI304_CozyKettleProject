@@ -25,12 +25,12 @@ public class LoadManager : MonoBehaviour
       
     private Tutorial tutorial;
     
-    private static LoadManager uniqueInstance;
+    //private static LoadManager uniqueInstance;
     private void Awake()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
 
-        if (uniqueInstance == null)
+        /*if (uniqueInstance == null)
         {
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
@@ -39,6 +39,7 @@ public class LoadManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        */
 
         sceneFade = GetComponentInChildren<SceneFade>();
         sceneFade.gameObject.SetActive(false);

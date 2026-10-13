@@ -25,6 +25,7 @@ public class Tutorial : MonoBehaviour
     public bool playingTutorial = true;
 
     public int tutorial = 1;
+
     //Tutorial 1: Tea shop on day 0
     public enum Tutorial1Step
     {
@@ -75,14 +76,31 @@ public class Tutorial : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (clockManager != null && clockManager.dayCounter == 0)
+        if (playingTutorial && clockManager != null)
         {
-            if (tutorialActive)
+            if (clockManager.dayCounter == 0)
             {
-                teapotDraggable.SwitchDraggable(false);
-                teacupDraggable.SwitchDraggable(false);
+                customerSpawner.canSpawn = false;
+                tutorialActive = true;
+                tutorial = 1;
                 currentStep1 = Tutorial1Step.Welcome;
+
+                teapotDraggable.SwitchDraggable(false);
+                teacupDraggable.SwitchDraggable(false);               
+                containerManager.ToggleContainersInteractable(false);
                 ShowTutorialStep();
+            }
+            else if (clockManager.dayCounter == 1)
+            {
+                tutorial = 2;
+                currentStep2 = Tutorial2Step.Garden;
+                ShowTutorialStep();
+            }
+            else if (clockManager.dayCounter >= 2)
+            {
+                playingTutorial = false;
+                tutorialActive = false;
+                tutorial = 0;
             }
         }
     }

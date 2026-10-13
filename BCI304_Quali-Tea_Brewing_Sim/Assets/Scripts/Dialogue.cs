@@ -39,16 +39,16 @@ public class Dialogue : MonoBehaviour
         HideButtons();
     }
 
-    public void SetCustomerText(string text, AudioClip soundToPlay, bool showButtons)
+    public void SetCustomerText(string text, bool showButtons, AudioClip soundToPlay, Transform transform)
     {
         customerText.enabled = true;
         dialogueBox.enabled = true;
 
         StartCoroutine(TypeLine(text, showButtons));        
 
-        if (audioSource != null && soundToPlay != null)
+        if (soundToPlay != null)
         {
-            audioSource.PlayOneShot(soundToPlay);
+            AudioManager.instance.PlaySFXClip(soundToPlay, transform, 1f);
         }
     }
 
@@ -117,7 +117,7 @@ public class Dialogue : MonoBehaviour
             customer.destroyAfterTalk = true; //destroy customer after dialogue ends
         }
         
-        SetCustomerText(dialogue, angrySound, false); 
+        SetCustomerText(dialogue, false, angrySound, transform); 
         //bankManager.reputation -= 5;
         bankManager.dailyReputation -= 5;
         popUpManager.RepPopUp(-5);

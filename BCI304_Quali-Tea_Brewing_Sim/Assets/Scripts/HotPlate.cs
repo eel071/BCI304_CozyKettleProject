@@ -19,7 +19,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private GameObject heatBar;
 
     [SerializeField] private AudioClip boilingSound;
-    [SerializeField] private AudioSource myAudioSource;
+    private AudioSource boilingSFX;
 
     [SerializeField] private Sprite plateOffSprite;
     [SerializeField] private Sprite plateOnSprite;
@@ -68,16 +68,9 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             heatBar.SetActive(true);
             progressBar.SetBar(maxHeatTime, tempGoal);
 
-            if (boilingSound!= null && myAudioSource != null)
-            {
-                // This plays the specific clip you dragged in
-                myAudioSource.clip = boilingSound;
-                myAudioSource.loop = true; // Make sure it keeps boiling
-                myAudioSource.Play();
-                Debug.Log("boiling sound start");
-            }
 
-        }        
+            boilingSFX = AudioManager.instance.PlayLoopingSFX(boilingSound, transform, 1f);
+        }    
         else
         {
             Debug.Log($"Tried to Heat {draggable.tag}");
@@ -101,11 +94,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             teapot.waterHeated = true;
             heatBar.SetActive(false); //hide heating progress bar
 
-            if (boilingSound != null)
-            {
-                myAudioSource.Stop();
-                Debug.Log("boiling sound stop");
-            }
+            if (boilingSFX != null) AudioManager.instance.StopLoopingSFX(boilingSFX);
 
             if (tutorial.tutorialActive) tutorial.RemoveTeaPot();
         }

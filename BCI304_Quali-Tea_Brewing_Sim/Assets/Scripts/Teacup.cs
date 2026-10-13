@@ -18,7 +18,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     public bool teaFilled = false;
 
     [SerializeField] private AudioClip teaPouring;
-    [SerializeField] private AudioSource myAudioSource;
+    private AudioSource pouringSFX;
 
 
     void Start()
@@ -61,15 +61,15 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
+        
+
         if (other.gameObject.CompareTag("Teapot") && teapotScript.waterHeated == true && drag.dragging && teaFilled == false) //checks that the teapot is the object being dragged
         {
             fillingCup = true; 
             StartCoroutine(FillCup());
             Debug.Log("filling cup");
 
-            myAudioSource.clip = teaPouring;
-            myAudioSource.loop = true;
-            myAudioSource.Play();
+            pouringSFX = AudioManager.instance.PlayLoopingSFX(teaPouring, transform, 1f);
             teapotScript.PourTea();
         }
     }
@@ -82,10 +82,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             Debug.Log("stopped filling cup");
             teaFilled = true;
 
-            if (myAudioSource != null)
-            {
-                myAudioSource.Stop(); // Stop sound when 100% full
-            }
+            if (pouringSFX != null) AudioManager.instance.StopLoopingSFX(pouringSFX);
             teapotScript.StopPouring();
         }
     }
@@ -110,11 +107,9 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
                 fillingCup = false;
                 teaFilled = true;
 
-                if (myAudioSource != null)
-                {
-                    myAudioSource.Stop(); // Stop sound when 100% full
-                }
+                if (pouringSFX != null) AudioManager.instance.StopLoopingSFX(pouringSFX);
                 Debug.Log("stopped filling cup - FULL");
+                teapotScript.StopPouring();
             }
         }
     }

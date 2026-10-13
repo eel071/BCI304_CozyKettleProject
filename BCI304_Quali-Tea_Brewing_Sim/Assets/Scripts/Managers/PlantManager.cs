@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class PlantManager : MonoBehaviour, IDataPersistence
 {
+    private Plot[] plots;
+    
     //public int plot1GrowthStage, plot2GrowthStage, plot3GrowthStage;
     public Dictionary<string, int> plantGrowthStage = new Dictionary<string, int>()
     {
@@ -39,11 +41,11 @@ public class PlantManager : MonoBehaviour, IDataPersistence
     
     //public bool teaFinishedGrowing, lemonFinishedGrowing;
 
-    public static PlantManager uniqueInstance;
+    //public static PlantManager uniqueInstance;
 
     private void Awake()
     {
-        if (uniqueInstance == null)
+        /*if (uniqueInstance == null)
         {
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
@@ -51,7 +53,9 @@ public class PlantManager : MonoBehaviour, IDataPersistence
         else
         {
             Destroy(gameObject);
-        }
+        }*/ 
+
+        plots = FindObjectsByType(typeof(Plot)) as Plot[];
     }
 
     public void LoadData(GameData data)
@@ -62,6 +66,12 @@ public class PlantManager : MonoBehaviour, IDataPersistence
         LoadPlotData(plotWatered, data.plotWatered);
 
         this.daysSinceLastHarvest = data.daysSinceLastHarvest;
+
+        foreach (Plot p in plots)
+        {
+            p.CheckPlanted();
+        } 
+
     }
 
     private void LoadPlantData(Dictionary<string, int> currentDictionary, Dictionary<string, int> savedDictionary)

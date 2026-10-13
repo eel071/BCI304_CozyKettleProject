@@ -15,7 +15,6 @@ public class Container : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioClip wooshSound;
-    [SerializeField] private AudioSource myAudioSource;
 
     [SerializeField] ContainerManager containerManager;
     [SerializeField] private UIManager uiManager;
@@ -87,12 +86,8 @@ public class Container : MonoBehaviour
             UpdateContainerManager();
             UpdateSprite();
             
-            if (wooshSound != null && myAudioSource != null)
-            {
-                // PlayOneShot is great for clicks because it doesn't interrupt 
-                // itself if the player clicks really fast!
-                myAudioSource.PlayOneShot(wooshSound);
-            }
+            AudioManager.instance.PlaySFXClip(wooshSound, transform, 1f);
+            
         }
         else
         {

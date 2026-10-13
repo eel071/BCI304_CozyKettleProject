@@ -125,7 +125,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             //no sugar or lemon
             else customerOrder = $"{teaManager.teaOrder}";
         }
-        dialogue.SetCustomerText(customerOrder, orderSound, true);
+        dialogue.SetCustomerText(customerOrder, true, orderSound, transform);
     }
 
     private void ReactionDialogue()
@@ -186,7 +186,7 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             }
         }    
     
-        dialogue.SetCustomerText(reactDialogue, reactionSound, false);
+        dialogue.SetCustomerText(reactDialogue, false, reactionSound, transform);
 
         popUpManager.TipPopUp(tips);
         popUpManager.RepPopUp(rep);

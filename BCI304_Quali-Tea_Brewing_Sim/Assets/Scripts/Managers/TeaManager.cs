@@ -22,7 +22,7 @@ public class TeaManager : MonoBehaviour
     public Color tColor;
     public Color teaOrderColor; //the colour for the ticket UI
 
-    private static TeaManager uniqueInstance;
+    //private static TeaManager uniqueInstance;
     
     [SerializeField] private ContainerManager containerManager;
     private Customer customer;
@@ -31,9 +31,8 @@ public class TeaManager : MonoBehaviour
     
     private void Awake()
     {
-        if (uniqueInstance == null)
+        /*if (uniqueInstance == null)
         {
-            containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -41,7 +40,9 @@ public class TeaManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        */
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
     }
 
     public void Update()

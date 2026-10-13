@@ -30,13 +30,11 @@ public class ContainerManager : MonoBehaviour, IDataPersistence
     
     
     [SerializeField] private Container[] containers;
-
-    private static ContainerManager uniqueInstance;
     
     private void Awake()
     {
         containers = FindObjectsByType<Container>();
-        if (uniqueInstance == null)
+        /*if (uniqueInstance == null)
         {
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
@@ -45,6 +43,7 @@ public class ContainerManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+        */
     }
 
     public void LoadData(GameData data)

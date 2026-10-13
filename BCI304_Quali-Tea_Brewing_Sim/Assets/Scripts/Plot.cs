@@ -42,6 +42,7 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
 
     private void SpawnPlant()
     {
+        Debug.Log("Spawning Plant");
         teaBush.SetActive(true);
         plantScript.LoadPlant();
         //teaBush = Instantiate(teaBushPrefab, transform.position + new Vector3(0, 0.1f, 0), Quaternion.identity);           
@@ -56,21 +57,23 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
         string plot = plotNumber.ToString();
 
         plantManager.plotPlanted[plot] = planted;
-        
-        /*switch(plotNumber)
-        { 
-            
-            case PlotNumber.Plot1:
-                plantManager.plot1Planted = planted;
-                break;
-            case PlotNumber.Plot2:
-                plantManager.plot2Planted = planted;
-                break;
-            case PlotNumber.Plot3:
-                plantManager.plot3Planted = planted;
-                break;
+    }
+
+    public void CheckPlanted()
+    {
+        Debug.Log("Checking planted");
+        if (plantManager != null)
+        {
+            string plot = plotNumber.ToString();
+
+            if (plantManager.plotPlanted.TryGetValue(plot, out bool plotPlanted))
+            {
+                if (plotPlanted) SpawnPlant();
+                else Debug.Log($"no plant in plot {plotNumber}");
+            }
+
         }
-        */
+        else Debug.Log("no plant manager assigned, could not check planted.");
     }
 
 }

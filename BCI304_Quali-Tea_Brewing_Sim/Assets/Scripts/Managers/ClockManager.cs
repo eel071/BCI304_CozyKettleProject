@@ -25,13 +25,13 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     
     [SerializeField] private bool testingGarden;
 
-    public static ClockManager uniqueInstance;
+    //public static ClockManager uniqueInstance;
 
     //bool gardenUnlocked = false;
 
     private void Awake()
     {
-        if (uniqueInstance == null)
+        /*if (uniqueInstance == null)
         {
             uniqueInstance = this;
             DontDestroyOnLoad(gameObject);
@@ -40,6 +40,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+        */
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
     }
@@ -63,20 +64,14 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     private void StartDay()
     {
         DataPersistenceManager.instance.SaveGame();
-        UpdateDayUI();
 
-        if (dayCounter == 0 && tutorial.tutorialActive == true)
-        {
-            customerSpawner.canSpawn = false;
-            containerManager.ToggleContainersInteractable(false);
-        }
-        else if (dayCounter == 0 && tutorial.tutorialActive == false)
+        if (dayCounter == 0 && tutorial.playingTutorial == false)
         {
             dayCounter = 1;
             customerSpawner.canSpawn = true;
             containerManager.ToggleContainersInteractable(true);
         }
-        else customerSpawner.canSpawn = true;
+        else if (dayCounter >= 1) customerSpawner.canSpawn = true;
 
         if (dayCounter >= 1|| testingGarden) //if garden is unlocked
         {
@@ -93,6 +88,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
             }
         }
         else OpenShop();
+        UpdateDayUI();
     }
 
     public void OpenShop()
@@ -125,6 +121,16 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         dayCounter++;
         plantManager.daysSinceLastHarvest++;
         StartDay();
+    }
+
+    public void UpdateBeforeQuit()
+    {
+        foreach (var p in plants)
+        {
+            p.UpdateGrowth();            
+        }        
+        dayCounter++;
+        plantManager.daysSinceLastHarvest++;
     }
 
 }

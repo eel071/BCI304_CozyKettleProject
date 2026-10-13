@@ -16,6 +16,7 @@ public class Plant : Plot
     [SerializeField] private Sprite[] decaySprites;
     [SerializeField] private Sprite readySprite;
     private SpriteRenderer spriteRenderer;
+    private ClockManager clockManager;
 
     //[SerializeField] ContainerManager containerManager;
     
@@ -25,7 +26,8 @@ public class Plant : Plot
     private void Awake()
     {
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
-        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager; 
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
+        clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager; 
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
         spriteRenderer = GetComponent<SpriteRenderer>();
         LoadPlant();
@@ -33,7 +35,7 @@ public class Plant : Plot
         
     private void OnEnable()
     {
-        ClockManager.uniqueInstance.plants.Add(this);
+        clockManager.plants.Add(this);
         LoadPlant();
     }
 
@@ -63,7 +65,7 @@ public class Plant : Plot
 
     public void LoadPlant()
     {
-        ClockManager.uniqueInstance.plants.Add(this);
+        clockManager.plants.Add(this);
         
         if (plantManager != null)
         {
@@ -232,7 +234,7 @@ public class Plant : Plot
         if (decayStage >= 3)
         {
             KillPlant();
-            ClockManager.uniqueInstance.plants.Remove(this);
+            clockManager.plants.Remove(this);
 
             gameObject.SetActive(false); 
         }

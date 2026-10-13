@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -163,6 +164,13 @@ public class UIManager : MonoBehaviour
         gardenText.fontStyle = FontStyles.Normal;
         ingredientsText.fontStyle = FontStyles.Normal; 
         upgradeText.fontStyle = FontStyles.Bold; 
+    }
+
+    public void MainMenu()
+    {
+        clockManager.UpdateBeforeQuit();
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
 }
