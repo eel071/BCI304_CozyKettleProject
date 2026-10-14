@@ -17,6 +17,7 @@ public class Plant : Plot
     [SerializeField] private Sprite readySprite;
     private SpriteRenderer spriteRenderer;
     private ClockManager clockManager;
+    private WateringCan wateringCan;
 
     //[SerializeField] ContainerManager containerManager;
     
@@ -30,6 +31,7 @@ public class Plant : Plot
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager; 
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        wateringCan = FindAnyObjectByType(typeof(WateringCan)) as WateringCan;
         LoadPlant();
     }
         
@@ -58,7 +60,12 @@ public class Plant : Plot
         UpdateSprite();
         UpdatePlantManager();
         //insert wateringcan animation
-        draggable.ReturnItem();
+
+        if (wateringCan != null)
+        {
+            wateringCan.WateringAnimation(transform, growthStage);
+        }
+        else draggable.ReturnItem();
 
         if (tutorial.tutorialActive) tutorial.Water();
     }
@@ -169,27 +176,6 @@ public class Plant : Plot
         plantManager.plotWatered[plot] = watered;
         plantManager.plantGrowthStage[plot] = growthStage;
         plantManager.plantDecayStage[plot] = decayStage;
-        /*
-        switch(plotNumber)
-        {
-            
-            case PlotNumber.Plot1:
-                plantManager.plot1Watered = watered;
-                plantManager.plot1GrowthStage = growthStage;
-                plantManager.plot1DecayStage = decayStage;
-                break;
-            case PlotNumber.Plot2:
-                plantManager.plot2Watered = watered;
-                plantManager.plot2GrowthStage = growthStage;
-                plantManager.plot2DecayStage = decayStage;
-                break;
-            case PlotNumber.Plot3:
-                plantManager.plot3Watered = watered;
-                plantManager.plot3GrowthStage = growthStage;
-                plantManager.plot3DecayStage = decayStage;
-                break; 
-        }
-        */
     }
 
     private void OnMouseDown() 
@@ -227,25 +213,6 @@ public class Plant : Plot
             plantManager.plotPlanted[plot] = false;
             plantManager.plantGrowthStage[plot] = 0;
             plantManager.plantDecayStage[plot] = 0;
-       /* switch (plotNumber)
-        {
-            case PlotNumber.Plot1:
-                plantManager.plot1Planted = false;
-                plantManager.plot1GrowthStage = 0;
-                plantManager.plot1DecayStage = 0;
-                break;
-            case PlotNumber.Plot2:
-                plantManager.plot2Planted = false;
-                plantManager.plot2GrowthStage = 0;
-                plantManager.plot2DecayStage = 0;
-                break;
-            case PlotNumber.Plot3:
-                plantManager.plot3Planted = false;
-                plantManager.plot3GrowthStage = 0;
-                plantManager.plot3DecayStage = 0;
-                break;
-        }
-        */
     }
 
 }

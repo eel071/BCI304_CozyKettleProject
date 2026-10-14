@@ -7,10 +7,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button startGameButton;
     [SerializeField] private GameObject saveSlotsMenu;
     
-    public void openSaveSlots()
+    public void OpenSaveSlots()
     {
         saveSlotsMenu.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("exiting game");
+        Application.Quit(); 
     }
 
 
