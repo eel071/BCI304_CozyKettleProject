@@ -18,11 +18,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject dayOverScreen;
     
 
-    [SerializeField] private GameObject seedCounter;
-    [SerializeField] private TextMeshProUGUI seedCounterText;
+    //[SerializeField] private GameObject seedCounter;
+    //[SerializeField] private GameObject teaStationCounters;
+    //[SerializeField] private GameObject additionStationCounters;
+    
     [SerializeField] private ContainerManager containerManager;
 
 
+    //sh
     [SerializeField] private GameObject ingredientsPanel;
     [SerializeField] private GameObject gardenPanel;
     [SerializeField] private GameObject upgradesPanel;
@@ -34,8 +37,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TipJar tipJar;
     [SerializeField] private CustomerSpawner customerSpawner;
     [SerializeField] private DailyReport dailyReport;
+    //[SerializeField] Button openShopButton;
 
-    [SerializeField] Button openShopButton;
+    [SerializeField] private GameObject ticketButton;
+    [SerializeField] private GameObject brewStationUI;
+    [SerializeField] private GameObject addStationUI;
+    [SerializeField] private GameObject gardenUI;
 
     void Start()
     {
@@ -44,33 +51,27 @@ public class UIManager : MonoBehaviour
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;     
     }
 
+    public void BrewingStationUI(bool active)
+    {
+        ticketButton.SetActive(active);
+        brewStationUI.SetActive(active);
+    }
+
+    public void AdditionStationUI(bool active)
+    {
+        ticketButton.SetActive(active);
+        addStationUI.SetActive(active);
+    }
+
+     public void GardenUI(bool active)
+    {
+        gardenUI.SetActive(active); 
+    }
+
     public void ShowTicket()
     {
         if (tutorial.tutorialActive) tutorial.OpenTicket();
         ticket.SetActive(true);
-
-        /*teaOrder.color = teaManager.teaOrderColor;
-
-        if (teaManager.lemonOrder)
-        {
-            lemon.SetActive(true);
-        }
-        else
-        {
-            lemon.SetActive(false);
-        }
-
-        //reset sugar cubes
-        for (int i = 0; i < sugarCubes.Length; i++)
-        {
-            sugarCubes[i].SetActive(false);
-        }
-
-        //show sugar cubes
-        for (int i = 0; i < teaManager.sugarCubesOrder; i++)
-        {
-            sugarCubes[i].SetActive(true);
-        }*/
 
         if (customer == null)
         {
@@ -121,17 +122,7 @@ public class UIManager : MonoBehaviour
         dayOverScreen.SetActive(false);
     }
 
-    public void GardenUI(bool active)
-    {
-        seedCounter.SetActive(active);
-        UpdateSeedCounter(containerManager.containerCount["Seeds"]);
-        openShopButton.gameObject.SetActive(active); 
-    }
-
-    public void UpdateSeedCounter(int amount)
-    {
-        seedCounterText.text = $"{amount}";
-    }
+   
 
     public void ShopGardenPanel()
     {

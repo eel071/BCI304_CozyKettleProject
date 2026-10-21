@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class Teacup : MonoBehaviour, IOnDropBaseCollision
 {
+    public TeaTypes cupTea;
+
     [SerializeField] private TeaManager teaManager;
     private Tutorial tutorial;
     [SerializeField] private GameObject tea;
     [SerializeField] private GameObject saucer;
     [SerializeField] private Teapot teapotScript;
     private Draggable thisDraggable;
+
+    public bool canPour;
 
     private float teaMax = 0.4f; 
     public float fillLevel = 0f;
@@ -35,10 +39,17 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         if(draggable.tag == "Addition" && teaFilled == true)
         {
             Debug.Log($"Added {draggable.gameObject.name} to teacup");
-            teaManager.Additions(draggable.gameObject.name);
+            
             Destroy(draggable.gameObject);
             //making it milky
-            if (draggable.gameObject.name == "Milk(Clone)")
+
+            ContainerItem containerItem = draggable.GetComponent<ContainerItem>();
+
+            
+
+            teaManager.Additions(containerItem.item);
+
+            if (containerItem.item == ContainerItems.Milk)
             {
                 teaManager.tColor = teaManager.tColor * 2;
                 teaManager.UpdateTea();
@@ -57,19 +68,26 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        teaManager.UpdateTea();
-
         Draggable drag = other.GetComponent<Draggable>(); //get a refence to the other objects Draggable script
     
-
-        if (other.gameObject.CompareTag("Teapot") && teapotScript.waterHeated == true && drag.dragging && teaFull == false) //checks that the teapot is the object being dragged
+        if (other.gameObject.CompareTag("Teapot") && teapotScript.waterHeated == true && drag.dragging && teaFull == false && canPour) //checks that the teapot is the object being dragged
         {
-            fillingCup = true; 
-            StartCoroutine(FillCup());
-            Debug.Log("filling cup");
+            if (teaFilled && cupTea != teapotScript.teapotTea)
+            {
+                Debug.Log("tea in teapot does not match tea in cup");
+            }
+            else
+            {
+                cupTea = teapotScript.teapotTea;
+                teaManager.SetTea();
+                teaManager.UpdateTea();
+                fillingCup = true; 
+                StartCoroutine(FillCup());
+                Debug.Log("filling cup");
 
-            pouringSFX = AudioManager.instance.PlayLoopingSFX(teaPouring, transform, 1f);
-            teapotScript.PourTea();
+                pouringSFX = AudioManager.instance.PlayLoopingSFX(teaPouring, transform, 1f);
+                teapotScript.PourTea();
+            }
         }
     }
 
@@ -105,7 +123,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
             {
                 fillingCup = false;
                 teaFilled = true;
-                teaFull = false;
+                teaFull = true;
 
                 if (pouringSFX != null) AudioManager.instance.StopLoopingSFX(pouringSFX);
                 Debug.Log("stopped filling cup - FULL");

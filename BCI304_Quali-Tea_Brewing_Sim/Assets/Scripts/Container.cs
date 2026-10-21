@@ -1,10 +1,13 @@
 using UnityEngine;
+using TMPro;
 
 public class Container : MonoBehaviour
 {
     [Header("Container Settings")]
     [SerializeField] private GameObject storedItem;
     [SerializeField] private int maxStorage, currentStorage;
+
+    [SerializeField] private TextMeshProUGUI counterText;
     
     private enum Containers {GreenTea, BlackTea, WhiteTea, Lemon, Sugar, Honey, Milk, Seeds};
     [SerializeField] private Containers containerType;
@@ -58,7 +61,7 @@ public class Container : MonoBehaviour
             Debug.Log("Cannot find container manager");
         }
         
-        UpdateSprite();
+        UpdateContainer();
     }
 
     private void OnMouseDown()
@@ -83,8 +86,8 @@ public class Container : MonoBehaviour
             
             //update storage and container sprite
             currentStorage -= 1;
-            UpdateContainerManager();
-            UpdateSprite();
+            UpdateContainer();
+            
             
             AudioManager.instance.PlaySFXClip(wooshSound, transform, 1f);
             
@@ -95,14 +98,14 @@ public class Container : MonoBehaviour
         }
     }
 
-    private void UpdateContainerManager()
+    private void UpdateContainer()
     {
         containerManager.containerCount[containerType.ToString()] = currentStorage;
-        if (containerType == Containers.Seeds) uiManager.UpdateSeedCounter(containerManager.containerCount["Seeds"]);
-    }
+        
+        //update counter
+        counterText.text = $"{containerManager.containerCount[containerType.ToString()]}"; 
 
-    private void UpdateSprite()
-    {
+        //update sprite
         if (containerSprites.Length > 0 && maxStorage > 0)
         {
             float currentPhase = (float)currentStorage / (float)maxStorage;
@@ -111,11 +114,12 @@ public class Container : MonoBehaviour
         }
     }
 
+
     public void ReturnItem()
     {
         currentStorage += 1;
-        UpdateContainerManager();
-        UpdateSprite();
+        UpdateContainer();
+
     }
 
     public void SwitchInteractable(bool interactable)

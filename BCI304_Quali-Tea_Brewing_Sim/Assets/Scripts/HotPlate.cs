@@ -39,7 +39,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     {        
         if (draggable.tag == "Teapot" && teapot.waterHeated == false)
         {
-            heatSpeed = 1f + (upgradeManager.upgrade["Hotplate"] * 0.25f);
+            heatSpeed = 1f + (upgradeManager.upgrade["Hotplate"] * 0.5f);
             Debug.Log($"heat speed = {heatSpeed}");
             if (tutorial.tutorialActive) tutorial.HotPlate();
  

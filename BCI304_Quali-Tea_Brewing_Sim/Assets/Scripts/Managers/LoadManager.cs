@@ -4,7 +4,7 @@ using System.Collections;
 
 public class LoadManager : MonoBehaviour
 {
-    [SerializeField] private UIManager uiManager;
+    private UIManager uiManager;
 
     [SerializeField] private float sceneFadeDuration;
     private SceneFade sceneFade;
@@ -48,6 +48,7 @@ public class LoadManager : MonoBehaviour
         teacupScript = FindAnyObjectByType(typeof(Teacup)) as Teacup;
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
         finishTea = FindAnyObjectByType(typeof(FinishTea)) as FinishTea;
+        uiManager = FindAnyObjectByType(typeof(UIManager)) as UIManager;
     }
 
     private IEnumerator MoveCameraCoroutine(string screenName) //fade in and out when loading a scene
@@ -90,11 +91,10 @@ public class LoadManager : MonoBehaviour
         if (screenName == "TeaBrew")
         {
             if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
-
+            uiManager.AdditionStationUI(false);
+            uiManager.BrewingStationUI(true);
             mainCamera.transform.position = teaBrewCamPos;
-            toTeaAddButton.SetActive(true);
-            toTeaBrewButton.SetActive(false);
-            ticketButton.SetActive(true);
+            
             dialogue.SetActive(false);
             if (teacup == null) { teacup = GameObject.Find("Teacup"); }
             teacup.transform.position = new Vector3(38f, -2f, 0);
@@ -103,6 +103,9 @@ public class LoadManager : MonoBehaviour
         
         if (screenName == "TeaAdd")
         {
+            uiManager.BrewingStationUI(false);
+            uiManager.AdditionStationUI(true);
+    
             mainCamera.transform.position = teaAddCamPos;
             toTeaAddButton.SetActive(false);
             toTeaBrewButton.SetActive(true);

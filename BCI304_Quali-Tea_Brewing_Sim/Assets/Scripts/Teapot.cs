@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Teapot : MonoBehaviour, IOnDropBaseCollision //IOnPickUpBaseCollision
 {    
+
+    public TeaTypes teapotTea;
+
     [SerializeField] private TeaManager teaManager;
     private Tutorial tutorial;
     private Animator anim;
@@ -51,24 +54,28 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision //IOnPickUpBaseCollisi
             Debug.Log($"Steeping {draggable.gameObject.name}");                      
             draggable.transform.position = transform.position + new Vector3(-0.19f, 1.25f, 0);
 
-            //set steep goal
-            switch(teaManager.customerOrder)
+            ContainerItem containerItem = draggable.GetComponent<ContainerItem>();
+
+            //set steep goal & teapotTea
+            switch (containerItem.item)
             {
-                case TeaTypes.Black:
+                case ContainerItems.BlackLeaves:
                     steepGoal = 4f;
+                    teapotTea = TeaTypes.Black;
                     break;
-                case TeaTypes.White:
+                case ContainerItems.WhiteLeaves:
                     steepGoal = 3f;
+                    teapotTea = TeaTypes.White;
                     break;
-                case TeaTypes.Green:
+                case ContainerItems.GreenLeaves:
                     steepGoal = 2f;
+                    teapotTea = TeaTypes.Green;
                     break;
             }
-
+            
             //steeping progress bar
             steepBar.SetActive(true); 
             progressBar.SetBar(maxSteepTime, steepGoal);
-            teaType = draggable.name;
             Destroy(draggable.gameObject);
             steepButton.SetActive(true);
         }        
@@ -95,7 +102,7 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision //IOnPickUpBaseCollisi
         Debug.Log($"Steep Final Time : {finalSteep}");
         teaSteeped = true;  
         steepBar.SetActive(false);
-        teaManager.SetTea(teaType, finalSteep, steepGoal); 
+        teaManager.UpdateSteepValue(finalSteep, steepGoal); 
     }
 
 /*
@@ -149,7 +156,8 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision //IOnPickUpBaseCollisi
         teaSteeped = false;
         hotPlate.finalTime = 0f;
         finalSteep = 0f;
-        teaManager.ResetTea();        
+        teaManager.ResetTea();     
+        teapotTea = TeaTypes.Water;   
     }
 
     public void PourTea()
