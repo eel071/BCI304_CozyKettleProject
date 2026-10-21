@@ -71,6 +71,7 @@ public class LoadManager : MonoBehaviour
 
             if (finishTea.servingTea)
             {
+                uiManager.AdditionStationUI(false);
                 finishTea.servingTea = false;
                 teacup.transform.position = new Vector3(0f, -3.5f, 0); 
                 teacupScript.NewStartPosition();   
