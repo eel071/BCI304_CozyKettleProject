@@ -36,6 +36,7 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
             //draggable.transform.position = transform.position + new Vector3(0, 1, 0);
             teacup.transform.position = new Vector3(56, -2, 0f);
             servingTea = true;
+            teacup.toggleDraggable(false);
             loadManager.Load("FrontCounter");     
         }
         else

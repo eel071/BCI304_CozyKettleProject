@@ -75,7 +75,7 @@ public class ClockManager : MonoBehaviour, IDataPersistence
 
         if (dayCounter >= 1|| testingGarden) //if garden is unlocked
         {
-            if (tutorial.playingTutorial)
+            if (tutorial.playingTutorial && tutorial.tutorial == 1)
             {
                 tutorial.tutorial = 2;
                 tutorial.tutorialActive = true;

@@ -4,8 +4,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-
-
     [SerializeField] private AudioSource sfxObject;
 
     private void Awake()
@@ -33,10 +31,11 @@ public class AudioManager : MonoBehaviour
         loopedSFX.clip = clip;
         loopedSFX.volume = volume;
         loopedSFX.loop = true;
-        
-
+    
         loopedSFX.Play();
-        return loopedSFX;
+
+        //return loopedSFX so it can be used in StopLoopingSFX
+        return loopedSFX; 
     }
 
     public void StopLoopingSFX(AudioSource loopedSFX)
@@ -48,3 +47,5 @@ public class AudioManager : MonoBehaviour
         }
     }
 }
+
+

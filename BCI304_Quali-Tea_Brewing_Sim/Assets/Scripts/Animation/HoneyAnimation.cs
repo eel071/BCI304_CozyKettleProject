@@ -3,19 +3,20 @@ using UnityEngine;
 public class HoneyAnimation : MonoBehaviour
 {
     private Animator animator;
-    private Transform drizzlePosition;
+    //private Transform drizzlePosition;
 
     void Awake()
     {
         Debug.Log("HoneyAnimation AWAKE");
         animator = GetComponent<Animator>();
 
-        GameObject target = GameObject.Find("HoneyDrizzlePosition");
+        //GameObject target = GameObject.Find("HoneyDrizzlePosition");
 
-        if (target != null)
+        /*if (target != null)
         {
             drizzlePosition = target.transform;
         }
+        */
     }
 
     void Start()
@@ -27,10 +28,13 @@ public class HoneyAnimation : MonoBehaviour
     {
         Debug.Log("DRIZZLE CALLED");
 
+        /*
         if (drizzlePosition != null)
         {
             transform.position = drizzlePosition.position;
         }
+        */
+        transform.position = new Vector3(50, 0.3f, 0);
 
         animator.SetTrigger("Drizzle");
     }

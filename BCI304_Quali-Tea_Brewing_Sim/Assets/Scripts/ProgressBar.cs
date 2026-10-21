@@ -20,7 +20,7 @@ public class ProgressBar : MonoBehaviour
     public void SetProgress(float currentProgress)
     {
         progress = currentProgress;
-        if (max > 0)
+        if (max > 0 && progress < max)
         {
             float newWidth = (progress / max) * width;
             progressBar.sizeDelta = new Vector2(newWidth, height);

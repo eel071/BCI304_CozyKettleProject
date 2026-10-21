@@ -22,9 +22,6 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     [SerializeField] private AudioClip teaPouring;
     private AudioSource pouringSFX;
 
-    
-
-
     void Start()
     {        
         teaEmpty = tea.transform.position;     
@@ -52,7 +49,6 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
         else
         {
             Debug.Log($"Tried to Add {draggable.tag} to teacup");
-            //draggable.transform.position = draggable.startPosition;
             draggable.ReturnItem();
         }
     }
@@ -137,6 +133,11 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     public void toggleSaucer(bool active)
     {
         saucer.SetActive(active);
+    }
+
+    public void toggleDraggable(bool canDrag)
+    {
+        thisDraggable.SwitchDraggable(canDrag);
     }
 
 

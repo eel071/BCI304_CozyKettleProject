@@ -110,7 +110,7 @@ public class Tutorial : MonoBehaviour
 
     public void ShowTutorialStep()
     {
-        if (tutorial == 1)
+        if (tutorial == 1) //first day in shop
         {
             switch (currentStep1)
             {
@@ -202,7 +202,7 @@ public class Tutorial : MonoBehaviour
                     break;
             }
         }
-        else if (tutorial == 2)
+        else if (tutorial == 2) //garden
         {
             switch (currentStep2)
             {
@@ -466,7 +466,7 @@ public class Tutorial : MonoBehaviour
         if (currentStep2 == Tutorial2Step.StartDay)
         {
             tutText1.gameObject.SetActive(false);
-            tutorialActive = false;            
+            tutorialActive = false;     
         }
     }
 

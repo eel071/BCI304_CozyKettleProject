@@ -10,6 +10,8 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject rejectButton;
     [SerializeField] private GameObject acceptButton;
 
+    private string currentText;
+
     [SerializeField] private float textSpeed;
     private string dialogue;
 
@@ -23,6 +25,8 @@ public class Dialogue : MonoBehaviour
 
     [SerializeField] private AudioClip R_Angry;
     [SerializeField] private AudioClip typingSFX;
+
+    private bool showButtons;
 
     private Customer customer;
 
@@ -39,12 +43,15 @@ public class Dialogue : MonoBehaviour
         HideButtons();
     }
 
-    public void SetCustomerText(string text, bool showButtons, AudioClip soundToPlay, Transform transform)
+    public void SetCustomerText(string text, bool buttons, AudioClip soundToPlay, Transform transform)
     {
         customerText.enabled = true;
         dialogueBox.enabled = true;
 
-        StartCoroutine(TypeLine(text, showButtons));        
+        currentText = text;
+        showButtons = buttons;
+
+        StartCoroutine(TypeLine());        
 
         if (soundToPlay != null)
         {
@@ -52,7 +59,7 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    private IEnumerator TypeLine(string text, bool showButtons)
+    private IEnumerator TypeLine()
     {
         //reset text
         customerText.text = "";
@@ -60,10 +67,10 @@ public class Dialogue : MonoBehaviour
         int charLength = 0;
 
         //display 1 character at a time
-        foreach (char c in text.ToCharArray())
+        foreach (char c in currentText.ToCharArray())
         {
             charLength ++; //increase the character length
-            customerText.text = text;
+            customerText.text = currentText;
 
             displayedText = customerText.text.Insert(charLength, "<color=#00000000>");
             customerText.text = displayedText;
@@ -72,12 +79,33 @@ public class Dialogue : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
 
-        if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
+        FinishLine();
+
+       
+    }
+
+    public void SkipLine()
+    {
+        if (customerText.text != currentText)
+        {
+            // If still typing, finish the text instantly
+            StopAllCoroutines();
+            customerText.text = currentText;
+            FinishLine();
+        }
+    }
+
+    private void FinishLine()
+    {
+         if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
         customer.StopTalking();
 
         if (showButtons) ShowButtons();
         if (tutorial.tutorialActive) tutorial.ShowTutorialStep();
     }
+
+    
+    
 
     #region show/hide
     public void HideDialogue()

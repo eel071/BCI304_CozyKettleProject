@@ -157,6 +157,8 @@ MonoBehaviour:
   teaOrder: 0
   lemonOrder: 0
   sugarOrder: 0
+  honeyOrder: 0
+  milkOrder: 0
   orderD: 
   wrongTeaD: 
   perfectTeaD: 
@@ -169,9 +171,9 @@ MonoBehaviour:
   customerTalkingSprite: {fileID: 8874686409358501665, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
   customerHappySprite: {fileID: -4336205393940634298, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
   customerUpsetSprite: {fileID: -14087048093664548, guid: 01be3eb7eec705440880c1a15b2a2418, type: 3}
-  orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
-  amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
-  goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
-  disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
-  angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
+  orderSound: {fileID: 8300000, guid: cf6573358f6041c4eb7e3470fc88d8bb, type: 3}
+  amazingSound: {fileID: 8300000, guid: 3c6e4a5c8a252894bab98a74481bb75a, type: 3}
+  goodSound: {fileID: 8300000, guid: 298c61088cc38bb499b933aa6a4d6c33, type: 3}
+  disappointedSound: {fileID: 8300000, guid: 6964f99f520c85f4dae3b10d4ef13036, type: 3}
+  angrySound: {fileID: 8300000, guid: f74c7f8c6e94ffd4598ed09efd94df64, type: 3}
   destroyAfterTalk: 0

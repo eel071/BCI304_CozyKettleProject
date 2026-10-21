@@ -21,10 +21,6 @@ public class TeaInfoMenu : MonoBehaviour
         teaInfoDisplay.SetActive(false);
     }
 
-    void ShowTeaInfo()
-    {
-     
-    }
 
     public void ShowBlackTea()
 

@@ -74,6 +74,7 @@ public class LoadManager : MonoBehaviour
                 teacup.transform.position = new Vector3(0f, -3.5f, 0); 
                 teacupScript.NewStartPosition();   
                 teacupScript.toggleSaucer(true);
+                teacupScript.toggleDraggable(true);
             }
               
         }

@@ -84,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 9
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4193338067860846157, guid: 191c7c73ba52e694fab8fd666f6c5a9e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
   startPosition: {x: 0, y: 0, z: 0}
   dragging: 0
+  draggable: 1
 --- !u!114 &-2813631674445197025
 MonoBehaviour:
   m_ObjectHideFlags: 0
