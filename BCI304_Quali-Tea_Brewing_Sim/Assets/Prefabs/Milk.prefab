@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Draggable
   startPosition: {x: 0, y: 0, z: 0}
   dragging: 0
+  draggable: 1
 --- !u!114 &-4349111371918138746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,3 +168,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContainerItem
   container: {fileID: 0}
+  item: 5

@@ -19,6 +19,8 @@ public class Tutorial : MonoBehaviour
 
     [SerializeField] private Draggable teapotDraggable; 
     [SerializeField] private Draggable teacupDraggable; 
+
+    private Teacup teacup;
     
     [SerializeField] private Button steepButton;
     [SerializeField] private Button startDayButton;
@@ -75,7 +77,9 @@ public class Tutorial : MonoBehaviour
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
+        teacup = FindAnyObjectByType(typeof(Teacup)) as Teacup;
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -92,6 +96,7 @@ public class Tutorial : MonoBehaviour
                 teacupDraggable.SwitchDraggable(false);               
                 containerManager.ToggleContainersInteractable(false);
                 ShowTutorialStep();
+                teacup.canPour = false;
             }
             else if (clockManager.dayCounter == 1)
             {
@@ -162,6 +167,7 @@ public class Tutorial : MonoBehaviour
                     steepButton.enabled = true;
                     break;
                 case Tutorial1Step.PourTea:
+                    teacup.canPour = true;
                     tutText1.gameObject.SetActive(true);
                     tutText1.SetText("Now pour the tea!");
                     teapotDraggable.SwitchDraggable(true);

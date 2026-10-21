@@ -22,6 +22,8 @@ public class TeaManager : MonoBehaviour
     public Color tColor;
     public Color teaOrderColor; //the colour for the ticket UI
 
+    private float teaOpacity;
+
     //private static TeaManager uniqueInstance;
     
     [SerializeField] private ContainerManager containerManager;
@@ -54,27 +56,36 @@ public class TeaManager : MonoBehaviour
         }        
     }
 
-    public void SetTea(string teaName, float steepTime, float maxSteep)
+    public void UpdateSteepValue(float steepTime, float maxSteep)
     {
-        switch (teaName)
+        teaOpacity = Mathf.Clamp((steepTime/maxSteep), 0, 1);
+    }
+
+    public void SetTea()
+    {
+        Teacup teacupScript = teacup.GetComponent<Teacup>();
+        switch (teacupScript.cupTea)
         {
-            case "LeavesGreen(Clone)":
+            case TeaTypes.Green:
                 tea = TeaTypes.Green;
                 tColor = green;
                 break;
-            case "LeavesBlack(Clone)":
+            case TeaTypes.Black:
                 tea = TeaTypes.Black;
                 tColor = black;
                 break;
-            case "LeavesWhite(Clone)":
+            case TeaTypes.White:
                 tea = TeaTypes.White;
                 tColor = white;
                 break;
+            case TeaTypes.Water:
+                tea = TeaTypes.Water;
+                tColor = water;
+                teaOpacity = 1;
+                break;
         }
         
-        tOpacity = Mathf.Clamp((steepTime/maxSteep), 0, 1);
-
-        Debug.Log("tea = " + tea);
+        tOpacity = teaOpacity;
     }
 
     public void UpdateTea()
@@ -82,20 +93,20 @@ public class TeaManager : MonoBehaviour
         teaRenderer.color = new Color(tColor.r, tColor.g, tColor.b, tOpacity);
     }
 
-    public void Additions(string addition)
+    public void Additions(ContainerItems itemAdded)
     {
-        switch (addition)
+        switch (itemAdded)
         {
-            case "LemonSlice(Clone)":
+            case ContainerItems.Lemon:
                 lemon = true;
                 break;
-            case "Sugar(Clone)":
+            case ContainerItems.Sugar:
                 sugarCubes += 1;
                 break;
-            case "Honey(Clone)":
+            case ContainerItems.Honey:
                 honey = true;
                 break;
-            case "Milk(Clone)":
+            case ContainerItems.Milk:
                 milk = true;
                 break;
 

@@ -1,8 +1,13 @@
 using UnityEngine;
 
+public enum ContainerItems {BlackLeaves, GreenLeaves, WhiteLeaves, Lemon, Sugar, Milk, Honey, Seeds};
+
 public class ContainerItem : MonoBehaviour
 {
     public Container container;
+    
+    public ContainerItems item;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnDestroy()
