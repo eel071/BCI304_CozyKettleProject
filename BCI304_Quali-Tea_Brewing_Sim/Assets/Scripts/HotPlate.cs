@@ -25,7 +25,11 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private Sprite plateOnSprite;
     private SpriteRenderer spriteRenderer;
 
-    private  Draggable teapotDraggable;
+    [SerializeField] private GameObject steamObject;
+    [SerializeField] private Transform steamAnimationPosition;
+    [SerializeField] private Animator steamAnimator;
+
+    private Draggable teapotDraggable;
 
 
     void Awake()
@@ -36,17 +40,24 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     }
 
     public void OnDrop(Draggable draggable)
-    {        
+    {
         if (draggable.tag == "Teapot" && teapot.waterHeated == false)
         {
             heatSpeed = 1f + (upgradeManager.upgrade["Hotplate"] * 0.5f);
             Debug.Log($"heat speed = {heatSpeed}");
             if (tutorial.tutorialActive) tutorial.HotPlate();
- 
+
 
             Debug.Log($"Water is Heating");
             draggable.transform.position = transform.position + new Vector3(0.2f, 1.25f, 0);
             teapot.waterHeating = true;
+
+            if (steamObject != null && steamAnimationPosition != null)
+            {
+              
+                steamObject.transform.position = steamAnimationPosition.position;
+                steamObject.GetComponent<SteamAnimation>().PlaySteam();
+            }
 
             if (plateOnSprite != null) spriteRenderer.sprite = plateOnSprite;
 
@@ -70,12 +81,13 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
 
 
             boilingSFX = AudioManager.instance.PlayLoopingSFX(boilingSound, transform, 1f);
-        }    
+        }
         else
         {
             Debug.Log($"Tried to Heat {draggable.tag}");
             draggable.transform.position = draggable.startPosition;
-        }                
+        }
+
     }
 
     public void OnPickUp(Draggable draggable)
@@ -86,6 +98,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             finalTime = waterTimer;
             teapot.waterHeating = false;
             waterTimer = 0f;
+
+         
 
             if (plateOffSprite != null) spriteRenderer.sprite = plateOffSprite;
 
