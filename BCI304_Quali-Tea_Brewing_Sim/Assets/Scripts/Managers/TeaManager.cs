@@ -2,7 +2,7 @@ using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum TeaTypes {Water, Green, Black, White};
+public enum TeaTypes {Water, Green, Black, White, Milk};
 
 public class TeaManager : MonoBehaviour
 {
@@ -17,10 +17,10 @@ public class TeaManager : MonoBehaviour
     
     [SerializeField] GameObject teacup; 
     [SerializeField] SpriteRenderer teaRenderer;       
-    [SerializeField] private Color water, green, black, white;
+    [SerializeField] private Color water, green, black, white, milkColour;
     private float tOpacity;
     public Color tColor;
-    public Color teaOrderColor; //the colour for the ticket UI
+    //public Color teaOrderColor; //the colour for the ticket UI
 
     private float teaOpacity;
 
@@ -81,6 +81,11 @@ public class TeaManager : MonoBehaviour
             case TeaTypes.Water:
                 tea = TeaTypes.Water;
                 tColor = water;
+                teaOpacity = 1;
+                break;
+            case TeaTypes.Milk:
+                tea = TeaTypes.Milk;
+                tColor = milkColour;
                 teaOpacity = 1;
                 break;
         }
@@ -158,25 +163,26 @@ public class TeaManager : MonoBehaviour
         UpdateOrderVariables();
     }
 
+    
     private void UpdateOrderVariables()
     {
         //updates the colour for the order ticket UI and the string for the dialogue 
         switch (customerOrder)
         {
             case TeaTypes.Water:
-                teaOrderColor = water; 
+                //teaOrderColor = water; 
                 teaOrder = "Hot water";
                 break;
             case TeaTypes.Green:
-                teaOrderColor = green;
+                //teaOrderColor = green;
                 teaOrder = "Green tea";
                 break;
             case TeaTypes.Black:
-                teaOrderColor = black;
+                //teaOrderColor = black;
                 teaOrder = "Black tea";
                 break;
             case TeaTypes.White:
-                teaOrderColor = white;
+                //teaOrderColor = white;
                 teaOrder = "White tea";
                 break;
         }

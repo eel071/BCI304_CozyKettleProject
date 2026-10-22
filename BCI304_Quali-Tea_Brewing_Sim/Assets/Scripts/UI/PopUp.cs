@@ -9,13 +9,13 @@ public class PopUp : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     public string popUpText;
     private float duration = 1.5f;
-    Color startColour = new Color32(50, 50, 50, 255);
-    Color endColour = new Color32(50, 50, 50, 0);
+    //Color startColour = new Color32(50, 50, 50, 255);
+    //Color endColour = new Color32(50, 50, 50, 0);
 
     [SerializeField] private Image image;
 
     void Start()
-    {
+    {        
         text = GetComponent<TextMeshProUGUI>();
         text.text = popUpText;
         StartCoroutine(FadeAway());
@@ -23,6 +23,8 @@ public class PopUp : MonoBehaviour
 
     public IEnumerator FadeAway()
     {
+        Color startColour = text.color;
+        Color endColour = new Color(startColour.r, startColour.g, startColour.b, 0);
         float elapsedTime = 0;
         float elapsedPercentage = 0;
         

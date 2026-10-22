@@ -73,9 +73,10 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         }
         //else if (dayCounter >= 1) customerSpawner.canSpawn = true;
 
+        
         if (dayCounter >= 1|| testingGarden) //if garden is unlocked
         {
-            if (tutorial.playingTutorial && tutorial.tutorial == 1)
+            if (dayCounter == 1 && tutorial.playingTutorial)
             {
                 tutorial.tutorial = 2;
                 tutorial.tutorialActive = true;

@@ -76,6 +76,10 @@ public class ScoreManager : MonoBehaviour
             {
                 finalScore = (int)((heatScore + 100 + fillScore + additionScore) / 4);
             }
+            else if (teaManager.tea == TeaTypes.Milk)
+            {
+                finalScore = 100;
+            }
             else
                 finalScore = (int)((heatScore + steepScore + fillScore + additionScore) / 4); 
         }

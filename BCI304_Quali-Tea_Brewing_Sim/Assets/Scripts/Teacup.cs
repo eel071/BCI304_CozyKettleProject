@@ -36,20 +36,18 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
     public void OnDrop(Draggable draggable)
     {            
+        ContainerItem containerItem = draggable.GetComponent<ContainerItem>();
+
         if(draggable.tag == "Addition" && teaFilled == true)
         {
             Debug.Log($"Added {draggable.gameObject.name} to teacup");
             
             Destroy(draggable.gameObject);
-            //making it milky
-
-            ContainerItem containerItem = draggable.GetComponent<ContainerItem>();
-
-            
+            //making it milky         
 
             teaManager.Additions(containerItem.item);
 
-            if (containerItem.item == ContainerItems.Milk)
+            if (containerItem.item == ContainerItems.Milk && cupTea != TeaTypes.Milk)
             {
                 teaManager.tColor = teaManager.tColor * 2;
                 teaManager.UpdateTea();
@@ -57,11 +55,26 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
 
             if (tutorial.tutorialActive) teaManager.CheckTea();
         }
+        else if (containerItem.item == ContainerItems.Milk && teaFilled == false)
+        {
+            Destroy(draggable.gameObject);
+            cupTea = TeaTypes.Milk;
+            teaManager.SetTea();
+            teaManager.UpdateTea();
+            teaFilled = true;
+            Vector3 pos = tea.transform.position;
+            float teaY = Mathf.Lerp(0, teaMax, 0.75f);
+
+            tea.transform.position = new Vector3(pos.x, pos.y + teaY , pos.z); 
+
+        }
         else
         {
             Debug.Log($"Tried to Add {draggable.tag} to teacup");
             draggable.ReturnItem();
         }
+
+        
     }
     
     #region filling cup

@@ -111,7 +111,7 @@ public class CustomerSpawner : MonoBehaviour
 
     public void FinishedTutorial()
     {
-        if (customerSpawned == false)
+        if (isCustomer == false)
         {
             Debug.Log("tutorial finished, setting canSpawn to true");
             canSpawn = true;

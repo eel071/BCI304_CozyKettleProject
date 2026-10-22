@@ -149,7 +149,9 @@ public class Plant : Plot
         }
         else if (decayStage >= 3)
         {
-            if (growthStage <= decaySprites.Length)
+            Debug.Log($"Decay sprite: {growthStage - 1}");
+
+            if ( decaySprites.Length >= (growthStage - 1) && (growthStage -1) >= 0 )
             {
                 spriteRenderer.sprite = decaySprites[growthStage -1];
             }
@@ -210,9 +212,10 @@ public class Plant : Plot
         assignedPlot.planted = false;
 
         string plot = plotNumber.ToString();
-            plantManager.plotPlanted[plot] = false;
-            plantManager.plantGrowthStage[plot] = 0;
-            plantManager.plantDecayStage[plot] = 0;
+        plantManager.plotPlanted[plot] = false;
+        plantManager.plantGrowthStage[plot] = 0;
+        plantManager.plantDecayStage[plot] = 0;
+        gameObject.SetActive(false);
     }
 
 }

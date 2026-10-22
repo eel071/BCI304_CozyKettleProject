@@ -52,6 +52,8 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
     private bool hasOrdered = false;
     public bool destroyAfterTalk = false;
 
+    [SerializeField] private float tipMultiplier = 1;
+
     private Tutorial tutorial;
 
     void Awake()
@@ -186,14 +188,19 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             }
         }    
     
+        
         dialogue.SetCustomerText(reactDialogue, false, reactionSound, transform);
-
-        popUpManager.TipPopUp(tips);
         popUpManager.RepPopUp(rep);
-        bankManager.money += tips;
-        //bankManager.reputation += rep;
         bankManager.dailyReputation += rep;
-        tipJar.AddTips(tips);
+
+        tips = tips * tipMultiplier;
+        if (tips > 0)
+        {
+            popUpManager.TipPopUp(tips);
+            bankManager.money += tips;
+            tipJar.AddTips(tips);      
+        }
+        
         teaManager.ResetTea();
         customerSpawner.customersServed += 1;
         col.enabled = false; //stop the player from clicking the customer again
@@ -203,8 +210,9 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
 
     public void StopTalking()
     {
-        if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite; //set sprite
         if (destroyAfterTalk) StartCoroutine(WaitBeforeDestroy()); //destroy customer if destroyAfterTalk = true
+        else if (customerNeutralSprite != null) spriteRenderer.sprite = customerNeutralSprite; //set sprite
+        
     }
 
     IEnumerator WaitBeforeDestroy()

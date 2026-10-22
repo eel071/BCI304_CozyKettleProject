@@ -24,7 +24,6 @@ public class Tutorial : MonoBehaviour
     
     [SerializeField] private Button steepButton;
     [SerializeField] private Button startDayButton;
-    //[SerializeField] private GameObject toAddArrow;
 
     public bool tutorialActive = true;
     public bool playingTutorial = true;
@@ -386,7 +385,6 @@ public class Tutorial : MonoBehaviour
         {
             currentStep1 = Tutorial1Step.ToAdd;
             ShowTutorialStep();
-            //StartCoroutine(AnimateColourFlash(toAddArrow, true));
         }
     }
 

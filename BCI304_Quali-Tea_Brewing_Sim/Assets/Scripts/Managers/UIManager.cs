@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private ContainerManager containerManager;
 
 
-    //sh
+    //shop
     [SerializeField] private GameObject ingredientsPanel;
     [SerializeField] private GameObject gardenPanel;
     [SerializeField] private GameObject upgradesPanel;
@@ -37,12 +37,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TipJar tipJar;
     [SerializeField] private CustomerSpawner customerSpawner;
     [SerializeField] private DailyReport dailyReport;
-    //[SerializeField] Button openShopButton;
+
 
     [SerializeField] private GameObject ticketButton;
-    [SerializeField] private GameObject brewStationUI;
-    [SerializeField] private GameObject addStationUI;
-    [SerializeField] private GameObject gardenUI;
+    [SerializeField] private GameObject startDayButton;
+    [SerializeField] private GameObject toBrewButton;
+    [SerializeField] private GameObject toAddButton;
+    [SerializeField] private GameObject brewStationCounts;
+    [SerializeField] private GameObject addStationCounts;
+    [SerializeField] private GameObject seedCount;
 
     void Start()
     {
@@ -54,18 +57,21 @@ public class UIManager : MonoBehaviour
     public void BrewingStationUI(bool active)
     {
         ticketButton.SetActive(active);
-        brewStationUI.SetActive(active);
+        toAddButton.SetActive(active);
+        brewStationCounts.SetActive(active);
     }
 
     public void AdditionStationUI(bool active)
     {
         ticketButton.SetActive(active);
-        addStationUI.SetActive(active);
+        toBrewButton.SetActive(active);
+        addStationCounts.SetActive(active);
     }
 
      public void GardenUI(bool active)
     {
-        gardenUI.SetActive(active); 
+        seedCount.SetActive(active); 
+        startDayButton.SetActive(active);
     }
 
     public void ShowTicket()

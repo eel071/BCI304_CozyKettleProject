@@ -14,9 +14,9 @@ public class LoadManager : MonoBehaviour
     private Vector3 teaBrewCamPos = new Vector3(32, 0, -10);
     private Vector3 teaAddCamPos = new Vector3(50, 0, -10);
 
-    [SerializeField] private GameObject toTeaAddButton;
-    [SerializeField] private GameObject toTeaBrewButton;
-    [SerializeField] private GameObject ticketButton;
+   // [SerializeField] private GameObject toTeaAddButton;
+   // [SerializeField] private GameObject toTeaBrewButton;
+   // [SerializeField] private GameObject ticketButton;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private Tree tree;
 
@@ -62,8 +62,8 @@ public class LoadManager : MonoBehaviour
         {
             mainCamera.transform.position = frontCamPos;
             uiManager.GardenUI(false);
-            ticketButton.SetActive(false);
-            toTeaBrewButton.SetActive(false);
+            //ticketButton.SetActive(false);
+            //toTeaBrewButton.SetActive(false);
             dialogue.SetActive(true);
             uiManager.CloseDayOverscreen();  
 
@@ -108,8 +108,6 @@ public class LoadManager : MonoBehaviour
             uiManager.AdditionStationUI(true);
     
             mainCamera.transform.position = teaAddCamPos;
-            toTeaAddButton.SetActive(false);
-            toTeaBrewButton.SetActive(true);
             if (teacup == null) { teacup = GameObject.Find("Teacup"); }
             teacup.transform.position = new Vector3(49.85f, -2f, 0);
             teacupScript.NewStartPosition();
