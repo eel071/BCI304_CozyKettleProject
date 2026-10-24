@@ -19,6 +19,8 @@ public class Plant : Plot
     private ClockManager clockManager;
     private WateringCan wateringCan;
 
+    private Animator anim;
+
     //[SerializeField] ContainerManager containerManager;
     
 
@@ -26,6 +28,7 @@ public class Plant : Plot
 
     private void Awake()
     {
+        anim = gameObject.GetComponent<Animator>();
         plantManager = FindAnyObjectByType(typeof(PlantManager)) as PlantManager;
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager; 
@@ -145,7 +148,8 @@ public class Plant : Plot
 
         if (ready && readySprite != null)
         {
-            spriteRenderer.sprite = readySprite;   
+            spriteRenderer.sprite = readySprite; 
+            anim.SetTrigger("Pulse");  
         }
         else if (decayStage >= 3)
         {
@@ -194,6 +198,7 @@ public class Plant : Plot
             Debug.Log("plant harvested");
             growthStage = growthSprites.Length -1;
             ready = false;
+            anim.SetTrigger("StopPulse");
             UpdateSprite();
         }
         

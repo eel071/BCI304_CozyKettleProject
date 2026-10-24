@@ -25,22 +25,8 @@ public class ClockManager : MonoBehaviour, IDataPersistence
     
     [SerializeField] private bool testingGarden;
 
-    //public static ClockManager uniqueInstance;
-
-    //bool gardenUnlocked = false;
-
     private void Awake()
     {
-        /*if (uniqueInstance == null)
-        {
-            uniqueInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        */
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
         bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
     }
@@ -68,7 +54,6 @@ public class ClockManager : MonoBehaviour, IDataPersistence
         if (dayCounter == 0 && tutorial.playingTutorial == false)
         {
             dayCounter = 1;
-            customerSpawner.canSpawn = true;
             containerManager.ToggleContainersInteractable(true);
         }
         //else if (dayCounter >= 1) customerSpawner.canSpawn = true;

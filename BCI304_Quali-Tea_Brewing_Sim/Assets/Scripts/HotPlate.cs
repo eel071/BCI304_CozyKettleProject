@@ -25,8 +25,6 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private Sprite plateOnSprite;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private GameObject steamObject;
-    [SerializeField] private Transform steamAnimationPosition;
     [SerializeField] private Animator steamAnimator;
 
     private Draggable teapotDraggable;
@@ -41,7 +39,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
 
     public void OnDrop(Draggable draggable)
     {
-        if (draggable.tag == "Teapot" && teapot.waterHeated == false)
+        if (draggable.tag == "Teapot" && teapot.waterHeated == false && teapot.waterHeating == false)
         {
             heatSpeed = 1f + (upgradeManager.upgrade["Hotplate"] * 0.5f);
             Debug.Log($"heat speed = {heatSpeed}");
@@ -52,12 +50,11 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
             draggable.transform.position = transform.position + new Vector3(0.2f, 1.25f, 0);
             teapot.waterHeating = true;
 
-            if (steamObject != null && steamAnimationPosition != null)
+            if (steamAnimator != null)
             {
-              
-                steamObject.transform.position = steamAnimationPosition.position;
-                steamObject.GetComponent<SteamAnimation>().PlaySteam();
+                steamAnimator.SetTrigger("Steam");
             }
+            else Debug.Log("steam animator not assigned to hotplate");
 
             if (plateOnSprite != null) spriteRenderer.sprite = plateOnSprite;
 
@@ -94,32 +91,46 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     {
         if (draggable.tag == "Teapot")
         {
+            FinishedHeating();        
+        }
+    }
+
+    private void FinishedHeating()
+    {
+        teapot.waterHeating = false;
+
+        if (tutorial.tutorialActive) tutorial.RemoveTeaPot();
+        else Debug.Log("tutorial not active?");
+
+        if (!teapot.waterHeated)
+        {
+            teapot.waterHeated = true;
             Debug.Log($"Heating has stopped");            
             finalTime = waterTimer;
-            teapot.waterHeating = false;
             waterTimer = 0f;
-
-         
-
-            if (plateOffSprite != null) spriteRenderer.sprite = plateOffSprite;
-
-            // Debug.Log($"Heat Timer : {waterTimer}");
-            Debug.Log($"Heat Final Time : {finalTime}");
-            teapot.waterHeated = true;
-            heatBar.SetActive(false); //hide heating progress bar
-
-            if (boilingSFX != null) AudioManager.instance.StopLoopingSFX(boilingSFX);
-
-            if (tutorial.tutorialActive) tutorial.RemoveTeaPot();
         }
+
+        Debug.Log($"Heat Final Time : {finalTime}");
+
+        if (plateOffSprite != null) spriteRenderer.sprite = plateOffSprite;
+
+        if (boilingSFX != null) AudioManager.instance.StopLoopingSFX(boilingSFX);
+    
+        //if (tutorial.tutorialActive) tutorial.DropTeaPot();
+
+        if (steamAnimator != null)
+        {
+            steamAnimator.SetTrigger("EndSteam");
+        }
+        
+        heatBar.SetActive(false); //hide heating progress bar
+
     }
 
     private void Update()
     {
-        if (teapot.waterHeating == true)
+        if (teapot.waterHeating && !teapot.waterHeated)
         {
-            
-            
             waterTimer += (Time.deltaTime * heatSpeed);
             progressBar.SetProgress(waterTimer); //updates heating progress bar
             // Debug.Log($"Heat Timer : {waterTimer}");
@@ -129,6 +140,10 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
                 teapot.waterHeating = false;
                 tutorial.ShowTutorialStep();
             }
+        }
+        if (teapot.waterHeating && teapot.waterHeated)
+        {
+            FinishedHeating();
         }
     }
 }

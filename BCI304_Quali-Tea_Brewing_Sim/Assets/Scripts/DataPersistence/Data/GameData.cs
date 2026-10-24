@@ -13,6 +13,9 @@ public class GameData
     public int stars;
     public int daysSinceLastHarvest;
 
+    public bool playingTutorial;
+    public int tutorialStep;
+
     public SerializableDictionary<string, int> containerItems;
     
     public SerializableDictionary<string, int> upgrades;
@@ -35,6 +38,9 @@ public class GameData
         daysSinceLastHarvest = 0;
         lemonNumber = 0;
         stars = 0;
+
+        playingTutorial = true;
+        tutorialStep = 1;
 
         activeLemons = new SerializableDictionary<string, bool>();
 

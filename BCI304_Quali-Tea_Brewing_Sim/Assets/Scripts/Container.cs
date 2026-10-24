@@ -127,4 +127,9 @@ public class Container : MonoBehaviour
         if (col != null) col.enabled = interactable;  
         else Debug.Log($"no collider assigned on {gameObject}");
     }
+
+    public int GetCurrentStorage()
+    {
+        return currentStorage;
+    }
 }

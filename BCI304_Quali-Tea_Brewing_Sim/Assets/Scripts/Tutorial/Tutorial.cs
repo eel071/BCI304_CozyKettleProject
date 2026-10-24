@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 
-public class Tutorial : MonoBehaviour
+public class Tutorial : MonoBehaviour, IDataPersistence
 {
     private ClockManager clockManager;
     private CustomerSpawner customerSpawner;
@@ -24,6 +24,7 @@ public class Tutorial : MonoBehaviour
     
     [SerializeField] private Button steepButton;
     [SerializeField] private Button startDayButton;
+    [SerializeField] private Button binButton;
 
     public bool tutorialActive = true;
     public bool playingTutorial = true;
@@ -79,6 +80,18 @@ public class Tutorial : MonoBehaviour
         teacup = FindAnyObjectByType(typeof(Teacup)) as Teacup;
     }
 
+    public void LoadData(GameData data)
+    {
+        this.playingTutorial = data.playingTutorial;
+        this.tutorial = data.tutorialStep;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.tutorialStep = this.tutorial;
+        data.playingTutorial = this.playingTutorial;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -110,6 +123,7 @@ public class Tutorial : MonoBehaviour
                 tutorial = 0;
             }
         }
+        else tutorialActive = false;
     }
 
     public void ShowTutorialStep()
@@ -120,90 +134,92 @@ public class Tutorial : MonoBehaviour
             {
                 case Tutorial1Step.Welcome:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("Welcome to QualiTea Brewing Sim!");
                     waitingForAction = false;
+                    tutText1.SetText("Welcome to QualiTea Brewing Sim!", waitingForAction);
                     break;
                 case Tutorial1Step.ClickCustomer:
-                    tutText1.SetText("Here comes your first customer! Click on them to take their order.");
-                    customerSpawner.SpawnFirstCustomer();
                     waitingForAction = true;
+                    tutText1.SetText("Here comes your first customer! Click on them to take their order.", waitingForAction);
+                    customerSpawner.SpawnFirstCustomer();
                     break;
                 case Tutorial1Step.AcceptOrder:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("Awesome! Press 'Accept' to start making their tea.");
                     waitingForAction = true;
+                    tutText1.SetText("Awesome! Press 'Accept' to start making their tea.", waitingForAction);
                     break;
                 case Tutorial1Step.BrewingStation:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("This is the brewing station!");
                     waitingForAction = false;
+                    tutText1.SetText("This is the brewing station!", waitingForAction);
+                    binButton.enabled = false;
                     break;
                 case Tutorial1Step.HotPlate:
-                    tutText1.SetText("Let's boil the water! \n Drag the teapot onto the hotplate.");
-                    teapotDraggable.SwitchDraggable(true);
                     waitingForAction = true;
+                    tutText1.SetText("Let's boil the water! \n Drag the teapot onto the hotplate.", waitingForAction);
+                    teapotDraggable.SwitchDraggable(true);
                     break;
                 case Tutorial1Step.RemoveTeaPot:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("Looks like the water is ready! \n Drag the teapot off.");
-                    teapotDraggable.SwitchDraggable(true);
                     waitingForAction = true; 
+                    tutText1.SetText("Looks like the water is ready! \n Drag the teapot off.", waitingForAction);
+                    teapotDraggable.SwitchDraggable(true);
                     break;
                 case Tutorial1Step.Ticket:
-                    tutText1.SetText("Lets check the customers order again, click on the ticket in the corner to check");
                     waitingForAction = true;
+                    tutText1.SetText("Lets check the customers order again, click on the ticket in the corner to check", waitingForAction);
                     break;
                 case Tutorial1Step.TeaLeaves:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("The customer wants a black tea. \n Drag the black tea leaves onto the teapot.");
-                    blackTeaContainer.SwitchInteractable(true);
                     waitingForAction = true;
+                    tutText1.SetText("The customer wants a black tea. \n Drag the black tea leaves onto the teapot.", waitingForAction);
+                    blackTeaContainer.SwitchInteractable(true);
                     break;
                 case Tutorial1Step.FinishSteeping:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("The tea has finished steeping! \n Remove the tea leaves by clicking them.");
                     waitingForAction = true;
+                    tutText1.SetText("The tea has finished steeping! \n Remove the tea leaves by clicking them.", waitingForAction);
                     steepButton.enabled = true;
                     break;
                 case Tutorial1Step.PourTea:
                     teacup.canPour = true;
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("Now pour the tea!");
-                    teapotDraggable.SwitchDraggable(true);
                     waitingForAction = true;
+                    tutText1.SetText("Now pour the tea!", waitingForAction);
+                    teapotDraggable.SwitchDraggable(true);
                     break;
                 case Tutorial1Step.ToAdd:
-                    tutText1.SetText("Perfect, let's go to the addition station!");
                     waitingForAction = true;
+                    tutText1.SetText("Perfect, let's go to the addition station!", waitingForAction);
                     break;
                 case Tutorial1Step.Additions:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("This is the addition station.");
                     waitingForAction = false;
+                    tutText1.SetText("This is the addition station.", waitingForAction);
                     break;
                 case Tutorial1Step.Ingredients:
-                    tutText1.SetText("Add 2 sugar cubes and a dash of milk.");
+                    waitingForAction = true;
+                    tutText1.SetText("Add 2 sugar cubes and a dash of milk.", waitingForAction);
                     sugarContainer.SwitchInteractable(true);
                     milkContainer.SwitchInteractable(true);
-                    waitingForAction = true;
                     break;
                 case Tutorial1Step.FinishTea:
                     tutText1.gameObject.SetActive(false);
                     tutText2.gameObject.SetActive(true);
-                    tutText2.SetText("The tea is ready! Drag the cup onto the saucer.");
-                    teacupDraggable.SwitchDraggable(true);
                     waitingForAction = true;
+                    tutText2.SetText("The tea is ready! Drag the cup onto the saucer.", waitingForAction);
+                    teacupDraggable.SwitchDraggable(true);
                     break;
                 case Tutorial1Step.ServeTea:
                     tutText2.gameObject.SetActive(true);
-                    tutText2.SetText("Drag the cup onto the customer to serve it to them.");
                     waitingForAction = true;
+                    tutText2.SetText("Drag the cup onto the customer to serve it to them.", waitingForAction);
                     break;
                 case Tutorial1Step.CompleteTutorial1:
                     tutText2.gameObject.SetActive(false);
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("Nice job! Try serving this next customer on your own.");
                     waitingForAction = false;
+                    tutText1.SetText("Nice job! Try serving this next customer on your own.", waitingForAction);
+                    binButton.enabled = true;
                     break;
             }
         }
@@ -213,31 +229,31 @@ public class Tutorial : MonoBehaviour
             {
                 case Tutorial2Step.Garden:
                     tutText1.gameObject.SetActive(true);
-                    tutText1.SetText("Welcome to the garden! Here you can grow ingredients for your shop.");
+                    waitingForAction = false;
+                    tutText1.SetText("Welcome to the garden! Here you can grow ingredients for your shop.", waitingForAction);
                     seedContainer.SwitchInteractable(false);
                     startDayButton.enabled = false;
-                    waitingForAction = false;
                     break;
                 case Tutorial2Step.Lemon:
-                    tutText1.SetText("Looks like a lemon has already grown! \n Click on the lemon to pick it.");
                     waitingForAction = true;
+                    tutText1.SetText("Looks like a lemon has already grown! \n Click on the lemon to pick it.", waitingForAction);
                     break;              
                 case Tutorial2Step.Seed:
-                    tutText1.SetText("You can also grow your very own tea leaves. \n Plant a tea bush by dragging a seed onto one of the plots.");
-                    seedContainer.SwitchInteractable(true);
                     waitingForAction = true;
+                    tutText1.SetText("You can also grow your very own tea leaves. \n Plant a tea bush by dragging a seed onto one of the plots.", waitingForAction);
+                    seedContainer.SwitchInteractable(true);
                     break;
                 case Tutorial2Step.Water:
-                    tutText1.SetText("Now drag the watering can over the plot to water it.");
                     waitingForAction = true;
+                    tutText1.SetText("Now drag the watering can over the plot to water it.", waitingForAction);
                     break;
                 case Tutorial2Step.FinishedWatering:
-                    tutText1.SetText("Nice job! You'll be able to harvest some tea leaves in a few days as long as you remember to water the plant each morning.");
                     waitingForAction = false;
+                    tutText1.SetText("Nice job! You'll be able to harvest some tea leaves in a few days as long as you remember to water the plant each morning.", waitingForAction);
                     break;
                 case Tutorial2Step.StartDay:
-                    tutText1.SetText("Now you can start the day.");
                     waitingForAction = true;
+                    tutText1.SetText("Now you can start the day.", waitingForAction);
                     startDayButton.enabled = true;
                     break;
                     
@@ -338,6 +354,7 @@ public class Tutorial : MonoBehaviour
             teapotDraggable.SwitchDraggable(false);
             currentStep1 = Tutorial1Step.Ticket;
             ShowTutorialStep();
+            
         }
     }
 
@@ -442,7 +459,8 @@ public class Tutorial : MonoBehaviour
     {
         if (currentStep2 == Tutorial2Step.Lemon)
         {
-            currentStep2 = Tutorial2Step.Seed;
+            if (seedContainer.GetCurrentStorage() >= 1) currentStep2 = Tutorial2Step.Seed;
+            else currentStep2 = Tutorial2Step.Water;
             ShowTutorialStep();
         }
     }

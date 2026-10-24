@@ -15,7 +15,6 @@ public class SceneFade : MonoBehaviour
 
     public IEnumerator FadeInCoroutine(float duration)
     {
-        
         //set the start and target colours
         Color startColour = new Color(sceneFadeImage.color.r, sceneFadeImage.color.g, sceneFadeImage.color.b, 1);
         Color targetColour = new Color(sceneFadeImage.color.r, sceneFadeImage.color.g, sceneFadeImage.color.b, 0);

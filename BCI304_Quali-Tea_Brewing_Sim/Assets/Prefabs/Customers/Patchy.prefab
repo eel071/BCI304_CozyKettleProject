@@ -171,10 +171,10 @@ MonoBehaviour:
   customerTalkingSprite: {fileID: -5886277095552413322, guid: 713ee635c7553bb43b483b9f0027fde6, type: 3}
   customerHappySprite: {fileID: 3562452761401184972, guid: 713ee635c7553bb43b483b9f0027fde6, type: 3}
   customerUpsetSprite: {fileID: -8185133196219473568, guid: 713ee635c7553bb43b483b9f0027fde6, type: 3}
-  orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
-  amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
+  orderSound: {fileID: 8300000, guid: 23fb85b3fc7b8614eb8a90a6f03d58fd, type: 3}
+  amazingSound: {fileID: 8300000, guid: 4ef416075be822e439d745b6cc210fa6, type: 3}
   goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
   disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
-  angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
+  angrySound: {fileID: 8300000, guid: 978b7b4522559184898999b92ff6f361, type: 3}
   destroyAfterTalk: 0
   tipMultiplier: 0

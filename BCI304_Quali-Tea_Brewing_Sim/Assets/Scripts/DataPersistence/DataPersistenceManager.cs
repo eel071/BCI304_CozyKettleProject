@@ -74,10 +74,11 @@ public class DataPersistenceManager : MonoBehaviour
         dataHandler.Delete(gameData, profileID);
     }
 
-    public void NewGame(string shopName)
+    public void NewGame(string shopName, bool tutorial)
     {
         this.gameData = new GameData();
         this.gameData.shopName = shopName;
+        this.gameData.playingTutorial = tutorial;
 
     }
 
@@ -89,7 +90,7 @@ public class DataPersistenceManager : MonoBehaviour
         //start a new game if the data is null and we're configured to initalize data for debugging purposes
         if (this.gameData == null && initializeDataIfNull)
         {
-            NewGame("save");
+            NewGame("save", true);
         }
 
         //if no data can be loaded, intialize to a new game
@@ -108,6 +109,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        Debug.Log("Saving Game");
         if (this.gameData == null)
         {
             Debug.LogWarning("No data was found. A new game needs to be started before data can be saved.");

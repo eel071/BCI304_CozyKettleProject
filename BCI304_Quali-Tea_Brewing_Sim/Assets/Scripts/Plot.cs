@@ -69,7 +69,6 @@ public class Plot : MonoBehaviour, IOnDropBaseCollision
             if (plantManager.plotPlanted.TryGetValue(plot, out bool plotPlanted))
             {
                 if (plotPlanted) SpawnPlant();
-                else Debug.Log($"no plant in plot {plotNumber}");
             }
 
         }

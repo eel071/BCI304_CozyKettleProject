@@ -8,6 +8,7 @@ public class SaveSlotsMenu : MonoBehaviour
     private SaveSlot[] saveSlots;
 
     [SerializeField] private GameObject newGamePanel;
+    [SerializeField] private GameObject mainMenu;
 
     private void Awake()
     {
@@ -17,6 +18,12 @@ public class SaveSlotsMenu : MonoBehaviour
     private void Start()
     {
         ActivateMenu();
+    }
+    
+    public void OpenMainMenu()
+    {
+        mainMenu.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void ActivateMenu()
