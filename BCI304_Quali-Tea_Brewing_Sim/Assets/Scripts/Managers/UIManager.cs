@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
 
 
     [SerializeField] private GameObject ticketButton;
+    [SerializeField] private GameObject binButton;
     [SerializeField] private GameObject startDayButton;
     [SerializeField] private GameObject toBrewButton;
     [SerializeField] private GameObject toAddButton;
@@ -57,6 +58,7 @@ public class UIManager : MonoBehaviour
     public void BrewingStationUI(bool active)
     {
         ticketButton.SetActive(active);
+        binButton.SetActive(active);
         toAddButton.SetActive(active);
         brewStationCounts.SetActive(active);
     }
@@ -64,6 +66,7 @@ public class UIManager : MonoBehaviour
     public void AdditionStationUI(bool active)
     {
         ticketButton.SetActive(active);
+        binButton.SetActive(active);
         toBrewButton.SetActive(active);
         addStationCounts.SetActive(active);
     }

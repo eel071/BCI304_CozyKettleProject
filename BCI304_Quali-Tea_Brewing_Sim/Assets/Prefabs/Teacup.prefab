@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 5167368729973276477}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -1.5, z: 0}
+  m_LocalPosition: {x: 38, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -231,14 +231,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ac13c5aaf1c504a8de786f57ff9f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Teacup
+  cupTea: 0
   teaManager: {fileID: 0}
   tea: {fileID: 7740670251070378022}
+  saucer: {fileID: 0}
   teapotScript: {fileID: 0}
+  canPour: 0
   fillLevel: 0
   fillSpeed: 0.2
   teaFilled: 0
   teaPouring: {fileID: 8300000, guid: a3b826018601ee043a6912de38c59d6b, type: 3}
-  myAudioSource: {fileID: 7686067422541649147}
 --- !u!61 &4351377537195127159
 BoxCollider2D:
   m_ObjectHideFlags: 0
