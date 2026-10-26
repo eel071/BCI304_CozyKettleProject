@@ -31,7 +31,7 @@ public class FinishTea : MonoBehaviour, IOnDropBaseCollision
             score.CalculateScore();
             Debug.Log($"{score.finalScore}%");
 
-            AudioManager.instance.PlaySFXClip(chimeSound, transform, 1f);
+            AudioManager.instance.PlaySFXClip(chimeSound, transform, 1f, 0.1f);
             //draggable.transform.position = draggable.startPosition;
             //draggable.transform.position = transform.position + new Vector3(0, 1, 0);
             teacup.transform.position = new Vector3(56, -2, 0f);

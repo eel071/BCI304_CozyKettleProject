@@ -21,7 +21,6 @@ public class Dialogue : MonoBehaviour
     private PopUpManager popUpManager;
     
     [SerializeField] private LoadManager loadManager;
-    [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private AudioClip R_Angry;
     [SerializeField] private AudioClip typingSFX;
@@ -55,12 +54,13 @@ public class Dialogue : MonoBehaviour
 
         if (soundToPlay != null)
         {
-            AudioManager.instance.PlaySFXClip(soundToPlay, transform, 1f);
+            AudioManager.instance.PlaySFXClip(soundToPlay, transform, 1f, 0f);
         }
     }
 
     private IEnumerator TypeLine()
     {
+        int typeCount = 0;
         //reset text
         customerText.text = "";
         string displayedText = "";
@@ -75,7 +75,9 @@ public class Dialogue : MonoBehaviour
             displayedText = customerText.text.Insert(charLength, "<color=#00000000>");
             customerText.text = displayedText;
 
-            if (audioSource != null && typingSFX != null) audioSource.PlayOneShot(typingSFX);
+            if (typingSFX != null && typeCount % 2 != 0) AudioManager.instance.PlaySFXClip(typingSFX, transform, 0.3f, 0.15f);
+            
+            typeCount ++;
             yield return new WaitForSeconds(textSpeed);
         }
 

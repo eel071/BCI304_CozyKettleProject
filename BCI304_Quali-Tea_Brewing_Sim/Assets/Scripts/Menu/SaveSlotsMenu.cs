@@ -10,6 +10,8 @@ public class SaveSlotsMenu : MonoBehaviour
     [SerializeField] private GameObject newGamePanel;
     [SerializeField] private GameObject mainMenu;
 
+    [SerializeField] private AudioClip clickSfx;
+
     private void Awake()
     {
         saveSlots = this.GetComponentsInChildren<SaveSlot>();
@@ -22,6 +24,7 @@ public class SaveSlotsMenu : MonoBehaviour
     
     public void OpenMainMenu()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         mainMenu.SetActive(true);
         gameObject.SetActive(false);
     }
@@ -42,6 +45,7 @@ public class SaveSlotsMenu : MonoBehaviour
 
     public void OnSaveSlotClicked(SaveSlot saveSlot)
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         //disable all buttons
         DisableMenuButtons();
 

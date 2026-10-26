@@ -19,7 +19,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     [SerializeField] private GameObject heatBar;
 
     [SerializeField] private AudioClip boilingSound;
-    private AudioSource boilingSFX;
+    [SerializeField] private AudioSource boilingSFX;
 
     [SerializeField] private Sprite plateOffSprite;
     [SerializeField] private Sprite plateOnSprite;
@@ -142,9 +142,12 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
                 tutorial.ShowTutorialStep();
             }
         }
-        if (teapot.waterHeating && teapot.waterHeated)
+        else if (teapot.waterHeating && teapot.waterHeated)
         {
+            teapot.waterHeating = false;
             FinishedHeating();
         }
+
+        if (teapot.waterHeated && boilingSFX != null) AudioManager.instance.StopLoopingSFX(boilingSFX);
     }
 }

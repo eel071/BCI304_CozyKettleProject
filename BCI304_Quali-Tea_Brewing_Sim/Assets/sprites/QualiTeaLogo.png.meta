@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: e4e0915152cd87947972922f2df3227f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6874403192810721953
+    second: QualiTeaLogo_0
+  - first:
+      213: 721913338869695803
+    second: QualiTeaLogo_1
+  - first:
+      213: 5770173756234688799
+    second: QualiTeaLogo_2
+  - first:
+      213: 2490508725856747995
+    second: QualiTeaLogo_3
+  - first:
+      213: 2813441766658470226
+    second: QualiTeaLogo_4
+  - first:
+      213: 6424031360605895607
+    second: QualiTeaLogo_5
+  - first:
+      213: -8702576071265267566
+    second: QualiTeaLogo_6
+  - first:
+      213: -3116684315232243076
+    second: QualiTeaLogo_7
+  - first:
+      213: 775331579244943790
+    second: QualiTeaLogo_8
+  - first:
+      213: -9062797606027059494
+    second: QualiTeaLogo_9
+  - first:
+      213: 4632402917210237442
+    second: QualiTeaLogo_10
+  - first:
+      213: 4617778661000378539
+    second: QualiTeaLogo_11
+  - first:
+      213: 86887259930002826
+    second: QualiTeaLogo_12
+  - first:
+      213: 1045852928140790553
+    second: QualiTeaLogo_13
+  - first:
+      213: -6277643252885476792
+    second: QualiTeaLogo_14
+  - first:
+      213: 8603199769277744393
+    second: QualiTeaLogo_15
+  - first:
+      213: -1956623734430235814
+    second: QualiTeaLogo_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: QualiTeaLogo_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 643
+        width: 829
+        height: 866
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a25b4e1849c66f50800000000000000
+      internalID: 6874403192810721953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_1
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1082
+        width: 298
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b35c1f95b50c40a00800000000000000
+      internalID: 721913338869695803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_2
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 1066
+        width: 77
+        height: 449
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1966a8a576c31050800000000000000
+      internalID: 5770173756234688799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_3
+      rect:
+        serializedVersion: 2
+        x: 1138
+        y: 1353
+        width: 104
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd1c3baad70109220800000000000000
+      internalID: 2490508725856747995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_4
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 1062
+        width: 341
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 251fce9616a5b0720800000000000000
+      internalID: 2813441766658470226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_5
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 1063
+        width: 91
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb32ea8c7eb62950800000000000000
+      internalID: 6424031360605895607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_6
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 1043
+        width: 308
+        height: 303
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2905b61eb2d3a3780800000000000000
+      internalID: -8702576071265267566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_7
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1045
+        width: 298
+        height: 292
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c72fc81d0205fb4d0800000000000000
+      internalID: -3116684315232243076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_8
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 965
+        width: 18
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea99904a6f782ca00800000000000000
+      internalID: 775331579244943790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_9
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 880
+        width: 137
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ade1f7518997a3280800000000000000
+      internalID: -9062797606027059494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_10
+      rect:
+        serializedVersion: 2
+        x: 1009
+        y: 900
+        width: 163
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20aacc0e8e9994040800000000000000
+      internalID: 4632402917210237442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_11
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 965
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba87e44e935a51040800000000000000
+      internalID: 4617778661000378539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_12
+      rect:
+        serializedVersion: 2
+        x: 1174
+        y: 904
+        width: 55
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8582a7a08fa43100800000000000000
+      internalID: 86887259930002826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_13
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 901
+        width: 20
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b422d62bd938e00800000000000000
+      internalID: 1045852928140790553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_14
+      rect:
+        serializedVersion: 2
+        x: 1251
+        y: 905
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84a222dc8b451e8a0800000000000000
+      internalID: -6277643252885476792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_15
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 897
+        width: 43
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 905c583cb94b46770800000000000000
+      internalID: 8603199769277744393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QualiTeaLogo_16
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 900
+        width: 112
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a530036841da8d4e0800000000000000
+      internalID: -1956623734430235814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      QualiTeaLogo_0: 6874403192810721953
+      QualiTeaLogo_1: 721913338869695803
+      QualiTeaLogo_10: 4632402917210237442
+      QualiTeaLogo_11: 4617778661000378539
+      QualiTeaLogo_12: 86887259930002826
+      QualiTeaLogo_13: 1045852928140790553
+      QualiTeaLogo_14: -6277643252885476792
+      QualiTeaLogo_15: 8603199769277744393
+      QualiTeaLogo_16: -1956623734430235814
+      QualiTeaLogo_2: 5770173756234688799
+      QualiTeaLogo_3: 2490508725856747995
+      QualiTeaLogo_4: 2813441766658470226
+      QualiTeaLogo_5: 6424031360605895607
+      QualiTeaLogo_6: -8702576071265267566
+      QualiTeaLogo_7: -3116684315232243076
+      QualiTeaLogo_8: 775331579244943790
+      QualiTeaLogo_9: -9062797606027059494
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

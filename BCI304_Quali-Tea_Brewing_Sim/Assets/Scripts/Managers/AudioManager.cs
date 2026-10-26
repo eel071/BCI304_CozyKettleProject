@@ -8,12 +8,22 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void PlaySFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    public void PlaySFXClip(AudioClip audioClip, Transform spawnTransform, float volume, float pitchVar)
     {
         AudioSource audioSource = Instantiate(sfxObject, spawnTransform.position, Quaternion.identity);
+        float randomPitch = Random.Range(1f - pitchVar, 1f + pitchVar);
+        audioSource.pitch = randomPitch;
         audioSource.clip = audioClip;         
         audioSource.volume = volume;
         audioSource.Play(); //play sound

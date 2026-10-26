@@ -89,7 +89,7 @@ public class Container : MonoBehaviour
             UpdateContainer();
             
             
-            AudioManager.instance.PlaySFXClip(wooshSound, transform, 1f);
+            AudioManager.instance.PlaySFXClip(wooshSound, transform, 1f, 0f);
             
         }
         else

@@ -24,7 +24,9 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
     private bool teaFull = false;
 
     [SerializeField] private AudioClip teaPouring;
+    [SerializeField] private AudioClip additionSFX;
     private AudioSource pouringSFX;
+    
 
     void Start()
     {        
@@ -46,6 +48,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
                 
                 Destroy(draggable.gameObject);
                 //making it milky         
+                AudioManager.instance.PlaySFXClip(additionSFX, transform, 1f, 0.15f);
 
                 teaManager.Additions(containerItem.item);
 
@@ -53,6 +56,7 @@ public class Teacup : MonoBehaviour, IOnDropBaseCollision
                 {
                     teaManager.tColor = teaManager.tColor * 2;
                     teaManager.UpdateTea();
+                    AudioManager.instance.PlaySFXClip(teaPouring, transform, 1f, 0f);
                 }
 
                 if (tutorial.tutorialActive) teaManager.CheckTea();

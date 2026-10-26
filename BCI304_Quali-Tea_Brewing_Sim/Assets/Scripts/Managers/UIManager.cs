@@ -5,25 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject ticket;
-    [SerializeField] private Image teaOrder;
-   
     private TeaManager teaManager;
     private ClockManager clockManager;
     private Tutorial tutorial;
-    [SerializeField] private TextMeshProUGUI customerOrderText;
-    [SerializeField] private Customer customer;
+    private Customer customer;
+    private CustomerSpawner customerSpawner;
+    private ContainerManager containerManager;
+    
 
+    [Header("End of Day UI")]
     [SerializeField] private GameObject shop;
     [SerializeField] private GameObject dayOverScreen;
-    
-
-    //[SerializeField] private GameObject seedCounter;
-    //[SerializeField] private GameObject teaStationCounters;
-    //[SerializeField] private GameObject additionStationCounters;
-    
-    [SerializeField] private ContainerManager containerManager;
-
+    [SerializeField] private DailyReport dailyReport;
 
     //shop
     [SerializeField] private GameObject ingredientsPanel;
@@ -34,11 +27,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI upgradeText;
 
 
-    [SerializeField] private TipJar tipJar;
-    [SerializeField] private CustomerSpawner customerSpawner;
-    [SerializeField] private DailyReport dailyReport;
-
-
+    [Header("Tea Station UI")]
+    [SerializeField] private GameObject ticket;
     [SerializeField] private GameObject ticketButton;
     [SerializeField] private GameObject binButton;
     [SerializeField] private GameObject startDayButton;
@@ -46,13 +36,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject toAddButton;
     [SerializeField] private GameObject brewStationCounts;
     [SerializeField] private GameObject addStationCounts;
+    [SerializeField] private TextMeshProUGUI customerOrderText;
+
+    [Header("GardenUI")]
     [SerializeField] private GameObject seedCount;
+
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip clickSfx;
 
     void Start()
     {
-        teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager; //get a reference to the tea manager
+        //get a references
+        teaManager = FindAnyObjectByType(typeof(TeaManager)) as TeaManager; 
         clockManager = FindAnyObjectByType(typeof(ClockManager)) as ClockManager;
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;     
+        customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
+        containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
     }
 
     public void BrewingStationUI(bool active)
@@ -106,17 +106,20 @@ public class UIManager : MonoBehaviour
 
     public void HideTicket()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         ticket.SetActive(false);
         if (tutorial.tutorialActive) tutorial.CloseTicket();
     }
 
     public void OpenShop()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         shop.SetActive(true);
     }
 
     public void CloseShop()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         shop.SetActive(false);
     }
 
@@ -128,13 +131,13 @@ public class UIManager : MonoBehaviour
 
     public void CloseDayOverscreen()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         dayOverScreen.SetActive(false);
-    }
-
-   
+    }  
 
     public void ShopGardenPanel()
-    {
+    {   
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         gardenPanel.SetActive(true);
         ingredientsPanel.SetActive(false);
         upgradesPanel.SetActive(false);
@@ -146,6 +149,7 @@ public class UIManager : MonoBehaviour
 
     public void ShopIngredientsPanel()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         ingredientsPanel.SetActive(true);
         gardenPanel.SetActive(false);
         upgradesPanel.SetActive(false);
@@ -157,6 +161,7 @@ public class UIManager : MonoBehaviour
 
     public void ShopUpgradesPanel()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         upgradesPanel.SetActive(true);
         ingredientsPanel.SetActive(false);
         gardenPanel.SetActive(false);
@@ -168,6 +173,7 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         clockManager.UpdateBeforeQuit();
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadSceneAsync("MainMenu");

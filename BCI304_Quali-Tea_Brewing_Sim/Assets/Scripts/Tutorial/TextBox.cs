@@ -12,6 +12,8 @@ public class TextBox : MonoBehaviour
 
     private Animator anim;
     private bool animateAfterText;
+
+    [SerializeField] private AudioClip typingSFX;
        
     void Start()
     {
@@ -28,6 +30,7 @@ public class TextBox : MonoBehaviour
 
     private IEnumerator TypeLine()
     {
+        int typeCount = 0;
         textBox.text = "";
         string displayedText = "";
         int charLength = 0;
@@ -41,6 +44,9 @@ public class TextBox : MonoBehaviour
             displayedText = textBox.text.Insert(charLength, "<color=#00000000>");
             textBox.text = displayedText;
 
+            if (typingSFX != null && typeCount % 2 != 0) AudioManager.instance.PlaySFXClip(typingSFX, transform, 0.5f, 0.15f);
+
+            typeCount ++;
             yield return new WaitForSeconds(textSpeed);
         }
 

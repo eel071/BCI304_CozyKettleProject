@@ -11,6 +11,8 @@ public class NewGameMenu : MonoBehaviour
     private string playerInput;
     private bool tutorial;
 
+    [SerializeField] private AudioClip clickSfx;
+
     public void LogPlayerInput()
     {
         playerInput = shopNameInputField.text;
@@ -20,9 +22,9 @@ public class NewGameMenu : MonoBehaviour
 
     public void StartGame()
     {
+        AudioManager.instance.PlaySFXClip(clickSfx, transform, 1f, 0.15f);
         //create a new game which will initalize our data to a clean slate
         DataPersistenceManager.instance.NewGame(playerInput, tutorial);
-
         SceneManager.LoadSceneAsync("Game");
     }
 }

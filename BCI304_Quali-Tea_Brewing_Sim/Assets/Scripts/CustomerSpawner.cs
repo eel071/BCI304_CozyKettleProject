@@ -92,7 +92,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void SpawnCustomer()
     {
-        AudioManager.instance.PlaySFXClip(bellAudio, transform, 0.5f);
+        AudioManager.instance.PlaySFXClip(bellAudio, transform, 0.5f, 0.15f);
         int randomCustomer = Random.Range(0, customers.Count); //choose a random customer
         Instantiate(customers[randomCustomer], new Vector3(0, -0.3f, 0), Quaternion.identity); //instantiate the random customer
         customers.RemoveAt(randomCustomer); //remove the random customer from the list.

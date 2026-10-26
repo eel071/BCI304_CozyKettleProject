@@ -22,6 +22,8 @@ public class ShopItem : MonoBehaviour
 
     [SerializeField] private bool isUpgrade;
 
+    [SerializeField] private AudioClip purchaseSFX;
+
     
 
     public void PurchaseItem()
@@ -29,6 +31,8 @@ public class ShopItem : MonoBehaviour
         if (bankManager == null) bankManager = FindAnyObjectByType(typeof(BankManager)) as BankManager;
 
         bankManager.UpdateMoney((price * -1));
+
+        AudioManager.instance.PlaySFXClip(purchaseSFX, transform, 0.2f, 0.15f);
         
         if (containerManager.containerCount.ContainsKey(purchasable.ToString())) //check if item is in container dictionary
         {

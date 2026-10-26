@@ -178,6 +178,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   purchasable: 0
   isUpgrade: 0
+  purchaseSFX: {fileID: 8300000, guid: 3859900e645fc1d4989e96a40e24c53a, type: 3}
 --- !u!1 &4309472695962619212
 GameObject:
   m_ObjectHideFlags: 0

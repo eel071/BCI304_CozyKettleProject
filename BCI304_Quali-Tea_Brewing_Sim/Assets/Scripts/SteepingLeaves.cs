@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.UI;
 
 public class SteepingLeaves : MonoBehaviour
 {
     [SerializeField] private Teapot teapotScript;
     [SerializeField] private Sprite[] leafSprites;
-    private SpriteRenderer spriteRenderer;
+    private Image leafImage;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        leafImage = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -19,13 +20,13 @@ public class SteepingLeaves : MonoBehaviour
         switch (teapotScript.teapotTea)
         {
             case TeaTypes.Green:
-                spriteRenderer.sprite = leafSprites[0];
+                leafImage.sprite = leafSprites[0];
                 break;
             case TeaTypes.Black:
-                spriteRenderer.sprite = leafSprites[1];
+                leafImage.sprite = leafSprites[1];
                 break;
             case TeaTypes.White:
-                spriteRenderer.sprite = leafSprites[2];
+                leafImage.sprite = leafSprites[2];
                 break;
         }
     }

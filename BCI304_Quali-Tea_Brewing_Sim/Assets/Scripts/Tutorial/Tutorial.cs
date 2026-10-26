@@ -162,7 +162,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
                     tutText1.gameObject.SetActive(true);
                     waitingForAction = true; 
                     tutText1.SetText("Looks like the water is ready! \n Drag the teapot off.", waitingForAction);
-                    teapotDraggable.SwitchDraggable(true);
+                    //teapotDraggable.SwitchDraggable(true);
                     break;
                 case Tutorial1Step.Ticket:
                     waitingForAction = true;
