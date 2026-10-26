@@ -20,6 +20,8 @@ public class Tutorial : MonoBehaviour, IDataPersistence
     [SerializeField] private Draggable teapotDraggable; 
     [SerializeField] private Draggable teacupDraggable; 
 
+    private Teapot teapot;
+
     private Teacup teacup;
     
     [SerializeField] private Button steepButton;
@@ -78,6 +80,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
         customerSpawner = FindAnyObjectByType(typeof(CustomerSpawner)) as CustomerSpawner;
         containerManager = FindAnyObjectByType(typeof(ContainerManager)) as ContainerManager;
         teacup = FindAnyObjectByType(typeof(Teacup)) as Teacup;
+        teapot = FindAnyObjectByType(typeof(Teapot)) as Teapot;
     }
 
     public void LoadData(GameData data)
@@ -162,7 +165,8 @@ public class Tutorial : MonoBehaviour, IDataPersistence
                     tutText1.gameObject.SetActive(true);
                     waitingForAction = true; 
                     tutText1.SetText("Looks like the water is ready! \n Drag the teapot off.", waitingForAction);
-                    //teapotDraggable.SwitchDraggable(true);
+                    teapotDraggable.SwitchDraggable(true);
+                    teapot.SwitchInteractable(true);
                     break;
                 case Tutorial1Step.Ticket:
                     waitingForAction = true;
@@ -336,6 +340,7 @@ public class Tutorial : MonoBehaviour, IDataPersistence
             currentStep1 = Tutorial1Step.RemoveTeaPot;
             teapotDraggable.SwitchDraggable(false);
             tutText1.gameObject.SetActive(false);
+            teapot.SwitchInteractable(false);
         }
     }
 

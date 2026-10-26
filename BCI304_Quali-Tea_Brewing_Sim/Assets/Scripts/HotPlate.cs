@@ -91,6 +91,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
     {
         if (draggable.tag == "Teapot")
         {
+            heatBar.SetActive(false);
+            if (boilingSFX != null) AudioManager.instance.StopLoopingSFX(boilingSFX);
             FinishedHeating();        
         }
     }
@@ -144,6 +146,8 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
         }
         else if (teapot.waterHeating && teapot.waterHeated)
         {
+            heatBar.SetActive(false);
+            if (boilingSFX != null) AudioManager.instance.StopLoopingSFX(boilingSFX);
             teapot.waterHeating = false;
             FinishedHeating();
         }

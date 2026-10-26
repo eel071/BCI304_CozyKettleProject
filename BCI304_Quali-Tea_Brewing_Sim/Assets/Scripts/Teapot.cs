@@ -40,6 +40,12 @@ public class Teapot : MonoBehaviour, IOnDropBaseCollision //IOnPickUpBaseCollisi
         tutorial = FindAnyObjectByType(typeof(Tutorial)) as Tutorial;
     }
 
+
+    public void SwitchInteractable(bool canInteract)
+    {
+        col.enabled = canInteract;
+    }
+    
     public void OnDrop(Draggable draggable)
     {        
         if (draggable.tag == "Tea" && waterHeating == false && waterHeated == true && teaSteeping == false && teaSteeped == false)
