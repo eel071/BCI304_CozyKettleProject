@@ -97,6 +97,7 @@ public class HotPlate : MonoBehaviour, IOnDropBaseCollision, IOnPickUpBaseCollis
 
     private void FinishedHeating()
     {
+        Debug.Log("FinishedHeating");
         teapot.waterHeating = false;
 
         if (tutorial.tutorialActive) tutorial.RemoveTeaPot();

@@ -6,11 +6,16 @@ public class SceneFade : MonoBehaviour
 {
     private Image sceneFadeImage;
 
-    private bool fadeOutEnabled = false;
+    [SerializeField] private bool fadeOutEnabled = false;
 
     private void Awake()
     {
         sceneFadeImage = GetComponent<Image>();
+    }
+
+    private void Start()
+    {
+        fadeOutEnabled = false;
     }
 
     public IEnumerator FadeInCoroutine(float duration)
@@ -22,8 +27,8 @@ public class SceneFade : MonoBehaviour
         //start fade coroutine
         yield return FadeCoroutine(startColour, targetColour, duration);
 
-        gameObject.SetActive(false);
         fadeOutEnabled = true;
+        gameObject.SetActive(false);
     }
 
     public IEnumerator FadeOutCoroutine(float duration)
@@ -44,18 +49,20 @@ public class SceneFade : MonoBehaviour
 
     private IEnumerator FadeCoroutine(Color startColour, Color targetColour, float duration)
     {
+
         float elapsedTime = 0;
-        float elapsedPercentage = 0;
         
-        while (elapsedPercentage <1)
+        while (elapsedTime < duration)
         {
-            elapsedPercentage = elapsedTime/duration;
-            sceneFadeImage.color = Color.Lerp(startColour, targetColour, elapsedPercentage);
+            float t = elapsedTime/duration;
+            sceneFadeImage.color = Color.Lerp(startColour, targetColour, t);
 
             yield return null;
             elapsedTime += Time.deltaTime;
         }
 
+        sceneFadeImage.color = targetColour;
+        
     }
 
 }

@@ -48,11 +48,13 @@ public class SettingsMenu : MonoBehaviour
 
     public void QuitToTitle()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadSceneAsync("MainMenu");
     }
 
     public void QuitGame()
     {
+        Time.timeScale = 1f;
         Debug.Log("exiting game");
         Application.Quit(); 
     }
