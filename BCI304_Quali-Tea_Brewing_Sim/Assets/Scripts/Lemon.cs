@@ -6,6 +6,8 @@ public class Lemon : MonoBehaviour, IDataPersistence
     private Tree tree;
     public bool isActive = false;
     [SerializeField] private string id;
+    
+    [SerializeField] private AudioClip pickLemonSFX;
 
     
 
@@ -17,6 +19,16 @@ public class Lemon : MonoBehaviour, IDataPersistence
     void OnEnable()
     {
         isActive = true;
+    }
+
+    void OnMouseEnter()
+    {
+        CursorUI.instance.HandPoint();
+    }
+
+    void OnMouseExit()
+    {
+        CursorUI.instance.Pointer();
     }
 
     public void LoadData(GameData data)
@@ -45,6 +57,8 @@ public class Lemon : MonoBehaviour, IDataPersistence
     private void OnMouseDown()
     {
         tree.HarvestLemon();
+        AudioManager.instance.PlaySFXClip(pickLemonSFX, transform, 1f, 0.15f);
+        CursorUI.instance.Pointer();
         gameObject.SetActive(false); 
     }
 }

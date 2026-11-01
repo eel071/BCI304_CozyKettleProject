@@ -141,3 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4506eb9eede6b4a45b8ef59cabbab4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lemon
+  isActive: 0
+  id: 
+  pickLemonSFX: {fileID: 8300000, guid: c820cb2e2c78b814e89e9cee69545f76, type: 3}

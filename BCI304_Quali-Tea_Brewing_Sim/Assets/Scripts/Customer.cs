@@ -86,9 +86,21 @@ public class Customer : MonoBehaviour, IOnDropBaseCollision
             CustomerTalk();
             OrderDialogue(); //set or generate order dialogue
             hasOrdered = true;
+            CursorUI.instance.Pointer();
 
             if (tutorial.tutorialActive) tutorial.ClickCustomer();
         }
+    }
+
+
+    void OnMouseEnter()
+    {
+        if (!hasOrdered) CursorUI.instance.HandPoint();
+    }
+    
+    void OnMouseExit()
+    {
+        CursorUI.instance.Pointer();
     }
 
     public void CustomerTalk()

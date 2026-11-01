@@ -14,9 +14,7 @@ public class LoadManager : MonoBehaviour
     private Vector3 teaBrewCamPos = new Vector3(32, 0, -10);
     private Vector3 teaAddCamPos = new Vector3(50, 0, -10);
 
-   // [SerializeField] private GameObject toTeaAddButton;
-   // [SerializeField] private GameObject toTeaBrewButton;
-   // [SerializeField] private GameObject ticketButton;
+
     [SerializeField] private GameObject dialogue;
     [SerializeField] private Tree tree;
 
@@ -26,22 +24,10 @@ public class LoadManager : MonoBehaviour
     private Teacup teacupScript;
       
     private Tutorial tutorial;
-    
-    //private static LoadManager uniqueInstance;
+
     private void Awake()
     {
         mainCamera = GameObject.FindWithTag("MainCamera");
-
-        /*if (uniqueInstance == null)
-        {
-            uniqueInstance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        */
 
         sceneFade = GetComponentInChildren<SceneFade>();
         sceneFade.gameObject.SetActive(false);
@@ -62,8 +48,6 @@ public class LoadManager : MonoBehaviour
         {
             mainCamera.transform.position = frontCamPos;
             uiManager.GardenUI(false);
-            //ticketButton.SetActive(false);
-            //toTeaBrewButton.SetActive(false);
             dialogue.SetActive(true);
             uiManager.CloseDayOverscreen();  
 
@@ -73,7 +57,7 @@ public class LoadManager : MonoBehaviour
             {
                 uiManager.AdditionStationUI(false);
                 finishTea.servingTea = false;
-                teacup.transform.position = new Vector3(0f, -3.5f, 0); 
+                teacup.transform.position = new Vector3(0f, -3f, 0); 
                 teacupScript.NewStartPosition();   
                 teacupScript.toggleSaucer(true);
                 teacupScript.toggleDraggable(true);

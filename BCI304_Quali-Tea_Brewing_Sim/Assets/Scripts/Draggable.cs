@@ -30,6 +30,7 @@ public class Draggable : MonoBehaviour
     {
         if (dragging && draggable)
         {
+            CursorUI.instance.HandClosed();
             if (!Input.GetMouseButton(0)) //not holding left click
             {
                 dragging = false;
@@ -38,6 +39,16 @@ public class Draggable : MonoBehaviour
             }
             transform.position = GetMousePosition(); 
         }
+    }
+
+    void OnMouseEnter()
+    {
+        if (draggable && !dragging) CursorUI.instance.HandOpen();
+    }
+
+    void OnMouseExit()
+    {
+        CursorUI.instance.Pointer();
     }
 
     private Vector3 GetMousePosition()
@@ -80,6 +91,7 @@ public class Draggable : MonoBehaviour
 
     private void DropObject()
     {
+        CursorUI.instance.Pointer();
         dragging = false;
         col.enabled = false;
         Collider2D[] hitColliders = Physics2D.OverlapPointAll(transform.position);

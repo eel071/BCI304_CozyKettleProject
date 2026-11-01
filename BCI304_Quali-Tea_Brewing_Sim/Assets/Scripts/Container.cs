@@ -63,6 +63,16 @@ public class Container : MonoBehaviour
         
         UpdateContainer();
     }
+    
+    private void OnMouseEnter()
+    {
+        if (currentStorage >= 1) CursorUI.instance.HandPoint();
+    }
+
+    private void OnMouseExit()
+    {
+        CursorUI.instance.Pointer();
+    }
 
     private void OnMouseDown()
     {  

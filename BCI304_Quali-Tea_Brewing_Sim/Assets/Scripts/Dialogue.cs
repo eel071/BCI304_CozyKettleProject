@@ -99,7 +99,7 @@ public class Dialogue : MonoBehaviour
 
     private void FinishLine()
     {
-         if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
+        if (GameObject.FindWithTag("Customer") != null) customer = FindAnyObjectByType(typeof(Customer)) as Customer; 
         customer.StopTalking();
 
         if (showButtons) ShowButtons();

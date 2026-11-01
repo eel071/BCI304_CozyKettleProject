@@ -1,58 +1,49 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CursorUI : MonoBehaviour
 {
-    [SerializeField] private InputActionReference pointerPositionAction;
-    [SerializeField] private InputActionReference pointerClickAction;
+    public static CursorUI instance;
 
+    private Image cursor;
 
-    private RectTransform cursorTransform;
-    private Canvas parentCanvas;
-    private RectTransform canvasRectTransform;
-    private Camera canvasCamera;
-
-
-    public static CursorUI instance {get; private set;}
+    [SerializeField] private Sprite pointer;
+    [SerializeField] private Sprite handOpen;
+    [SerializeField] private Sprite handClosed;
+    [SerializeField] private Sprite handPoint;
 
     private void Awake()
     {
-
-        cursorTransform = GetComponent<RectTransform>();
-        parentCanvas = GetComponentInParent<Canvas>();
-        if (parentCanvas != null) 
+        if (instance != null)
         {
-            canvasRectTransform = parentCanvas.GetComponent<RectTransform>();
-            canvasCamera = parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay 
-                ? null 
-                : parentCanvas.worldCamera;
+            Debug.Log("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
+            Destroy(this.gameObject);
+            return;
         }
-        
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
+        cursor = GetComponentInChildren<Image>();
     }
 
-    private void OnEnable()
+    public void HandOpen()
     {
-        Cursor.visible = false;
-        pointerPositionAction.action.performed += OnPointerPositionChanged;
+        if (cursor != null && handOpen != null) cursor.sprite = handOpen;
     }
 
-    private void OnDisable()
+    public void HandClosed()
     {
-        Cursor.visible = true;
-        pointerPositionAction.action.performed -= OnPointerPositionChanged;
+        if (cursor != null && handClosed != null) cursor.sprite = handClosed;
     }
 
-    private void OnPointerPositionChanged(InputAction.CallbackContext ctx)
+    public void Pointer()
     {
-        if (cursorTransform == null || canvasRectTransform == null) return;
-
-        var mousePosition = ctx.ReadValue<Vector2>();
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            canvasRectTransform, mousePosition, canvasCamera, out var localPoint))
-        {
-            cursorTransform.anchoredPosition = localPoint;
-        }
+        if (cursor != null && pointer != null) cursor.sprite = pointer;
     }
 
+    public void HandPoint()
+    {
+        if (cursor != null && handPoint != null) cursor.sprite = handPoint;
+    }
 
 }
