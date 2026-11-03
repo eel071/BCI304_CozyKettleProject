@@ -165,15 +165,16 @@ MonoBehaviour:
   goodTeaD: Nice.
   fineTeaD: Mm.
   badTeaD: Uhh..
-  terribleTeaD: Awful.
+  terribleTeaD: Eugh, terrible.
   rejectD: Aw man.
   customerNeutralSprite: {fileID: 2976592047876790383, guid: 0231bdcedc607c347af1634a50595cb9, type: 3}
   customerTalkingSprite: {fileID: -2076610953903950332, guid: 0231bdcedc607c347af1634a50595cb9, type: 3}
   customerHappySprite: {fileID: -8034044872466651650, guid: 0231bdcedc607c347af1634a50595cb9, type: 3}
   customerUpsetSprite: {fileID: 7456059270932677438, guid: 0231bdcedc607c347af1634a50595cb9, type: 3}
-  orderSound: {fileID: 8300000, guid: 0b5bc4b7b6d52a04a9306603f5428fd4, type: 3}
-  amazingSound: {fileID: 8300000, guid: 9521634a61f0d8c458704d6195916683, type: 3}
-  goodSound: {fileID: 8300000, guid: f29e2947527716349ada273de4827c84, type: 3}
-  disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
-  angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
+  orderSound: {fileID: 8300000, guid: 5c2e53213ac11184e8cfd5e3d6b03e53, type: 3}
+  amazingSound: {fileID: 8300000, guid: 80fbfbec4ebc3114da56dcadfec851b5, type: 3}
+  goodSound: {fileID: 8300000, guid: 260d159f93f9c67448a53267c5a46224, type: 3}
+  disappointedSound: {fileID: 8300000, guid: 2c11b98e0fecd9643b35244e3bb4616d, type: 3}
+  angrySound: {fileID: 8300000, guid: f46138000adbf0149af6a3c376e7386e, type: 3}
   destroyAfterTalk: 0
+  tipMultiplier: 1

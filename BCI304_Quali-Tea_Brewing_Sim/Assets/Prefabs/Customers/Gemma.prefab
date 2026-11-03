@@ -157,13 +157,15 @@ MonoBehaviour:
   teaOrder: 1
   lemonOrder: 1
   sugarOrder: 0
+  honeyOrder: 0
+  milkOrder: 0
   orderD: Green tea with some lemon please!
   wrongTeaD: Oh this isn't what I ordered..
   perfectTeaD: This is absolutely fantastic!
   goodTeaD: Wonderful!
   fineTeaD: Okay!
   badTeaD: Um...
-  terribleTeaD: Sorry, this is terrible.
+  terribleTeaD: Oh, this is awful.
   rejectD: Oh ok..
   customerNeutralSprite: {fileID: 8879759979452351429, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
   customerTalkingSprite: {fileID: 4677626673177207552, guid: 6528f53a27cf5544a9320a5c9c480f99, type: 3}
@@ -175,3 +177,4 @@ MonoBehaviour:
   disappointedSound: {fileID: 8300000, guid: 98709212c7dd9ff4399f5d1bf5f7fc89, type: 3}
   angrySound: {fileID: 8300000, guid: 06f3c2bedb5a8d7419cb2260b0c905be, type: 3}
   destroyAfterTalk: 0
+  tipMultiplier: 1
